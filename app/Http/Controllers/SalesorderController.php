@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use App\Models\Sale;
 use App\Models\Turnover;
 use App\Models\Collection;

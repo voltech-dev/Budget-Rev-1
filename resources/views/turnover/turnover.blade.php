@@ -3,7 +3,7 @@
 <!-- begin::page-header -->
 <div class="page-header">
     <div class="container-fluid d-sm-flex justify-content-between">
-        <h4>Add New Sales Order</h4>
+        <h4>Add New Turn Over</h4>
         <!-- <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item">
@@ -37,7 +37,7 @@
         <div class="card-body">
             <div class="row">
                 <div class="col-md-12">
-                    <form action="{{url('/salesorder')}}" method="POST">
+                    <form action="{{url('/turnover')}}" method="POST">
                         @csrf
                         <div data-label="Enquiry Details" class="demo-code-preview col-xs-12 col-sm-12 col-md-12">
                             <div class="form-group row">

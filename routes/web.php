@@ -8,3 +8,8 @@ Route::get('/', function () {
 
 ############################## Salesorder ##############################
 Route::get('/salesorder', [SalesorderController::class, 'salesorder']);
+Route::post('/salesorder', [SalesorderController::class, 'store']);
+Route::get('/turnover', [SalesorderController::class, 'turnover']);
+Route::post('/turnover', [SalesorderController::class, 'turnover_store']);
+Route::get('/collection', [SalesorderController::class, 'collection']);
+Route::post('/collection', [SalesorderController::class, 'collection_store']);

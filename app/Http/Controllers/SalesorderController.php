@@ -13,13 +13,52 @@ class SalesorderController extends Controller
     {
         return view('salesorder.create');
     }
+    public function salesorderlist()
+    {
+        return view('salesorder.salesorderlist');
+    }
+    public function sales_edit($id)
+    {
+        return view('salesorder.sales_edit', [
+            'sale' => Sale::find($id),
+            
+        ]);
+    }
+    public function sales_view($p){
+    
+        return view('salesorder.sales_view',[
+            'sale'=>Sale::where(['Company_name'=>$p])->first(),
+          
+           
+        ]);
+      
+    }
+    public function salesupdate(Request $request, $id)
+    {
+        $sales = Sale::findorfail($id);
+        $sales->Company_name = $request->input('company_name');
+        $sales->division = $request->input('division');
+        $sales->unit = $request->input('unit');
+        $sales->financial_year = $request->input('financial_year');
+        $sales->target_q1=$request->q1;
+        $sales->target_q2=$request->q2;
+        $sales->target_q3=$request->q3;
+        $sales->target_q4=$request->q4;
+        $sales->actual_q1=$request->aq1;
+        $sales->actual_q2=$request->aq2;
+        $sales->actual_q3=$request->aq3;
+        $sales->actual_q4=$request->aq4;
+        $sales->save();
+        return redirect('/salesorderlist');
+        
+    }
     public function store(Request $request)
     {
         $sale=new Sale();
-        $sale->Company_name=$request->company_name;
-        $sale->unit=$request->unit;
-        $sale->division=$request->division;
-        $sale->financial_year=$request->financial_year;
+        $sale->Company_name=$request->input('company_name');
+        $sale->unit=$request->input('unit');
+        $sale->division=$request->input('division');
+        $sale->financial_year=$request->input('financial_year');
         $sale->target_q1=$request->q1;
         $sale->target_q2=$request->q2;
         $sale->target_q3=$request->q3;
@@ -34,13 +73,50 @@ class SalesorderController extends Controller
     public function turnover(){
         return view('turnover.turnover');
     }
+    public function turnoverlist(){
+        return view('turnover.turnoverlist');
+    }
+    public function turn_edit($id)
+    {
+        return view('turnover.turnover_edit', [
+            'turn' => Turnover::find($id),
+            
+        ]);
+    }
+    public function turn_view($p){
+    
+        return view('turnover.turnover_view',[
+            'turn'=>Turnover::where(['Company_name'=>$p])->first(),
+          
+           
+        ]);
+      
+    }
+    public function turnupdate(Request $request, $id)
+    {
+        $turn = Turnover::findorfail($id);
+        $turn->Company_name = $request->input('company_name');
+        $turn->division = $request->input('division');
+        $turn->unit = $request->input('unit');
+        $turn->financial_year = $request->input('financial_year');
+        $turn->target_q1=$request->q1;
+        $turn->target_q2=$request->q2;
+        $turn->target_q3=$request->q3;
+        $turn->target_q4=$request->q4;
+        $turn->actual_q1=$request->aq1;
+        $turn->actual_q2=$request->aq2;
+        $turn->actual_q3=$request->aq3;
+        $turn->actual_q4=$request->aq4;
+        $turn->save();
+        return redirect('/turnoverlist');
+    }
     public function turnover_store(Request $request)
     {
         $turn=new Turnover();
-        $turn->Company_name=$request->company_name;
-        $turn->unit=$request->unit;
-        $turn->division=$request->division;
-        $turn->financial_year=$request->financial_year;
+        $turn->Company_name=$request->input('company_name');
+        $turn->unit=$request->input('unit');
+        $turn->division=$request->input('division');
+        $turn->financial_year=$request->input('financial_year');
         $turn->target_q1=$request->q1;
         $turn->target_q2=$request->q2;
         $turn->target_q3=$request->q3;
@@ -54,6 +130,25 @@ class SalesorderController extends Controller
     }
     public function collection(){
         return view('collection.collection');
+    }
+    public function collectionlist(){
+        return view('collection.collectionlist');
+    }
+    public function collection_edit($id)
+    {
+        return view('collection.collection_edit', [
+            'collect' => Collection::find($id),
+            
+        ]);
+    }
+    public function collection_view($p){
+    
+        return view('collection.collection_view',[
+            'collect'=>Collection::where(['Company_name'=>$p])->first(),
+          
+           
+        ]);
+      
     }
     public function collection_store(Request $request)
     {
@@ -72,5 +167,24 @@ class SalesorderController extends Controller
         $collection->actual_q4=$request->aq4;
         $collection->save();
         return back();
+    }
+    public function collectionupdate(Request $request, $id)
+    {
+        $collection = Collection::findorfail($id);
+        $collection->Company_name=$request->company_name;
+        $collection->unit=$request->unit;
+        $collection->division=$request->division;
+        $collection->financial_year=$request->financial_year;
+        $collection->target_q1=$request->q1;
+        $collection->target_q2=$request->q2;
+        $collection->target_q3=$request->q3;
+        $collection->target_q4=$request->q4;
+        $collection->actual_q1=$request->aq1;
+        $collection->actual_q2=$request->aq2;
+        $collection->actual_q3=$request->aq3;
+        $collection->actual_q4=$request->aq4;
+        $collection->save();
+        return redirect('/collectionlist');
+        
     }
 }

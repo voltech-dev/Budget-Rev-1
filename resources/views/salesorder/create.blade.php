@@ -3,7 +3,7 @@
 <!-- begin::page-header -->
 <div class="page-header">
     <div class="container-fluid d-sm-flex justify-content-between">
-        <h4>Add New Sales Order</h4>
+
         <!-- <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item">
@@ -43,20 +43,34 @@
                             <div class="form-group row">
                                 <label class="col-sm-3 col-form-label col-form-label-sm">Company Name</label>
                                 <div class="col-sm-3">
-                                    <input type="text" class="form-control form-control-sm" name="company_name"
-                                        id="company_name" placeholder="Enter Company Name">
+                                    <select id="company_name" class="form-control form-control-sm" name="company_name">
+                                        <option id="company_name" name="company_name" disabled>Company Name</option>
+                                        <option id=" vepl" name="vepl">VEPL</option>
+                                        <option id=" vepl" name="vepl">VMCL</option>
+                                        <option id=" vepl" name="vepl">VHRS</option>
+                                    </select>
+                                    <!-- <input type="text" class="form-control form-control-sm" name="company_name"
+                                        id="company_name" placeholder="Enter Company Name"> -->
                                 </div>
-                                <label class="col-sm-3 col-form-label col-form-label-sm">Unit</label>
+                                <label class="col-sm-3 col-form-label col-form-label-sm">Division</label>
                                 <div class="col-sm-3">
-                                    <input type="text" name="unit" class="form-control form-control-sm" id="unit"
-                                        placeholder="Enter Unit">
+                                    <select id="division" class="form-control form-control-sm" name="division">
+                                        <option id="div" name="div" disabled>Division</option>
+                                        <option id="div1" name="div1" value=1>Transformer</option>
+                                        <option id="div2" name="div2" value=2>Switchgear</option>
+                                    </select>
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-3 col-form-label col-form-label-sm">Division</label>
+                                <label class="col-sm-3 col-form-label col-form-label-sm">Unit</label>
                                 <div class="col-sm-3">
-                                    <input type="text" class="form-control form-control-sm" name="division"
-                                        id="division" placeholder="Enter Company Name">
+                                    <select id="unit" class="form-control form-control-sm" name="unit">
+                                        <option id="div" name="div" disabled>Unit</option>
+                                        <option value="1">A</option>
+                                        <option  value="1">B</option>
+                                        <option  value="2">C</option>
+                                        <option value="2">D</option>
+                                    </select>
                                 </div>
                                 <label class="col-sm-3 col-form-label col-form-label-sm">Financial Year</label>
                                 <div class="col-sm-3">
@@ -120,6 +134,7 @@
                                 </div>
                             </div>
                         </div>
+                        
                         <div class="form-group row">
                             <div class="col-sm-6">
                                 <div class="col-xs-12 col-sm-12 col-md-12 text-left">
@@ -155,5 +170,12 @@ $(document).ready(function() {
 $(document).ready(function() {
     $('.mdb-select').materialSelect();
 });
+var $select1 = $( '#division' ),
+ $select2 = $( '#unit' ),
+$options = $select2.find( 'option' );
+    
+$select1.on( 'change', function() {
+	$select2.html( $options.filter( '[value="' + this.value + '"]' ) );
+} ).trigger( 'change' );
 </script>
 @endpush

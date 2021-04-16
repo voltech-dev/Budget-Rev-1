@@ -26,5 +26,19 @@ Route::get('/collection_edit/{id}',[App\Http\Controllers\SalesorderController::c
 Route::get('/collection', [SalesorderController::class, 'collection'])->name('/collection');
 Route::post('/collectionupdate/{id}',[App\Http\Controllers\SalesorderController::class, 'collectionupdate']);
 Route::get('/collection_view/{p}',[App\Http\Controllers\SalesorderController::class, 'collection_view']);
-
 Route::post('/collection', [SalesorderController::class, 'collection_store']);
+
+Route::get('/companylist', [SalesorderController::class, 'companylist']);
+
+Route::get('/division', [SalesorderController::class, 'division']);
+Route::get('/viewdivision', [SalesorderController::class, 'viewdivision']);
+Route::post('/company', [SalesorderController::class, 'company']);
+Route::get('/company_edit/{id}', [SalesorderController::class, 'company_edit']);
+Route::post('/companyupdate/{id}',[App\Http\Controllers\SalesorderController::class, 'companyupdate']);
+Route::get('/companyview/{p}',[App\Http\Controllers\SalesorderController::class, 'company_view']);
+
+Route::get('/division', [SalesorderController::class, 'division']);
+Route::get('/viewdivision', [SalesorderController::class, 'viewdivision']);
+Route::get('/divisionlist', [SalesorderController::class, 'divisionlist']);
+Route::post('/divisionstore', [SalesorderController::class, 'division_store']);
+// Route::get('/companyid', [SalesorderController::class, 'divisiondetails']);

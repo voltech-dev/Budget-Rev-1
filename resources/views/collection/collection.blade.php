@@ -3,18 +3,7 @@
 <!-- begin::page-header -->
 <div class="page-header">
     <div class="container-fluid d-sm-flex justify-content-between">
-        <h4>Add New Collection</h4>
-        <!-- <nav aria-label="breadcrumb">
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item">
-                    <a href="#">BMS</a>
-                </li>
-                <li class="breadcrumb-item">
-                    <a href="#">Enquiry List</a>
-                </li>
-                <li class="breadcrumb-item active" aria-current="page">Create</li>
-            </ol>
-        </nav> -->
+
     </div>
 </div>
 <!-- end::page-header -->
@@ -43,7 +32,7 @@
                             <div class="form-group row">
                                 <label class="col-sm-3 col-form-label col-form-label-sm">Company Name</label>
                                 <div class="col-sm-3">
-                                <select id="company_name" class="form-control form-control-sm" name="company_name">
+                                    <select id="company_name" class="form-control form-control-sm" name="company_name">
                                         <option id="company_name" name="company_name" disabled>Company Name</option>
                                         <option id=" vepl" name="vepl">VEPL</option>
                                         <option id=" vepl" name="vepl">VMCL</option>
@@ -52,7 +41,7 @@
                                 </div>
                                 <label class="col-sm-3 col-form-label col-form-label-sm">Division</label>
                                 <div class="col-sm-3">
-                                <select id="division" class="form-control form-control-sm" name="division">
+                                    <select id="division" class="form-control form-control-sm" name="division">
                                         <option id="div" name="div" disabled>Division</option>
                                         <option id="div1" name="div1" value=1>Transformer</option>
                                         <option id="div2" name="div2" value=2>Switchgear</option>
@@ -62,7 +51,7 @@
                             <div class="form-group row">
                                 <label class="col-sm-3 col-form-label col-form-label-sm">Unit</label>
                                 <div class="col-sm-3">
-                                <select id="unit" class="form-control form-control-sm" name="unit">
+                                    <select id="unit" class="form-control form-control-sm" name="unit">
                                         <option id="div" name="div" disabled>Unit</option>
                                         <option id="div1" name="div1" value=1>A</option>
                                         <option id="div2" name="div2" value=1>B</option>
@@ -167,12 +156,12 @@ $(document).ready(function() {
 $(document).ready(function() {
     $('.mdb-select').materialSelect();
 });
-var $select1 = $( '#division' ),
- $select2 = $( '#unit' ),
-$options = $select2.find( 'option' );
-    
-$select1.on( 'change', function() {
-	$select2.html( $options.filter( '[value="' + this.value + '"]' ) );
-} ).trigger( 'change' );
+var $select1 = $('#division'),
+    $select2 = $('#unit'),
+    $options = $select2.find('option');
+
+$select1.on('change', function() {
+    $select2.html($options.filter('[value="' + this.value + '"]'));
+}).trigger('change');
 </script>
-@endpushh
+@endpush

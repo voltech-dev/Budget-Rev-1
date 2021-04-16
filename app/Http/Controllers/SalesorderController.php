@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 use App\Models\Sale;
 use App\Models\Turnover;
 use App\Models\Collection;
+use App\Models\company;
+use App\Models\division;
 use Illuminate\Http\Request;
 
 class SalesorderController extends Controller
@@ -187,4 +189,63 @@ class SalesorderController extends Controller
         return redirect('/collectionlist');
         
     }
+    public function companylist(){
+        return view('company.companylist');
+    }
+    public function companycreate(){
+        return view('company.companycreate');
+    }
+    public function company(Request $request){
+        $company=new company();
+        $company->company_code=$request->code;
+        $company->company_name=$request->company_name;
+        $company->contact=$request->contact;
+        $company->company_status=$request->status;
+        $company->address=$request->address;
+        $company->save();
+        return redirect('/companylist');
+    }
+    public function company_edit($id)
+    {
+        return view('company.company_edit', [
+            'comp' => company::find($id),
+            
+        ]);
+    }
+    public function companyupdate(Request $request, $id)
+    {
+        $company = company::findorfail($id);
+        $company->company_code=$request->code;
+        $company->company_name=$request->company_name;
+        $company->contact=$request->contact;
+        $company->company_status=$request->status;
+        $company->address=$request->address;
+        $company->save();
+        return redirect('/companylist');
+        
+    }
+    public function company_view($p){
+    
+        return view('company.companyview',[
+            'comp'=>company::where(['company_code'=>$p])->first(), 
+        ]);
+    }
+    public function division(){
+        return view('division.division');
+    }
+    public function division_store(Request $request){
+        $division=new division();
+        $division->division_name=$request->division;
+        $division->company_id=$request->company_name;
+        $division->save();
+        return redirect('/division');
+
+    }
+    public function viewdivision(){
+        return view('company.viewdivision');
+    }
+    public function divisionlist(){
+        return view('company.divisionlist');
+    }
+   
 }

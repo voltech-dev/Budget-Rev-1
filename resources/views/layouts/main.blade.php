@@ -44,7 +44,8 @@
     <!-- INTERNAL File Uploads css
     <link href="{{ asset('plugins/fileupload/css/fileupload.css') }}" rel="stylesheet" type="text/css" />-->
     <!-- bala insert end -->
-    </head>
+</head>
+
 <body class="app main-body">
     <!---Global-loader-->
     <div id="global-loader">
@@ -188,38 +189,53 @@
                                     </a>
                                 </li>
                                 <li aria-haspopup="true">
-                                    <a href="{{ url('/salesorderlist') }}" class="">
+                                    <a href="" class="">
                                         <svg class="hor-icon" xmlns="http://www.w3.org/2000/svg" height="24"
                                             viewBox="0 0 24 24" width="24">
                                             <path d="M0 0h24v24H0V0z" fill="none" />
                                             <path
                                                 d="M16.66 4.52l2.83 2.83-2.83 2.83-2.83-2.83 2.83-2.83M9 5v4H5V5h4m10 10v4h-4v-4h4M9 15v4H5v-4h4m7.66-13.31L11 7.34 16.66 13l5.66-5.66-5.66-5.65zM11 3H3v8h8V3zm10 10h-8v8h8v-8zm-10 0H3v8h8v-8z" />
                                         </svg>
-                                        Sales Order
+                                        Setup <i class="fa fa-angle-down horizontal-icon"></i>
                                     </a>
+                                    <ul class="sub-menu">
+                                        <li aria-haspopup="true"><a href="{{url('/salesorderlist')}}">Salesorder</a>
+                                        </li>
+                                        <li aria-haspopup="true"><a href="{{url('/turnoverlist')}}">Turnover</a></li>
+                                        <li aria-haspopup="true"><a href="{{url('/collectionlist')}}">Collection</a>
+                                        </li>
+                                    </ul>
                                 </li>
                                 <li aria-haspopup="true">
-                                    <a href="{{ url('/turnoverlist') }}" class="sub-icon">
+                                    <a href="{{ url('/companylist') }}" class="sub-icon active">
                                         <svg class="hor-icon" xmlns="http://www.w3.org/2000/svg" height="24"
                                             viewBox="0 0 24 24" width="24">
                                             <path d="M0 0h24v24H0V0z" fill="none" />
                                             <path
-                                                d="M4 8h4V4H4v4zm6 12h4v-4h-4v4zm-6 0h4v-4H4v4zm0-6h4v-4H4v4zm6 0h4v-4h-4v4zm6-10v4h4V4h-4zm-6 4h4V4h-4v4zm6 6h4v-4h-4v4zm0 6h4v-4h-4v4z" />
+                                                d="M19 5v2h-4V5h4M9 5v6H5V5h4m10 8v6h-4v-6h4M9 17v2H5v-2h4M21 3h-8v6h8V3zM11 3H3v10h8V3zm10 8h-8v10h8V11zm-10 4H3v6h8v-6z" />
                                         </svg>
-                                        Turnover
+                                        Company
                                     </a>
+                                    <ul class="sub-menu">
+                                        <li aria-haspopup="true"><a href="{{url('/viewdivision')}}">View Division</a>
+                                        </li>
+                                      
+                                    </ul>
                                 </li>
                                 <li aria-haspopup="true">
-                                    <a href="{{ url('/collectionlist') }}" class="sub-icon">
+                                    <a href="{{ url('/division') }}" class="sub-icon active">
                                         <svg class="hor-icon" xmlns="http://www.w3.org/2000/svg" height="24"
                                             viewBox="0 0 24 24" width="24">
                                             <path d="M0 0h24v24H0V0z" fill="none" />
                                             <path
-                                                d="M8 16h8v2H8zm0-4h8v2H8zm6-10H6c-1.1 0-2 .9-2 2v16c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm4 18H6V4h7v5h5v11z" />
+                                                d="M19 5v2h-4V5h4M9 5v6H5V5h4m10 8v6h-4v-6h4M9 17v2H5v-2h4M21 3h-8v6h8V3zM11 3H3v10h8V3zm10 8h-8v10h8V11zm-10 4H3v6h8v-6z" />
                                         </svg>
-                                        Collection
+                                        Division
                                     </a>
                                 </li>
+
+
+
                                 <!-- <li aria-haspopup="true">
                                     <a href="{{url('/sbitelephonic')}}" class="sub-icon">
                                         <svg class="hor-icon" xmlns="http://www.w3.org/2000/svg" height="24"
@@ -383,4 +399,18 @@
     <script src="{{ asset('plugins/select2/select2.full.min.js') }}"></script>
     @stack('scripts')
 </body>
+
 </html>
+© 2021 GitHub, Inc.
+Terms
+Privacy
+Security
+Status
+Docs
+Contact GitHub
+Pricing
+API
+Training
+Blog
+About
+Loading complete

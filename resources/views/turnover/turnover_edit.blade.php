@@ -31,8 +31,8 @@
                         <select id="division" class="form-control form-control-sm" name="division">
                             <option value="{{$turn->division}}" selected>{{$turn->division}}</option>
                             <option disabled>Select Division..</option>
-                            <option id=" div1" name="div1" value=1>Transformer</option>
-                            <option id="div2" name="div2" value=2>Switchgear</option>
+                            <option id=" div1" name="div1" value="1">Transformer</option>
+                            <option id="div2" name="div2" value="2">Switchgear</option>
                         </select>
                     </div>
                 </div>

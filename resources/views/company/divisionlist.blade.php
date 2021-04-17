@@ -46,7 +46,7 @@ td {
                                 <td></td>
                                 <td></td>
                                 <td class="text-center">
-                                   
+
                                 </td>
                             </tr>
                             @endforeach

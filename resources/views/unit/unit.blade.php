@@ -30,26 +30,35 @@ $company=DB::table('company')
         <div class="card-body">
             <div class="row">
                 <div class="col-md-12">
-                    <form action="{{url('/divisionstore')}}" method="POST">
+                    <form action="{{url('/unitstore')}}" method="POST">
                         @csrf
                         <div data-label="Enquiry Details" class="demo-code-preview col-xs-12 col-sm-12 col-md-12">
                             <div class="form-group row">
                                 <label class="col-sm-3 col-form-label col-form-label-sm">Company Name</label>
                                 <div class="col-sm-3">
                                     <select name="company_name" class="form-control form-control-sm" id="company_name">
-                                    <option selected disabled>--Select--</option>
-                                        @foreach($company as $comp)                                        
-                                        <option value="{{$comp->id}}" >{{$comp->company_name}}</option>                                    
+                                        @foreach($company as $comp)
+                                        <option value="{{$comp->company_name}}">{{$comp->company_name}}
+                                        </option>
+
                                         @endforeach
                                     </select>
                                 </div>
                                 <label class="col-sm-3 col-form-label col-form-label-sm">Division</label>
                                 <div class="col-sm-3">
-                                    <input type="text" class="form-control form-control-sm" name="division"
-                                        id="division">
+                                    <select name="division" class="form-control form-control-sm" id="division">
+                                        <option></option>
+                                    </select>
                                 </div>
                             </div>
-                          
+                            <div class="form-group row">
+
+                                <label class="col-sm-3 col-form-label col-form-label-sm">Unit</label>
+                                <div class="col-sm-3">
+                                    <input type="text" class="form-control form-control-sm" name="unit"
+                                        id="unit">
+                                </div>
+                            </div>
                             <div class="form-group row">
                                 <div class="col-sm-6">
                                     <div class="col-xs-12 col-sm-12 col-md-12 text-left">
@@ -76,5 +85,23 @@ $company=DB::table('company')
 @endsection
 @push('scripts')
 <script>
+$('#company_name').change(function(event) {
+    var company_name = $('#company_name').val();
+    $.ajax({
+        type: "GET",
+        url: "{{url('/companyid')}}",
+        data: {
+            company_name: company_name
+        },
+        dataType: 'json',
+        success: function(data) {
+            $('select[name="division"]').empty();
+            $.each(data, function(key, value) {
+                $('select[name="division"]').append('<option value="' + key + '">' + value +
+                    '</option>');
+            });
+        },
+    });
+});
 </script>
 @endpush

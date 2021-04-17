@@ -40,23 +40,52 @@ $company=DB::table('company')
                                         @foreach($company as $comp)
                                         <option value="{{$comp->id}}" selected>{{$comp->company_name}}
                                         </option>
-                                       
+
                                         @endforeach
                                     </select>
                                 </div>
                                 <div class="col-sm-3">
                                     <div class="col-xs-12 col-sm-12 col-md-12 text-left">
-                                        <a class="btn btn-outline-light btn-sm" href="{{url('/divisionlist')}}">
-                                            <i data-feather="chevrons-left" class="mr-2"></i>View</a>
+                                        <button id="view" name="view" value="View"></button>
                                     </div>
                                 </div>
-                              
-                               
+
+
                             </div>
-                            <div class="form-group row">
-                              
-                             
-                            </div>
+                            <div class="row" id="table">
+                                <div class="col-sm-12">
+
+                                    <div class="card card-table">
+                                        <div class="card-body">
+                                            <div class="table-responsive">
+                                                <table class="table table-center table-hover datatable">
+                                                    <thead class="thead-light">
+                                                        <tr>
+                                                            <th>SI</th>
+                                                            <th>Division</th>
+                                                            <th>Actions</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        @foreach($company as $comp)
+                                                        <tr>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td class="text-center">
+
+                                                            </td>
+                                                        </tr>
+                                                        @endforeach
+
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div><br>
 
                     </form>
                 </div>
@@ -69,5 +98,12 @@ $company=DB::table('company')
 @endsection
 @push('scripts')
 <script>
+$(document).ready(function() {
+    $('#table').hide();
+    
+});
+$('#view').click(function(){
+
+});
 </script>
 @endpush

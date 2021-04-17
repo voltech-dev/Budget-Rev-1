@@ -6,6 +6,7 @@ use App\Models\Turnover;
 use App\Models\Collection;
 use App\Models\company;
 use App\Models\division;
+use App\Models\unit;
 use Illuminate\Http\Request;
 
 class SalesorderController extends Controller
@@ -236,7 +237,7 @@ class SalesorderController extends Controller
     public function division_store(Request $request){
         $division=new division();
         $division->division_name=$request->division;
-        $division->company_id=$request->company_name;
+        $division->company_id=$request->input('company_name');
         $division->save();
         return redirect('/division');
 
@@ -247,5 +248,25 @@ class SalesorderController extends Controller
     public function divisionlist(){
         return view('company.divisionlist');
     }
-   
+    public function unit(){
+        return view('unit.unit');
+    } 
+    public function unitstore(Request $request){
+        $unit=new unit();
+        $unit->company_name=$request->company_name;
+        $unit->division_name=$request->division;
+        $unit->unit=$request->unit;
+        $unit->save();
+        return redirect('/division');
+    }
+    public function divisiondetails(Request $request){
+        $post=$request->all();
+        $json = array();
+        $division = division::where(['company_id' => $post['company_name']])->get();
+        foreach($division as $div){
+            $json[$div->id] =$div->division_name;      
+        }  
+        echo json_encode($json);     
+       
+    }
 }

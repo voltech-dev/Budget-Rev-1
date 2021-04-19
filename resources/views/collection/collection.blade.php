@@ -1,9 +1,16 @@
 @extends('layouts.main')
 @section('header')
+<?php
+$company=DB::table('company')
+->get();
+?>
 <!-- begin::page-header -->
 <div class="page-header">
     <div class="container-fluid d-sm-flex justify-content-between">
 
+         <nav aria-label="breadcrumb">
+           <h3>Collection</h3>
+        </nav>
     </div>
 </div>
 <!-- end::page-header -->
@@ -33,18 +40,18 @@
                                 <label class="col-sm-3 col-form-label col-form-label-sm">Company Name</label>
                                 <div class="col-sm-3">
                                     <select id="company_name" class="form-control form-control-sm" name="company_name">
-                                        <option id="company_name" name="company_name" disabled>Company Name</option>
-                                        <option id=" vepl" name="vepl">VEPL</option>
-                                        <option id=" vepl" name="vepl">VMCL</option>
-                                        <option id=" vepl" name="vepl">VHRS</option>
+                                       
+                            @foreach($company as $comp)
+                            <option value="{{$comp->company_name}}">{{$comp->company_name}}
+                            </option>
+
+                            @endforeach
                                     </select>
                                 </div>
                                 <label class="col-sm-3 col-form-label col-form-label-sm">Division</label>
                                 <div class="col-sm-3">
                                     <select id="division" class="form-control form-control-sm" name="division">
-                                        <option id="div" name="div" disabled>Division</option>
-                                        <option id="div1" name="div1" value=1>Transformer</option>
-                                        <option id="div2" name="div2" value=2>Switchgear</option>
+                                       
                                     </select>
                                 </div>
                             </div>
@@ -67,6 +74,13 @@
                                         <option value="2020-2021">2020-2021</option>
                                         <option value="2021-2022">2021-2022</option>
                                         <option value="2022-2023">2022-2023</option>
+                                        <option value="2023-2024">2023-2024</option>
+                                        <option value="2024-2025">2024-2025</option>
+                                        <option value="2025-2026">2025-2026</option>
+                                        <option value="2026-2027">2026-2027</option>
+                                        <option value="2027-2028">2027-2028</option>
+                                        <option value="2028-2029">2028-2029</option>
+                                        <option value="2029-2030">2029-2030</option>
                                     </select>
                                 </div>
                             </div>
@@ -163,5 +177,24 @@ var $select1 = $('#division'),
 $select1.on('change', function() {
     $select2.html($options.filter('[value="' + this.value + '"]'));
 }).trigger('change');
+$('#company_name').change(function(event) {
+    var company_name = $('#company_name').val();
+    console.log(company_name);
+    $.ajax({
+        type: "GET",
+        url: "{{url('/companyid')}}",
+        data: {
+            company_name: company_name
+        },
+        dataType: 'json',
+        success: function(data) {
+            $('select[name="division"]').empty();
+            $.each(data, function(key, value) {
+                $('select[name="division"]').append('<option value="' + key + '">' + value +
+                    '</option>');
+            });
+        },
+    });
+});
 </script>
 @endpush

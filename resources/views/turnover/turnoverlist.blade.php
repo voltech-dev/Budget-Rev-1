@@ -14,7 +14,14 @@ td {
   text-align: center;
 }
 </style>
+<div class="page-header">
+    <div class="container-fluid d-sm-flex justify-content-between">
 
+         <nav aria-label="breadcrumb">
+           <h3>Turnover List</h3>
+        </nav>
+    </div>
+</div>
 <!-- Page Header -->
 
 <!-- /Page Header -->
@@ -34,8 +41,7 @@ td {
                             <tr>
                                 <th>SI</th>
                                 <th>Company Name</th>
-                                <th>Division</th>
-                                <th>Unit</th>
+                                <th>Financial Year</th>
                                 <th>Actions</th>
                             </tr>
                         </thead>
@@ -44,8 +50,8 @@ td {
                             <tr>
                                 <td>{{$turn->id}}</td>
                                 <td><a href="{{url('/turn_view/'.$turn->Company_name)}}">{{$turn->Company_name}}</td>
-                                <td>{{$turn->division}}</td>
-                                <td>{{$turn->unit}}</td>
+                                <td>{{$turn->financial_year}}</td>
+                               
                                 <td class="text-center">
                                 <a href="{{ url('/turn_edit/'.$turn->id) }}"
                                         class="btn btn-sm btn-white text-success mr-2"><i
@@ -63,7 +69,7 @@ td {
 </div><br>
 <div class="text-center">
 <button onclick="location.href='{{ url('/turnover/') }}'" style="text-center">
-    Add Turnover</button>
+    Add Budget</button>
 </div>
 
 @endsection

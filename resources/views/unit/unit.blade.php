@@ -94,8 +94,10 @@ $('#company_name').change(function(event) {
         },
         dataType: 'json',
         success: function(data) {
+            console.log(data);
             $('select[name="division"]').empty();
             $.each(data, function(key, value) {
+                console.log(key);
                 $('select[name="division"]').append('<option value="' + key + '">' + value +
                     '</option>');
             });

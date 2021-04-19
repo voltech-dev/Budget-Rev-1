@@ -14,7 +14,14 @@ td {
   text-align: center;
 }
 </style>
+<div class="page-header">
+    <div class="container-fluid d-sm-flex justify-content-between">
 
+         <nav aria-label="breadcrumb">
+           <h3>Salesorder List</h3>
+        </nav>
+    </div>
+</div>
 <!-- Page Header -->
 
 <!-- /Page Header -->
@@ -34,8 +41,7 @@ td {
                             <tr>
                                 <th>SI</th>
                                 <th>Company Name</th>
-                                <th>Division</th>
-                                <th>Unit</th>
+                                <th>Financial Year</th>
                                 <th>Actions</th>
                             </tr>
                         </thead>
@@ -44,8 +50,7 @@ td {
                             <tr>
                                 <td>{{$sale->id}}</td>
                                 <td><a href="{{url('/sales_view/'.$sale->Company_name)}}">{{$sale->Company_name}}</td>
-                                <td>{{$sale->division}}</td>
-                                <td>{{$sale->unit}}</td>
+                                <td>{{$sale->financial_year}}</td>
                                 <td class="text-center">
                                     <a href="{{ url('/sales_edit/'.$sale->id) }}"
                                         class="btn btn-sm btn-white text-success mr-2"><i
@@ -63,7 +68,7 @@ td {
 </div><br>
 <div class="text-center">
 <button onclick="location.href='{{ url('/salesorder/') }}'" style="text-center">
-    Add Sales Order</button>
+    Add Budget</button>
 </div>
 
 @endsection

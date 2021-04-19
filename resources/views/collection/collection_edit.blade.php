@@ -1,6 +1,10 @@
 @extends('layouts.main')
 
 @section('content')
+<?php
+$company=DB::table('company')
+->get();
+?>
 
 <!-- Page Header -->
 
@@ -19,9 +23,11 @@
 
                             <option value="{{$collect->Company_name}}" selected>{{$collect->Company_name}}</option>
                             <option disabled>Select Company Name..</option>
-                            <option id=" vepl" name="vepl">VEPL</option>
-                            <option id=" vepl" name="vepl">VMCL</option>
-                            <option id=" vepl" name="vepl">VHRS</option>
+                            @foreach($company as $comp)
+                            <option value="{{$comp->company_name}}">{{$comp->company_name}}
+                            </option>
+
+                            @endforeach
                         </select>
                         <!-- <input type="text" class="form-control form-control-sm" name="company_name"
                                         id="company_name" placeholder="Enter Company Name"> -->
@@ -30,9 +36,8 @@
                     <div class="col-sm-3">
                         <select id="division" class="form-control form-control-sm" name="division">
                             <option value="{{$collect->division}}" selected>{{$collect->division}}</option>
-                        <option disabled>Select Division..</option>
-                            <option id=" div1" name="div1"value=1> Transformer</option>
-                            <option id="div2" name="div2" value=2>Switchgear</option>
+                            <option disabled>Select Division..</option>
+                            
                         </select>
                     </div>
                 </div>
@@ -41,22 +46,29 @@
                     <div class="col-sm-3">
                         <select id="unit" class="form-control form-control-sm" name="unit">
                             <option value="{{$collect->unit}}" selected>{{$collect->unit}}</option>
-                        <option disabled>Select Unit..</option>
+                            <option disabled>Select Unit..</option>
                             <option id=" div" name="div" disabled>Unit</option>
                             <option id="div1" name="div1" value=1>A</option>
                             <option id="div2" name="div2" value=1>B</option>
                             <option id="div1" name="div1" value=2>C</option>
-                            <option id="div2" name="div2"value=2>D</option>
+                            <option id="div2" name="div2" value=2>D</option>
                         </select>
                     </div>
                     <label class="col-sm-3 col-form-label col-form-label-sm">Financial Year</label>
                     <div class="col-sm-3">
                         <select name="financial_year" class="form-control form-control-sm" id="financial_year">
                             <option value="{{$collect->financial_year}}" selected>{{$collect->financial_year}}</option>
-                        <option disabled>Select Financial Year</option>
-                            <option value=" 2020-2021">2020-2021</option>
+                            <option disabled>Select Financial Year</option>
+                            <option value="2020-2021">2020-2021</option>
                             <option value="2021-2022">2021-2022</option>
                             <option value="2022-2023">2022-2023</option>
+                            <option value="2023-2024">2023-2024</option>
+                            <option value="2024-2025">2024-2025</option>
+                            <option value="2025-2026">2025-2026</option>
+                            <option value="2026-2027">2026-2027</option>
+                            <option value="2027-2028">2027-2028</option>
+                            <option value="2028-2029">2028-2029</option>
+                            <option value="2029-2030">2029-2030</option>
                         </select>
                     </div>
                 </div>
@@ -77,7 +89,7 @@
                     <div class="form-group  col-sm-3">
                         <label class="col-form-label col-form-label-sm">Q3</label>
                         <input type="text" class="form-control form-control-sm" name="q3" id="q3"
-                            placeholder="Enter Q3 Value"  value="{{$collect->target_q3}}">
+                            placeholder="Enter Q3 Value" value="{{$collect->target_q3}}">
                     </div>
                     <div class="form-group  col-sm-3">
                         <label class="col-form-label col-form-label-sm">Q4</label>
@@ -143,12 +155,31 @@ $(document).ready(function() {
 $(document).ready(function() {
     $('.mdb-select').materialSelect();
 });
-var $select1 = $( '#division' ),
- $select2 = $( '#unit' ),
-$options = $select2.find( 'option' );
-    
-$select1.on( 'change', function() {
-	$select2.html( $options.filter( '[value="' + this.value + '"]' ) );
-} ).trigger( 'change' );
+var $select1 = $('#division'),
+    $select2 = $('#unit'),
+    $options = $select2.find('option');
+
+$select1.on('change', function() {
+    $select2.html($options.filter('[value="' + this.value + '"]'));
+}).trigger('change');
+$('#company_name').change(function(event) {
+    var company_name = $('#company_name').val();
+    console.log(company_name);
+    $.ajax({
+        type: "GET",
+        url: "{{url('/companyid')}}",
+        data: {
+            company_name: company_name
+        },
+        dataType: 'json',
+        success: function(data) {
+            $('select[name="division"]').empty();
+            $.each(data, function(key, value) {
+                $('select[name="division"]').append('<option value="' + key + '">' + value +
+                    '</option>');
+            });
+        },
+    });
+});
 </script>
 @endpush

@@ -39,7 +39,7 @@ $company=DB::table('company')
                                     <select name="company_name" class="form-control form-control-sm" id="company_name">
                                     <option selected disabled>--Select--</option>
                                         @foreach($company as $comp)                                        
-                                        <option value="{{$comp->id}}" >{{$comp->company_name}}</option>                                    
+                                        <option value="{{$comp->company_name}}" >{{$comp->company_name}}</option>                                    
                                         @endforeach
                                     </select>
                                 </div>

@@ -49,8 +49,6 @@ $company=DB::table('company')
                                         <button type="button" id="view" class="btn btn-primary btn-sm">View</button>
                                     </div>
                                 </div>
-
-
                             </div>
                             <div class="row" id="table">
                                 <div class="col-sm-12">

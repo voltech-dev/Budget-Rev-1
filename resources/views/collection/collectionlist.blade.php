@@ -14,7 +14,14 @@ td {
   text-align: center;
 }
 </style>
+<div class="page-header">
+    <div class="container-fluid d-sm-flex justify-content-between">
 
+         <nav aria-label="breadcrumb">
+           <h3>Collection List</h3>
+        </nav>
+    </div>
+</div>
 <!-- Page Header -->
 
 <!-- /Page Header -->
@@ -34,8 +41,7 @@ td {
                             <tr>
                                 <th>SI</th>
                                 <th>Company Name</th>
-                                <th>Division</th>
-                                <th>Unit</th>
+                                <th>Financial Year</th>
                                 <th>Actions</th>
                             </tr>
                         </thead>
@@ -44,8 +50,7 @@ td {
                             <tr>
                                 <td>{{$collect->id}}</td>
                                 <td><a href="{{url('/collection_view/'.$collect->Company_name)}}">{{$collect->Company_name}}</td>
-                                <td>{{$collect->division}}</td>
-                                <td>{{$collect->unit}}</td>
+                                <td>{{$collect->financial_year}}</td>
                                 <td class="text-center">
                                     <a href="{{ url('/collection_edit/'.$collect->id) }}"
                                         class="btn btn-sm btn-white text-success mr-2"><i
@@ -63,7 +68,7 @@ td {
 </div><br>
 <div class="text-center">
 <button onclick="location.href='{{ url('/collection/') }}'" style="text-center">
-    Add Collection</button>
+    Add Budget</button>
 </div>
 
 @endsection

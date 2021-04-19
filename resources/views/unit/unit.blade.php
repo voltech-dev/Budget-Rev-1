@@ -55,8 +55,7 @@ $company=DB::table('company')
 
                                 <label class="col-sm-3 col-form-label col-form-label-sm">Unit</label>
                                 <div class="col-sm-3">
-                                    <input type="text" class="form-control form-control-sm" name="unit"
-                                        id="unit">
+                                    <input type="text" class="form-control form-control-sm" name="unit" id="unit">
                                 </div>
                             </div>
                             <div class="form-group row">

@@ -38,7 +38,7 @@ $company=DB::table('company')
                                 <div class="col-sm-3">
                                     <select name="company_name" class="form-control form-control-sm" id="company_name">
                                         @foreach($company as $comp)
-                                        <option value="{{$comp->id}}" selected>{{$comp->company_name}}
+                                        <option value="{{$comp->company_name}}" selected>{{$comp->company_name}}
                                         </option>
 
                                         @endforeach
@@ -46,7 +46,7 @@ $company=DB::table('company')
                                 </div>
                                 <div class="col-sm-3">
                                     <div class="col-xs-12 col-sm-12 col-md-12 text-left">
-                                        <button id="view" name="view" value="View"></button>
+                                        <button type="button" id="view" class="btn btn-primary btn-sm">View</button>
                                     </div>
                                 </div>
 
@@ -54,31 +54,20 @@ $company=DB::table('company')
                             </div>
                             <div class="row" id="table">
                                 <div class="col-sm-12">
-
                                     <div class="card card-table">
                                         <div class="card-body">
                                             <div class="table-responsive">
                                                 <table class="table table-center table-hover datatable">
                                                     <thead class="thead-light">
                                                         <tr>
-                                                            <th>SI</th>
                                                             <th>Division</th>
                                                             <th>Actions</th>
                                                         </tr>
                                                     </thead>
-                                                    <tbody>
-                                                        @foreach($company as $comp)
+                                                    <tbody id="division" name="division">
                                                         <tr>
-                                                            <td></td>
-                                                            <td></td>
-                                                            <td></td>
-                                                            <td></td>
-                                                            <td class="text-center">
-
-                                                            </td>
+                                                            <!-- <td>D1</td> -->
                                                         </tr>
-                                                        @endforeach
-
                                                     </tbody>
                                                 </table>
                                             </div>
@@ -100,10 +89,29 @@ $company=DB::table('company')
 <script>
 $(document).ready(function() {
     $('#table').hide();
-    
-});
-$('#view').click(function(){
 
+});
+$('#view').click(function() {
+    $('#table').show();
+});
+$('#company_name').change(function(event) {
+    var company_name = $('#company_name').val();
+    console.log(company_name);
+    $.ajax({
+        type: "GET",
+        url: "{{url('/compdivision')}}",
+        data: {
+            company_name: company_name
+        },
+        dataType: 'json',
+        success: function(data) {
+            $('tbody[name="division"]').empty();
+            $.each(data, function(key, value) {
+                $('tbody[name="division"]').append('<tr>'+'<td>'+'<a href="{{url('/divisionview/'.$div->division_name)}}">' + value + '</td>' +'<td class="text-center">'+'<a href="" class="btn btn-sm btn-white text-success mr-2">' +'<i class="far fa-edit mr-1">'+'</i>'+'</a>'+'</td >'+'</tr>');
+
+            });
+        },
+    });
 });
 </script>
 @endpush

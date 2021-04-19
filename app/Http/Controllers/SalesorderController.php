@@ -231,6 +231,19 @@ class SalesorderController extends Controller
             'comp'=>company::where(['company_code'=>$p])->first(), 
         ]);
     }
+    public function division_edit($id)
+    {
+        return view('division.divisionedit', [
+            'div' => division::find($id),
+            
+        ]);
+    }
+    public function division_view($p){
+    
+        return view('division.divisionview',[
+            'div'=>division::where(['division_name'=>$p])->first(), 
+        ]);
+    }
     public function division(){
         return view('division.division');
     }

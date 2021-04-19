@@ -216,10 +216,10 @@
                                         </svg>
                                         Company
                                     </a>
-                                    <ul class="sub-menu">
+                                    <!-- <ul class="sub-menu">
                                         <li aria-haspopup="true"><a href="{{url('/viewdivision')}}">View Division</a>
                                         </li>
-                                    </ul>
+                                    </ul> -->
                                 </li>
                                 <li aria-haspopup="true">
                                     <a href="{{ url('/division') }}" class="sub-icon active">

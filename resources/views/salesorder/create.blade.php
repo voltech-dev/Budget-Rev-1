@@ -40,6 +40,7 @@ $company=DB::table('company')
                                 <label class="col-sm-3 col-form-label col-form-label-sm">Company Name</label>
                                 <div class="col-sm-3">
                                     <select id="company_name" class="form-control form-control-sm" name="company_name">
+                                        <option>--Select Company--</option>
                                     @foreach($company as $comp)
                                         <option value="{{$comp->company_name}}">{{$comp->company_name}}
                                         </option>
@@ -52,6 +53,7 @@ $company=DB::table('company')
                                 <label class="col-sm-3 col-form-label col-form-label-sm">Division</label>
                                 <div class="col-sm-3">
                                     <select id="division" class="form-control form-control-sm" name="division">
+                                        <option>--Select Division--</option>
                                       
                                     </select>
                                 </div>

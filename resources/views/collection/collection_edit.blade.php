@@ -19,24 +19,21 @@ $company=DB::table('company')
                 <div class="form-group row">
                     <label class="col-sm-3 col-form-label col-form-label-sm">Company Name</label>
                     <div class="col-sm-3">
-                        <select id="company_name" class="form-control form-control-sm" name="company_name">
+                    <select id="company_name" class="form-control form-control-sm" name="company_name">
+                                        <option>--Select Company--</option>
+                                    @foreach($company as $comp)
+                                        <option value="{{$comp->company_name}}">{{$comp->company_name}}
+                                        </option>
 
-                            <option value="{{$collect->Company_name}}" selected>{{$collect->Company_name}}</option>
-                            <option disabled>Select Company Name..</option>
-                            @foreach($company as $comp)
-                            <option value="{{$comp->company_name}}">{{$comp->company_name}}
-                            </option>
-
-                            @endforeach
-                        </select>
+                                        @endforeach
+                                    </select>
                         <!-- <input type="text" class="form-control form-control-sm" name="company_name"
                                         id="company_name" placeholder="Enter Company Name"> -->
                     </div>
                     <label class="col-sm-3 col-form-label col-form-label-sm">Division</label>
                     <div class="col-sm-3">
                         <select id="division" class="form-control form-control-sm" name="division">
-                            <option value="{{$collect->division}}" selected>{{$collect->division}}</option>
-                            <option disabled>Select Division..</option>
+                            <option>--Select Division--</option>
                             
                         </select>
                     </div>

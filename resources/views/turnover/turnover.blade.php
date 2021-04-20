@@ -5,13 +5,10 @@ $company=DB::table('company')
 ->get();
 ?>
 <!-- begin::page-header -->
-<div class="page-header">
-    <div class="container-fluid d-sm-flex justify-content-between">
-        <nav aria-label="breadcrumb">
-        <h3>Turnover</h3>
-        </nav>
-    </div>
+<div class="card-header">
+    <h3>Turnover List</h3>
 </div>
+
 <!-- end::page-header -->
 @endsection
 @section('content')
@@ -38,32 +35,25 @@ $company=DB::table('company')
                             <div class="form-group row">
                                 <label class="col-sm-3 col-form-label col-form-label-sm">Company Name</label>
                                 <div class="col-sm-3">
-                                <select id="company_name" class="form-control form-control-sm" name="company_name">
+                                    <select id="company_name" class="form-control form-control-sm" name="company_name">
                                         <option>--Select Company--</option>
-                                    @foreach($company as $comp)
-                                        <option value="{{$comp->company_name}}">{{$comp->company_name}}
+                                        @foreach($company as $comp)
+                                        <option value="{{$comp->company_name}}" selected>{{$comp->company_name}}
                                         </option>
-
                                         @endforeach
                                     </select>
                                 </div>
                                 <label class="col-sm-3 col-form-label col-form-label-sm">Division</label>
                                 <div class="col-sm-3">
-                                <select id="division" class="form-control form-control-sm" name="division">
-                                        <option>--Select Division--</option>
+                                    <select id="division" class="form-control form-control-sm" name="division">
+                                        <!-- <option>--Select Division--</option> -->
                                     </select>
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label class="col-sm-3 col-form-label col-form-label-sm">Unit</label>
                                 <div class="col-sm-3">
-                                <select id="unit" class="form-control form-control-sm" name="unit">
-                                        <option id="div" name="div" disabled>Unit</option>
-                                        <option id="div1" name="div1" value=1>A</option>
-                                        <option id="div2" name="div2" value=1>B</option>
-                                        <option id="div1" name="div1" value=2>C</option>
-                                        <option id="div2" name="div2" value=2>D</option>
-                                    </select>
+                                    <input type="text" class="form-control form-control-sm" name="unit" id="unit">
                                 </div>
                                 <label class="col-sm-3 col-form-label col-form-label-sm">Financial Year</label>
                                 <div class="col-sm-3">
@@ -143,8 +133,8 @@ $company=DB::table('company')
                             </div>
                             <div class="col-sm-6">
                                 <div class="col-xs-12 col-sm-12 col-md-12 text-right">
-                                    <button type="submit" class="btn btn-outline-success btn-sm"><i data-feather="check"
-                                            class="mr-2"></i>Save</button>
+                                    <button type="submit" class="btn btn-out line-success btn-sm"><i
+                                            data-feather="check" class="mr-2"></i>Save</button>
                                 </div>
                             </div>
                         </div>
@@ -169,13 +159,7 @@ $(document).ready(function() {
 $(document).ready(function() {
     $('.mdb-select').materialSelect();
 });
-var $select1 = $( '#division' ),
- $select2 = $( '#unit' ),
-$options = $select2.find( 'option' );
-    
-$select1.on( 'change', function() {
-	$select2.html( $options.filter( '[value="' + this.value + '"]' ) );
-} ).trigger( 'change' );
+
 $('#company_name').change(function(event) {
     var company_name = $('#company_name').val();
     console.log(company_name);

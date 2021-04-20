@@ -2,9 +2,16 @@
 use App\Http\Controllers\SalesorderController;
 
 use Illuminate\Support\Facades\Route;
-Route::get('/', function () {
-    return view('dashboard');
-});
+ Route::get('/', function () {
+   return view('dashboard');
+ });
+ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
+     return view('dashboard');
+ })->name('dashboard');
+ Route::middleware(['auth:sanctum', 'verified'])->get('/', function () {
+     return view('dashboard');
+ })->name('dashboard');
+
 
 ############################## Salesorder ##############################
 Route::get('/salesorderlist', [SalesorderController::class, 'salesorderlist']);

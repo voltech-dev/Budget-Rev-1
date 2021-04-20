@@ -1,35 +1,34 @@
 @extends('layouts.main')
-
-@section('content')
-
+@section('header')
 <?php
-$sales =App\Models\Sale::get();
+$sales=DB::table('sales')
+->get();
 ?>
-<style>
-td {
-    align: center;
-    font-size:14px;
-}
-.text-center {
-  text-align: center;
-}
-</style>
+<!-- begin::page-header -->
+<div class="card-header">
+    <h3>Salesorder List</h3>
+</div>
 <div class="page-header">
     <div class="container-fluid d-sm-flex justify-content-between">
 
-         <nav aria-label="breadcrumb">
-           <h3>Salesorder List</h3>
+        <nav aria-label="breadcrumb">
+
         </nav>
     </div>
 </div>
-<!-- Page Header -->
-
-<!-- /Page Header -->
-
-<!-- Search Filter -->
-
-<!-- /Search Filter -->
-
+<!-- end::page-header -->
+@endsection
+@section('content')
+@if ($errors->any())
+<div class="alert alert-danger">
+    <strong>Whoops!</strong> There were some problems with your input.<br><br>
+    <ul>
+        @foreach ($errors->all() as $error)
+        <li>{{ $error }}</li>
+        @endforeach
+    </ul>
+</div>
+@endif
 <div class="row">
     <div class="col-sm-12">
 
@@ -67,8 +66,8 @@ td {
     </div>
 </div><br>
 <div class="text-center">
-<button onclick="location.href='{{ url('/salesorder/') }}'" style="text-center">
-    Add Budget</button>
+    <button onclick="location.href='{{ url('/salesorder/') }}'" style="text-center">
+        Add Budget</button>
 </div>
 
 @endsection

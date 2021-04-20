@@ -1,11 +1,34 @@
 @extends('layouts.main')
-
-@section('content')
+@section('header')
 <?php
 $company=DB::table('company')
 ->get();
 ?>
+<!-- begin::page-header -->
+<div class="card-header">
+<h3>Turnover</h3>
+</div>
+<div class="page-header">
+    <div class="container-fluid d-sm-flex justify-content-between">
 
+        <nav aria-label="breadcrumb">
+           
+        </nav>
+    </div>
+</div>
+<!-- end::page-header -->
+@endsection
+@section('content')
+@if ($errors->any())
+<div class="alert alert-danger">
+    <strong>Whoops!</strong> There were some problems with your input.<br><br>
+    <ul>
+        @foreach ($errors->all() as $error)
+        <li>{{ $error }}</li>
+        @endforeach
+    </ul>
+</div>
+@endif
 <!-- Page Header -->
 
 <!-- /Page Header -->
@@ -19,42 +42,32 @@ $company=DB::table('company')
                 <div class="form-group row">
                     <label class="col-sm-3 col-form-label col-form-label-sm">Company Name</label>
                     <div class="col-sm-3">
-                    <select id="company_name" class="form-control form-control-sm" name="company_name">
-                                        <option>--Select Company--</option>
-                                    @foreach($company as $comp)
-                                        <option value="{{$comp->company_name}}">{{$comp->company_name}}
-                                        </option>
+                        <select id="company_name" class="form-control form-control-sm" name="company_name" disabled>
 
-                                        @endforeach
-                                    </select>
-                        <!-- <input type="text" class="form-control form-control-sm" name="company_name"
-                                        id="company_name" placeholder="Enter Company Name"> -->
+                            <option value="{{$turn->Company_name}}" selected readonly>{{$turn->Company_name}}
+                            </option>
+                            <option disabled>--Select Company--</option>
+
+                        </select>
+
                     </div>
                     <label class="col-sm-3 col-form-label col-form-label-sm">Division</label>
                     <div class="col-sm-3">
-                        <select id="division" class="form-control form-control-sm" name="division">
-                           
-                            <option >Select Division..</option>
-                            
+                        <select id="division" class="form-control form-control-sm" name="division" disabled>
+                            <option value="{{$turn->division}}" selected>{{$turn->division}}</option>
+
                         </select>
                     </div>
                 </div>
                 <div class="form-group row">
                     <label class="col-sm-3 col-form-label col-form-label-sm">Unit</label>
                     <div class="col-sm-3">
-                        <select id="unit" class="form-control form-control-sm" name="unit">
-                            <option value="{{$turn->unit}}" selected>{{$turn->unit}}</option>
-                            <option disabled>Select Unit..</option>
-                            <option id=" div" name="div" disabled>Unit</option>
-                            <option id="div1" name="div1" value=1>A</option>
-                            <option id="div2" name="div2" value=1>B</option>
-                            <option id="div1" name="div1" value=2>C</option>
-                            <option id="div2" name="div2" value=2>D</option>
-                        </select>
+                        <input type="text" class="form-control form-control-sm" name="unit" id="unit"
+                            value="{{$turn->unit}}" readonly>
                     </div>
                     <label class="col-sm-3 col-form-label col-form-label-sm">Financial Year</label>
                     <div class="col-sm-3">
-                        <select name="financial_year" class="form-control form-control-sm" id="financial_year">
+                        <select name="financial_year" class="form-control form-control-sm" id="financial_year" disabled>
                             <option value="{{$turn->financial_year}}" selected>{{$turn->financial_year}}</option>
                             <option disabled>Select Financial Year</option>
                             <option value="2020-2021">2020-2021</option>

@@ -5,11 +5,14 @@ $company=DB::table('company')
 ->get();
 ?>
 <!-- begin::page-header -->
+<div class="card-header">
+<h3>Salesorder</h3>
+</div>
 <div class="page-header">
     <div class="container-fluid d-sm-flex justify-content-between">
 
-         <nav aria-label="breadcrumb">
-           <h3>Salesorder</h3>
+        <nav aria-label="breadcrumb">
+           
         </nav>
     </div>
 </div>
@@ -41,7 +44,7 @@ $company=DB::table('company')
                                 <div class="col-sm-3">
                                     <select id="company_name" class="form-control form-control-sm" name="company_name">
                                         <option>--Select Company--</option>
-                                    @foreach($company as $comp)
+                                        @foreach($company as $comp)
                                         <option value="{{$comp->company_name}}">{{$comp->company_name}}
                                         </option>
 
@@ -54,7 +57,7 @@ $company=DB::table('company')
                                 <div class="col-sm-3">
                                     <select id="division" class="form-control form-control-sm" name="division">
                                         <option>--Select Division--</option>
-                                      
+
                                     </select>
                                 </div>
                             </div>
@@ -64,8 +67,8 @@ $company=DB::table('company')
                                     <select id="unit" class="form-control form-control-sm" name="unit">
                                         <option id="div" name="div" disabled>Unit</option>
                                         <option value="1">A</option>
-                                        <option  value="1">B</option>
-                                        <option  value="2">C</option>
+                                        <option value="1">B</option>
+                                        <option value="2">C</option>
                                         <option value="2">D</option>
                                     </select>
                                 </div>
@@ -138,7 +141,7 @@ $company=DB::table('company')
                                 </div>
                             </div>
                         </div>
-                        
+
                         <div class="form-group row">
                             <div class="col-sm-6">
                                 <div class="col-xs-12 col-sm-12 col-md-12 text-left">
@@ -174,13 +177,13 @@ $(document).ready(function() {
 $(document).ready(function() {
     $('.mdb-select').materialSelect();
 });
-var $select1 = $( '#division' ),
- $select2 = $( '#unit' ),
-$options = $select2.find( 'option' );
-    
-$select1.on( 'change', function() {
-	$select2.html( $options.filter( '[value="' + this.value + '"]' ) );
-} ).trigger( 'change' );
+var $select1 = $('#division'),
+    $select2 = $('#unit'),
+    $options = $select2.find('option');
+
+$select1.on('change', function() {
+    $select2.html($options.filter('[value="' + this.value + '"]'));
+}).trigger('change');
 $('#company_name').change(function(event) {
     var company_name = $('#company_name').val();
     console.log(company_name);

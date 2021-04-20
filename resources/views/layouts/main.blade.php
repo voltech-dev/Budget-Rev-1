@@ -116,9 +116,16 @@
 								</div>-->
                             <div class="dropdown profile-dropdown">
                                 <a href="#" class="nav-link pr-0 leading-none" data-toggle="dropdown">
-                                    <button class="border-transparent rounded-circle bg-white">
+                                   <!-- <button class="border-transparent rounded-circle bg-white">
                                         <img class="h-7 w-7 rounded-circle" src="" alt="" />
-                                    </button>
+                                    </button>-->
+
+                                    <button
+                                            class="border-transparent rounded-circle bg-white">
+                                            <img class="h-7 w-7 rounded-circle "
+                                                src="{{ Auth::user()->profile_photo_url }}"
+                                                src="{{ Auth::user()->name }}" />
+                                        </button>
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow animated">
                                     <div class="text-center">
@@ -145,8 +152,9 @@
 											<div class="">Messages</div>
 										</a> -->
 
-                                    <form method="POST" action="">
+                                    <form method="POST" action="{{route('logout')}}">
                                         @csrf
+                                       
                                         <a class="dropdown-item d-flex" href="" onclick="event.preventDefault();
                                                             this.closest('form').submit();">
                                             <svg class="header-icon mr-3" xmlns="http://www.w3.org/2000/svg"

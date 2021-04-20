@@ -1,10 +1,34 @@
 @extends('layouts.main')
-
-@section('content')
+@section('header')
 <?php
 $company=DB::table('company')
 ->get();
 ?>
+<!-- begin::page-header -->
+<div class="card-header">
+    <h3>Salesorder</h3>
+</div>
+<div class="page-header">
+    <div class="container-fluid d-sm-flex justify-content-between">
+
+        <nav aria-label="breadcrumb">
+
+        </nav>
+    </div>
+</div>
+<!-- end::page-header -->
+@endsection
+@section('content')
+@if ($errors->any())
+<div class="alert alert-danger">
+    <strong>Whoops!</strong> There were some problems with your input.<br><br>
+    <ul>
+        @foreach ($errors->all() as $error)
+        <li>{{ $error }}</li>
+        @endforeach
+    </ul>
+</div>
+@endif
 
 <!-- Page Header -->
 
@@ -19,37 +43,30 @@ $company=DB::table('company')
                 <div class="form-group row">
                     <label class="col-sm-3 col-form-label col-form-label-sm">Company Name</label>
                     <div class="col-sm-3">
-                    <select id="company_name" class="form-control form-control-sm" name="company_name">
-                                        <option>--Select Company--</option>
-                                    @foreach($company as $comp)
-                                        <option value="{{$comp->company_name}}">{{$comp->company_name}}
-                                        </option>
+                        <select id="company_name" class="form-control form-control-sm" name="company_name" disabled>
 
-                                        @endforeach
-                                    </select>
+                            <option value="{{$collect->Company_name}}" selected readonly>{{$collect->Company_name}}
+                            </option>
+                            <option disabled>--Select Company--</option>
+
+                        </select>
+
                         <!-- <input type="text" class="form-control form-control-sm" name="company_name"
                                         id="company_name" placeholder="Enter Company Name"> -->
                     </div>
                     <label class="col-sm-3 col-form-label col-form-label-sm">Division</label>
                     <div class="col-sm-3">
                         <select id="division" class="form-control form-control-sm" name="division">
-                            <option>--Select Division--</option>
-                            
+                            <option value="{{$collect->division}}" selected>{{$collect->division}}</option>
+
                         </select>
                     </div>
                 </div>
                 <div class="form-group row">
                     <label class="col-sm-3 col-form-label col-form-label-sm">Unit</label>
                     <div class="col-sm-3">
-                        <select id="unit" class="form-control form-control-sm" name="unit">
-                            <option value="{{$collect->unit}}" selected>{{$collect->unit}}</option>
-                            <option disabled>Select Unit..</option>
-                            <option id=" div" name="div" disabled>Unit</option>
-                            <option id="div1" name="div1" value=1>A</option>
-                            <option id="div2" name="div2" value=1>B</option>
-                            <option id="div1" name="div1" value=2>C</option>
-                            <option id="div2" name="div2" value=2>D</option>
-                        </select>
+                        <input type="text" class="form-control form-control-sm" name="unit" id="unit"
+                            value="{{$collect->unit}}" readonly>
                     </div>
                     <label class="col-sm-3 col-form-label col-form-label-sm">Financial Year</label>
                     <div class="col-sm-3">

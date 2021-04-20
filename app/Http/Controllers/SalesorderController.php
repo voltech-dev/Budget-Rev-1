@@ -11,7 +11,9 @@ use Illuminate\Http\Request;
 
 class SalesorderController extends Controller
 {
-  
+  public function __construct(){
+       $this->middleware('auth');
+   }
     public function salesorder()
     {
         return view('salesorder.create');
@@ -118,7 +120,7 @@ class SalesorderController extends Controller
         $turn=new Turnover();
         $turn->Company_name=$request->input('company_name');
         $turn->unit=$request->input('unit');
-        $turn->division=$request->input('division');
+        $turn->division=$request->division;
         $turn->financial_year=$request->input('financial_year');
         $turn->target_q1=$request->q1;
         $turn->target_q2=$request->q2;
@@ -277,7 +279,8 @@ class SalesorderController extends Controller
         $json = array();
         $division = division::where(['company_id' => $post['company_name']])->get();
         foreach($division as $div){
-            $json[$div->id] =$div->division_name;      
+           
+            $json[$div->division_name] =$div->division_name;      
         }  
         echo json_encode($json);     
        

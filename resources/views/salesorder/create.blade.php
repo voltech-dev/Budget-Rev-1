@@ -6,13 +6,13 @@ $company=DB::table('company')
 ?>
 <!-- begin::page-header -->
 <div class="card-header">
-<h3>Salesorder</h3>
+    <h3>Salesorder</h3>
 </div>
 <div class="page-header">
     <div class="container-fluid d-sm-flex justify-content-between">
 
         <nav aria-label="breadcrumb">
-           
+
         </nav>
     </div>
 </div>
@@ -64,13 +64,8 @@ $company=DB::table('company')
                             <div class="form-group row">
                                 <label class="col-sm-3 col-form-label col-form-label-sm">Unit</label>
                                 <div class="col-sm-3">
-                                    <select id="unit" class="form-control form-control-sm" name="unit">
-                                        <option id="div" name="div" disabled>Unit</option>
-                                        <option value="1">A</option>
-                                        <option value="1">B</option>
-                                        <option value="2">C</option>
-                                        <option value="2">D</option>
-                                    </select>
+                                    <input type="text" class="form-control form-control-sm" name="unit" id="unit"
+                                       >
                                 </div>
                                 <label class="col-sm-3 col-form-label col-form-label-sm">Financial Year</label>
                                 <div class="col-sm-3">

@@ -53,13 +53,8 @@ $company=DB::table('company')
                             <div class="form-group row">
                                 <label class="col-sm-3 col-form-label col-form-label-sm">Unit</label>
                                 <div class="col-sm-3">
-                                    <select id="unit" class="form-control form-control-sm" name="unit">
-                                        <option id="div" name="div" disabled>Unit</option>
-                                        <option id="div1" name="div1" value=1>A</option>
-                                        <option id="div2" name="div2" value=1>B</option>
-                                        <option id="div1" name="div1" value=2>C</option>
-                                        <option id="div2" name="div2" value=2>D</option>
-                                    </select>
+                                <input type="text" class="form-control form-control-sm" name="unit" id="unit"
+                                        >
                                 </div>
                                 <label class="col-sm-3 col-form-label col-form-label-sm">Financial Year</label>
                                 <div class="col-sm-3">

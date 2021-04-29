@@ -1,18 +1,15 @@
 @extends('layouts.main')
 @section('header')
-<?php
-$company=DB::table('company')
-->get();
-?>
+
 <!-- begin::page-header -->
 <div class="card-header">
-<h3>Turnover</h3>
+    <h3>Salesorder</h3>
 </div>
 <div class="page-header">
     <div class="container-fluid d-sm-flex justify-content-between">
 
         <nav aria-label="breadcrumb">
-           
+
         </nav>
     </div>
 </div>
@@ -28,6 +25,7 @@ $company=DB::table('company')
         @endforeach
     </ul>
 </div>
+
 @endif
 <!-- Page Header -->
 
@@ -36,13 +34,13 @@ $company=DB::table('company')
 <div class="row">
     <div class="col-md-12">
 
-        <form action="{{ url('/turnupdate/'.$turn->id) }}" method="POST">
+        <form action="{{ url('/turnupdate/'.$target->id) }}" method="POST">
             @csrf
             <div data-label="Enquiry Details" class="demo-code-preview col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group row">
                     <label class="col-sm-3 col-form-label col-form-label-sm">Company Name</label>
                     <div class="col-sm-3">
-                        <select id="company_name" class="form-control form-control-sm" name="company_name" disabled>
+                        <select id="company_name" class="form-control form-control-sm" name="company_name" readonly>
 
                             <option value="{{$turn->Company_name}}" selected readonly>{{$turn->Company_name}}
                             </option>
@@ -53,9 +51,9 @@ $company=DB::table('company')
                     </div>
                     <label class="col-sm-3 col-form-label col-form-label-sm">Division</label>
                     <div class="col-sm-3">
-                        <select id="division" class="form-control form-control-sm" name="division" disabled>
-                            <option value="{{$turn->division}}" selected>{{$turn->division}}</option>
+                        <select id="division" class="form-control form-control-sm" name="division" readonly>
 
+                            <option value="{{$turn->division}}" selected>{{$turn->division}}</option>
                         </select>
                     </div>
                 </div>
@@ -67,73 +65,76 @@ $company=DB::table('company')
                     </div>
                     <label class="col-sm-3 col-form-label col-form-label-sm">Financial Year</label>
                     <div class="col-sm-3">
-                        <select name="financial_year" class="form-control form-control-sm" id="financial_year" disabled>
+                        <select name="financial_year" class="form-control form-control-sm" id="financial_year" readonly>
                             <option value="{{$turn->financial_year}}" selected>{{$turn->financial_year}}</option>
-                            <option disabled>Select Financial Year</option>
-                            <option value="2020-2021">2020-2021</option>
-                            <option value="2021-2022">2021-2022</option>
-                            <option value="2022-2023">2022-2023</option>
-                            <option value="2023-2024">2023-2024</option>
-                            <option value="2024-2025">2024-2025</option>
-                            <option value="2025-2026">2025-2026</option>
-                            <option value="2026-2027">2026-2027</option>
-                            <option value="2027-2028">2027-2028</option>
-                            <option value="2028-2029">2028-2029</option>
-                            <option value="2029-2030">2029-2030</option>
+
                         </select>
                     </div>
                 </div>
-            </div>
-            <div data-label="End Client" class="demo-code-preview col-xs-12 col-sm-12 col-md-12">
-                <label class="col-form-label col-form-label-sm">Target</label>
                 <div class="form-group row">
-                    <div class="form-group  col-sm-3">
-                        <label class="col-form-label col-form-label-sm">Q1</label>
-                        <input type="text" class="form-control form-control-sm" name="q1" id="q1"
-                            placeholder="Enter Q1 Value" value="{{$turn->target_q1}}">
-                    </div>
-                    <div class="form-group  col-sm-3">
-                        <label class="col-form-label col-form-label-sm">Q2</label>
-                        <input type="text" class="form-control form-control-sm" name="q2" id="q2"
-                            placeholder="Enter Q2 Value" value="{{$turn->target_q2}}">
-                    </div>
-                    <div class="form-group  col-sm-3">
-                        <label class="col-form-label col-form-label-sm">Q3</label>
-                        <input type="text" class="form-control form-control-sm" name="q3" id="q3"
-                            placeholder="Enter Q3 Value" value="{{$turn->target_q3}}">
-                    </div>
-                    <div class="form-group  col-sm-3">
-                        <label class="col-form-label col-form-label-sm">Q4</label>
-                        <input type="text" class="form-control form-control-sm" name="q4" id="q4"
-                            placeholder="Enter Q4 Value" value="{{$turn->target_q4}}">
+                    <label class="col-sm-3 col-form-label col-form-label-sm">Region</label>
+                    <div class="col-sm-3">
+                        <input type="text" class="form-control form-control-sm" name="region" id="region"
+                            value="{{$turn->region}}">
                     </div>
                 </div>
-            </div>
-            <div data-label="End Client" class="demo-code-preview col-xs-12 col-sm-12 col-md-12">
-                <label class="col-form-label col-form-label-sm">Actual</label>
                 <div class="form-group row">
-                    <div class="form-group  col-sm-3">
-                        <label class="col-form-label col-form-label-sm">Q1</label>
-                        <input type="text" class="form-control form-control-sm" name="aq1" id="aq1"
-                            placeholder="Enter Q1 Value" value="{{$turn->actual_q1}}">
-                    </div>
-                    <div class="form-group  col-sm-3">
-                        <label class="col-form-label col-form-label-sm">Q2</label>
-                        <input type="text" class="form-control form-control-sm" name="aq2" id="aq2"
-                            placeholder="Enter Q2 Value" value="{{$turn->actual_q2}}">
-                    </div>
-                    <div class="form-group  col-sm-3">
-                        <label class="col-form-label col-form-label-sm">Q3</label>
-                        <input type="text" class="form-control form-control-sm" name="aq3" id="aq3"
-                            placeholder="Enter Q3 Value" value="{{$turn->actual_q3}}">
-                    </div>
-                    <div class="form-group  col-sm-3">
-                        <label class="col-form-label col-form-label-sm">Q4</label>
-                        <input type="text" class="form-control form-control-sm" name="aq4" id="aq4"
-                            placeholder="Enter Q4 Value" value="{{$turn->actual_q4}}">
+                    <div class="col-sm-3">
+                        <h4>Target</h4>
                     </div>
                 </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="card card-table">
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table table-center table-hover datatable">
+                                        <thead class="thead-light">
+                                            <tr>
+                                                <th>Month</th>
+                                                <th>Target</th>
+
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+
+                                            <tr>
+                                                <td>
+                                                    <select id="month" name="month" readonly>
+                                                        <option selected>{{$target->month}}</option>
+                                                        <option value="April">April</option>
+                                                        <option value="May">May</option>
+                                                        <option value="June">June</option>
+                                                        <option value="July">July</option>
+                                                        <option value="August">August</option>
+                                                        <option value="September">September</option>
+                                                        <option value="October">October</option>
+                                                        <option value="November">November</option>
+                                                        <option value="December">December</option>
+                                                        <option value="January">January</option>
+                                                        <option value="February">February</option>
+                                                        <option value="March">March</option>
+                                                    </select>
+                                                </td>
+                                                <td><input type="text" name="amount" id="amount"
+                                                        value="{{$target->amount}}"></td>
+
+
+                                            </tr>
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div><br>
+
+
+
             </div>
+
+
             <div class="form-group row">
                 <div class="col-sm-6">
                     <div class="col-xs-12 col-sm-12 col-md-12 text-left">
@@ -186,8 +187,9 @@ $('#company_name').change(function(event) {
         success: function(data) {
             $('select[name="division"]').empty();
             $.each(data, function(key, value) {
-                $('select[name="division"]').append('<option value="' + key + '">' + value +
-                    '</option>');
+                $('select[name="division"]').append('<option value="' + key + '"+'
+                    selected '>') + value + '</option>';
+
             });
         },
     });

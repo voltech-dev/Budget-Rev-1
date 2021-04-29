@@ -23,8 +23,8 @@ Route::get('/sales_view/{id}',[App\Http\Controllers\SalesorderController::class,
 
 Route::get('/turnoverlist', [SalesorderController::class, 'turnoverlist']);
 Route::get('/turnover/', [SalesorderController::class, 'turnover'])->name('/turnover');
-Route::get('/turn_edit/{id}',[App\Http\Controllers\SalesorderController::class, 'turn_edit']);
 Route::post('/turnover', [SalesorderController::class, 'turnover_store']);
+Route::get('/turn_edit/{id}',[SalesorderController::class, 'turn_edit']);
 Route::post('/turnupdate/{id}',[App\Http\Controllers\SalesorderController::class, 'turnupdate']);
 Route::get('/turn_view/{p}',[App\Http\Controllers\SalesorderController::class, 'turn_view']);
 
@@ -62,3 +62,5 @@ Route::post('/divisionupdate/{id}',[App\Http\Controllers\SalesorderController::c
 
 Route::get('/salesturnover', [SalesorderController::class, 'salesturnover']);
 Route::post('/searchsales', [SalesorderController::class, 'searchsales']);
+Route::post('/searchturnover', [SalesorderController::class, 'searchturnover']);
+Route::post('/searchcollection', [SalesorderController::class, 'searchcollection']);

@@ -3,7 +3,7 @@
 <!-- begin::page-header -->
 <div class="row">
     <div class="col-md-6">
-        <h3>SalesTurnover List</h3>
+        <h3>SalesOrder List</h3>
     </div>
     <div class="col-md-6" style=text-right>
         <form action="{{url('/searchsales')}}" method="POST" role="search">
@@ -46,27 +46,24 @@
                         <thead class="thead-light">
                             <tr>
                                 <th>SI</th>
+                                <th>Company Name</th>
                                 <th>FY</th>
-                                <th>Unit</th>
-                                <th>Division</th>
                                 <th>Region</th>
-                                <th>Month</th>
-                                <th>Target</th>
                                 <th>Actions</th>
 
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody><?php $i=0; $i++; ?>
                             @foreach($users as $sale)
                             <tr>
-                                <td>{{$sale->id}}</td>
-                                <td><a href="{{url('/sales_view/'.$sale->id)}}">{{$sale->financial_year}}</td>
-                                <td>{{$sale->unit}}</td>
-                                <td>{{$sale->division}}</td>
+                                <td>{{$i++}}</td>
+                                <td><a
+                                        href="{{url('/sales_view/'.$sale->Company_name.'/'.$sale->region.'/'.$sale->financial_year)}}">{{$sale->Company_name}}</a>
+                                </td>
+                                <td>{{$sale->financial_year}}</td>
+                                
                                 <td>{{$sale->region}}</td>
-                                <td>{{$sale->month}}</td>
-                                <td>{{$sale->amount}}</td>
-                                <td> <a href="{{ url('/sales_edit/'.$sale->id) }}"
+                                <td> <a href="{{ url('/sales_edit/'.$sale->Company_name.'/'.$sale->region.'/'.$sale->financial_year) }}"
                                         class="btn btn-sm btn-white text-success mr-2"><i
                                             class="far fa-edit mr-1"></i></a></td>
 

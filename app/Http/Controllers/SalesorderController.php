@@ -28,26 +28,31 @@ class SalesorderController extends Controller
     {
         return view('salesorder.salesorderlist');
     }
-    public function sales_edit($id)
+    public function sales_edit($companyname,$region,$financialyear)
     {
-        $target=target::findorfail($id);
-        $sale=Sale::where(['id'=>$target->sale_id])->first();
-        return view('salesorder.sales_edit',['target'=>$target, 'sale'=>$sale]);
+       
+       $sales = DB::table('sales')
+            ->join('target', 'sales.id', '=', 'target.sale_id')
+            ->select('sales.*', 'target.*')
+            ->where('sales.Company_name','=',$companyname)->where('sales.region','=',$region)->where('sales.financial_year','=',$financialyear)
+            ->get();
+            
+        return view('salesorder.sales_edit', ['sales' => $sales,'companyname' => $companyname,'financialyear'=>$financialyear,'region'=>$region]);
+        
     }
-    public function sales_view($id)
+    public function sales_view($companyname,$region,$financialyear)
     {
-        $target=target::findorfail($id);
-        return view('salesorder.sales_view', [
-            'sale' => Sale::where(['id' =>$target->sale_id])->first(),'target'=>$target
-        ]);
+       $sales = DB::table('sales')
+            ->join('target', 'sales.id', '=', 'target.sale_id')
+            ->select('sales.*', 'target.*')
+            ->where('sales.Company_name','=',$companyname)->where('sales.region','=',$region)->where('sales.financial_year','=',$financialyear)
+            ->get();
+        return view('salesorder.sales_view', ['sales' => $sales,'companyname' => $companyname,'financialyear'=>$financialyear,'region'=>$region]);
     }
-    public function salesupdate(Request $request, $id)
-    {
-        $target = target::findorfail($id);
-        $target->month=$request->month;
-        $target->amount=$request->amount;
-        $target->save();
-        return redirect('/salesturnover');
+    public function salesupdate($companyname,$region,$financialyear)
+    {  
+        
+        return view('salesorder.sales_edit', ['sales' => $sales,'companyname' => $companyname,'financialyear'=>$financialyear,'region'=>$region]);
     }
     public function store(Request $request)
     {   
@@ -56,6 +61,8 @@ class SalesorderController extends Controller
         $sale->unit = $request->input('unit');
         $sale->division = $request->input('division');
         $sale->financial_year = $request->input('financial_year');
+        $sale->actual = $request->input('actual');
+
         $sale->region=$request->region;
         if($sale->save()){
             foreach($request->month as $key=>$val){
@@ -287,6 +294,7 @@ public function collection_edit($id)
 $users = DB::table('sales')
             ->join('target', 'sales.id', '=', 'target.sale_id')
             ->select('sales.*', 'target.*')
+            ->groupBy('sales.financial_year','sales.region','sales.Company_name')
             ->get();
         return view('salesturnover',['users'=>$users]);
     }

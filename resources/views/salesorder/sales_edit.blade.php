@@ -1,6 +1,9 @@
 @extends('layouts.main')
 @section('header')
-
+<?php
+$company=DB::table('company')
+->get();
+?>
 <!-- begin::page-header -->
 <div class="card-header">
     <h3>Salesorder</h3>
@@ -25,131 +28,87 @@
         @endforeach
     </ul>
 </div>
-
 @endif
-<!-- Page Header -->
-
-<!-- /Page Header -->
 
 <div class="row">
     <div class="col-md-12">
 
-        <form action="{{ url('/salesupdate/'.$target->id) }}" method="POST">
-            @csrf
-            <div data-label="Enquiry Details" class="demo-code-preview col-xs-12 col-sm-12 col-md-12">
-                <div class="form-group row">
-                    <label class="col-sm-3 col-form-label col-form-label-sm">Company Name</label>
-                    <div class="col-sm-3">
-                        <select id="company_name" class="form-control form-control-sm" name="company_name" readonly>
+        <div data-label="Enquiry Details" class="demo-code-preview col-xs-12 col-sm-12 col-md-12">
+            <div class="form-group row">
+                <label class="col-sm-3 col-form-label col-form-label-sm"><b>Company Name</b>:</label>
+                <div class="col-md-3">{{$companyname}}</div>
+                <label class="col-sm-3 col-form-label col-form-label-sm"><b>Financial Year</b>:</label>
+                <div class="col-md-3">{{$financialyear}}</div>
+                <label class="col-sm-3 col-form-label col-form-label-sm"><b>Region</b>:</label>
+                <div class="col-md-3">{{$region}}</div>
+            </div>
 
-                            <option value="{{$sale->Company_name}}" selected readonly>{{$sale->Company_name}}
-                            </option>
-                            <option disabled>--Select Company--</option>
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="card card-table">
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-center table-hover datatable">
+                                    <thead class="thead-light">
+                                        <tr>
+                                            <th>Unit</th>
+                                            <th>Division</th>
+                                            <th>Actual</th>
+                                            <th>Month</th>
+                                            <th>Target</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach($sales as $ss)
+                                        <tr>
+                                            <td>{{$ss->unit}}</td>
+                                            <td>{{$ss->division}}</td>
+                                            <td><input type="text" name="actual" id="actual" value="{{$ss->actual}}">
+                                            </td>
+                                            <td><select id="month" name="month" readonly>
+                                                    <option selected>{{$ss->month}}</option>
+                                                    <option value="April">April</option>
+                                                    <option value="May">May</option>
+                                                    <option value="June">June</option>
+                                                    <option value="July">July</option>
+                                                    <option value="August">August</option>
+                                                    <option value="September">September</option>
+                                                    <option value="October">October</option>
+                                                    <option value="November">November</option>
+                                                    <option value="December">December</option>
+                                                    <option value="January">January</option>
+                                                    <option value="February">February</option>
+                                                    <option value="March">March</option>
+                                                </select></td>
+                                            <td>{{$ss->amount}}</td>
+                                            <td><i class="far fa-edit mr-1"></i></td>
 
-                        </select>
-
-                    </div>
-                    <label class="col-sm-3 col-form-label col-form-label-sm">Division</label>
-                    <div class="col-sm-3">
-                        <select id="division" class="form-control form-control-sm" name="division" readonly>
-
-                            <option value="{{$sale->division}}" selected>{{$sale->division}}</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label class="col-sm-3 col-form-label col-form-label-sm">Unit</label>
-                    <div class="col-sm-3">
-                        <input type="text" class="form-control form-control-sm" name="unit" id="unit"
-                            value="{{$sale->unit}}" readonly>
-                    </div>
-                    <label class="col-sm-3 col-form-label col-form-label-sm">Financial Year</label>
-                    <div class="col-sm-3">
-                        <select name="financial_year" class="form-control form-control-sm" id="financial_year" readonly>
-                            <option value="{{$sale->financial_year}}" selected>{{$sale->financial_year}}</option>
-
-                        </select>
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label class="col-sm-3 col-form-label col-form-label-sm">Region</label>
-                    <div class="col-sm-3">
-                        <input type="text" class="form-control form-control-sm" name="region" id="region"
-                            value="{{$sale->region}}">
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <div class="col-sm-3">
-                        <h4>Target</h4>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-12">
-                        <div class="card card-table">
-                            <div class="card-body">
-                                <div class="table-responsive">
-                                    <table class="table table-center table-hover datatable">
-                                        <thead class="thead-light">
-                                            <tr>
-                                                <th>Month</th>
-                                                <th>Target</th>
-
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-
-                                            <tr>
-                                                <td>
-                                                    <select id="month" name="month" readonly>
-                                                        <option selected>{{$target->month}}</option>
-                                                        <option value="April">April</option>
-                                                        <option value="May">May</option>
-                                                        <option value="June">June</option>
-                                                        <option value="July">July</option>
-                                                        <option value="August">August</option>
-                                                        <option value="September">September</option>
-                                                        <option value="October">October</option>
-                                                        <option value="November">November</option>
-                                                        <option value="December">December</option>
-                                                        <option value="January">January</option>
-                                                        <option value="February">February</option>
-                                                        <option value="March">March</option>
-                                                    </select>
-                                                </td>
-                                                <td><input type="text" name="amount" id="amount"
-                                                        value="{{$target->amount}}"></td>
-
-
-                                            </tr>
-
-                                        </tbody>
-                                    </table>
-                                </div>
+                                        </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     </div>
-                </div><br>
-
-
-
-            </div>
-
-
-            <div class="form-group row">
-                <div class="col-sm-6">
-                    <div class="col-xs-12 col-sm-12 col-md-12 text-left">
-                        <a class="btn btn-outline-light btn-sm" href="">
-                            <i data-feather="chevrons-left" class="mr-2"></i>Cancel</a>
-                    </div>
                 </div>
-                <div class="col-sm-6">
-                    <div class="col-xs-12 col-sm-12 col-md-12 text-right">
-                        <button type="submit" class="btn btn-outline-success btn-sm"><i data-feather="check"
-                                class="mr-2"></i>Save</button>
-                    </div>
+            </div><br>
+        </div>
+
+        <div class="form-group row">
+            <div class="col-sm-6">
+                <div class="col-xs-12 col-sm-12 col-md-12 text-left">
+                    <a class="btn btn-outline-light btn-sm" href="">
+                        <i data-feather="chevrons-left" class="mr-2"></i>Cancel</a>
                 </div>
             </div>
-        </form>
+            <div class="col-sm-6">
+                <div class="col-xs-12 col-sm-12 col-md-12 text-right">
+                    <button type="submit" class="btn btn-outline-success btn-sm"><i data-feather="check"
+                            class="mr-2"></i>Save</button>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 </div>
@@ -166,33 +125,6 @@ $(document).ready(function() {
 // Material Select Initialization
 $(document).ready(function() {
     $('.mdb-select').materialSelect();
-});
-var $select1 = $('#division'),
-    $select2 = $('#unit'),
-    $options = $select2.find('option');
-
-$select1.on('change', function() {
-    $select2.html($options.filter('[value="' + this.value + '"]'));
-}).trigger('change');
-$('#company_name').change(function(event) {
-    var company_name = $('#company_name').val();
-    console.log(company_name);
-    $.ajax({
-        type: "GET",
-        url: "{{url('/companyid')}}",
-        data: {
-            company_name: company_name
-        },
-        dataType: 'json',
-        success: function(data) {
-            $('select[name="division"]').empty();
-            $.each(data, function(key, value) {
-                $('select[name="division"]').append('<option value="' + key + '"+'
-                    selected '>') + value + '</option>';
-
-            });
-        },
-    });
 });
 </script>
 @endpush

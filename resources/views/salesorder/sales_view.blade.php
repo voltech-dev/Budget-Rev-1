@@ -32,55 +32,16 @@ $company=DB::table('company')
 <div class="row">
     <div class="col-md-12">
 
-        <form action="{{ url('/salesupdate/'.$target->id) }}" method="POST">
-            @csrf
             <div data-label="Enquiry Details" class="demo-code-preview col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group row">
-                    <label class="col-sm-3 col-form-label col-form-label-sm">Company Name</label>
-                    <div class="col-sm-3">
-                        <select id="company_name" class="form-control form-control-sm" name="company_name" disabled>
-
-                            <option value="{{$sale->Company_name}}" selected readonly>{{$sale->Company_name}}
-                            </option>
-                            <option disabled>--Select Company--</option>
-
-                        </select>
-
-                    </div>
-                    <label class="col-sm-3 col-form-label col-form-label-sm">Division</label>
-                    <div class="col-sm-3">
-                        <select id="division" class="form-control form-control-sm" name="division">
-
-                            <option value="{{$sale->division}}" selected>{{$sale->division}}</option>
-                        </select>
-                    </div>
+                    <label class="col-sm-3 col-form-label col-form-label-sm"><b>Company Name</b>:</label>
+                    <div class="col-md-3">{{$companyname}}</div>
+                    <label class="col-sm-3 col-form-label col-form-label-sm"><b>Financial Year</b>:</label>
+                    <div class="col-md-3">{{$financialyear}}</div>
+                    <label class="col-sm-3 col-form-label col-form-label-sm"><b>Region</b>:</label>
+                    <div class="col-md-3">{{$region}}</div>
                 </div>
-                <div class="form-group row">
-                    <label class="col-sm-3 col-form-label col-form-label-sm">Unit</label>
-                    <div class="col-sm-3">
-                        <select id="unit" class="form-control form-control-sm" name="unit" disabled="true">
-                            <option value="{{$sale->unit}}" selected>{{$sale->unit}}</option>
-                            <option disabled>Select Unit..</option>
-
-                        </select>
-                    </div>
-                    <label class="col-sm-3 col-form-label col-form-label-sm">Financial Year</label>
-                    <div class="col-sm-3">
-                        <select name="financial_year" class="form-control form-control-sm" id="financial_year"
-                            disabled="true">
-                            <option value="{{$sale->financial_year}}" selected>{{$sale->financial_year}}</option>
-                            <option disabled>Select Financial Year</option>
-
-                        </select>
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label class="col-sm-3 col-form-label col-form-label-sm">Region</label>
-                    <div class="col-sm-3">
-                        <input type="text" class="form-control form-control-sm" name="region" id="region"
-                            value="{{$sale->region}}" readonly>
-                    </div>
-                </div>
+               
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="card card-table">
@@ -89,26 +50,24 @@ $company=DB::table('company')
                                     <table class="table table-center table-hover datatable">
                                         <thead class="thead-light">
                                             <tr>
+                                                <th>Unit</th>
+                                                <th>Division</th>
+                                                <th>Actual</th>
                                                 <th>Month</th>
                                                 <th>Target</th>
-
                                             </tr>
                                         </thead>
                                         <tbody>
-
-                                            <tr>
-                                                <td>
-                                                    <select id="month" name="month" readonly>
-                                                        <option selected readonly>{{$target->month}}</option>
-
-                                                    </select>
-                                                </td>
-                                                <td><input type="text" name="amount" id="amount"
-                                                        value="{{$target->amount}}" readonly></td>
-
-
-                                            </tr>
-
+                                        @foreach($sales as $ss)
+                                        <tr>
+                                        <td>{{$ss->unit}}</td>
+                                        <td>{{$ss->division}}</td>
+                                        <td>{{$ss->actual}}</td>
+                                        <td>{{$ss->month}}</td>
+                                        <td>{{$ss->amount}}</td>
+                                        <td></td>
+                                          </tr>  
+@endforeach
                                         </tbody>
                                     </table>
                                 </div>
@@ -121,18 +80,13 @@ $company=DB::table('company')
             <div class="form-group row">
                 <div class="col-sm-6">
                     <div class="col-xs-12 col-sm-12 col-md-12 text-left">
-                        <a class="btn btn-outline-light btn-sm" href="">
-                            <i data-feather="chevrons-left" class="mr-2"></i>Cancel</a>
+                        <a class="btn btn-outline-light btn-sm" href="{{ url('/salesturnover/') }}">
+                            <i data-feather="chevrons-left" class="mr-2"></i>Back</a>
                     </div>
                 </div>
-                <div class="col-sm-6">
-                    <div class="col-xs-12 col-sm-12 col-md-12 text-right">
-                        <button type="submit" class="btn btn-outline-success btn-sm"><i data-feather="check"
-                                class="mr-2"></i>Save</button>
-                    </div>
-                </div>
+               
             </div>
-        </form>
+
     </div>
 </div>
 </div>

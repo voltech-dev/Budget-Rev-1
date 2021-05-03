@@ -56,10 +56,10 @@
 
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody><?php $i=0; $i++; ?>
                             @foreach($users as $turn)
                             <tr>
-                                <td>{{$turn->id}}</td>
+                                <td>{{$i++}}</td>
                                 <td><a href="{{url('/turn_view/'.$turn->id)}}">{{$turn->financial_year}}</td>
                                 <td>{{$turn->unit}}</td>
                                 <td>{{$turn->division}}</td>

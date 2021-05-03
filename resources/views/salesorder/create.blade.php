@@ -76,6 +76,10 @@ $company = DB::table('company')
             <div class="col-sm-3">
                 <input type="text" class="form-control form-control-sm" name="region" id="region">
             </div>
+            <label class="col-sm-3 col-form-label col-form-label-sm">Actual</label>
+            <div class="col-sm-3">
+                <input type="text" class="form-control form-control-sm" name="actual" id="actual">
+            </div>
         </div>
         <div class="form-group row">
             <div class="col-sm-3"><button type="button" class="btn btn-primary btn-sm" id="addtarget">Add

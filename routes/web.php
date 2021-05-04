@@ -52,6 +52,8 @@ Route::post('/divisionstore', [SalesorderController::class, 'division_store']);
 // Route::get('/companyid', [SalesorderController::class, 'divisiondetails']);
 
 Route::get('/unit', [SalesorderController::class, 'unit']);
+Route::get('/unitlist', [SalesorderController::class, 'unitlist']);
+Route::get('/unitedit/{companyname}/{unit}', [SalesorderController::class, 'unit_edit']);
 Route::get('/companyid', [SalesorderController::class, 'divisiondetails']);
 Route::post('/unitstore', [SalesorderController::class, 'unitstore']);
 Route::get('/compdivision', [SalesorderController::class, 'divisiondetails']); 

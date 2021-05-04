@@ -2,27 +2,11 @@
 @section('header')
 <!-- begin::page-header -->
 <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-12">
         <h3>Unit List</h3>
     </div>
-    <!-- <div class="col-md-6" style=text-right>
-        <form action="{{url('/unitstore')}}" method="POST" role="search">
-            @csrf
-
-            <div class="input-group">
-                <input type="text" class="form-control" name="sales" placeholder="Search">
-                <span class="input-group-btn">
-                    <button type="submit" class="btn btn-default" style="border: 1px solid #dee2e6">
-                        <i class="fas fa-search"></i>
-                    </button>
-                </span>
-
-            </div>
-        </form>
-    </div> -->
+    
 </div>
-
-
 
 @endsection
 @section('content')
@@ -53,18 +37,15 @@
                             </tr>
                         </thead>
                         <tbody><?php $i=0; $i++; ?>
-                            @foreach($users as $sale)
+                            @foreach($unit as $units)
                             <tr>
                                 <td>{{$i++}}</td>
-                                <td><a
-                                        href="{{url('/sales_view/'.$sale->Company_name.'/'.$sale->region.'/'.$sale->financial_year)}}">{{$sale->Company_name}}</a>
-                                </td>
-                                <td>{{$sale->financial_year}}</td>
-                                
-                                <td>{{$sale->region}}</td>
-                                <td> <a href="{{ url('/sales_edit/'.$sale->Company_name.'/'.$sale->region.'/'.$sale->financial_year) }}"
+                                <td>{{$units->company_name}}</td>
+                                <td>{{$units->unit}}</td>
+                                <td> <a href="{{ url('/unitedit/'.$units->company_name.'/'.$units->unit) }}"
                                         class="btn btn-sm btn-white text-success mr-2"><i
                                             class="far fa-edit mr-1"></i></a></td>
+
 
                             </tr>
                             @endforeach

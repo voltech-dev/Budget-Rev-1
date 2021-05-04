@@ -265,14 +265,28 @@ public function collection_edit($id)
     {
         return view('unit.unit');
     }
+    public function unit_edit($companyname,$unit)
+    {
+        $unit = DB::table('company')
+        ->join('unit', 'company.id', '=', 'unit.company_id')
+        ->select('company.*', 'unit.*')
+        ->where('company.company_name','=',$companyname)->where('unit.company_id','=',$unit)
+        ->get();
+        print_r($unit);
+        exit();
+          
+        // return view('unit.unitedit', ['unit' => $unit,'companyname' => $companyname]);
+}
+            
     public function unitlist(){
-
         $unit = DB::table('company')
                     ->join('unit', 'company.id', '=', 'unit.company_id')
-                    ->select('company.*', 'sales.*')
+                    ->select('company.*', 'unit.*')
                     ->get();
-                return view('unitlist',['users'=>$users]);
+                   
+                return view('unit.unitlist',['unit'=>$unit]);
             }
+ 
     public function unitstore(Request $request)
     {
         $unit = new unit();

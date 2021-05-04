@@ -49,10 +49,9 @@ class SalesorderController extends Controller
             ->get();
         return view('salesorder.sales_view', ['sales' => $sales,'companyname' => $companyname,'financialyear'=>$financialyear,'region'=>$region]);
     }
-    public function salesupdate($companyname,$region,$financialyear)
+    public function salesupdate()
     {  
-        
-        return view('salesorder.sales_edit', ['sales' => $sales,'companyname' => $companyname,'financialyear'=>$financialyear,'region'=>$region]);
+        echo 'hai';
     }
     public function store(Request $request)
     {   
@@ -199,11 +198,8 @@ public function collection_edit($id)
     public function company(Request $request)
     {
         $company = new company();
-        $company->company_code = $request->code;
         $company->company_name = $request->company_name;
-        $company->contact = $request->contact;
-        $company->company_status = $request->status;
-        $company->address = $request->address;
+       
         $company->save();
         return redirect('/companylist');
     }
@@ -228,7 +224,7 @@ public function collection_edit($id)
     {
 
         return view('company.companyview', [
-            'comp' => company::where(['company_code' => $p])->first(),
+            'comp' => company::where(['company_name' => $p])->first(),
         ]);
     }
     public function division_edit($id)
@@ -269,14 +265,22 @@ public function collection_edit($id)
     {
         return view('unit.unit');
     }
+    public function unitlist(){
+
+        $unit = DB::table('company')
+                    ->join('unit', 'company.id', '=', 'unit.company_id')
+                    ->select('company.*', 'sales.*')
+                    ->get();
+                return view('unitlist',['users'=>$users]);
+            }
     public function unitstore(Request $request)
     {
         $unit = new unit();
-        $unit->company_name = $request->company_name;
-        $unit->division_name = $request->division;
+        $unit->company_id = $request->company_name;
         $unit->unit = $request->unit;
         $unit->save();
-        return redirect('/division');
+       
+      
     }
     public function divisiondetails(Request $request)
     {

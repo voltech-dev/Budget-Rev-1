@@ -18,7 +18,7 @@ Route::get('/salesorderlist', [SalesorderController::class, 'salesorderlist']);
 Route::get('/salesorder/', [SalesorderController::class, 'salesorder'])->name('/salesorder');
 Route::post('/salesorder', [SalesorderController::class, 'store']);
 Route::get('/sales_edit/{companyname}/{region}/{financialyear}',[SalesorderController::class, 'sales_edit']);
-Route::post('/salesupdate/{companyname}/{region}/{financialyear}',[App\Http\Controllers\SalesorderController::class, 'salesupdate']);
+Route::post('/salesupdate',[SalesorderController::class, 'salesupdate']);
 Route::get('/sales_view/{companyname}/{region}/{financialyear}',[App\Http\Controllers\SalesorderController::class, 'sales_view']);
 
 Route::get('/turnoverlist', [SalesorderController::class, 'turnoverlist']);

@@ -56,11 +56,11 @@ $company=DB::table('company')
                                             <th>Actual</th>
                                             <th>Month</th>
                                             <th>Target</th>
-                                            <th>Action</th>
+                                          
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach($sales as $ss)
+                                        @foreach($sales as $ss)                                       
                                         <tr>
                                             <td>{{$ss->unit}}</td>
                                             <td>{{$ss->division}}</td>
@@ -82,7 +82,7 @@ $company=DB::table('company')
                                                     <option value="March">March</option>
                                                 </select></td>
                                             <td>{{$ss->amount}}</td>
-                                            <td><i class="far fa-edit mr-1"></i></td>
+                                            
 
                                         </tr>
                                         @endforeach
@@ -104,7 +104,7 @@ $company=DB::table('company')
             </div>
             <div class="col-sm-6">
                 <div class="col-xs-12 col-sm-12 col-md-12 text-right">
-                    <button type="submit" class="btn btn-outline-success btn-sm"><i data-feather="check"
+                    <button type="button" class="btn btn-outline-success btn-sm" id="save"><i data-feather="check"
                             class="mr-2"></i>Save</button>
                 </div>
             </div>
@@ -124,7 +124,19 @@ $(document).ready(function() {
 });
 // Material Select Initialization
 $(document).ready(function() {
-    $('.mdb-select').materialSelect();
+   // $('.mdb-select').materialSelect();
+    $(document).on('click', '#save', function () {
+        $.ajax({
+            url: "{{url('/salesupdate')}}",
+            data: {
+                "_token": "{{ csrf_token() }}",
+                'month' : $('#month').val(),
+                'actual' : $('#actual').val(),
+            },
+            method: "POST",
+
+        });
+    });
 });
 </script>
 @endpush

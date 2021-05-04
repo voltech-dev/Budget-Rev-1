@@ -47,34 +47,10 @@
                                     <input type="text" class="form-control form-control-sm" name="company_name"
                                         id="company_name">
                                 </div>
-                                <label class="col-sm-3 col-form-label col-form-label-sm">Code</label>
-                                <div class="col-sm-3">
-                                    <input type="text" class="form-control form-control-sm" name="code"
-                                        id="code">
-                                </div>
+                               
                             </div>
-                            <div class="form-group row">
-                                <label class="col-sm-3 col-form-label col-form-label-sm">Contact</label>
-                                <div class="col-sm-3">
-                                    <input type="text" class="form-control form-control-sm" name="contact"
-                                        id="contact">
-                                </div>
-                                <label class="col-sm-3 col-form-label col-form-label-sm">Status</label>
-                                <div class="col-sm-3">
-                                    <select name="status" class="form-control form-control-sm" id="status">
-                                        <option value="" selected disabled>select status</option>
-                                        <option>Active</option>
-                                        <option>Inactive</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-sm-3 col-form-label col-form-label-sm">Address</label>
-                                <div class="col-sm-3">
-                                    <textarea class="form-control mb-4" placeholder="Address" rows=3 id="address" name="address"></textarea>
-                                </div>
-
-                            </div>
+                           
+                           
                         </div>
 
                         <div class="form-group row">

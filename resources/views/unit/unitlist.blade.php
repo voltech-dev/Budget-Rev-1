@@ -42,10 +42,11 @@
                                 <td>{{$i++}}</td>
                                 <td>{{$units->company_name}}</td>
                                 <td>{{$units->unit}}</td>
-                                <td> <a href="{{ url('/unitedit/'.$units->company_name.'/'.$units->unit) }}"
+                                <td> <a href="{{ url('/unitedit/'.$units->id.'/'.$units->unit) }}"
                                         class="btn btn-sm btn-white text-success mr-2"><i
                                             class="far fa-edit mr-1"></i></a></td>
 
+ 
 
                             </tr>
                             @endforeach
@@ -58,7 +59,7 @@
     </div>
 </div><br>
 <div class="text-center">
-    <button onclick="location.href='{{ url('/salesorder/') }}'" style="text-center">
+    <button onclick="location.href='{{ url('/unit/') }}'" style="text-center">
         Add Budget</button>
 </div>
 

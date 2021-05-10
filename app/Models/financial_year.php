@@ -5,12 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class unit extends Model
+class financial_year extends Model
 {
     use HasFactory;
-    protected $table='unit';
-
-    public function company(){
-        return $this->hasOne(company::class);
-    }
+    protected $table='financial_year';
 }

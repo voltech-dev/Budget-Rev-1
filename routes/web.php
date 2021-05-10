@@ -54,6 +54,7 @@ Route::post('/divisionstore', [SalesorderController::class, 'division_store']);
 Route::get('/unit', [SalesorderController::class, 'unit']);
 Route::get('/unitlist', [SalesorderController::class, 'unitlist']);
 Route::get('/unitedit/{companyname}/{unit}', [SalesorderController::class, 'unit_edit']);
+Route::post('/unitupdate/{id}',[SalesorderController::class, 'unitupdate']);
 Route::get('/companyid', [SalesorderController::class, 'divisiondetails']);
 Route::post('/unitstore', [SalesorderController::class, 'unitstore']);
 Route::get('/compdivision', [SalesorderController::class, 'divisiondetails']); 
@@ -66,3 +67,12 @@ Route::get('/salesturnover', [SalesorderController::class, 'salesturnover']);
 Route::post('/searchsales', [SalesorderController::class, 'searchsales']);
 Route::post('/searchturnover', [SalesorderController::class, 'searchturnover']);
 Route::post('/searchcollection', [SalesorderController::class, 'searchcollection']);
+
+
+Route::get('/userlist', [SalesorderController::class, 'userlist']);
+Route::get('/usercreate', [SalesorderController::class, 'usercreate']);
+
+
+Route::get('/fylist', [SalesorderController::class, 'fylist']);
+Route::get('/fycreate', [SalesorderController::class, 'fycreate']);
+Route::post('/fystore', [SalesorderController::class, 'fystore']);

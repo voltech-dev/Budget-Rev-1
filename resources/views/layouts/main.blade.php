@@ -233,8 +233,10 @@
                                     <ul class="sub-menu">
                                         <li aria-haspopup="true"><a href="{{url('/companylist')}}">Company</a>
                                         </li>
+                                        <li aria-haspopup="true"><a href="{{url('/unitlist')}}">Unit</a>
                                         <li aria-haspopup="true"><a href="{{url('/division')}}">Division</a></li>
-                                        <li aria-haspopup="true"><a href="{{url('/unit')}}">Unit</a>
+                                        <li aria-haspopup="true"><a href="{{url('/userlist')}}">User</a>
+                                        <li aria-haspopup="true"><a href="{{url('/fylist')}}">Financial Year</a>
                                         </li>
                                     </ul>
                                 </li>

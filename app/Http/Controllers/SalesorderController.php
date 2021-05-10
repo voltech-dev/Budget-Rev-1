@@ -9,6 +9,7 @@ use App\Models\company;
 use App\Models\division;
 use App\Models\unit;
 use App\Models\target;
+use App\Models\financial_year;
 use App\Models\turnover_target;
 use App\Models\collection_target;
 use DB;
@@ -29,8 +30,7 @@ class SalesorderController extends Controller
         return view('salesorder.salesorderlist');
     }
     public function sales_edit($companyname,$region,$financialyear)
-    {
-       
+    {  
        $sales = DB::table('sales')
             ->join('target', 'sales.id', '=', 'target.sale_id')
             ->select('sales.*', 'target.*')
@@ -236,7 +236,6 @@ public function collection_edit($id)
     }
     public function division_view($p)
     {
-
         return view('division.divisionview', [
             'div' => division::where(['division_name' => $p])->first(),
         ]);
@@ -250,6 +249,7 @@ public function collection_edit($id)
         $division = new division();
         $division->division_name = $request->division;
         $division->company_id = $request->input('company_name');
+        
         $division->save();
         return redirect('/division');
     }
@@ -265,19 +265,25 @@ public function collection_edit($id)
     {
         return view('unit.unit');
     }
-    public function unit_edit($companyname,$unit)
+    public function unit_edit($id,$unit)
     {
-        $unit = DB::table('company')
-        ->join('unit', 'company.id', '=', 'unit.company_id')
-        ->select('company.*', 'unit.*')
-        ->where('company.company_name','=',$companyname)->where('unit.company_id','=',$unit)
-        ->get();
-        print_r($unit);
-        exit();
-          
-        // return view('unit.unitedit', ['unit' => $unit,'companyname' => $companyname]);
-}
+       
+                    $company=company::all();
+                    $unit=unit::findorfail($id);
+                    dd($unit);
+                    exit();
+                return view('unit.unitedit',['unit'=>$unit,'company'=>$company]);
             
+}  
+    public function unitupdate(Request $request,$id){
+      
+        $unit = unit::where('id','=',$id)->first(); //   where(['id'=>$id]) this is best 
+       $unit->company_id =  $request->company_name;
+       $unit->unit = $request->unit;
+       $unit->save();
+       return redirect('/unitlist');
+    }
+
     public function unitlist(){
         $unit = DB::table('company')
                     ->join('unit', 'company.id', '=', 'unit.company_id')
@@ -286,6 +292,7 @@ public function collection_edit($id)
                    
                 return view('unit.unitlist',['unit'=>$unit]);
             }
+    
  
     public function unitstore(Request $request)
     {
@@ -296,14 +303,36 @@ public function collection_edit($id)
        
       
     }
+    //Userlist
+    public function userlist(){
+        return view('user.userlist');
+    }
+    public function usercreate(){
+        return view('user.usercreate');
+    }
+    //Fylist
+    public function fylist(){
+        return view('financial_year.fylist');
+    }
+    public function fycreate(){
+        return view('financial_year.fycreate');
+    }
+    public function fystore(Request $request){
+        $financialyear=new financial_year;
+        $financialyear->financial_year=$request->fy;
+        $financialyear->save();
+    }
+
     public function divisiondetails(Request $request)
     {
         $post = $request->all();
         $json = array();
-        $division = division::where(['company_id' => $post['company_name']])->get();
+        $division = unit::where(['company_id' => $post['company_name']])->get();
+       
         foreach ($division as $div) {
 
-            $json[$div->division_name] = $div->division_name;
+            $json[$div->unit] = $div->unit;
+            $js[$div->id] = $div->id;
         }
         echo json_encode($json);
     }
@@ -348,4 +377,3 @@ $users = DB::table('sales')
             
         }
     }
-   

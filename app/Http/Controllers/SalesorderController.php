@@ -227,13 +227,15 @@ public function collection_edit($id)
             'comp' => company::where(['company_name' => $p])->first(),
         ]);
     }
-    public function division_edit($id)
+   
+    public function division_edit($id,$division)
     {
-        return view('division.divisionedit', [
-            'div' => division::find($id),
+                    $company=company::all();
+                    $unit=unit::all();
+                    $division=division::findorfail($id);                
+                    return view('division.divisionedit',['unit'=>$unit,'company'=>$company,'division'=>$division]);
+}  
 
-        ]);
-    }
     public function division_view($p)
     {
         return view('division.divisionview', [
@@ -244,12 +246,13 @@ public function collection_edit($id)
     {
         return view('division.division');
     }
+   
     public function division_store(Request $request)
     {
         $division = new division();
         $division->division_name = $request->division;
         $division->company_id = $request->input('company_name');
-        
+        $division->unit_id=$request->unit;
         $division->save();
         return redirect('/division');
     }
@@ -259,7 +262,7 @@ public function collection_edit($id)
     }
     public function divisionlist()
     {
-        return view('company.divisionlist');
+        return view('division.divisionlist');
     }
     public function unit()
     {
@@ -267,14 +270,11 @@ public function collection_edit($id)
     }
     public function unit_edit($id,$unit)
     {
-       
-                    $company=company::all();
-                    $unit=unit::findorfail($id);
-                    dd($unit);
-                    exit();
-                return view('unit.unitedit',['unit'=>$unit,'company'=>$company]);
+            $company=company::all();
             
-}  
+            $unit=unit::findorfail($id);
+            return view('unit.unitedit',['unit'=>$unit,'company'=>$company]);
+    }  
     public function unitupdate(Request $request,$id){
       
         $unit = unit::where('id','=',$id)->first(); //   where(['id'=>$id]) this is best 
@@ -328,14 +328,12 @@ public function collection_edit($id)
         $post = $request->all();
         $json = array();
         $division = unit::where(['company_id' => $post['company_name']])->get();
-       
         foreach ($division as $div) {
-
-            $json[$div->unit] = $div->unit;
-            $js[$div->id] = $div->id;
+            $json[$div->id] = $div->unit;
         }
         echo json_encode($json);
     }
+    
     public function salesturnover(){
 
 $users = DB::table('sales')

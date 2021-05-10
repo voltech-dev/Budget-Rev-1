@@ -1,7 +1,8 @@
 @extends('layouts.main')
 @section('header')
 <?php
-
+$company = DB::table('company')
+->get();
 ?>
 
 <h3>User</h3>
@@ -30,14 +31,16 @@
         <div class="col-sm-3">
             <select id="company_name" class="form-control form-control-sm" name="company_name">
                 <option>--Select Company--</option>
+                @foreach($company as $comp)
+                <option value="{{$comp->company_name}}">{{$comp->company_name}}</option>
+                @endforeach
             </select>
 
         </div>
         <label class="col-sm-3 col-form-label col-form-label-sm">Unit</label>
         <div class="col-sm-3">
             <select id="unit" class="form-control form-control-sm" name="unit">
-                <option>--Select Unit--</option>
-
+              
             </select>
         </div>
     </div>
@@ -72,6 +75,24 @@
     @endsection
     @push('scripts')
     <script>
-
-    </script>
+$('#company_name').change(function(event) {
+    var company_name = $('#company_name').val();
+    console.log(company_name);
+    $.ajax({
+        type: "GET",
+        url: "{{url('/companyid')}}",
+        data: {
+            company_name: company_name
+        },
+        dataType: 'json',
+        success: function(data) {
+            console.log(data);
+            $('select[name="unit"]').empty();
+            $.each(data, function(key, value) {        
+                $('select[name="unit"]').append('<option value="' +key + '">' + value +
+                    '</option>');
+            });
+        },
+    });
+});    </script>
     @endpush

@@ -3,6 +3,8 @@
 <?php
 $company=DB::table('company')
 ->get();
+$unit=DB::table('unit')
+->get();
 ?>
 <!-- begin::page-header -->
 <div class="page-header">
@@ -96,8 +98,7 @@ $('#company_name').change(function(event) {
         success: function(data) {
             console.log(data);
             $('select[name="unit"]').empty();
-            $.each(data, function(key, value) {
-                console.log(key);
+            $.each(data, function(key, value) {        
                 $('select[name="unit"]').append('<option value="' +key + '">' + value +
                     '</option>');
             });

@@ -40,6 +40,8 @@ Route::get('/companycreate', [SalesorderController::class, 'companycreate'])->na
 
 Route::get('/division', [SalesorderController::class, 'division']);
 Route::get('/viewdivision', [SalesorderController::class, 'viewdivision']);
+Route::get('/divisionlist', [SalesorderController::class, 'divisionlist']);
+
 Route::post('/company', [SalesorderController::class, 'company']);
 Route::get('/company_edit/{id}', [SalesorderController::class, 'company_edit']);
 Route::post('/companyupdate/{id}',[App\Http\Controllers\SalesorderController::class, 'companyupdate']);
@@ -49,7 +51,6 @@ Route::get('/division', [SalesorderController::class, 'division']);
 Route::get('/viewdivision', [SalesorderController::class, 'viewdivision']);
 Route::get('/divisionlist', [SalesorderController::class, 'divisionlist']);
 Route::post('/divisionstore', [SalesorderController::class, 'division_store']);
-// Route::get('/companyid', [SalesorderController::class, 'divisiondetails']);
 
 Route::get('/unit', [SalesorderController::class, 'unit']);
 Route::get('/unitlist', [SalesorderController::class, 'unitlist']);
@@ -57,9 +58,8 @@ Route::get('/unitedit/{companyname}/{unit}', [SalesorderController::class, 'unit
 Route::post('/unitupdate/{id}',[SalesorderController::class, 'unitupdate']);
 Route::get('/companyid', [SalesorderController::class, 'divisiondetails']);
 Route::post('/unitstore', [SalesorderController::class, 'unitstore']);
-Route::get('/compdivision', [SalesorderController::class, 'divisiondetails']); 
 
-Route::get('/divisionedit/{id}', [SalesorderController::class, 'division_edit']);
+Route::get('/divisionedit/{id}/{division}', [SalesorderController::class, 'division_edit']);
 Route::get('/divisionview/{p}',[App\Http\Controllers\SalesorderController::class, 'division_view']);
 Route::post('/divisionupdate/{id}',[App\Http\Controllers\SalesorderController::class, 'division_update']);
 

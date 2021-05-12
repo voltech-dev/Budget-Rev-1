@@ -44,7 +44,7 @@ td {
                             @foreach($division as $div)
                             <tr>
                                 <td>{{$i++}}</td>
-                                <td>{{$div->division_name}}</td>
+                                <td><a href="{{url('/divisionview/'.$div->id.'/'.$div->division_name)}}">{{$div->division_name}}</td>
                                 <td><a href="{{ url('/divisionedit/'.$div->id.'/'.$div->division_name) }}" class="btn btn-sm btn-white text-success mr-2"><i class="far fa-edit mr-1"></i></a></td>
                             </tr>
                             @endforeach

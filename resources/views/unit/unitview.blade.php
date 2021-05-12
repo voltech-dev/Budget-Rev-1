@@ -34,7 +34,7 @@
                             <div class="form-group row">
                                 <label class="col-sm-3 col-form-label col-form-label-sm">Company Name</label>
                                 <div class="col-sm-3">
-                                    <select name="company_name" class="form-control form-control-sm" id="company_name">
+                                    <select name="company_name" class="form-control form-control-sm" id="company_name" readonly>
                                         @foreach($company as $comp)
                                         <option value="{{$comp->id}}" selected>{{$comp->company_name}}</option>
                                         @endforeach
@@ -44,7 +44,7 @@
                                 <div class="col-sm-3">
 
                                     <input type="text" class="form-control form-control-sm" name="unit" id="unit"
-                                        value="{{$unit->unit}}">
+                                        value="{{$unit->unit}}" readonly>
 
                                 </div>
 

@@ -235,13 +235,23 @@ public function collection_edit($id)
                     $division=division::findorfail($id);                
                     return view('division.divisionedit',['unit'=>$unit,'company'=>$company,'division'=>$division]);
 }  
+public function divisionupdate(Request $request,$id){
+      
+    $division = division::where('id','=',$id)->first(); //   where(['id'=>$id]) this is best 
+   $division->company_id =  $request->company_name;
+   $division->unit_id = $request->unit;
+   $division->division_name=$request->division;
+   $division->save();
+   return redirect('/divisionlist');
+}
 
-    public function division_view($p)
-    {
-        return view('division.divisionview', [
-            'div' => division::where(['division_name' => $p])->first(),
-        ]);
-    }
+public function division_view($id,$division)
+{
+                $company=company::all();
+                $unit=unit::all();
+                $division=division::findorfail($id);                
+                return view('division.divisionview',['unit'=>$unit,'company'=>$company,'division'=>$division]);
+}  
     public function division()
     {
         return view('division.division');
@@ -271,9 +281,14 @@ public function collection_edit($id)
     public function unit_edit($id,$unit)
     {
             $company=company::all();
-            
             $unit=unit::findorfail($id);
             return view('unit.unitedit',['unit'=>$unit,'company'=>$company]);
+    }  
+    public function unit_view($id,$unit)
+    {
+            $company=company::all();
+            $unit=unit::findorfail($id);
+            return view('unit.unitview',['unit'=>$unit,'company'=>$company]);
     }  
     public function unitupdate(Request $request,$id){
       
@@ -333,15 +348,19 @@ public function collection_edit($id)
         }
         echo json_encode($json);
     }
-    
-    public function salesturnover(){
+    public function fetchdivision(Request $request)
+    {
+        $post = $request->all();
+        $json = array();
+        $div = division::where(['unit_id' => $post['unit']])->get();
+        foreach ($div as $d) {
+            $json[$d->id] = $d->division_name;
+        }
+        echo json_encode($json);
+    }
+    public function saleslist(){
 
-$users = DB::table('sales')
-            ->join('target', 'sales.id', '=', 'target.sale_id')
-            ->select('sales.*', 'target.*')
-            ->groupBy('sales.financial_year','sales.region','sales.Company_name')
-            ->get();
-        return view('salesturnover',['users'=>$users]);
+       return view('salesorder.salesorderlist');
     }
     public function searchsales(Request $request){
         if($request->sales !=''){

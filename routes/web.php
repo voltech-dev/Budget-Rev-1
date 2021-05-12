@@ -39,7 +39,6 @@ Route::get('/companylist', [SalesorderController::class, 'companylist']);
 Route::get('/companycreate', [SalesorderController::class, 'companycreate'])->name('/companycreate');
 
 Route::get('/division', [SalesorderController::class, 'division']);
-Route::get('/viewdivision', [SalesorderController::class, 'viewdivision']);
 Route::get('/divisionlist', [SalesorderController::class, 'divisionlist']);
 
 Route::post('/company', [SalesorderController::class, 'company']);
@@ -55,19 +54,20 @@ Route::post('/divisionstore', [SalesorderController::class, 'division_store']);
 Route::get('/unit', [SalesorderController::class, 'unit']);
 Route::get('/unitlist', [SalesorderController::class, 'unitlist']);
 Route::get('/unitedit/{companyname}/{unit}', [SalesorderController::class, 'unit_edit']);
+Route::get('/unitview/{id}/{unit}', [SalesorderController::class, 'unit_view']);
 Route::post('/unitupdate/{id}',[SalesorderController::class, 'unitupdate']);
 Route::get('/companyid', [SalesorderController::class, 'divisiondetails']);
+Route::get('/divisionid', [SalesorderController::class, 'fetchdivision']);
 Route::post('/unitstore', [SalesorderController::class, 'unitstore']);
 
 Route::get('/divisionedit/{id}/{division}', [SalesorderController::class, 'division_edit']);
-Route::get('/divisionview/{p}',[App\Http\Controllers\SalesorderController::class, 'division_view']);
-Route::post('/divisionupdate/{id}',[App\Http\Controllers\SalesorderController::class, 'division_update']);
+Route::get('/divisionview/{id}/{division}',[SalesorderController::class, 'division_view']);
+Route::post('/divisionupdate/{id}',[App\Http\Controllers\SalesorderController::class, 'divisionupdate']);
 
-Route::get('/salesturnover', [SalesorderController::class, 'salesturnover']);
+Route::get('/saleslist', [SalesorderController::class, 'saleslist']);
 Route::post('/searchsales', [SalesorderController::class, 'searchsales']);
 Route::post('/searchturnover', [SalesorderController::class, 'searchturnover']);
 Route::post('/searchcollection', [SalesorderController::class, 'searchcollection']);
-
 
 Route::get('/userlist', [SalesorderController::class, 'userlist']);
 Route::get('/usercreate', [SalesorderController::class, 'usercreate']);

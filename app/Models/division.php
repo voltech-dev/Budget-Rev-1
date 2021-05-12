@@ -10,6 +10,6 @@ class division extends Model
     use HasFactory;
     protected $table='division';
     public function unit(){
-        return $this->hasMany(unit::class);
+        return $this->hasOne(unit::class);
     }
 }

@@ -1,11 +1,17 @@
 @extends('layouts.main')
 @section('header')
 <?php
-$company = DB::table('company')
+$company=DB::table('company')
+->get();
+$unit=DB::table('unit')
 ->get();
 ?>
+<!-- begin::page-header -->
+<div class="page-header">
+    <div class="container-fluid d-sm-flex justify-content-between">
 
-<h3>User</h3>
+    </div>
+</div>
 <!-- end::page-header -->
 @endsection
 @section('content')
@@ -18,66 +24,99 @@ $company = DB::table('company')
         @endforeach
     </ul>
 </div>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 @endif
+<div class="container-fluid">
+    <!-- <div class="row">
+        <div class="col-md-12">-->
+    <div class="card">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-12">
+                    <form action="{{url('/divisionstore')}}" method="POST">
+                        @csrf
+                        <div data-label="Enquiry Details" class="demo-code-preview col-xs-12 col-sm-12 col-md-12">
+                            <div class="form-group row">
+                                <label class="col-sm-3 col-form-label col-form-label-sm">Company Name</label>
+                                <div class="col-sm-3">
+                                    <select name="company_name" class="form-control form-control-sm" id="company_name">
+                                        <option selected disabled>--Select--</option>
+                                        @foreach($company as $comp)
+                                        <option value="{{$comp->id}}">{{$comp->company_name}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <label class="col-sm-3 col-form-label col-form-label-sm">Unit</label>
+                                <div class="col-sm-3">
+                                    <select name="unit" class="form-control form-control-sm" id="unit">
+                                        <option selected disabled>--Select Unit--</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-3 col-form-label col-form-label-sm">Division</label>
+                                <div class="col-sm-3">
+                                    <select name="division" class="form-control form-control-sm" id="division">
+                                        <option selected disabled>--Select Division--</option>
+                                    </select>
+                                </div>
+                                <label class="col-sm-3 col-form-label col-form-label-sm">Name</label>
+                                <div class="col-sm-3">
+                                    <input type="text" class="form-control form-control-sm" id="name" name="name">
+                                </div>
 
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-3 col-form-label col-form-label-sm">Designation</label>
+                                <div class="col-sm-3">
+                                    <input type="text" class="form-control form-control-sm" id="designation"
+                                        name="designation">
 
+                                </div>
+                                <label class="col-sm-3 col-form-label col-form-label-sm">Email</label>
+                                <div class="col-sm-3">
+                                    <input type="text" class="form-control form-control-sm" id="email" name="email">
+                                </div>
 
-<!-- <form action="{{url('/salesorder')}}" method="POST"> -->
-@csrf
-<div data-label="Enquiry Details" class="demo-code-preview col-xs-12 col-sm-12 col-md-12">
-    <div class="form-group row">
-        <label class="col-sm-3 col-form-label col-form-label-sm">Company Name</label>
-        <div class="col-sm-3">
-            <select id="company_name" class="form-control form-control-sm" name="company_name">
-                <option>--Select Company--</option>
-                @foreach($company as $comp)
-                <option value="{{$comp->company_name}}">{{$comp->company_name}}</option>
-                @endforeach
-            </select>
+                            </div>
+                            <div class="form-group row">
 
-        </div>
-        <label class="col-sm-3 col-form-label col-form-label-sm">Unit</label>
-        <div class="col-sm-3">
-            <select id="unit" class="form-control form-control-sm" name="unit">
-              
-            </select>
+                                <label class="col-sm-3 col-form-label col-form-label-sm">Password</label>
+                                <div class="col-sm-3">
+                                    <input type="password" class="form-control form-control-sm" id="password"
+                                        name="password">
+                                </div>
+
+                            </div>
+
+                            <div class="form-group row">
+                                <div class="col-sm-6">
+                                    <div class="col-xs-12 col-sm-12 col-md-12 text-left">
+                                        <a class="btn btn-outline-light btn-sm" href="">
+                                            <i data-feather="chevrons-left" class="mr-2"></i>Cancel</a>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="col-xs-12 col-sm-12 col-md-12 text-right">
+                                        <button type="submit" class="btn btn-outline-success btn-sm"><i
+                                                data-feather="check" class="mr-2"></i>Save</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                    </form>
+                </div>
+            </div>
         </div>
     </div>
-    <div class="form-group row">
-        <label class="col-sm-3 col-form-label col-form-label-sm">Division</label>
-        <div class="col-sm-3">
-            <input type="text" class="form-control form-control-sm" name="division" id="division">
-        </div>
-        <label class="col-sm-3 col-form-label col-form-label-sm">Name</label>
-        <div class="col-sm-3">
-            <input type="text" class="form-control form-control-sm" name="name" id="name">
-        </div>
-    </div>
-    <div class="form-group row">
-        <label class="col-sm-3 col-form-label col-form-label-sm">Designation</label>
-        <div class="col-sm-3">
-            <input type="text" class="form-control form-control-sm" name="designation" id="designation">
-        </div>
-        <label class="col-sm-3 col-form-label col-form-label-sm">Email</label>
-        <div class="col-sm-3">
-            <input type="text" class="form-control form-control-sm" name="email" id="email">
-        </div>
-    </div>
-    <div class="form-group row">
-        <label class="col-sm-3 col-form-label col-form-label-sm">Password</label>
-        <div class="col-sm-3">
-            <input type="password" class="form-control form-control-sm" name="password" id="password">
-        </div>
-    </div>
-    </form>
-
-    @endsection
-    @push('scripts')
-    <script>
+    <!-- </div>
+    </div>-->
+</div>
+@endsection
+@push('scripts')
+<script>
 $('#company_name').change(function(event) {
     var company_name = $('#company_name').val();
-    console.log(company_name);
+
     $.ajax({
         type: "GET",
         url: "{{url('/companyid')}}",
@@ -86,13 +125,38 @@ $('#company_name').change(function(event) {
         },
         dataType: 'json',
         success: function(data) {
-            console.log(data);
             $('select[name="unit"]').empty();
-            $.each(data, function(key, value) {        
-                $('select[name="unit"]').append('<option value="' +key + '">' + value +
+            $.each(data, function(key, value) {
+                $('select[name="unit"]').append('<option value="' + key + '">' + value +
+                    '</option>');
+            });
+            var unit = $('#unit').val();
+        console.log(unit);
+
+        },
+        
+
+    });
+});
+if ($("#unit").length) {
+    var unit = $('#unit').val();
+    console.log(unit);
+    $.ajax({
+        type: "GET",
+        url: "{{url('/divisionid')}}",
+        data: {
+            unit: unit
+        },
+        dataType: 'json',
+        success: function(data) {
+            console.log(data);
+            $('select[name="division"]').empty();
+            $.each(data, function(key, value) {
+                $('select[name="division"]').append('<option value="' + key + '">' + value +
                     '</option>');
             });
         },
     });
-});    </script>
-    @endpush
+}
+</script>
+@endpush

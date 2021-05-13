@@ -76,38 +76,106 @@ $fin_year=DB::table('financial_year')
                                     <thead class="thead-light">
                                         <tr>
                                             <th>Division</th>
-                                            <th>April</th>
-                                            <th>May</th>
-                                            <th>June</th>
-                                            <th>July</th>
-                                            <th>August</th>
-                                            <th>September</th>
-                                            <th>October</th>
-                                            <th>November</th>
-                                            <th>December</th>
-                                            <th>Jan</th>
-                                            <th>Feb</th>
-                                            <th>March</th>
-                                            <th>Target</th>
-                                            <th>Actual</th>
+                                            <th colspan="2">April</th>
+                                            <th colspan="2">May</th>
+                                            <th colspan="2">June</th>
+                                            <th colspan="2">July</th>
+                                            <th colspan="2">August</th>
+                                            <th colspan="2">September</th>
+                                            <th colspan="2">October</th>
+                                            <th colspan="2">November</th>
+                                            <th colspan="2">December</th>
+                                            <th colspan="2">Jan</th>
+                                            <th colspan="2">Feb</th>
+                                            <th colspan="2">March</th>
+                                            <th colspan="2">Target</th>
+                                            <th colspan="2">Actual</th>
+                                        </tr>
+                                        <tr>
+                                            <td></td>
+                                            <td>Target</td>
+                                            <td>Actual</td>
+                                            <td>Target</td>
+                                            <td>Actual</td>
+                                            <td>Target</td>
+                                            <td>Actual</td>
+                                            <td>Target</td>
+                                            <td>Actual</td>
+                                            <td>Target</td>
+                                            <td>Actual</td>
+                                            <td>Target</td>
+                                            <td>Actual</td>
+                                            <td>Target</td>
+                                            <td>Actual</td>
+                                            <td>Target</td>
+                                            <td>Actual</td>
+                                            <td>Target</td>
+                                            <td>Actual</td>
+                                            <td>Target</td>
+                                            <td>Actual</td>
+                                            <td>Target</td>
+                                            <td>Actual</td>
+                                            <td>Target</td>
+                                            <td>Actual</td>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
+                                        <tr>
+                                            <td id="div" name="div"></td>
+                                            <td id="text" name="text"></td>
+                                            <td id="text" name="text"></td>
+                                            <td id="text" name="text"></td>
+                                            <td id="text" name="text"></td>
+                                            <td id="text" name="text"></td>
+                                            <td id="text" name="text"></td>
+                                            <td id="text" name="text"></td>
+                                            <td id="text" name="text"></td>
+                                            <td id="text" name="text"></td>
+                                            <td id="text" name="text"></td>
+                                            <td id="text" name="text"></td>
+                                            <td id="text" name="text"></td>
+                                            <td id="text" name="text"></td>
+                                            <td id="text" name="text"></td>
+                                            <td id="text" name="text"></td>
+                                            <td id="text" name="text"></td>
+                                            <td id="text" name="text"></td>
+                                            <td id="text" name="text"></td>
+                                            <td id="text" name="text"></td>
+                                            <td id="text" name="text"></td>
+                                            <td id="text" name="text"></td>
+                                            <td id="text" name="text"></td>
+                                            <td id="text" name="text"></td>
+                                            <td id="text" name="text"></td>
+                                        </tr>
+                                        <tr>
+                                            <td id="total1" name="total1">Total</td>
+                                            <td id="total" name="total"></td>
+                                            <td id="total" name="total"></td>
+                                            <td id="total" name="total"></td>
+                                            <td id="total" name="total"></td>
+                                            <td id="total" name="total"></td>
+                                            <td id="total" name="total"></td>
+                                            <td id="total" name="total"></td>
+                                            <td id="total" name="total"></td>
+                                            <td id="total" name="total"></td>
+                                            <td id="total" name="total"></td>
+                                            <td id="total" name="total"></td>
+                                            <td id="total" name="total"></td>
+                                            <td id="total" name="total"></td>
+                                            <td id="total" name="total"></td>
+                                            <td id="total" name="total"></td>
+                                            <td id="total" name="total"></td>
+                                            <td id="total" name="total"></td>
+                                            <td id="text" name="total"></td>
+                                            <td id="total" name="total"></td>
+                                            <td id="total" name="total"></td>
+                                            <td id="total" name="total"></td>
+                                            <td id="total" name="total"></td>
+                                            <td id="total" name="total"></td>
+                                            <td id="total" name="total"></td>
+
+                                        </tr>
+
                                     </tbody>
                                 </table>
 
@@ -148,17 +216,50 @@ $('#company_name').change(function(event) {
         },
         dataType: 'json',
         success: function(data) {
-            console.log(data);
             $('select[name="unit"]').empty();
             $.each(data, function(key, value) {
                 $('select[name="unit"]').append('<option value="' + key + '">' + value +
                     '</option>');
+
             });
         },
     });
 });
 $('#add').click(function() {
     $('#tab').show();
+    var unit = $('#unit').val();
+    console.log(unit);
+    $.ajax({
+        type: "GET",
+        url: "{{url('/divisionid')}}",
+        data: {
+            unit: unit
+        },
+        dataType: 'json',
+        success: function(data) {
+            console.log(data);
+            $('td[name="div"]').empty();
+            $.each(data, function(key, value) {
+                $('td[name="div"]').append('<option value="' + key + '">' + value );
+                $('td[name="text"]').append(
+                    '<input type="text" style="width:60px" name="apr_target" id="apr_target" >'
+                );
+               
+            });
+            $('td[name="total"]').append(
+                    '<input type="text" style="width:60px" name="total" id="total" >'
+                );
+            
+        },
+    });
+
+});
+$('#text').keyup(function(){
+    var sum=0;
+  $('#text').each(function(){
+      
+  });
+
 });
 </script>
 @endpush

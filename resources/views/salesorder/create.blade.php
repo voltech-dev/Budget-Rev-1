@@ -71,7 +71,7 @@ $fin_year=DB::table('financial_year')
                         <div class="col-sm-12">
 
 
-                            <div class="table-responsive" id="tab">
+                            <div class="table table-responsive" id="tab">
                                 <table class="table table-center table-hover datatable">
                                     <thead class="thead-light">
                                         <tr>
@@ -224,11 +224,11 @@ $('#company_name').change(function(event) {
             });
         },
     });
+
 });
 $('#add').click(function() {
     $('#tab').show();
     var unit = $('#unit').val();
-    console.log(unit);
     $.ajax({
         type: "GET",
         url: "{{url('/divisionid')}}",
@@ -237,29 +237,48 @@ $('#add').click(function() {
         },
         dataType: 'json',
         success: function(data) {
-            console.log(data);
             $('td[name="div"]').empty();
             $.each(data, function(key, value) {
-                $('td[name="div"]').append('<option value="' + key + '">' + value );
+                $('td[name="div"]').append('<option value="' + key + '">' + value);
                 $('td[name="text"]').append(
                     '<input type="text" style="width:60px" name="apr_target" id="apr_target" >'
                 );
-               
             });
             $('td[name="total"]').append(
-                    '<input type="text" style="width:60px" name="total" id="total" >'
-                );
-            
+                '<input type="text" style="width:60px" name="total" id="total" >'
+            );
         },
     });
-
+     $('input[type=text]').each(function(i, item) {
+         var grade =  $(item).val();
+         alert(grade);
+     });
 });
-$('#text').keyup(function(){
-    var sum=0;
-  $('#text').each(function(){
-      
-  });
+// $('#text').keyup(function () {
+//     var parentRow = $(this).parents('tr');
+//     // console.log(parentRow)
+//     var inputs = parentRow.find('input');
+//     // console.log(inputs);
+//     var total = parentRow.find('#total');
+//     // console.log(total);
+//     var sum = 0;    
+//     inputs.each(function () {
+//         sum += parseInt(this.value);
+//     });
+//     sum += inputs.length;
+//     console.log(sum);
+//     total.text(sum);
 
+
+
+$('#text').keyup(function() {
+    $('input[type=text]').each(function(i, item) {
+        var grade = $(item).val();
+        console.log(grade);
+    });
+    
 });
+// });
+
 </script>
 @endpush

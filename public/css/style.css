@@ -18802,12 +18802,12 @@ Dimmer
 .table .table,
 .text-wrap table .table,
 .table .text-wrap table {
-    background-color: #f0f0f2;
+    background-color: #ffffff;
 }
 
 .text-wrap .table table,
 .text-wrap table table {
-    background-color: #f0f0f2;
+    background-color: #ffffff;
 }
 
 .table-sm th,

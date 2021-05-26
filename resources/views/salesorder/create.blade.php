@@ -31,7 +31,7 @@ $fin_year=DB::table('financial_year')
         <div class="col-md-12">-->
     <div class="row">
         <div class="col-md-12">
-            <form action="{{url('/divisionstore')}}" method="POST">
+            <form action="{{url('/salesorder')}}" method="POST">
                 @csrf
                 <div data-label="Enquiry Details" class="demo-code-preview col-xs-12 col-sm-12 col-md-12">
                     <div class="form-group row">
@@ -88,8 +88,7 @@ $fin_year=DB::table('financial_year')
                                             <th colspan="2">Jan</th>
                                             <th colspan="2">Feb</th>
                                             <th colspan="2">March</th>
-                                            <th colspan="2">Target</th>
-                                            <th colspan="2">Actual</th>
+
                                         </tr>
                                         <tr>
                                             <td></td>
@@ -117,6 +116,7 @@ $fin_year=DB::table('financial_year')
                                             <td>Actual</td>
                                             <td>Target</td>
                                             <td>Actual</td>
+
                                         </tr>
                                     </thead>
                                     <tbody name='abc' id='abc'>
@@ -127,6 +127,26 @@ $fin_year=DB::table('financial_year')
                             </div>
                         </div>
                     </div><br>
+                    <div class="form-group row">
+                        <div class="col-sm-12">
+                            <button type="button" class="btn btn-primary btn-sm" id="get_total">Get Total</button>
+                        </div>
+                    </div>
+                    <div class="form-group row" id="finaltotal">
+                        <div class="col-sm-3">
+                           <label>Total Target</label>
+                        </div>
+                        <div class="col-sm-3">
+                        <input type="text" name="total_target" id="total_target">
+                        </div>
+                        <div class="col-sm-3">
+                           <label>Total Actual</label>
+                        </div>
+                        <div class="col-sm-3">
+                        <input type="text" name="total_actual" id="total_actual">
+                        </div>
+
+                    </div>
                     <div class="form-group row">
                         <div class="col-sm-12">
                             <!-- <button type="button" class="btn btn-primary btn-sm" id="tot">Total</button> -->
@@ -154,6 +174,8 @@ $fin_year=DB::table('financial_year')
 <script>
 $(document).ready(function() {
     $('#tab').hide();
+    $('#finaltotal').hide();
+    $('#get_total').hide();
 })
 $('#company_name').change(function(event) {
     var company_name = $('#company_name').val();
@@ -187,56 +209,56 @@ $('#add').click(function() {
         dataType: 'json',
         success: function(data) {
             $.each(data, function(key, value) {
-                $('tbody[name="abc"]').append('<tr>' + '<td>' + '<option value="' + key +
+                $('tbody[name="abc"]').append('<tr>' + '<td id="div" name="div">' + '<option value="' + key +
                     '">' + value + '</td>' + '<td class="apt">' +
-                    '<input type="text" style="width:60px" name="apr_target" id="apr_target" class="apr_target">' +
+                    '<input type="text" style="width:60px" name="apr_target[]" id="apr_target" class="apr_target">' +
                     '</td>' + '<td>' +
-                    '<input type="text" style="width:60px" name="apr_actual" id="apr_actual" class="apr_actual" disabled>' +
+                    '<input type="text" style="width:60px" name="apr_actual[]" id="apr_actual" class="apr_actual" disabled>' +
                     '</td>' + '<td class="may">' +
-                    '<input type="text" style="width:60px" name="may_target" id="may_target" class="may_target" >' +
+                    '<input type="text" style="width:60px" name="may_target[]" id="may_target" class="may_target" >' +
                     '</td>' + '<td>' +
-                    '<input type="text" style="width:60px" name="may_actual" id="may_actual" class="may_actual" disabled>' +
+                    '<input type="text" style="width:60px" name="may_actual[]" id="may_actual" class="may_actual" disabled>' +
                     '</td>' + '<td class="june">' +
-                    '<input type="text" style="width:60px" name="june_target" id="june_target" class="june_target">' +
+                    '<input type="text" style="width:60px" name="june_target[]" id="june_target" class="june_target">' +
                     '</td>' + '<td>' +
-                    '<input type="text" style="width:60px" name="june_actual" id="june_actual" class="june_actual" disabled>' +
+                    '<input type="text" style="width:60px" name="june_actual[]" id="june_actual" class="june_actual" disabled>' +
                     '</td>' + '<td class="july">' +
-                    '<input type="text" style="width:60px" name="july_target" id="july_target" class="july_target">' +
+                    '<input type="text" style="width:60px" name="july_target[]" id="july_target" class="july_target">' +
                     '</td>' + '<td>' +
-                    '<input type="text" style="width:60px" name="july_actual" id="july_actual" class="july_actual" disabled>' +
+                    '<input type="text" style="width:60px" name="july_actual[]" id="july_actual" class="july_actual" disabled>' +
                     '</td>' + '<td class="aug">' +
-                    '<input type="text" style="width:60px" name="aug_target" id="aug_target" class="aug_target">' +
+                    '<input type="text" style="width:60px" name="aug_target[]" id="aug_target" class="aug_target">' +
                     '</td>' + '<td>' +
-                    '<input type="text" style="width:60px" name="aug_actual" id="aug_actual" class="aug_actual" disabled>' +
+                    '<input type="text" style="width:60px" name="aug_actual[]" id="aug_actual" class="aug_actual" disabled>' +
                     '</td>' + '<td class="sept">' +
-                    '<input type="text" style="width:60px" name="sept_target" id="sept_target" class="sept_target">' +
+                    '<input type="text" style="width:60px" name="sept_target[]" id="sept_target" class="sept_target">' +
                     '</td>' + '<td>' +
-                    '<input type="text" style="width:60px" name="sept_actual" id="sept_actual" class="sept_actual" disabled>' +
+                    '<input type="text" style="width:60px" name="sept_actual[]" id="sept_actual" class="sept_actual" disabled>' +
                     '</td>' + '<td class="oct">' +
-                    '<input type="text" style="width:60px" name="oct_target" id="oct_target" class="oct_target">' +
+                    '<input type="text" style="width:60px" name="oct_target[]" id="oct_target" class="oct_target">' +
                     '</td>' + '<td>' +
-                    '<input type="text" style="width:60px" name="oct_actual" id="oct_actual" class="oct_actual" disabled>' +
+                    '<input type="text" style="width:60px" name="oct_actual[]" id="oct_actual" class="oct_actual" disabled>' +
                     '</td>' + '<td class="nov">' +
-                    '<input type="text" style="width:60px" name="nov_target" id="nov_target" class="nov_target">' +
+                    '<input type="text" style="width:60px" name="nov_target[]" id="nov_target" class="nov_target">' +
                     '</td>' + '<td>' +
-                    '<input type="text" style="width:60px" name="nov_actual" id="nov_actual" class="nov_actual" disabled>' +
+                    '<input type="text" style="width:60px" name="nov_actual[]" id="nov_actual" class="nov_actual" disabled>' +
                     '</td>' + '<td class="dec">' +
-                    '<input type="text" style="width:60px" name="dec_target" id="dec_target" class="dec_target">' +
+                    '<input type="text" style="width:60px" name="dec_target[]" id="dec_target" class="dec_target">' +
                     '</td>' + '<td>' +
-                    '<input type="text" style="width:60px" name="dec_actual" id="dec_actual" class="dec_actual" disabled>' +
+                    '<input type="text" style="width:60px" name="dec_actual[]" id="dec_actual" class="dec_actual" disabled>' +
                     '</td>' + '<td class="jan">' +
-                    '<input type="text" style="width:60px" name="jan_target" id="jan_target" class="jan_target">' +
+                    '<input type="text" style="width:60px" name="jan_target[]" id="jan_target" class="jan_target">' +
                     '</td>' + '<td>' +
-                    '<input type="text" style="width:60px" name="jan_actual" id="jan_actual" class="jan_actual" disabled>' +
+                    '<input type="text" style="width:60px" name="jan_actual[]" id="jan_actual" class="jan_actual" disabled>' +
                     '</td>' + '<td class="feb">' +
-                    '<input type="text" style="width:60px" name="feb_target" id="feb_target" class="feb_target">' +
+                    '<input type="text" style="width:60px" name="feb_target[]" id="feb_target" class="feb_target">' +
                     '</td>' + '<td>' +
-                    '<input type="text" style="width:60px" name="feb_actual" id="feb_actual" class="feb_actual" disabled>' +
+                    '<input type="text" style="width:60px" name="feb_actual[]" id="feb_actual" class="feb_actual" disabled>' +
                     '</td>' + '<td class="march">' +
-                    '<input type="text" style="width:60px" name="march_target" id="march_target" class="march_target">' +
+                    '<input type="text" style="width:60px" name="march_target[]" id="march_target" class="march_target">' +
                     '</td>' + '<td>' +
-                    '<input type="text" style="width:60px" name="march_actual" id="march_actual" class="march_actual" disabled>' +
-                    '</td>' +'<td>'+'<input type="text" style="width:60px" id="total_target" name="total_target"> '+'</td>'+ '</tr>');
+                    '<input type="text" style="width:60px" name="march_actual[]" id="march_actual" class="march_actual" disabled>' +
+                    '</td>' + '</tr>');
             });
             $('tbody[name="abc"]').append(
                 '<tr>' + '<td>' + 'Total' + '</td>' + '<td>' +
@@ -291,9 +313,10 @@ $('#add').click(function() {
             );
         },
     });
+    $('#finaltotal').show();
+    $('#get_total').show();
 });
 var sum = 0;
-
 //April
 $(document).on('keyup', '.apt', function() {
     var sum = 0;
@@ -399,8 +422,17 @@ $(document).on('keyup', '.march', function() {
     $('.march_target').each(function() {
         sum += Number($(this).val());
         $('#marchtarget_total').val(sum);
-        console.log(sum);
+       
     });
+});
+$('#get_total').click(function(){
+    $('#total_target').val(Number($('#apr_target').val()) + Number($('#may_target').val()) +
+                Number($('#june_target').val()) + Number($('#july_target').val()) + Number($(
+                    '#aug_target').val()) + Number($('#sept_target').val()) + Number($(
+                    '#oct_target').val()) + Number($('#nov_target').val()) + Number($('#dec_target')
+                    .val()) + Number($('#jan_target').val()) + Number($('#feb_target').val()) +
+                Number($(
+                    '#march_target').val()));
 });
 </script>
 @endpush

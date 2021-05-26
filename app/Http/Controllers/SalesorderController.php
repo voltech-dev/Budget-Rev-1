@@ -53,26 +53,54 @@ class SalesorderController extends Controller
     {  
         echo 'hai';
     }
+    // public function store(Request $request)
+    // {   
+    //     $sale = new Sale();
+    //     $sale->Company_name = $request->input('company_name');
+    //     $sale->unit = $request->input('unit');
+    //     $sale->division = $request->input('division');
+    //     $sale->financial_year = $request->input('financial_year');
+    //     $sale->actual = $request->input('actual');
+
+    //     $sale->region=$request->region;
+    //     if($sale->save()){
+    //         foreach($request->month as $key=>$val){
+    //             $target = new target();
+    //             $target->sale_id = $sale->id;
+    //             $target->month = $request->month[$key];
+    //             $target->amount = $request->amount[$key];
+    //             $target->save();
+    //             }
+    //     } 
+    //     return back();
+    // }
+    //Saleorder store
     public function store(Request $request)
     {   
         $sale = new Sale();
         $sale->Company_name = $request->input('company_name');
         $sale->unit = $request->input('unit');
-        $sale->division = $request->input('division');
         $sale->financial_year = $request->input('financial_year');
-        $sale->actual = $request->input('actual');
-
-        $sale->region=$request->region;
         if($sale->save()){
-            foreach($request->month as $key=>$val){
+            foreach($request->apr_target as $key=>$val){
                 $target = new target();
                 $target->sale_id = $sale->id;
-                $target->month = $request->month[$key];
-                $target->amount = $request->amount[$key];
+                $target->apr_target = $request->apr_target[$key];
+                $target->may_target = $request->may_target[$key];
+                $target->june_target = $request->june_target[$key];
+                $target->july_target = $request->july_target[$key];
+                $target->aug_target = $request->aug_target[$key];
+                $target->sept_target = $request->sept_target[$key];
+                $target->oct_target = $request->oct_target[$key];
+                $target->nov_target = $request->nov_target[$key];
+                $target->dec_target = $request->dec_target[$key];
+                $target->jan_target = $request->jan_target[$key];
+                $target->feb_target = $request->feb_target[$key];
+                $target->march_target = $request->march_target[$key];
                 $target->save();
                 }
         } 
-        return back();
+        
     }
     
     public function turnover()

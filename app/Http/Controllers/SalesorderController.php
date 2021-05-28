@@ -25,10 +25,15 @@ class SalesorderController extends Controller
     {
         return view('salesorder.create');
     }
-    public function salesorderlist()
-    {
-        return view('salesorder.salesorderlist');
-    }
+    public function salesorderlist(){
+        $sales = DB::table('sales')
+                    ->join('company','sales.Company_name', '=', 'company.id')
+                    ->join('unit','sales.unit_id','=','unit.id')
+                    ->select('company.*', 'unit.*','sales.*')
+                    ->get();
+                   
+                return view('salesorder.salesorderlist',['sales'=>$sales]);
+            }
     public function sales_edit($companyname,$region,$financialyear)
     {  
        $sales = DB::table('sales')
@@ -40,47 +45,31 @@ class SalesorderController extends Controller
         return view('salesorder.sales_edit', ['sales' => $sales,'companyname' => $companyname,'financialyear'=>$financialyear,'region'=>$region]);
         
     }
-    public function sales_view($companyname,$region,$financialyear)
+    // public function sales_view($companyname,$financialyear)
+    // {
+    //    $sales = DB::table('sales')
+    //         ->join('target', 'sales.id', '=', 'target.sale_id')
+    //         ->select('sales.*', 'target.*')
+    //         ->where('sales.Company_name','=',$companyname)->where('sales.financial_year','=',$financialyear)
+    //         ->get();
+    //     return view('salesorder.sales_view', ['sales' => $sales,'companyname' => $companyname,'financialyear'=>$financialyear,'region'=>$region]);
+    // }
+
+    public function sales_view()
     {
-       $sales = DB::table('sales')
-            ->join('target', 'sales.id', '=', 'target.sale_id')
-            ->select('sales.*', 'target.*')
-            ->where('sales.Company_name','=',$companyname)->where('sales.region','=',$region)->where('sales.financial_year','=',$financialyear)
-            ->get();
-        return view('salesorder.sales_view', ['sales' => $sales,'companyname' => $companyname,'financialyear'=>$financialyear,'region'=>$region]);
-    }
+        return view('salesorder.sales_view');
+    }  
     public function salesupdate()
     {  
         echo 'hai';
     }
-    // public function store(Request $request)
-    // {   
-    //     $sale = new Sale();
-    //     $sale->Company_name = $request->input('company_name');
-    //     $sale->unit = $request->input('unit');
-    //     $sale->division = $request->input('division');
-    //     $sale->financial_year = $request->input('financial_year');
-    //     $sale->actual = $request->input('actual');
-
-    //     $sale->region=$request->region;
-    //     if($sale->save()){
-    //         foreach($request->month as $key=>$val){
-    //             $target = new target();
-    //             $target->sale_id = $sale->id;
-    //             $target->month = $request->month[$key];
-    //             $target->amount = $request->amount[$key];
-    //             $target->save();
-    //             }
-    //     } 
-    //     return back();
-    // }
-    //Saleorder store
     public function store(Request $request)
     {   
         $sale = new Sale();
         $sale->Company_name = $request->input('company_name');
-        $sale->unit = $request->input('unit');
+        $sale->unit_id = $request->input('unit');
         $sale->financial_year = $request->input('financial_year');
+        $sale->total_target=$request->total_target;
         if($sale->save()){
             foreach($request->apr_target as $key=>$val){
                 $target = new target();
@@ -133,9 +122,7 @@ public function turnover_store(Request $request)
                 $target->save();
                 }
         } 
-        return view('turnover.turnoverlist');
-  
-   
+        return view('turnover.turnoverlist');   
     }
   
 public function turn_edit($id)
@@ -386,10 +373,10 @@ public function division_view($id,$division)
         }
         echo json_encode($json);
     }
-    public function saleslist(){
+    // public function saleslist(){
 
-       return view('salesorder.salesorderlist');
-    }
+    //    return view('salesorder.salesorderlist');
+    // }
     public function searchsales(Request $request){
         if($request->sales !=''){
             $users = DB::table('sales')

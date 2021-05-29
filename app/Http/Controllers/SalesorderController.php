@@ -34,31 +34,26 @@ class SalesorderController extends Controller
                    
                 return view('salesorder.salesorderlist',['sales'=>$sales]);
             }
-    public function sales_edit($companyname,$region,$financialyear)
+    public function sales_edit($id,$unit)
     {  
-       $sales = DB::table('sales')
-            ->join('target', 'sales.id', '=', 'target.sale_id')
-            ->select('sales.*', 'target.*')
-            ->where('sales.Company_name','=',$companyname)->where('sales.region','=',$region)->where('sales.financial_year','=',$financialyear)
-            ->get();
-            
-        return view('salesorder.sales_edit', ['sales' => $sales,'companyname' => $companyname,'financialyear'=>$financialyear,'region'=>$region]);
-        
+        $company=company::all();
+        $unit=unit::all();
+        $target=target::all();
+        $financialyear=financial_year::all();
+        $sales=Sale::findorfail($id);                
+        return view('salesorder.sales_edit',['unit'=>$unit,'company'=>$company,'sales'=>$sales,'financialyear'=>$financialyear,'target'=>$target]);       
     }
-    // public function sales_view($companyname,$financialyear)
-    // {
-    //    $sales = DB::table('sales')
-    //         ->join('target', 'sales.id', '=', 'target.sale_id')
-    //         ->select('sales.*', 'target.*')
-    //         ->where('sales.Company_name','=',$companyname)->where('sales.financial_year','=',$financialyear)
-    //         ->get();
-    //     return view('salesorder.sales_view', ['sales' => $sales,'companyname' => $companyname,'financialyear'=>$financialyear,'region'=>$region]);
-    // }
-
-    public function sales_view()
-    {
-        return view('salesorder.sales_view');
-    }  
+   
+    public function sales_view($id,$unit)
+    
+{
+                $company=company::all();
+                $unit=unit::all();
+                $target=target::all();
+                $financialyear=financial_year::all();
+                $sales=Sale::findorfail($id);                
+                return view('salesorder.sales_view',['unit'=>$unit,'company'=>$company,'sales'=>$sales,'financialyear'=>$financialyear,'target'=>$target]);
+}  
     public function salesupdate()
     {  
         echo 'hai';
@@ -74,6 +69,7 @@ class SalesorderController extends Controller
             foreach($request->apr_target as $key=>$val){
                 $target = new target();
                 $target->sale_id = $sale->id;
+                $target->division=$request->div[$key];
                 $target->apr_target = $request->apr_target[$key];
                 $target->may_target = $request->may_target[$key];
                 $target->june_target = $request->june_target[$key];

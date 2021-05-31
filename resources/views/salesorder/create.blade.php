@@ -69,8 +69,6 @@ $fin_year=DB::table('financial_year')
                     </div>
                     <div class="row">
                         <div class="col-sm-12">
-
-
                             <div class="table table-responsive" id="tab">
                                 <table class="table table-center table-hover datatable">
                                     <thead class="thead-light">
@@ -120,6 +118,12 @@ $fin_year=DB::table('financial_year')
                                         </tr>
                                     </thead>
                                     <tbody name='abc' id='abc'>
+                                    @foreach($division as $divisions)
+                                    <tr>
+                                    <td>{{$divisions->division_name}}</td>
+
+                                    </tr>
+                                    @endforeach
 
                                     </tbody>
                                 </table>

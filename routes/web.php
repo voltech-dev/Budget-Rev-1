@@ -1,5 +1,6 @@
 <?php
 use App\Http\Controllers\SalesorderController;
+use App\Http\Controllers\SetupController;
 
 use Illuminate\Support\Facades\Route;
  Route::get('/', function () {
@@ -35,34 +36,34 @@ Route::post('/collectionupdate/{id}',[App\Http\Controllers\SalesorderController:
 Route::get('/collection_view/{p}',[App\Http\Controllers\SalesorderController::class, 'collection_view']);
 Route::post('/collection', [SalesorderController::class, 'collection_store']);
 
-Route::get('/companylist', [SalesorderController::class, 'companylist']);
-Route::get('/companycreate', [SalesorderController::class, 'companycreate'])->name('/companycreate');
+Route::get('/companylist', [SetupController::class, 'companylist']);
+Route::get('/companycreate', [SetupController::class, 'companycreate'])->name('/companycreate');
 
-Route::get('/division', [SalesorderController::class, 'division']);
-Route::get('/divisionlist', [SalesorderController::class, 'divisionlist']);
+Route::get('/division', [SetupController::class, 'division']);
+Route::get('/divisionlist', [SetupController::class, 'divisionlist']);
 
-Route::post('/company', [SalesorderController::class, 'company']);
-Route::get('/company_edit/{id}', [SalesorderController::class, 'company_edit']);
-Route::post('/companyupdate/{id}',[App\Http\Controllers\SalesorderController::class, 'companyupdate']);
-Route::get('/companyview/{p}',[App\Http\Controllers\SalesorderController::class, 'company_view']);
+Route::post('/company', [SetupController::class, 'company']);
+Route::get('/company_edit/{id}', [SetupController::class, 'company_edit']);
+Route::post('/companyupdate/{id}',[App\Http\Controllers\SetupController::class, 'companyupdate']);
+Route::get('/companyview/{p}',[App\Http\Controllers\SetupController::class, 'company_view']);
 
-Route::get('/division', [SalesorderController::class, 'division']);
-Route::get('/viewdivision', [SalesorderController::class, 'viewdivision']);
-Route::get('/divisionlist', [SalesorderController::class, 'divisionlist']);
-Route::post('/divisionstore', [SalesorderController::class, 'division_store']);
+Route::get('/division', [SetupController::class, 'division']);
+Route::get('/viewdivision', [SetupController::class, 'viewdivision']);
+Route::get('/divisionlist', [SetupController::class, 'divisionlist']);
+Route::post('/divisionstore', [SetupController::class, 'division_store']);
 
-Route::get('/unit', [SalesorderController::class, 'unit']);
-Route::get('/unitlist', [SalesorderController::class, 'unitlist']);
-Route::get('/unitedit/{companyname}/{unit}', [SalesorderController::class, 'unit_edit']);
-Route::get('/unitview/{id}/{unit}', [SalesorderController::class, 'unit_view']);
-Route::post('/unitupdate/{id}',[SalesorderController::class, 'unitupdate']);
-Route::get('/companyid', [SalesorderController::class, 'divisiondetails']);
-Route::get('/divisionid', [SalesorderController::class, 'fetchdivision']);
-Route::post('/unitstore', [SalesorderController::class, 'unitstore']);
+Route::get('/unit', [SetupController::class, 'unit']);
+Route::get('/unitlist', [SetupController::class, 'unitlist']);
+Route::get('/unitedit/{companyname}/{unit}', [SetupController::class, 'unit_edit']);
+Route::get('/unitview/{id}/{unit}', [SetupController::class, 'unit_view']);
+Route::post('/unitupdate/{id}',[SetupController::class, 'unitupdate']);
+Route::get('/companyid', [SetupController::class, 'divisiondetails']);
+Route::get('/divisionid', [SetupController::class, 'fetchdivision']);
+Route::post('/unitstore', [SetupController::class, 'unitstore']);
 
-Route::get('/divisionedit/{id}/{division}', [SalesorderController::class, 'division_edit']);
-Route::get('/divisionview/{id}/{division}',[SalesorderController::class, 'division_view']);
-Route::post('/divisionupdate/{id}',[App\Http\Controllers\SalesorderController::class, 'divisionupdate']);
+Route::get('/divisionedit/{id}/{division}', [SetupController::class, 'division_edit']);
+Route::get('/divisionview/{id}/{division}',[SetupController::class, 'division_view']);
+Route::post('/divisionupdate/{id}',[App\Http\Controllers\SetupController::class, 'divisionupdate']);
 
 Route::get('/saleslist', [SalesorderController::class, 'saleslist']);
 Route::post('/searchsales', [SalesorderController::class, 'searchsales']);
@@ -73,6 +74,6 @@ Route::get('/userlist', [SalesorderController::class, 'userlist']);
 Route::get('/usercreate', [SalesorderController::class, 'usercreate']);
 
 
-Route::get('/fylist', [SalesorderController::class, 'fylist']);
-Route::get('/fycreate', [SalesorderController::class, 'fycreate']);
-Route::post('/fystore', [SalesorderController::class, 'fystore']);
+Route::get('/fylist', [SetupController::class, 'fylist']);
+Route::get('/fycreate', [SetupController::class, 'fycreate']);
+Route::post('/fystore', [SetupController::class, 'fystore']);

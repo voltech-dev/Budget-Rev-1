@@ -1,5 +1,6 @@
 @extends('layouts.main')
 @section('header')
+
 <!-- begin::page-header -->
 <div class="row">
     <div class="col-md-12">
@@ -33,14 +34,14 @@
                                 <th>Company Name</th>
                                 <th>Unit</th>
                                 <th>Actions</th>
-
                             </tr>
                         </thead>
                         <tbody><?php $i=0; $i++; ?>
                             @foreach($unit as $units)
+                           
                             <tr>
                                 <td>{{$i++}}</td>
-                                <td>{{$units->company_name}}</td>
+                                <td>{{ $units->company_name }}</td>
                                 <td><a href="{{ url('/unitview/'.$units->id.'/'.$units->unit) }}">{{$units->unit}}</td>
                                 <td> <a href="{{ url('/unitedit/'.$units->id.'/'.$units->unit) }}"
                                         class="btn btn-sm btn-white text-success mr-2"><i
@@ -58,7 +59,7 @@
 </div><br>
 <div class="text-center">
     <button onclick="location.href='{{ url('/unit/') }}'" style="text-center">
-        Add Budget</button>
+        Add Unit</button>
 </div>
 
 @endsection

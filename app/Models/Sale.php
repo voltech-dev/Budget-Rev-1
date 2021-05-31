@@ -9,4 +9,7 @@ class Sale extends Model
 {
     use HasFactory;
     protected $table= 'sales';
+    public function unit(){
+        return $this->hasOne(unit::class);
+    }
 }

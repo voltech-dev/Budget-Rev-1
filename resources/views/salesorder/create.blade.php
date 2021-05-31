@@ -38,7 +38,7 @@ $fin_year=DB::table('financial_year')
                         <label class="col-sm-3 col-form-label col-form-label-sm">Company Name</label>
                         <div class="col-sm-3">
                             <select name="company_name" class="form-control form-control-sm" id="company_name">
-                                <option selected disabled>--Select--</option>
+                                <option selected>--Select Company--</option>
                                 @foreach($company as $comp)
                                 <option value="{{$comp->id}}">{{$comp->company_name}}</option>
                                 @endforeach
@@ -138,16 +138,16 @@ $fin_year=DB::table('financial_year')
                     </div>
                     <div class="form-group row" id="finaltotal">
                         <div class="col-sm-3">
-                           <label>Total Target</label>
+                            <label>Total Target</label>
                         </div>
                         <div class="col-sm-3">
-                        <input type="text" name="total_target" id="total_target">
+                            <input type="text" name="total_target" id="total_target">
                         </div>
                         <div class="col-sm-3">
-                           <label>Total Actual</label>
+                            <label>Total Actual</label>
                         </div>
                         <div class="col-sm-3">
-                        <input type="text" name="total_actual" id="total_actual">
+                            <input type="text" name="total_actual" id="total_actual">
                         </div>
 
                     </div>
@@ -213,8 +213,7 @@ $('#add').click(function() {
         dataType: 'json',
         success: function(data) {
             $.each(data, function(key, value) {
-                $('tbody[name="abc"]').append('<tr>' + '<td id="div" name="div">' + '<option value="' + key +
-                    '">' + value + '</td>' + '<td class="apt">' +
+                $('tbody[name="abc"]').append('<tr>' + '<td>'+'<select name="div[]">'+'<option>'+value+'</option>'+'</select>'+'</td>' + '<td class="apt">' +
                     '<input type="text" style="width:60px" name="apr_target[]" id="apr_target" class="apr_target">' +
                     '</td>' + '<td>' +
                     '<input type="text" style="width:60px" name="apr_actual[]" id="apr_actual" class="apr_actual" disabled>' +
@@ -426,17 +425,17 @@ $(document).on('keyup', '.march', function() {
     $('.march_target').each(function() {
         sum += Number($(this).val());
         $('#marchtarget_total').val(sum);
-       
+
     });
 });
-$('#get_total').click(function(){
+$('#get_total').click(function() {
     $('#total_target').val(Number($('#apr_target').val()) + Number($('#may_target').val()) +
-                Number($('#june_target').val()) + Number($('#july_target').val()) + Number($(
-                    '#aug_target').val()) + Number($('#sept_target').val()) + Number($(
-                    '#oct_target').val()) + Number($('#nov_target').val()) + Number($('#dec_target')
-                    .val()) + Number($('#jan_target').val()) + Number($('#feb_target').val()) +
-                Number($(
-                    '#march_target').val()));
+        Number($('#june_target').val()) + Number($('#july_target').val()) + Number($(
+            '#aug_target').val()) + Number($('#sept_target').val()) + Number($(
+            '#oct_target').val()) + Number($('#nov_target').val()) + Number($('#dec_target')
+            .val()) + Number($('#jan_target').val()) + Number($('#feb_target').val()) +
+        Number($(
+            '#march_target').val()));
 });
 </script>
 @endpush

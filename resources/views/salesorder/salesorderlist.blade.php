@@ -1,9 +1,7 @@
 @extends('layouts.main')
 @section('header')
-<?php
-$sales=DB::table('sales')
-->get();
-?>
+
+
 <!-- begin::page-header -->
 <div class="card-header">
     <h3>Salesorder List</h3>
@@ -47,17 +45,17 @@ $sales=DB::table('sales')
                                 <th>Actions</th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody><?php $i=0; $i++; ?>
                             @foreach($sales as $sale)
                             <tr>
-                                <td>{{$sale->id}}</td>
-                                <td><a href="{{url('/sales_view/'.$sale->Company_name)}}">{{$sale->Company_name}}</td>
-                                <td></td>
+                                <td>{{$i++}}</td>
+                                <td><a href="{{url('/sales_view/'.$sale->id.'/'.$sale->unit_id)}}">{{$sale->company_name}}</td>
+                                <td>{{$sale->unit}}</td>
                                 <td>{{$sale->financial_year}}</td>
-                                <td></td>
+                                <td>{{$sale->total_target}}</td>
                                 <td></td>
                                 <td class="text-center">
-                                    <a href="{{ url('/sales_edit/'.$sale->id) }}"
+                                    <a href="{{ url('/sales_edit/'.$sale->id.'/'.$sale->unit_id) }}"
                                         class="btn btn-sm btn-white text-success mr-2"><i
                                             class="far fa-edit mr-1"></i></a>
                                 </td>

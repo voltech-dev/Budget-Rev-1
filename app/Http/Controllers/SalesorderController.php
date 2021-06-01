@@ -8,7 +8,7 @@ use App\Models\Collection;
 use App\Models\company;
 use App\Models\division;
 use App\Models\unit;
-use App\Models\target;
+use App\Models\sub_sales;
 use App\Models\financial_year;
 use App\Models\turnover_target;
 use App\Models\collection_target;
@@ -38,18 +38,17 @@ class SalesorderController extends Controller
     {  
         $company=company::all();
         $unit=unit::all();
-        $target=target::all();
+        $target=sub_sales::all();
         $financialyear=financial_year::all();
         $sales=Sale::findorfail($id);                
         return view('salesorder.sales_edit',['unit'=>$unit,'company'=>$company,'sales'=>$sales,'financialyear'=>$financialyear,'target'=>$target]);       
     }
    
     public function sales_view($id,$unit)
-    
 {
                 $company=company::all();
                 $unit=unit::all();
-                $target=target::all();
+                $target=sub_sales::all();
                 $financialyear=financial_year::all();
                 $sales=Sale::findorfail($id);                
                 return view('salesorder.sales_view',['unit'=>$unit,'company'=>$company,'sales'=>$sales,'financialyear'=>$financialyear,'target'=>$target]);
@@ -67,7 +66,7 @@ class SalesorderController extends Controller
         $sale->total_target=$request->total_target;
         if($sale->save()){
             foreach($request->apr_target as $key=>$val){
-                $target = new target();
+                $target = new sub_sales();
                 $target->sale_id = $sale->id;
                 $target->division=$request->div[$key];
                 $target->apr_target = $request->apr_target[$key];
@@ -82,6 +81,7 @@ class SalesorderController extends Controller
                 $target->jan_target = $request->jan_target[$key];
                 $target->feb_target = $request->feb_target[$key];
                 $target->march_target = $request->march_target[$key];
+                $target->divtotal_target=$request->divtarget_total[$key];
                 $target->save();
                 }
         } 
@@ -275,7 +275,7 @@ public function division_view($id,$division)
         $division->company_id = $request->input('company_name');
         $division->unit_id=$request->unit;
         $division->save();
-        return redirect('/division');
+        return redirect('/divisionlist');
     }
     public function viewdivision()
     {
@@ -283,7 +283,13 @@ public function division_view($id,$division)
     }
     public function divisionlist()
     {
-        return view('division.divisionlist');
+        $division = DB::table('company')
+                    ->join('division', 'company.id', '=', 'division.company_id')
+                    ->select('company.*', 'division.*')
+                    ->get();
+                   
+                return view('division.divisionlist',['division'=>$division]);
+            
     }
     public function unit()
     {
@@ -326,9 +332,9 @@ public function division_view($id,$division)
         $unit->company_id = $request->company_name;
         $unit->unit = $request->unit;
         $unit->save();
-       
-      
+        
     }
+
     //Userlist
     public function userlist(){
         return view('user.userlist');

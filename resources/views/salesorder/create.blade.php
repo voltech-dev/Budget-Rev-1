@@ -72,22 +72,24 @@ $fin_year=DB::table('financial_year')
 
 
                             <div class="table table-responsive" id="tab">
-                                <table class="table table-center table-hover datatable">
+                                <table class="table table-bordered">
                                     <thead class="thead-light">
                                         <tr>
                                             <th>Division</th>
-                                            <th colspan="2">April</th>
-                                            <th colspan="2">May</th>
-                                            <th colspan="2">June</th>
-                                            <th colspan="2">July</th>
-                                            <th colspan="2">August</th>
-                                            <th colspan="2">September</th>
-                                            <th colspan="2">October</th>
-                                            <th colspan="2">November</th>
-                                            <th colspan="2">December</th>
-                                            <th colspan="2">Jan</th>
-                                            <th colspan="2">Feb</th>
-                                            <th colspan="2">March</th>
+                                            <th colspan="2" style="text-align:center">April</th>
+                                            <th colspan="2" style="text-align:center">May</th>
+                                            <th colspan="2" style="text-align:center">June</th>
+                                            <th colspan="2" style="text-align:center">July</th>
+                                            <th colspan="2" style="text-align:center">August</th>
+                                            <th colspan="2" style="text-align:center">September</th>
+                                            <th colspan="2" style="text-align:center">October</th>
+                                            <th colspan="2" style="text-align:center">November</th>
+                                            <th colspan="2" style="text-align:center">December</th>
+                                            <th colspan="2" style="text-align:center">Jan</th>
+                                            <th colspan="2" style="text-align:center">Feb</th>
+                                            <th colspan="2" style="text-align:center">March</th>
+                                            <th>Target</th>
+                                            <th>Actual</th>
 
                                         </tr>
                                         <tr>
@@ -116,10 +118,13 @@ $fin_year=DB::table('financial_year')
                                             <td>Actual</td>
                                             <td>Target</td>
                                             <td>Actual</td>
+                                            <td>Total Target</td>
+                                            <td>Total Actual</td>
+
 
                                         </tr>
                                     </thead>
-                                    <tbody name='abc' id='abc'>
+                                    <tbody name='sub_sales' id='sub_sales'>
 
                                     </tbody>
                                 </table>
@@ -127,11 +132,6 @@ $fin_year=DB::table('financial_year')
                             </div>
                         </div>
                     </div><br>
-                    <div class="form-group row">
-                        <div class="col-sm-12">
-                            <button type="button" class="btn btn-primary btn-sm" id="get_total">Get Total</button>
-                        </div>
-                    </div>
                     <div class="form-group row" id="finaltotal">
                         <div class="col-sm-3">
                             <label>Total Target</label>
@@ -209,8 +209,11 @@ $('#add').click(function() {
         dataType: 'json',
         success: function(data) {
             $.each(data, function(key, value) {
-                $('tbody[name="abc"]').append('<tr>' + '<td>'+'<select name="div[]">'+'<option>'+value+'</option>'+'</select>'+'</td>' + '<td class="apt">' +
-                    '<input type="text" style="width:60px" name="apr_target[]" id="apr_target" class="apr_target">' +
+                $('tbody[name="sub_sales"]').append('<tr class="newrow">' + '<td>' +
+                    '<input type="hidden"  style="width:60px" name="div[]" id="div" value="' +
+                    value +
+                    '">' + value + '</td>' + '<td class="apt">' +
+                    '<input type="text" style="width:60px" name="apr_target[]" data-id="apr_target" id="apr_target" class="apr_target">' +
                     '</td>' + '<td>' +
                     '<input type="text" style="width:60px" name="apr_actual[]" id="apr_actual" class="apr_actual" disabled>' +
                     '</td>' + '<td class="may">' +
@@ -257,9 +260,15 @@ $('#add').click(function() {
                     '<input type="text" style="width:60px" name="march_target[]" id="march_target" class="march_target">' +
                     '</td>' + '<td>' +
                     '<input type="text" style="width:60px" name="march_actual[]" id="march_actual" class="march_actual" disabled>' +
-                    '</td>' + '</tr>');
+                    '</td>' + '<td>' +
+                    '<input type="text" name="divtarget_total[]" id="divtarget_total" style="width:60px">' +
+                    '</td>' + '<td>' +
+                    '<input type="text" name="divactual_total[]" style="width:60px">' +
+                    '</td>' +
+                    '</tr>');
+
             });
-            $('tbody[name="abc"]').append(
+            $('tbody[name="sub_sales"]').append(
                 '<tr>' + '<td>' + 'Total' + '</td>' + '<td>' +
                 '<input type="text" style="width:60px" name="aprtarget_total" id="aprtarget_total" >' +
                 '</td>' + '<td>' +
@@ -308,22 +317,35 @@ $('#add').click(function() {
                 '<input type="text" style="width:60px" name="marchtarget_total" id="marchtarget_total">' +
                 '</td>' + '<td>' +
                 '<input type="text" style="width:60px" name="marchactual_total" id="marchactual_total" disabled>' +
+                '</td>' + '<td>' +
+                '<input type="text" style="width:60px" name="finaltarget" id="finaltarget" >' +
+                '</td>' + '<td>' +
+                '<input type="text" style="width:60px" name="finalactual" id="finalactual">' +
                 '</td>' + '</tr>'
             );
         },
     });
     $('#finaltotal').show();
     $('#get_total').show();
+    $('#sub_sales').each(function() {})
 });
 var sum = 0;
 //April
+$(document).on('keyup', '.newrow', function() {
+    var row = $(this).closest('tr');
+    var target = row.find($('[data-id="apr_target"]').val());
+    var value = $(this).closest('tr').attr('id');
+    console.log(value);
+});
 $(document).on('keyup', '.apt', function() {
     var sum = 0;
     $('.apr_target').each(function() {
         sum += Number($(this).val());
         $('#aprtarget_total').val(sum);
-        console.log(sum);
+        $('#total_target').val(sum);
     });
+   
+
 });
 //May
 $(document).on('keyup', '.may', function() {
@@ -331,6 +353,8 @@ $(document).on('keyup', '.may', function() {
     $('.may_target').each(function() {
         sum += Number($(this).val());
         $('#maytarget_total').val(sum);
+        $('#total_target').val(sum + Number($('#aprtarget_total').val()));
+        $('#divtarget_total').val(Number($('.apr_target').val()) + Number($('.may_target').val()));
         console.log(sum);
     });
 });
@@ -340,6 +364,9 @@ $(document).on('keyup', '.june', function() {
     $('.june_target').each(function() {
         sum += Number($(this).val());
         $('#junetarget_total').val(sum);
+        $('#total_target').val(sum + Number($('#aprtarget_total').val()) + Number($('#maytarget_total')
+            .val()));
+
         console.log(sum);
     });
 });
@@ -349,7 +376,8 @@ $(document).on('keyup', '.july', function() {
     $('.july_target').each(function() {
         sum += Number($(this).val());
         $('#julytarget_total').val(sum);
-        console.log(sum);
+        $('#total_target').val(sum + Number($('#aprtarget_total').val()) + Number($('#maytarget_total')
+            .val()) + Number($('#junetarget_total').val()));
     });
 });
 //August
@@ -358,6 +386,9 @@ $(document).on('keyup', '.aug', function() {
     $('.aug_target').each(function() {
         sum += Number($(this).val());
         $('#augtarget_total').val(sum);
+        $('#total_target').val(sum + Number($('#aprtarget_total').val()) + Number($('#maytarget_total')
+            .val()) + Number($('#junetarget_total').val()) + Number($('#julytarget_total')
+            .val()));
         console.log(sum);
     });
 });
@@ -367,6 +398,9 @@ $(document).on('keyup', '.sept', function() {
     $('.sept_target').each(function() {
         sum += Number($(this).val());
         $('#septarget_total').val(sum);
+        $('#total_target').val(sum + Number($('#aprtarget_total').val()) + Number($('#maytarget_total')
+            .val()) + Number($('#junetarget_total').val()) + Number($('#julytarget_total')
+            .val()) + Number($('#augtarget_total').val()));
         console.log(sum);
     });
 });
@@ -376,6 +410,9 @@ $(document).on('keyup', '.oct', function() {
     $('.oct_target').each(function() {
         sum += Number($(this).val());
         $('#octtarget_total').val(sum);
+        $('#total_target').val(sum + Number($('#aprtarget_total').val()) + Number($('#maytarget_total')
+            .val()) + Number($('#junetarget_total').val()) + Number($('#julytarget_total')
+            .val()) + Number($('#augtarget_total').val()) + Number($('#septarget_total').val()));
         console.log(sum);
     });
 });
@@ -385,6 +422,10 @@ $(document).on('keyup', '.nov', function() {
     $('.nov_target').each(function() {
         sum += Number($(this).val());
         $('#novtarget_total').val(sum);
+        $('#total_target').val(sum + Number($('#aprtarget_total').val()) + Number($('#maytarget_total')
+            .val()) + Number($('#junetarget_total').val()) + Number($('#julytarget_total')
+            .val()) + Number($('#augtarget_total').val()) + Number($('#septarget_total')
+            .val()) + Number($('#octtarget_total').val()));
         console.log(sum);
     });
 });
@@ -394,6 +435,10 @@ $(document).on('keyup', '.dec', function() {
     $('.dec_target').each(function() {
         sum += Number($(this).val());
         $('#dectarget_total').val(sum);
+        $('#total_target').val(sum + Number($('#aprtarget_total').val()) + Number($('#maytarget_total')
+            .val()) + Number($('#junetarget_total').val()) + Number($('#julytarget_total')
+            .val()) + Number($('#augtarget_total').val()) + Number($('#septarget_total')
+            .val()) + Number($('#octtarget_total').val()) + Number($('#novtarget_total').val()));
         console.log(sum);
     });
 });
@@ -403,6 +448,11 @@ $(document).on('keyup', '.jan', function() {
     $('.jan_target').each(function() {
         sum += Number($(this).val());
         $('#jantarget_total').val(sum);
+        $('#total_target').val(sum + Number($('#aprtarget_total').val()) + Number($('#maytarget_total')
+            .val()) + Number($('#junetarget_total').val()) + Number($('#julytarget_total')
+            .val()) + Number($('#augtarget_total').val()) + Number($('#septarget_total')
+            .val()) + Number($('#octtarget_total').val()) + Number($('#novtarget_total')
+            .val()) + Number($('#dectarget_total').val()));
         console.log(sum);
     });
 });
@@ -413,6 +463,11 @@ $(document).on('keyup', '.feb', function() {
         sum += Number($(this).val());
         $('#febtarget_total').val(sum);
         console.log(sum);
+        $('#total_target').val(sum + Number($('#aprtarget_total').val()) + Number($('#maytarget_total')
+            .val()) + Number($('#junetarget_total').val()) + Number($('#julytarget_total')
+            .val()) + Number($('#augtarget_total').val()) + Number($('#septarget_total')
+            .val()) + Number($('#octtarget_total').val()) + Number($('#novtarget_total')
+            .val()) + Number($('#dectarget_total').val()) + Number($('#jantarget_total').val()));
     });
 });
 //March
@@ -421,17 +476,29 @@ $(document).on('keyup', '.march', function() {
     $('.march_target').each(function() {
         sum += Number($(this).val());
         $('#marchtarget_total').val(sum);
-
+        $('#total_target').val(sum + Number($('#aprtarget_total').val()) + Number($('#maytarget_total')
+            .val()) + Number($('#junetarget_total').val()) + Number($('#julytarget_total')
+            .val()) + Number($('#augtarget_total').val()) + Number($('#septarget_total')
+            .val()) + Number($('#octtarget_total').val()) + Number($('#novtarget_total')
+            .val()) + Number($('#dectarget_total').val()) + Number($('#jantarget_total')
+            .val()) + Number($('#febtarget_total').val()));
     });
+
 });
-$('#get_total').click(function() {
-    $('#total_target').val(Number($('#apr_target').val()) + Number($('#may_target').val()) +
-        Number($('#june_target').val()) + Number($('#july_target').val()) + Number($(
-            '#aug_target').val()) + Number($('#sept_target').val()) + Number($(
-            '#oct_target').val()) + Number($('#nov_target').val()) + Number($('#dec_target')
-            .val()) + Number($('#jan_target').val()) + Number($('#feb_target').val()) +
-        Number($(
-            '#march_target').val()));
+$('#unit').change(function() {
+    $('#tab').hide();
+});
+// $('#get_total').click(function() {
+//     $('#total_target').val(Number($('#apr_target').val()) + Number($('#may_target').val()) +
+//         Number($('#june_target').val()) + Number($('#july_target').val()) + Number($(
+//             '#aug_target').val()) + Number($('#sept_target').val()) + Number($(
+//             '#oct_target t').val()) + Number($('#nov_target').val()) + Number($('#dec_target')
+//             .val()) + Number($('#jan_target').val()) + Number($('#feb_target').val()) +
+//         Number($(
+//             '#march_target').val()));
+// });
+$('#div').each(function() {
+
 });
 </script>
 @endpush

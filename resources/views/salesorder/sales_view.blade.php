@@ -77,23 +77,24 @@ $company=DB::table('company')
 
 
                         <div class="table table-responsive" id="tab">
-                            <table class="table table-center table-hover datatable">
+                            <table class="table table-bordered">
                                 <thead class="thead-light">
                                     <tr>
                                         <th>Division</th>
-                                        <th colspan="2">April</th>
-                                        <th colspan="2">May</th>
-                                        <th colspan="2">June</th>
-                                        <th colspan="2">July</th>
-                                        <th colspan="2">August</th>
-                                        <th colspan="2">September</th>
-                                        <th colspan="2">October</th>
-                                        <th colspan="2">November</th>
-                                        <th colspan="2">December</th>
-                                        <th colspan="2">Jan</th>
-                                        <th colspan="2">Feb</th>
-                                        <th colspan="2">March</th>
-
+                                        <th colspan="2" style="text-align:center">April</th>
+                                        <th colspan="2" style="text-align:center">May</th>
+                                        <th colspan="2" style="text-align:center">June</th>
+                                        <th colspan="2" style="text-align:center">July</th>
+                                        <th colspan="2" style="text-align:center">August</th>
+                                        <th colspan="2" style="text-align:center">September</th>
+                                        <th colspan="2" style="text-align:center">October</th>
+                                        <th colspan="2" style="text-align:center">November</th>
+                                        <th colspan="2" style="text-align:center">December</th>
+                                        <th colspan="2" style="text-align:center">Jan</th>
+                                        <th colspan="2" style="text-align:center">Feb</th>
+                                        <th colspan="2" style="text-align:center">March</th>
+                                        <th>Target</th>
+                                        <th>Actual</th>
                                     </tr>
                                     <tr>
                                         <td></td>
@@ -121,7 +122,8 @@ $company=DB::table('company')
                                         <td>Actual</td>
                                         <td>Target</td>
                                         <td>Actual</td>
-
+                                        <td>Total Target</td>
+                                        <td>Total Actual</td>
                                     </tr>
                                 </thead>
                                 @foreach($target as $tg)
@@ -132,37 +134,37 @@ $company=DB::table('company')
                                     </td>
                                     <td><input type="text" value="{{$tg->apr_target}}" style="width:60px" readonly
                                             {{$tg->sale_id=$sales->id}}> </td>
-                                    <td><input type="text" value="{{$tg->apr_actual}}" style="width:60px" readonly
+                                    <td><input type="text" value="{{$tg->apr_actual}}" style="width:60px" disabled
                                             {{$tg->sale_id=$sales->id}}></td>
                                     <td><input type="text" value="{{$tg->may_target}}" style="width:60px" readonly
                                             {{$tg->sale_id=$sales->id}}></td>
-                                    <td><input type="text" value="{{$tg->may_actual}}" style="width:60px" readonly
+                                    <td><input type="text" value="{{$tg->may_actual}}" style="width:60px" disabled
                                             {{$tg->sale_id=$sales->id}}></td>
                                     <td><input type="text" value="{{$tg->june_target}}" style="width:60px" readonly
                                             {{$tg->sale_id=$sales->id}}></td>
-                                    <td><input type="text" value="{{$tg->june_actual}}" style="width:60px" readonly
+                                    <td><input type="text" value="{{$tg->june_actual}}" style="width:60px" disabled
                                             {{$tg->sale_id=$sales->id}}></td>
                                     <td><input type="text" value="{{$tg->july_target}}" style="width:60px" readonly
                                             {{$tg->sale_id=$sales->id}}></td>
-                                    <td><input type="text" value="{{$tg->july_actual}}" style="width:60px" readonly
+                                    <td><input type="text" value="{{$tg->july_actual}}" style="width:60px" disabled
                                             {{$tg->sale_id=$sales->id}}></td>
                                     </td>
                                     <td><input type="text" value="{{$tg->aug_target}}" style="width:60px" readonly
                                             {{$tg->sale_id=$sales->id}}></td>
                                     </td>
-                                    <td><input type="text" value="{{$tg->aug_actual}}" style="width:60px" readonly
+                                    <td><input type="text" value="{{$tg->aug_actual}}" style="width:60px" disabled
                                             {{$tg->sale_id=$sales->id}}></td>
                                     <td><input type="text" value="{{$tg->sept_target}}" style="width:60px" readonly
                                             {{$tg->sale_id=$sales->id}}></td>
-                                    <td><input type="text" value="{{$tg->sept_actual}}" style="width:60px" readonly
+                                    <td><input type="text" value="{{$tg->sept_actual}}" style="width:60px" disabled
                                             {{$tg->sale_id=$sales->id}}></td>
                                     <td><input type="text" value="{{$tg->oct_target}}" style="width:60px" readonly
                                             {{$tg->sale_id=$sales->id}}></td>
-                                    <td><input type="text" value="{{$tg->oct_actual}}" style="width:60px" readonly
+                                    <td><input type="text" value="{{$tg->oct_actual}}" style="width:60px" disabled
                                             {{$tg->sale_id=$sales->id}}></td>
                                     <td><input type="text" value="{{$tg->nov_target}}" style="width:60px" readonly
                                             {{$tg->sale_id=$sales->id}}></td>
-                                    <td><input type="text" value="{{$tg->nov_actual}}" style="width:60px" readonly
+                                    <td><input type="text" value="{{$tg->nov_actual}}" style="width:60px" disabled
                                             {{$tg->sale_id=$sales->id}}></td>
                                     <td><input type="text" value="{{$tg->dec_target}}" style="width:60px" readonly
                                             {{$tg->sale_id=$sales->id}}></td>
@@ -181,27 +183,33 @@ $company=DB::table('company')
                                     <td><input type="text" value="{{$tg->march_actual}}" style="width:60px" readonly
                                             {{$tg->sale_id=$sales->id}}></td>
                                     @endforeach
+                                    <tr>
+                                        <td>Total</td>
+                                        <td><input type="text"></td>
+                                    </tr>
                                 </tbody>
                             </table>
-                            
+
                             <hr>
-                    
+
                             <div class="form-group row" id="finaltotal">
                                 <div class="col-sm-3">
                                     <label>Total Target</label>
                                 </div>
                                 <div class="col-sm-3">
-                                    <input type="text" name="total_target" id="total_target" value="{{$sales->total_target}}">
+                                    <input type="text" name="total_target" id="total_target"
+                                        value="{{$sales->total_target}}">
                                 </div>
                                 <div class="col-sm-3">
                                     <label>Total Actual</label>
                                 </div>
                                 <div class="col-sm-3">
-                                    <input type="text" name="total_actual" id="total_actual" value="{{$sales->total_actual}}">
+                                    <input type="text" name="total_actual" id="total_actual"
+                                        value="{{$sales->total_actual}}">
                                 </div>
-                               
+
                             </div>
-                            
+
 
 
                         </div>
@@ -213,6 +221,8 @@ $company=DB::table('company')
 @endsection
 @push('scripts')
 <script>
+$(document).ready(function() {
 
+});
 </script>
 @endpush

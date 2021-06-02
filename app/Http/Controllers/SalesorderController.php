@@ -21,9 +21,10 @@ class SalesorderController extends Controller
     {
         $this->middleware('auth');
     }
+    ################# Sales ###########################
     public function salesorder()
-    {
-        return view('salesorder.create');
+    {        
+        return view('salesorder.create',['division'=>$division]);
     }
     public function salesorderlist(){
         $sales = DB::table('sales')
@@ -109,6 +110,13 @@ class SalesorderController extends Controller
         } 
         
     }
+<<<<<<< HEAD
+
+    public function saleslist(){
+        return view('salesorder.salesorderlist');
+    }
+    
+=======
     
     public function turnover()
     {
@@ -402,35 +410,18 @@ public function division_view($id,$division)
 
     //    return view('salesorder.salesorderlist');
     // }
+>>>>>>> 5ac249a796fe120ec2f3a59ecf764362fa70e8f1
     public function searchsales(Request $request){
-        if($request->sales !=''){
-            $users = DB::table('sales')
-            ->join('target', 'sales.id', '=', 'target.sale_id')
-            ->select('sales.*', 'target.*')
-            ->where('sales.division', $request->sales)
-            ->get();
-            return view('salesturnover',['users'=>$users]);
-            
-        }
+         if($request->sales !=''){
+             $users = DB::table('sales')
+             ->join('target', 'sales.id', '=', 'target.sale_id')
+             ->select('sales.*', 'target.*')
+             ->where('sales.division', $request->sales)
+             ->get();
+             return view('salesturnover',['users'=>$users]);
+             
+         }
     }
-    public function searchturnover(Request $request){
-        if($request->turn !=''){
-            $users = DB::table('turnover')
-        ->join('turnover_target', 'turnover.id', '=', 'turnover_target.turn_id')
-        ->select('turnover.*', 'turnover_target.*')
-        ->where('turnover.division', $request->turn)
-        ->get();
-    return view('turnover.turnoverlist',['users'=>$users]);
-            
-        }
-    }
-    public function searchcollection(Request $request){
-        $users = DB::table('collection')
-        ->join('collection_target', 'collection.id', '=', 'collection_target.collection_id')
-        ->select('collection.*', 'collection_target.*')
-        ->where('collection.division', $request->collection)
-        ->get();
-    return view('collection.collectionlist',['users'=>$users]);
-            
-        }
-    }
+    ################# Sales ###########################
+    
+}

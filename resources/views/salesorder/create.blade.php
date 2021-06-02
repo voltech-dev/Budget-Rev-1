@@ -351,11 +351,13 @@ $('#add').click(function() {
 var sum = 0;
 
 var totalrow = $("#totalrow").val();
-alert(totalrow);
+$(totalrow).each(function(){
+
+});
 //April
-/*$('.target_' + i + '').keyup(function() {
-    console.log('hi');
-});*/
+$('.target_' + i + '').keyup(function() {
+  console.log('hi');
+ });
 // $(document).on('keyup', '.newrow', function() {
 //     var row = $(this).closest('tr');
 //     var target = row.find($('[data-id="apr_target"]').val());

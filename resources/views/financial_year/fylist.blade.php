@@ -1,7 +1,9 @@
 @extends('layouts.main')
 
 @section('content')
-
+<?php
+$fy =App\Models\financial_year::get();
+?>
 
 <style>
 td {
@@ -32,11 +34,19 @@ td {
                             <tr>
                                 <th>SI</th>
                                 <th>Financial Year</th>
-                                <th>Actions</th>
+                                
                                 
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody><?php $i=0; $i++; ?>
+                            @foreach($fy as $financialyears)
+                           
+                            <tr>
+                                <td>{{$i++}}</td>
+                                <td>{{$financialyears->financial_year}}</td>                                
+                            </tr>
+                            @endforeach
+
                            
 
                         </tbody>

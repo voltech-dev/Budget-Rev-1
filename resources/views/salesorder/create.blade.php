@@ -208,56 +208,75 @@ $('#add').click(function() {
         },
         dataType: 'json',
         success: function(data) {
+            var totalrow = data.countrow;
+            var i = 0;
             $.each(data, function(key, value) {
-                $('tbody[name="sub_sales"]').append('<tr class="newrow">' + '<td>' +
+                i = i + 1;
+                $('tbody[name="sub_sales"]').append('<tr class="newrow">' +
+                    '<td><input type="hidden"  style="width:60px" name="totalrow[]" id="totalrow" value="' +
+                    totalrow +
+                    '">' +
                     '<input type="hidden"  style="width:60px" name="div[]" id="div" value="' +
                     value +
                     '">' + value + '</td>' + '<td class="apt">' +
-                    '<input type="text" style="width:60px" name="apr_target[]" data-id="apr_target" id="apr_target" class="apr_target">' +
+                    '<input type="text" style="width:60px" name="apr_target[]" id="target_' +
+                    i + '" class="target_' + i + ' apr_target" >' +
                     '</td>' + '<td>' +
-                    '<input type="text" style="width:60px" name="apr_actual[]" id="apr_actual" class="apr_actual" disabled>' +
+                    '<input type="text" style="width:60px" name="apr_actual[]" id="apractual" class="apr_actual" disabled>' +
                     '</td>' + '<td class="may">' +
-                    '<input type="text" style="width:60px" name="may_target[]" id="may_target" class="may_target" >' +
-                    '</td>' + '<td>' +
+                    '<input type="text" style="width:60px" name="may_target[]" id="target_' +
+                    i + '" class="target_' + i + '"  >' +
+                    '</td>' +
+                    '<td>' +
                     '<input type="text" style="width:60px" name="may_actual[]" id="may_actual" class="may_actual" disabled>' +
                     '</td>' + '<td class="june">' +
-                    '<input type="text" style="width:60px" name="june_target[]" id="june_target" class="june_target">' +
+                    '<input type="text" style="width:60px" name="june_target[]" id="target_' +
+                    i + '" class="target_' + i + '">' +
                     '</td>' + '<td>' +
                     '<input type="text" style="width:60px" name="june_actual[]" id="june_actual" class="june_actual" disabled>' +
                     '</td>' + '<td class="july">' +
-                    '<input type="text" style="width:60px" name="july_target[]" id="july_target" class="july_target">' +
+                    '<input type="text" style="width:60px" name="july_target[]" id="july_target_' +
+                    i + '" class="july_target_' + i + '">' +
                     '</td>' + '<td>' +
                     '<input type="text" style="width:60px" name="july_actual[]" id="july_actual" class="july_actual" disabled>' +
                     '</td>' + '<td class="aug">' +
-                    '<input type="text" style="width:60px" name="aug_target[]" id="aug_target" class="aug_target">' +
+                    '<input type="text" style="width:60px" name="aug_target[]" id="target_' +
+                    i + '" class="target_' + i + '">' +
                     '</td>' + '<td>' +
                     '<input type="text" style="width:60px" name="aug_actual[]" id="aug_actual" class="aug_actual" disabled>' +
                     '</td>' + '<td class="sept">' +
-                    '<input type="text" style="width:60px" name="sept_target[]" id="sept_target" class="sept_target">' +
+                    '<input type="text" style="width:60px" name="sept_target[]" id="target_' +
+                    i + '" class="target_' + i + '">' +
                     '</td>' + '<td>' +
                     '<input type="text" style="width:60px" name="sept_actual[]" id="sept_actual" class="sept_actual" disabled>' +
                     '</td>' + '<td class="oct">' +
-                    '<input type="text" style="width:60px" name="oct_target[]" id="oct_target" class="oct_target">' +
+                    '<input type="text" style="width:60px" name="oct_target[]" id="target_' +
+                    i + '" class="target_' + i + '">' +
                     '</td>' + '<td>' +
                     '<input type="text" style="width:60px" name="oct_actual[]" id="oct_actual" class="oct_actual" disabled>' +
                     '</td>' + '<td class="nov">' +
-                    '<input type="text" style="width:60px" name="nov_target[]" id="nov_target" class="nov_target">' +
+                    '<input type="text" style="width:60px" name="nov_target[]" id="target_' +
+                    i + '" class="target_' + i + '">' +
                     '</td>' + '<td>' +
                     '<input type="text" style="width:60px" name="nov_actual[]" id="nov_actual" class="nov_actual" disabled>' +
                     '</td>' + '<td class="dec">' +
-                    '<input type="text" style="width:60px" name="dec_target[]" id="dec_target" class="dec_target">' +
+                    '<input type="text" style="width:60px" name="dec_target[]" id="target_' +
+                    i + '" class="target_' + i + '">' +
                     '</td>' + '<td>' +
                     '<input type="text" style="width:60px" name="dec_actual[]" id="dec_actual" class="dec_actual" disabled>' +
                     '</td>' + '<td class="jan">' +
-                    '<input type="text" style="width:60px" name="jan_target[]" id="jan_target" class="jan_target">' +
+                    '<input type="text" style="width:60px" name="jan_target[]" id="target_' +
+                    i + '" class="target_' + i + '">' +
                     '</td>' + '<td>' +
                     '<input type="text" style="width:60px" name="jan_actual[]" id="jan_actual" class="jan_actual" disabled>' +
                     '</td>' + '<td class="feb">' +
-                    '<input type="text" style="width:60px" name="feb_target[]" id="feb_target" class="feb_target">' +
+                    '<input type="text" style="width:60px" name="feb_target[]" id="target_' +
+                    i + '" class="target_' + i + '">' +
                     '</td>' + '<td>' +
                     '<input type="text" style="width:60px" name="feb_actual[]" id="feb_actual" class="feb_actual" disabled>' +
                     '</td>' + '<td class="march">' +
-                    '<input type="text" style="width:60px" name="march_target[]" id="march_target" class="march_target">' +
+                    '<input type="text" style="width:60px" name="march_target[]" id="target_' +
+                    i + '" class="target_' + i + '">' +
                     '</td>' + '<td>' +
                     '<input type="text" style="width:60px" name="march_actual[]" id="march_actual" class="march_actual" disabled>' +
                     '</td>' + '<td>' +
@@ -330,161 +349,167 @@ $('#add').click(function() {
     $('#sub_sales').each(function() {})
 });
 var sum = 0;
+
+var totalrow = $("#totalrow").val();
+alert(totalrow);
 //April
-$(document).on('keyup', '.newrow', function() {
-    var row = $(this).closest('tr');
-    var target = row.find($('[data-id="apr_target"]').val());
-    var value = $(this).closest('tr').attr('id');
-    console.log(value);
-});
-$(document).on('keyup', '.apt', function() {
-    var sum = 0;
-    $('.apr_target').each(function() {
-        sum += Number($(this).val());
-        $('#aprtarget_total').val(sum);
-        $('#total_target').val(sum);
-    });
-   
+/*$('.target_' + i + '').keyup(function() {
+    console.log('hi');
+});*/
+// $(document).on('keyup', '.newrow', function() {
+//     var row = $(this).closest('tr');
+//     var target = row.find($('[data-id="apr_target"]').val());
+//     var value = $(this).closest('tr').attr('id');
 
-});
-//May
-$(document).on('keyup', '.may', function() {
-    var sum = 0;
-    $('.may_target').each(function() {
-        sum += Number($(this).val());
-        $('#maytarget_total').val(sum);
-        $('#total_target').val(sum + Number($('#aprtarget_total').val()));
-        $('#divtarget_total').val(Number($('.apr_target').val()) + Number($('.may_target').val()));
-        console.log(sum);
-    });
-});
-//June
-$(document).on('keyup', '.june', function() {
-    var sum = 0;
-    $('.june_target').each(function() {
-        sum += Number($(this).val());
-        $('#junetarget_total').val(sum);
-        $('#total_target').val(sum + Number($('#aprtarget_total').val()) + Number($('#maytarget_total')
-            .val()));
+// });
+// $(document).on('keyup', '.apt', function() {
+//     var sum = 0;
+//     $('.apr_target').each(function() {
+//         sum += Number($(this).val());
+//         $('#aprtarget_total').val(sum);
+//         $('#total_target').val(sum);
+//     });
 
-        console.log(sum);
-    });
-});
-//July
-$(document).on('keyup', '.july', function() {
-    var sum = 0;
-    $('.july_target').each(function() {
-        sum += Number($(this).val());
-        $('#julytarget_total').val(sum);
-        $('#total_target').val(sum + Number($('#aprtarget_total').val()) + Number($('#maytarget_total')
-            .val()) + Number($('#junetarget_total').val()));
-    });
-});
-//August
-$(document).on('keyup', '.aug', function() {
-    var sum = 0;
-    $('.aug_target').each(function() {
-        sum += Number($(this).val());
-        $('#augtarget_total').val(sum);
-        $('#total_target').val(sum + Number($('#aprtarget_total').val()) + Number($('#maytarget_total')
-            .val()) + Number($('#junetarget_total').val()) + Number($('#julytarget_total')
-            .val()));
-        console.log(sum);
-    });
-});
-//September
-$(document).on('keyup', '.sept', function() {
-    var sum = 0;
-    $('.sept_target').each(function() {
-        sum += Number($(this).val());
-        $('#septarget_total').val(sum);
-        $('#total_target').val(sum + Number($('#aprtarget_total').val()) + Number($('#maytarget_total')
-            .val()) + Number($('#junetarget_total').val()) + Number($('#julytarget_total')
-            .val()) + Number($('#augtarget_total').val()));
-        console.log(sum);
-    });
-});
-//October
-$(document).on('keyup', '.oct', function() {
-    var sum = 0;
-    $('.oct_target').each(function() {
-        sum += Number($(this).val());
-        $('#octtarget_total').val(sum);
-        $('#total_target').val(sum + Number($('#aprtarget_total').val()) + Number($('#maytarget_total')
-            .val()) + Number($('#junetarget_total').val()) + Number($('#julytarget_total')
-            .val()) + Number($('#augtarget_total').val()) + Number($('#septarget_total').val()));
-        console.log(sum);
-    });
-});
-//November
-$(document).on('keyup', '.nov', function() {
-    var sum = 0;
-    $('.nov_target').each(function() {
-        sum += Number($(this).val());
-        $('#novtarget_total').val(sum);
-        $('#total_target').val(sum + Number($('#aprtarget_total').val()) + Number($('#maytarget_total')
-            .val()) + Number($('#junetarget_total').val()) + Number($('#julytarget_total')
-            .val()) + Number($('#augtarget_total').val()) + Number($('#septarget_total')
-            .val()) + Number($('#octtarget_total').val()));
-        console.log(sum);
-    });
-});
-//December
-$(document).on('keyup', '.dec', function() {
-    var sum = 0;
-    $('.dec_target').each(function() {
-        sum += Number($(this).val());
-        $('#dectarget_total').val(sum);
-        $('#total_target').val(sum + Number($('#aprtarget_total').val()) + Number($('#maytarget_total')
-            .val()) + Number($('#junetarget_total').val()) + Number($('#julytarget_total')
-            .val()) + Number($('#augtarget_total').val()) + Number($('#septarget_total')
-            .val()) + Number($('#octtarget_total').val()) + Number($('#novtarget_total').val()));
-        console.log(sum);
-    });
-});
-//January
-$(document).on('keyup', '.jan', function() {
-    var sum = 0;
-    $('.jan_target').each(function() {
-        sum += Number($(this).val());
-        $('#jantarget_total').val(sum);
-        $('#total_target').val(sum + Number($('#aprtarget_total').val()) + Number($('#maytarget_total')
-            .val()) + Number($('#junetarget_total').val()) + Number($('#julytarget_total')
-            .val()) + Number($('#augtarget_total').val()) + Number($('#septarget_total')
-            .val()) + Number($('#octtarget_total').val()) + Number($('#novtarget_total')
-            .val()) + Number($('#dectarget_total').val()));
-        console.log(sum);
-    });
-});
-//Feb
-$(document).on('keyup', '.feb', function() {
-    var sum = 0;
-    $('.feb_target').each(function() {
-        sum += Number($(this).val());
-        $('#febtarget_total').val(sum);
-        console.log(sum);
-        $('#total_target').val(sum + Number($('#aprtarget_total').val()) + Number($('#maytarget_total')
-            .val()) + Number($('#junetarget_total').val()) + Number($('#julytarget_total')
-            .val()) + Number($('#augtarget_total').val()) + Number($('#septarget_total')
-            .val()) + Number($('#octtarget_total').val()) + Number($('#novtarget_total')
-            .val()) + Number($('#dectarget_total').val()) + Number($('#jantarget_total').val()));
-    });
-});
-//March
-$(document).on('keyup', '.march', function() {
-    var sum = 0;
-    $('.march_target').each(function() {
-        sum += Number($(this).val());
-        $('#marchtarget_total').val(sum);
-        $('#total_target').val(sum + Number($('#aprtarget_total').val()) + Number($('#maytarget_total')
-            .val()) + Number($('#junetarget_total').val()) + Number($('#julytarget_total')
-            .val()) + Number($('#augtarget_total').val()) + Number($('#septarget_total')
-            .val()) + Number($('#octtarget_total').val()) + Number($('#novtarget_total')
-            .val()) + Number($('#dectarget_total').val()) + Number($('#jantarget_total')
-            .val()) + Number($('#febtarget_total').val()));
-    });
 
-});
+// });
+// //May
+// $(document).on('keyup', '.may', function() {
+//     var sum = 0;
+//     $('.may_target').each(function() {
+//         sum += Number($(this).val());
+//         $('#maytarget_total').val(sum);
+//         $('#total_target').val(sum + Number($('#aprtarget_total').val()));
+//         $('#divtarget_total').val(Number($('.apr_target').val()) + Number($('.may_target').val()));
+
+//     });
+// });
+// //June
+// $(document).on('keyup', '.june', function() {
+//     var sum = 0;
+//     $('.june_target').each(function() {
+//         sum += Number($(this).val());
+//         $('#junetarget_total').val(sum);
+//         $('#total_target').val(sum + Number($('#aprtarget_total').val()) + Number($('#maytarget_total')
+//             .val()));
+
+
+//     });
+// });
+// //July
+// $(document).on('keyup', '.july', function() {
+//     var sum = 0;
+//     $('.july_target').each(function() {
+//         sum += Number($(this).val());
+//         $('#julytarget_total').val(sum);
+//         $('#total_target').val(sum + Number($('#aprtarget_total').val()) + Number($('#maytarget_total')
+//             .val()) + Number($('#junetarget_total').val()));
+//     });
+// });
+// //August
+// $(document).on('keyup', '.aug', function() {
+//     var sum = 0;
+//     $('.aug_target').each(function() {
+//         sum += Number($(this).val());
+//         $('#augtarget_total').val(sum);
+//         $('#total_target').val(sum + Number($('#aprtarget_total').val()) + Number($('#maytarget_total')
+//             .val()) + Number($('#junetarget_total').val()) + Number($('#julytarget_total')
+//             .val()));
+
+//     });
+// });
+// //September
+// $(document).on('keyup', '.sept', function() {
+//     var sum = 0;
+//     $('.sept_target').each(function() {
+//         sum += Number($(this).val());
+//         $('#septarget_total').val(sum);
+//         $('#total_target').val(sum + Number($('#aprtarget_total').val()) + Number($('#maytarget_total')
+//             .val()) + Number($('#junetarget_total').val()) + Number($('#julytarget_total')
+//             .val()) + Number($('#augtarget_total').val()));
+//         console.log(sum);
+//     });
+// });
+// //October
+// $(document).on('keyup', '.oct', function() {
+//     var sum = 0;
+//     $('.oct_target').each(function() {
+//         sum += Number($(this).val());
+//         $('#octtarget_total').val(sum);
+//         $('#total_target').val(sum + Number($('#aprtarget_total').val()) + Number($('#maytarget_total')
+//             .val()) + Number($('#junetarget_total').val()) + Number($('#julytarget_total')
+//             .val()) + Number($('#augtarget_total').val()) + Number($('#septarget_total').val()));
+//         console.log(sum);
+//     });
+// });
+// //November
+// $(document).on('keyup', '.nov', function() {
+//     var sum = 0;
+//     $('.nov_target').each(function() {
+//         sum += Number($(this).val());
+//         $('#novtarget_total').val(sum);
+//         $('#total_target').val(sum + Number($('#aprtarget_total').val()) + Number($('#maytarget_total')
+//             .val()) + Number($('#junetarget_total').val()) + Number($('#julytarget_total')
+//             .val()) + Number($('#augtarget_total').val()) + Number($('#septarget_total')
+//             .val()) + Number($('#octtarget_total').val()));
+//         console.log(sum);
+//     });
+// });
+// //December
+// $(document).on('keyup', '.dec', function() {
+//     var sum = 0;
+//     $('.dec_target').each(function() {
+//         sum += Number($(this).val());
+//         $('#dectarget_total').val(sum);
+//         $('#total_target').val(sum + Number($('#aprtarget_total').val()) + Number($('#maytarget_total')
+//             .val()) + Number($('#junetarget_total').val()) + Number($('#julytarget_total')
+//             .val()) + Number($('#augtarget_total').val()) + Number($('#septarget_total')
+//             .val()) + Number($('#octtarget_total').val()) + Number($('#novtarget_total').val()));
+//         console.log(sum);
+//     });
+// });
+// //January
+// $(document).on('keyup', '.jan', function() {
+//     var sum = 0;
+//     $('.jan_target').each(function() {
+//         sum += Number($(this).val());
+//         $('#jantarget_total').val(sum);
+//         $('#total_target').val(sum + Number($('#aprtarget_total').val()) + Number($('#maytarget_total')
+//             .val()) + Number($('#junetarget_total').val()) + Number($('#julytarget_total')
+//             .val()) + Number($('#augtarget_total').val()) + Number($('#septarget_total')
+//             .val()) + Number($('#octtarget_total').val()) + Number($('#novtarget_total')
+//             .val()) + Number($('#dectarget_total').val()));
+//         console.log(sum);
+//     });
+// });
+// //Feb
+// $(document).on('keyup', '.feb', function() {
+//     var sum = 0;
+//     $('.feb_target').each(function() {
+//         sum += Number($(this).val());
+//         $('#febtarget_total').val(sum);
+//         console.log(sum);
+//         $('#total_target').val(sum + Number($('#aprtarget_total').val()) + Number($('#maytarget_total')
+//             .val()) + Number($('#junetarget_total').val()) + Number($('#julytarget_total')
+//             .val()) + Number($('#augtarget_total').val()) + Number($('#septarget_total')
+//             .val()) + Number($('#octtarget_total').val()) + Number($('#novtarget_total')
+//             .val()) + Number($('#dectarget_total').val()) + Number($('#jantarget_total').val()));
+//     });
+// });
+// //March
+// $(document).on('keyup', '.march', function() {
+//     var sum = 0;
+//     $('.march_target').each(function() {
+//         sum += Number($(this).val());
+//         $('#marchtarget_total').val(sum);
+//         $('#total_target').val(sum + Number($('#aprtarget_total').val()) + Number($('#maytarget_total')
+//             .val()) + Number($('#junetarget_total').val()) + Number($('#julytarget_total')
+//             .val()) + Number($('#augtarget_total').val()) + Number($('#septarget_total')
+//             .val()) + Number($('#octtarget_total').val()) + Number($('#novtarget_total')
+//             .val()) + Number($('#dectarget_total').val()) + Number($('#jantarget_total')
+//             .val()) + Number($('#febtarget_total').val()));
+//     });
+
+// });
 $('#unit').change(function() {
     $('#tab').hide();
 });
@@ -497,8 +522,5 @@ $('#unit').change(function() {
 //         Number($(
 //             '#march_target').val()));
 // });
-$('#div').each(function() {
-
-});
 </script>
 @endpush

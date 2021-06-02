@@ -29,7 +29,8 @@ $company=DB::table('company')
     </ul>
 </div>
 @endif
-<form action="{{url('/salesorder')}}" method="POST">
+<form action="{{url('/salesupdate/'.$sales->id)}}" method="POST">
+@csrf
     <div class="row">
         <div class="col-md-12">
 
@@ -130,59 +131,47 @@ $company=DB::table('company')
                                 <tbody name='abc' id='abc'>
                                     @foreach($target as $tg)
                                     <tr>
-                                        <td> <input type="text" value="{{$tg->division}}" style="width:50px" readonly
-                                                {{($tg->sale_id==$sales->id)}}>
+                                        <td> <input type="hidden" value="" style="width:50px" readonly
+                                                {{($tg->sale_id==$sales->id)}}>{{$tg->division}}
                                         </td>
                                         <td><input type="text" value="{{$tg->apr_target}}" style="width:60px" readonly
                                                 {{$tg->sale_id=$sales->id}}> </td>
-                                        <td><input type="text" value="{{$tg->apr_actual}}" style="width:60px" disabled
-                                                {{$tg->sale_id=$sales->id}}></td>
+                                        <td><input type="text" style="width:60px" name="apr_actual"></td>
                                         <td><input type="text" value="{{$tg->may_target}}" style="width:60px" readonly
                                                 {{$tg->sale_id=$sales->id}}></td>
-                                        <td><input type="text" value="{{$tg->may_actual}}" style="width:60px" disabled
-                                                {{$tg->sale_id=$sales->id}}></td>
+                                        <td><input type="text" name="may_actual[]" style="width:60px"></td>
                                         <td><input type="text" value="{{$tg->june_target}}" style="width:60px" readonly
                                                 {{$tg->sale_id=$sales->id}}></td>
-                                        <td><input type="text" value="{{$tg->june_actual}}" style="width:60px" disabled
-                                                {{$tg->sale_id=$sales->id}}></td>
+                                        <td><input type="text" name="june_actual[]" style="width:60px"></td>
                                         <td><input type="text" value="{{$tg->july_target}}" style="width:60px" readonly
                                                 {{$tg->sale_id=$sales->id}}></td>
-                                        <td><input type="text" value="{{$tg->july_actual}}" style="width:60px" disabled
-                                                {{$tg->sale_id=$sales->id}}></td>
+                                        <td><input type="text" style="width:60px" name="july_actual[]"></td>
                                         </td>
                                         <td><input type="text" value="{{$tg->aug_target}}" style="width:60px" readonly
                                                 {{$tg->sale_id=$sales->id}}></td>
                                         </td>
-                                        <td><input type="text" value="{{$tg->aug_actual}}" style="width:60px" disabled
-                                                {{$tg->sale_id=$sales->id}}></td>
+                                        <td><input type="text" name="aug_actual[]" style="width:60px"></td>
                                         <td><input type="text" value="{{$tg->sept_target}}" style="width:60px" readonly
                                                 {{$tg->sale_id=$sales->id}}></td>
-                                        <td><input type="text" value="{{$tg->sept_actual}}" style="width:60px" disabled
-                                                {{$tg->sale_id=$sales->id}}></td>
+                                        <td><input type="text" name="sept_actual[]" style="width:60px"></td>
                                         <td><input type="text" value="{{$tg->oct_target}}" style="width:60px" readonly
                                                 {{$tg->sale_id=$sales->id}}></td>
-                                        <td><input type="text" value="{{$tg->oct_actual}}" style="width:60px" disabled
-                                                {{$tg->sale_id=$sales->id}}></td>
+                                        <td><input type="text" name="oct_actual[]" style="width:60px"></td>
                                         <td><input type="text" value="{{$tg->nov_target}}" style="width:60px" readonly
                                                 {{$tg->sale_id=$sales->id}}></td>
-                                        <td><input type="text" value="{{$tg->nov_actual}}" style="width:60px" disabled
-                                                {{$tg->sale_id=$sales->id}}></td>
+                                        <td><input type="text" name="nov_actual[]" style="width:60px"></td>
                                         <td><input type="text" value="{{$tg->dec_target}}" style="width:60px" readonly
                                                 {{$tg->sale_id=$sales->id}}></td>
-                                        <td><input type="text" value="{{$tg->dec_actual}}" style="width:60px" disabled
-                                                {{$tg->sale_id=$sales->id}}></td>
+                                        <td><input type="text" name="dec_actual[]" style="width:60px"></td>
                                         <td><input type="text" value="{{$tg->jan_target}}" style="width:60px" readonly
                                                 {{$tg->sale_id=$sales->id}}></td>
-                                        <td><input type="text" value="{{$tg->jan_actual}}" style="width:60px" disabled
-                                                {{$tg->sale_id=$sales->id}}></td>
-                                        <td><input type="text" value="{{$tg->feb_actual}}" style="width:60px" readonly
-                                                {{$tg->sale_id=$sales->id}}></td>
+                                        <td><input type="text" name="jan_actual[]" style="width:60px"></td>
                                         <td><input type="text" value="{{$tg->feb_target}}" style="width:60px" disabled
                                                 {{$tg->sale_id=$sales->id}}></td>
+                                        <td><input type="text" name="feb_actual[]" style="width:60px"></td>
                                         <td><input type="text" value="{{$tg->march_target}}" style="width:60px" readonly
                                                 {{$tg->sale_id=$sales->id}}></td>
-                                        <td><input type="text" value="{{$tg->march_actual}}" style="width:60px" disabled
-                                                {{$tg->sale_id=$sales->id}}></td>
+                                        <td><input type="text" name="march_actual[]" style="width:60px"></td>
                                         <td><input type="text" value="{{$tg->divtarget_total}}" style="width:60px"
                                                 disabled {{$tg->sale_id=$sales->id}}></td>
                                         <td><input type="text" value="{{$tg->divactual_total}}" style="width:60px"
@@ -271,6 +260,15 @@ $company=DB::table('company')
                                 </div>
 
                             </div>
+                            <div class="form-group row">
+
+                        <div class="col-sm-12">
+                            <div class="col-xs-12 col-sm-12 col-md-12 text-right">
+                                <button type="submit" class="btn btn-outline-success btn-sm"><i data-feather="check"
+                                        class="mr-2"></i>Save</button>
+                            </div>
+                        </div>
+                    </div>
 
 
 

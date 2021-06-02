@@ -53,10 +53,17 @@ class SalesorderController extends Controller
                 $sales=Sale::findorfail($id);                
                 return view('salesorder.sales_view',['unit'=>$unit,'company'=>$company,'sales'=>$sales,'financialyear'=>$financialyear,'target'=>$target]);
 }  
-    public function salesupdate()
+    public function salesupdate(Request $request,$id)
     {  
-        echo 'hai';
-    }
+        $sales=Sale::findorfail($id);
+        $target=sub_sales::where(['sale_id'=>$sales->id])->first();
+        foreach($request->may_actual as $key=>$val){
+            $target->may_actual=$request->may_actual;
+            $target->save();
+        }
+    
+        
+}
     public function store(Request $request)
     {   
         $sale = new Sale();
@@ -64,6 +71,21 @@ class SalesorderController extends Controller
         $sale->unit_id = $request->input('unit');
         $sale->financial_year = $request->input('financial_year');
         $sale->total_target=$request->total_target;
+        $sale->aprtarget_total=$request->aprtarget_total;
+        $sale->maytarget_total=$request->maytarget_total;
+        $sale->junetarget_total=$request->junetarget_total;
+        $sale->julytarget_total=$request->julytarget_total;
+        $sale->augtarget_total=$request->augtarget_total; 
+        $sale->septarget_total=$request->septarget_total;
+        $sale->octtarget_total=$request->octtarget_total;
+        $sale->novtarget_total=$request->novtarget_total;
+        $sale->dectarget_total=$request->dectarget_total;
+        $sale->jantarget_total=$request->jantarget_total;
+        $sale->febtarget_total=$request->febtarget_total;
+        $sale->marchtarget_total=$request->marchtarget_total;
+        $sale->divtarget_total=$request->divtarget_total;
+        $sale->divactual_total=$request->divactual_total;
+
         if($sale->save()){
             foreach($request->apr_target as $key=>$val){
                 $target = new sub_sales();
@@ -373,6 +395,7 @@ public function division_view($id,$division)
         foreach ($div as $d) {
             $json[$d->id] = $d->division_name;
         }
+        $json['countrow'] = count($div);
         echo json_encode($json);
     }
     // public function saleslist(){

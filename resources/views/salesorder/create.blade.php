@@ -218,69 +218,86 @@ $('#add').click(function() {
                     '">' +
                     '<input type="hidden"  style="width:60px" name="div[]" id="div" value="' +
                     value +
-                    '">' + value + '</td>' + '<td class="apt">' +
-                    '<input type="text" style="width:60px" name="apr_target[]" id="target_' +
-                    i + '" class="target_' + i + ' apr_target" >' +
-                    '</td>' + '<td>' +
+                    '">' + value + '</td>' + 
+
+                    '<td class="apt">' +
+                    '<input type="text" style="width:60px" name="apr_target[]" id="apr_target_' + i + '" class="target target_' + i + ' apr_target" value="">' +
+                    '</td>' + 
+                    '<td>' +
                     '<input type="text" style="width:60px" name="apr_actual[]" id="apractual" class="apr_actual" disabled>' +
-                    '</td>' + '<td class="may">' +
-                    '<input type="text" style="width:60px" name="may_target[]" id="target_' +
-                    i + '" class="target_' + i + '"  >' +
+                    '</td>' + 
+                    
+                    '<td class="may">' +
+                    '<input type="text" style="width:60px" name="may_target[]" id="may_target_' + i + '" class="target target_' + i + '" value="" >' +
                     '</td>' +
                     '<td>' +
                     '<input type="text" style="width:60px" name="may_actual[]" id="may_actual" class="may_actual" disabled>' +
-                    '</td>' + '<td class="june">' +
-                    '<input type="text" style="width:60px" name="june_target[]" id="target_' +
-                    i + '" class="target_' + i + '">' +
-                    '</td>' + '<td>' +
-                    '<input type="text" style="width:60px" name="june_actual[]" id="june_actual" class="june_actual" disabled>' +
-                    '</td>' + '<td class="july">' +
-                    '<input type="text" style="width:60px" name="july_target[]" id="july_target_' +
-                    i + '" class="july_target_' + i + '">' +
-                    '</td>' + '<td>' +
-                    '<input type="text" style="width:60px" name="july_actual[]" id="july_actual" class="july_actual" disabled>' +
-                    '</td>' + '<td class="aug">' +
-                    '<input type="text" style="width:60px" name="aug_target[]" id="target_' +
-                    i + '" class="target_' + i + '">' +
+                    '</td>' + 
+                    
+                    '<td class="june">' +
+                    '<input type="text" style="width:60px" name="june_target[]" id="jun_target_' + i + '" class="target target_' + i + '" value="">' +
+                    '</td>' + 
+                    '<td>' +
+                    '<input type="text" style="width:60px" name="june_actual[]" id="jun_actual" class="june_actual" disabled>' +
+                    '</td>' + 
+                    
+                    '<td class="july">' +
+                    '<input type="text" style="width:60px" name="july_target[]" id="jul_target_' + i + '" class="target july_target_' + i + '" value="">' +
+                    '</td>' + 
+                    '<td>' +
+                    '<input type="text" style="width:60px" name="july_actual[]" id="jul_actual" class="july_actual" disabled>' +
+                    '</td>' + 
+                    
+                    '<td class="aug">' +
+                    '<input type="text" style="width:60px" name="aug_target[]" id="aug_target_' + i + '" class="target target_' + i + '" value="">' +
                     '</td>' + '<td>' +
                     '<input type="text" style="width:60px" name="aug_actual[]" id="aug_actual" class="aug_actual" disabled>' +
-                    '</td>' + '<td class="sept">' +
-                    '<input type="text" style="width:60px" name="sept_target[]" id="target_' +
-                    i + '" class="target_' + i + '">' +
+                    '</td>' + 
+                    
+                    '<td class="sept">' +
+                    '<input type="text" style="width:60px" name="sept_target[]" id="sep_target_' + i + '" class="target target_' + i + '" value="">' +
                     '</td>' + '<td>' +
-                    '<input type="text" style="width:60px" name="sept_actual[]" id="sept_actual" class="sept_actual" disabled>' +
-                    '</td>' + '<td class="oct">' +
-                    '<input type="text" style="width:60px" name="oct_target[]" id="target_' +
-                    i + '" class="target_' + i + '">' +
+                    '<input type="text" style="width:60px" name="sept_actual[]" id="sep_actual" class="sept_actual" disabled>' +
+                    '</td>' + 
+                    
+                    '<td class="oct">' +
+                    '<input type="text" style="width:60px" name="oct_target[]" id="oct_target_' + i + '" class="target target_' + i + '" value="">' +
                     '</td>' + '<td>' +
                     '<input type="text" style="width:60px" name="oct_actual[]" id="oct_actual" class="oct_actual" disabled>' +
-                    '</td>' + '<td class="nov">' +
-                    '<input type="text" style="width:60px" name="nov_target[]" id="target_' +
-                    i + '" class="target_' + i + '">' +
+                    '</td>' + 
+                    
+                    '<td class="nov">' +
+                    '<input type="text" style="width:60px" name="nov_target[]" id="nov_target_' + i + '" class="target target_' + i + '" value="">' +
                     '</td>' + '<td>' +
                     '<input type="text" style="width:60px" name="nov_actual[]" id="nov_actual" class="nov_actual" disabled>' +
-                    '</td>' + '<td class="dec">' +
-                    '<input type="text" style="width:60px" name="dec_target[]" id="target_' +
-                    i + '" class="target_' + i + '">' +
+                    '</td>' + 
+                    
+                    '<td class="dec">' +
+                    '<input type="text" style="width:60px" name="dec_target[]" id="dec_target_' + i + '" class="target target_' + i + '" value="">' +
                     '</td>' + '<td>' +
                     '<input type="text" style="width:60px" name="dec_actual[]" id="dec_actual" class="dec_actual" disabled>' +
-                    '</td>' + '<td class="jan">' +
-                    '<input type="text" style="width:60px" name="jan_target[]" id="target_' +
-                    i + '" class="target_' + i + '">' +
+                    '</td>' + 
+                    
+                    '<td class="jan">' +
+                    '<input type="text" style="width:60px" name="jan_target[]" id="jan_target_' + i + '" class="target target_' + i + '" value="">' +
                     '</td>' + '<td>' +
                     '<input type="text" style="width:60px" name="jan_actual[]" id="jan_actual" class="jan_actual" disabled>' +
-                    '</td>' + '<td class="feb">' +
-                    '<input type="text" style="width:60px" name="feb_target[]" id="target_' +
-                    i + '" class="target_' + i + '">' +
+                    '</td>' + 
+                    
+                    '<td class="feb">' +
+                    '<input type="text" style="width:60px" name="feb_target[]" id="feb_target_' + i + '" class="target target_' + i + '" value="">' +
                     '</td>' + '<td>' +
                     '<input type="text" style="width:60px" name="feb_actual[]" id="feb_actual" class="feb_actual" disabled>' +
-                    '</td>' + '<td class="march">' +
-                    '<input type="text" style="width:60px" name="march_target[]" id="target_' +
-                    i + '" class="target_' + i + '">' +
+                    '</td>' + 
+                    
+                    '<td class="march">' +
+                    '<input type="text" style="width:60px" name="march_target[]" id="mar_target_' + i + '" class="target target_' + i + '" value="">' +
                     '</td>' + '<td>' +
                     '<input type="text" style="width:60px" name="march_actual[]" id="march_actual" class="march_actual" disabled>' +
-                    '</td>' + '<td>' +
-                    '<input type="text" name="divtarget_total[]" id="divtarget_total" style="width:60px">' +
+                    '</td>' + 
+                    
+                    '<td>' +
+                    '<input type="text" name="divtarget_total[]" id="divtarget_total_'+ i + '"style="width:60px">' +
                     '</td>' + '<td>' +
                     '<input type="text" name="divactual_total[]" style="width:60px">' +
                     '</td>' +
@@ -351,6 +368,110 @@ $('#add').click(function() {
 var sum = 0;
 
 var totalrow = $("#totalrow").val();
+$(document).on('keyup','.target',function(){
+    var target_id = $(this).attr('id');
+    //alert(target_id);
+    var targetid_arr    =   target_id.split('_');
+    //alert(targetid_arr[2]);
+    var cnt = targetid_arr[2];
+    var apr_target = $("#apr_target_"+cnt).val();
+    var may_target = $("#may_target_"+cnt).val();
+    var jun_target = $("#jun_target_"+cnt).val();
+    var jul_target = $("#jul_target_"+cnt).val();
+    var aug_target = $("#aug_target_"+cnt).val();
+    var sep_target = $("#sep_target_"+cnt).val();
+    var oct_target = $("#oct_target_"+cnt).val();
+    var nov_target = $("#nov_target_"+cnt).val();
+    var dec_target = $("#dec_target_"+cnt).val();
+    var jan_target = $("#jan_target_"+cnt).val();
+    var feb_target = $("#feb_target_"+cnt).val();
+    var mar_target = $("#mar_target_"+cnt).val();
+    
+    if(!isNaN(apr_target) && apr_target != ''){
+        apr_target  =   apr_target;
+    }else{
+        apr_target  =   0;
+    }
+    
+
+    if(!isNaN(may_target) && may_target != ''){
+        may_target  =   may_target;
+    }else{
+        may_target  =   0;
+    }
+    
+    if(!isNaN(jun_target) && jun_target != ''){
+        jun_target  =   jun_target;
+    }else{
+        jun_target  =   0;
+    }
+
+    if(!isNaN(jul_target) && jul_target != ''){
+        jul_target  =   jul_target;
+    }else{
+        jul_target  =   0;
+    }
+
+    if(!isNaN(aug_target) && aug_target != ''){
+        aug_target  =   aug_target;
+    }else{
+        aug_target  =   0;
+    }
+
+    if(!isNaN(sep_target) && sep_target != ''){
+        sep_target  =   sep_target;
+    }else{
+        sep_target  =   0;
+    }
+
+    if(!isNaN(oct_target) && oct_target != ''){
+        oct_target  =   oct_target;
+    }else{
+        oct_target  =   0;
+    }
+
+    if(!isNaN(nov_target) && nov_target != ''){
+        nov_target  =   nov_target;
+    }else{
+        nov_target  =   0;
+    }
+
+    if(!isNaN(dec_target) && dec_target != ''){
+        dec_target  =   dec_target;
+    }else{
+        dec_target  =   0;
+    }
+
+    if(!isNaN(jan_target) && jan_target != ''){
+        jan_target  =   jan_target;
+    }else{
+        jan_target  =   0;
+    }
+
+    if(!isNaN(feb_target) && feb_target != ''){
+        feb_target  =   feb_target;
+    }else{
+        feb_target  =   0;
+    }
+
+    if(!isNaN(mar_target) && mar_target != ''){
+        mar_target  =   mar_target;
+    }else{
+        mar_target  =   0;
+    }
+
+    var totalrow_target = (parseFloat(apr_target) + parseFloat(may_target) + parseFloat(jun_target) + parseFloat(jul_target) + parseFloat(aug_target) + parseFloat(sep_target) + parseFloat(oct_target) +
+                          parseFloat(nov_target) + parseFloat(dec_target) + parseFloat(jan_target) + parseFloat(feb_target) + parseFloat(mar_target)).toFixed(2);
+    $("#divtarget_total_"+cnt).val(parseFloat(totalrow_target).toFixed(2));
+});
+/*$(".target").keyup(function(){
+    alert("hi");
+    var target_id       =   $(this).id;
+    var targetid_arr    =   target_id.split('_');
+    alert(targetid_arr);
+
+});*/
+
 //April
 /*$('.target_' + i + '').keyup(function() {
     console.log('hi');

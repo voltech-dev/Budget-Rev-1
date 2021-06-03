@@ -5,10 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class target extends Model
+class sub_sales extends Model
 {
     use HasFactory;
-    protected $table='target';
+    protected $table='sub_sales';
     
     public function sales(){
         return $this->hasOne(Sale::class);

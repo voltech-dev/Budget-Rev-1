@@ -1,9 +1,6 @@
 @extends('layouts.main')
 
 @section('content')
-<?php
-$division =App\Models\division::get();
-?>
 
 <style>
 td {
@@ -34,6 +31,7 @@ td {
                         <thead class="thead-light">
                             <tr>
                                 <th>SI</th>
+                                <th>Company</th>
                                 <th>Division</th>
                                 <th>Actions</th>
 
@@ -44,6 +42,7 @@ td {
                             @foreach($division as $div)
                             <tr>
                                 <td>{{$i++}}</td>
+                                <td>{{$div->company_name}}</td>
                                 <td><a href="{{url('/divisionview/'.$div->id.'/'.$div->division_name)}}">{{$div->division_name}}</td>
                                 <td><a href="{{ url('/divisionedit/'.$div->id.'/'.$div->division_name) }}" class="btn btn-sm btn-white text-success mr-2"><i class="far fa-edit mr-1"></i></a></td>
                             </tr>

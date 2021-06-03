@@ -8,7 +8,7 @@ use App\Models\Collection;
 use App\Models\company;
 use App\Models\division;
 use App\Models\unit;
-use App\Models\target;
+use App\Models\sub_sales;
 use App\Models\financial_year;
 use App\Models\turnover_target;
 use App\Models\collection_target;
@@ -21,10 +21,9 @@ class SalesorderController extends Controller
     {
         $this->middleware('auth');
     }
-    ################# Sales ###########################
     public function salesorder()
-    {        
-        return view('salesorder.create',['division'=>$division]);
+    {
+        return view('salesorder.create');
     }
     public function salesorderlist(){
         $sales = DB::table('sales')
@@ -39,26 +38,32 @@ class SalesorderController extends Controller
     {  
         $company=company::all();
         $unit=unit::all();
-        $target=target::all();
+        $target=sub_sales::all();
         $financialyear=financial_year::all();
         $sales=Sale::findorfail($id);                
         return view('salesorder.sales_edit',['unit'=>$unit,'company'=>$company,'sales'=>$sales,'financialyear'=>$financialyear,'target'=>$target]);       
     }
    
     public function sales_view($id,$unit)
-    
 {
                 $company=company::all();
                 $unit=unit::all();
-                $target=target::all();
+                $target=sub_sales::all();
                 $financialyear=financial_year::all();
                 $sales=Sale::findorfail($id);                
                 return view('salesorder.sales_view',['unit'=>$unit,'company'=>$company,'sales'=>$sales,'financialyear'=>$financialyear,'target'=>$target]);
 }  
-    public function salesupdate()
+    public function salesupdate(Request $request,$id)
     {  
-        echo 'hai';
-    }
+        $sales=Sale::findorfail($id);
+        $target=sub_sales::where(['sale_id'=>$sales->id])->first();
+        foreach($request->may_actual as $key=>$val){
+            $target->may_actual=$request->may_actual;
+            $target->save();
+        }
+    
+        
+}
     public function store(Request $request)
     {   
         $sale = new Sale();
@@ -66,9 +71,24 @@ class SalesorderController extends Controller
         $sale->unit_id = $request->input('unit');
         $sale->financial_year = $request->input('financial_year');
         $sale->total_target=$request->total_target;
+        $sale->aprtarget_total=$request->aprtarget_total;
+        $sale->maytarget_total=$request->maytarget_total;
+        $sale->junetarget_total=$request->junetarget_total;
+        $sale->julytarget_total=$request->julytarget_total;
+        $sale->augtarget_total=$request->augtarget_total; 
+        $sale->septarget_total=$request->septarget_total;
+        $sale->octtarget_total=$request->octtarget_total;
+        $sale->novtarget_total=$request->novtarget_total;
+        $sale->dectarget_total=$request->dectarget_total;
+        $sale->jantarget_total=$request->jantarget_total;
+        $sale->febtarget_total=$request->febtarget_total;
+        $sale->marchtarget_total=$request->marchtarget_total;
+        $sale->divtarget_total=$request->divtarget_total;
+        $sale->divactual_total=$request->divactual_total;
+
         if($sale->save()){
             foreach($request->apr_target as $key=>$val){
-                $target = new target();
+                $target = new sub_sales();
                 $target->sale_id = $sale->id;
                 $target->division=$request->div[$key];
                 $target->apr_target = $request->apr_target[$key];
@@ -83,16 +103,20 @@ class SalesorderController extends Controller
                 $target->jan_target = $request->jan_target[$key];
                 $target->feb_target = $request->feb_target[$key];
                 $target->march_target = $request->march_target[$key];
+                $target->divtotal_target=$request->divtarget_total[$key];
                 $target->save();
                 }
         } 
         
     }
+<<<<<<< HEAD
 
     public function saleslist(){
         return view('salesorder.salesorderlist');
     }
     
+=======
+>>>>>>> a801e366f585a4956438417b215a32f7b8af6f0f
     
     public function turnover()
     {
@@ -281,7 +305,7 @@ public function division_view($id,$division)
         $division->company_id = $request->input('company_name');
         $division->unit_id=$request->unit;
         $division->save();
-        return redirect('/division');
+        return redirect('/divisionlist');
     }
     public function viewdivision()
     {
@@ -289,7 +313,13 @@ public function division_view($id,$division)
     }
     public function divisionlist()
     {
-        return view('division.divisionlist');
+        $division = DB::table('company')
+                    ->join('division', 'company.id', '=', 'division.company_id')
+                    ->select('company.*', 'division.*')
+                    ->get();
+                   
+                return view('division.divisionlist',['division'=>$division]);
+            
     }
     public function unit()
     {
@@ -332,9 +362,9 @@ public function division_view($id,$division)
         $unit->company_id = $request->company_name;
         $unit->unit = $request->unit;
         $unit->save();
-       
-      
+        
     }
+
     //Userlist
     public function userlist(){
         return view('user.userlist');
@@ -373,6 +403,7 @@ public function division_view($id,$division)
         foreach ($div as $d) {
             $json[$d->id] = $d->division_name;
         }
+        $json['countrow'] = count($div);
         echo json_encode($json);
     }
     // public function saleslist(){
@@ -380,16 +411,34 @@ public function division_view($id,$division)
     //    return view('salesorder.salesorderlist');
     // }
     public function searchsales(Request $request){
-         if($request->sales !=''){
-             $users = DB::table('sales')
-             ->join('target', 'sales.id', '=', 'target.sale_id')
-             ->select('sales.*', 'target.*')
-             ->where('sales.division', $request->sales)
-             ->get();
-             return view('salesturnover',['users'=>$users]);
-             
-         }
+        if($request->sales !=''){
+            $users = DB::table('sales')
+            ->join('target', 'sales.id', '=', 'target.sale_id')
+            ->select('sales.*', 'target.*')
+            ->where('sales.division', $request->sales)
+            ->get();
+            return view('salesturnover',['users'=>$users]);
+            
+        }
     }
-    ################# Sales ###########################
-    
-}
+    public function searchturnover(Request $request){
+        if($request->turn !=''){
+            $users = DB::table('turnover')
+        ->join('turnover_target', 'turnover.id', '=', 'turnover_target.turn_id')
+        ->select('turnover.*', 'turnover_target.*')
+        ->where('turnover.division', $request->turn)
+        ->get();
+    return view('turnover.turnoverlist',['users'=>$users]);
+            
+        }
+    }
+    public function searchcollection(Request $request){
+        $users = DB::table('collection')
+        ->join('collection_target', 'collection.id', '=', 'collection_target.collection_id')
+        ->select('collection.*', 'collection_target.*')
+        ->where('collection.division', $request->collection)
+        ->get();
+    return view('collection.collectionlist',['users'=>$users]);
+            
+        }
+    }

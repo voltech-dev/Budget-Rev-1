@@ -88,13 +88,11 @@ class SalesorderController extends Controller
         } 
         
     }
-<<<<<<< HEAD
 
     public function saleslist(){
         return view('salesorder.salesorderlist');
     }
     
-=======
     
     public function turnover()
     {
@@ -381,7 +379,6 @@ public function division_view($id,$division)
 
     //    return view('salesorder.salesorderlist');
     // }
->>>>>>> 5ac249a796fe120ec2f3a59ecf764362fa70e8f1
     public function searchsales(Request $request){
          if($request->sales !=''){
              $users = DB::table('sales')

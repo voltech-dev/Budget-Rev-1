@@ -109,14 +109,11 @@ class SalesorderController extends Controller
         } 
         
     }
-<<<<<<< HEAD
 
     public function saleslist(){
         return view('salesorder.salesorderlist');
     }
     
-=======
->>>>>>> a801e366f585a4956438417b215a32f7b8af6f0f
     
     public function turnover()
     {

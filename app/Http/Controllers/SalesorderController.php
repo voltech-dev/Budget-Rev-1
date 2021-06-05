@@ -8,7 +8,7 @@ use App\Models\Collection;
 use App\Models\company;
 use App\Models\division;
 use App\Models\unit;
-use App\Models\sub_sales;
+use App\Models\sales_sub;
 use App\Models\financial_year;
 use App\Models\turnover_target;
 use App\Models\collection_target;
@@ -27,7 +27,7 @@ class SalesorderController extends Controller
     }
     public function salesorderlist(){
         $sales = DB::table('sales')
-                    ->join('company','sales.Company_name', '=', 'company.id')
+                    ->join('company','sales.Company_id', '=', 'company.id')
                     ->join('unit','sales.unit_id','=','unit.id')
                     ->select('company.*', 'unit.*','sales.*')
                     ->get();
@@ -52,7 +52,8 @@ class SalesorderController extends Controller
                 $financialyear=financial_year::all();
                 $sales=Sale::findorfail($id);                
                 return view('salesorder.sales_view',['unit'=>$unit,'company'=>$company,'sales'=>$sales,'financialyear'=>$financialyear,'target'=>$target]);
-    }  
+    }
+
     public function salesupdate(Request $request,$id)
     {  
         $sales=Sale::findorfail($id);
@@ -62,50 +63,59 @@ class SalesorderController extends Controller
             $target->save();
         }
     }
+
     public function store(Request $request)
     {   
        # echo "hi";exit;
-       #echo "<pre>";print_r($request);echo "</pre>";exit;
+        #echo "<pre>";print_r($request);echo "</pre>";exit;
         $sale = new Sale();
-        $sale->Company_name = $request->company_name;
+        
+        $sale->company_id = $request->company_name;
         $sale->unit_id = $request->unit;
         $sale->financial_year_id = $request->financial_year;
-        $sale->total_target=$request->total_target;
+        #$sale->target_total=$request->total_target;
         $sale->aprtarget_total=$request->aprtarget_total;
         $sale->maytarget_total=$request->maytarget_total;
         $sale->juntarget_total=$request->juntarget_total;
         $sale->jultarget_total=$request->jultarget_total;
-        $sale->augtarget_total=$request->augarget_total; 
-        $sale->septarget_total=$request->separget_total;
+        $sale->augtarget_total=$request->augtarget_total; 
+        $sale->septarget_total=$request->septarget_total;
         $sale->octtarget_total=$request->octtarget_total;
         $sale->novtarget_total=$request->novtarget_total;
         $sale->dectarget_total=$request->dectarget_total;
         $sale->jantarget_total=$request->jantarget_total;
         $sale->febtarget_total=$request->febtarget_total;
         $sale->martarget_total=$request->martarget_total;
-        $sale->target_total=$request->divtarget_total;
-        $sale->actual_total=$request->divactual_total;
-
-        if($sale->save()){
-            foreach($request->apr_target as $key=>$val){
-                $target = new sales_sub();
-                $target->sale_id = $sale->id;
-                $target->division=$request->div[$key];
-                $target->apr_target = $request->apr_target[$key];
-                $target->may_target = $request->may_target[$key];
-                $target->jun_target = $request->jun_target[$key];
-                $target->jul_target = $request->jul_target[$key];
-                $target->aug_target = $request->aug_target[$key];
-                $target->sep_target = $request->sep_target[$key];
-                $target->oct_target = $request->oct_target[$key];
-                $target->nov_target = $request->nov_target[$key];
-                $target->dec_target = $request->dec_target[$key];
-                $target->jan_target = $request->jan_target[$key];
-                $target->feb_target = $request->feb_target[$key];
-                $target->mar_target = $request->mar_target[$key];
-                $target->total_target=$request->divtarget_total[$key];
-                $target->save();
+        $sale->target_total=$request->finaltarget;
+        $sale->actual_total=$request->finalactual;
+        
+        $totalrow   =   $request->totalrow;
+        #echo $totalrow;
+        #exit; 
+        if($sale->save()){  
+                
+            for($i=0;$i<$totalrow;$i++){
+                   
+                    $sales_sub = new sales_sub();
+                    $sales_sub->sale_id = $sale->id;
+                    $sales_sub->division_id=$request->div[$i];                   
+                    $sales_sub->apr_target = $request->apr_target[$i];
+                    $sales_sub->may_target = $request->may_target[$i];
+                    $sales_sub->jun_target = $request->jun_target[$i];
+                    $sales_sub->jul_target = $request->jul_target[$i];
+                    $sales_sub->aug_target = $request->aug_target[$i];
+                    $sales_sub->sep_target = $request->sep_target[$i];
+                    $sales_sub->oct_target = $request->oct_target[$i];
+                    $sales_sub->nov_target = $request->nov_target[$i];
+                    $sales_sub->dec_target = $request->dec_target[$i];
+                    $sales_sub->jan_target = $request->jan_target[$i];
+                    $sales_sub->feb_target = $request->feb_target[$i];
+                    $sales_sub->mar_target = $request->mar_target[$i];
+                    $sales_sub->target_total = $request->divtarget_total[$i];
+                    $sales_sub->save();
                 }
+                return view('salesorder.salesorderlist',['sales'=>$sale]);
+
         } 
         
     }
@@ -132,6 +142,7 @@ class SalesorderController extends Controller
         $post = $request->all();
         $json = array();
         $div = division::where(['unit_id' => $post['unit']])->get();
+        
         foreach ($div as $d) {
             $json[$d->id] = $d->division_name;
         }

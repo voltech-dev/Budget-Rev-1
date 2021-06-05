@@ -57,7 +57,7 @@ $fin_year=DB::table('financial_year')
                             <select name="financial_year" class="form-control form-control-sm" id="financial_year">
                                 <option selected disabled>--Select--</option>
                                 @foreach($fin_year as $fy)
-                                <option value="{{$fy->financial_year}}">{{$fy->financial_year}}</option>
+                                <option value="{{$fy->id}}">{{$fy->financial_year}}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -211,13 +211,14 @@ $('#add').click(function() {
             
             
             var i = 0;
+            var k = 0;
             $.each(data, function(key, value) {
-                
+                alert("key: "+key);
                 i = i + 1;
                 $('tbody[name="sub_sales"]').append('<tr class="newrow">' +
                     '<td>' +
-                    '<input type="hidden"  style="width:60px" name="div[]" id="div" value="' +
-                    value +
+                    '<input type="hidden"  style="width:60px" name="div[]" id="div_' + i + '" value="' +
+                    key +
                     '">' + value + '</td>' + 
 
                     '<td class="apt">' +
@@ -303,15 +304,15 @@ $('#add').click(function() {
                     '</td>' +
                     '</tr>');
 
+                    k = k + 1;
+
             });
             var totalrow = i;
             
             $('tbody[name="sub_sales"]').append(
                 '<tr>' + '<td>' + 'Total' + '</td>' + '<td>' +
                 
-                '<input type="text" style="width:60px" name="aprtarget_total" id="aprtarget_total" ><input type="hidden"  style="width:60px" name="totalrow[]" id="totalrow" value="' +
-                    totalrow +
-                    '">' +
+                '<input type="text" style="width:60px" name="aprtarget_total" id="aprtarget_total" ><input type="hidden" style="width:60px" name="totalrow" id="totalrow" value="' + totalrow +'">' +
                 '</td>' + '<td>' +
                 '<input type="text" style="width:60px" name="apractual_total" id="apractual_total" disabled>' +
                 '<td>' +

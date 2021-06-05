@@ -51,8 +51,8 @@
                                 <td>{{$i++}}</td>
                                 <td><a href="{{url('/sales_view/'.$sale->id.'/'.$sale->unit_id)}}">{{$sale->company_name}}</td>
                                 <td>{{$sale->unit}}</td>
-                                <td>{{$sale->financial_year}}</td>
-                                <td>{{$sale->total_target}}</td>
+                                <td>{{$sale->financial_year_id}}</td>
+                                <td>{{$sale->target_total}}</td>
                                 <td></td>
                                 <td class="text-center">
                                     <a href="{{ url('/sales_edit/'.$sale->id.'/'.$sale->unit_id) }}"

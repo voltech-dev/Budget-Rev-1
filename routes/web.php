@@ -20,7 +20,7 @@ Route::get('/salesorder', [SalesorderController::class, 'salesorder'])->name('/s
 Route::post('/salesorder', [SalesorderController::class, 'store']);
 Route::get('/sales_edit/{id}/{unit}',[SalesorderController::class, 'sales_edit']);
 Route::post('/salesupdate/{id}',[SalesorderController::class, 'salesupdate']);
-Route::get('/sales_view/{id}/{unit}',[App\Http\Controllers\SalesorderController::class, 'sales_view']);
+Route::get('/sales_view/{id}/{unit}',[SalesorderController::class, 'sales_view']);
 
 Route::get('/turnoverlist', [SalesorderController::class, 'turnoverlist']);
 Route::get('/turnover/', [SalesorderController::class, 'turnover'])->name('/turnover');

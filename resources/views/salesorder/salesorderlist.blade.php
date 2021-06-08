@@ -47,11 +47,13 @@
                         </thead>
                         <tbody><?php $i=0; $i++; ?>
                             @foreach($sales as $sale)
+
                             <tr>
                                 <td>{{$i++}}</td>
-                                <td><a href="{{url('/sales_view/'.$sale->id.'/'.$sale->unit_id)}}">{{$sale->company_name}}</td>
-                                <td>{{$sale->unit}}</td>
-                                <td>{{$sale->financial_year_id}}</td>
+                                <td><a href="{{url('/sales_view/'.$sale->id.'/'.$sale->unit_id) }}">{{$sale->company->company_name}}
+                                </td>
+                                <td>{{$sale->unit->unit}}</td>
+                                <td>{{$sale->year->financial_year}}</td>
                                 <td>{{$sale->target_total}}</td>
                                 <td></td>
                                 <td class="text-center">

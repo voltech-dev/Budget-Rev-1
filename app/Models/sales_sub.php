@@ -13,4 +13,7 @@ class sales_sub extends Model
     public function sales(){
         return $this->hasOne(Sale::class);
     }
+    public function division(){
+        return $this->hasOne(division::class,'id','division_id');
+    }
 }

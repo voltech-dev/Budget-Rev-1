@@ -1,9 +1,6 @@
 @extends('layouts.main')
 @section('header')
-<?php
-$company=DB::table('company')
-->get();
-?>
+
 <!-- begin::page-header -->
 <div class="card-header">
     <h3>Salesorder</h3>
@@ -40,13 +37,13 @@ $company=DB::table('company')
                         <select name="company_name" class="form-control form-control-sm" id="company_name" disabled>
                             <option selected>--Select Company--</option>
                             @foreach($company as $comp)
-                            <option value="{{ $comp->id }}"
-                                {{ ( $comp->id == $sales->Company_name) ? 'selected' : '' }}>
+                            <option value="{{ $comp->id }}" {{ ( $comp->id == $sales->company_id) ? 'selected' : '' }}>
                                 {{ $comp->company_name }}
                             </option>
                             @endforeach
                         </select>
                     </div>
+
                     <label class="col-sm-3 col-form-label col-form-label-sm">Unit</label>
                     <div class="col-sm-3">
                         <select name="unit" class="form-control form-control-sm" id="unit" disabled>
@@ -66,7 +63,8 @@ $company=DB::table('company')
                         <select name="financial_year" class="form-control form-control-sm" id="financial_year" disabled>
                             <option selected>--Select--</option>
                             @foreach($financialyear as $fy)
-                            <option value="{{$fy->id}}" {{($fy->financial_year==$sales->financial_year)?'selected':''}}>
+                            <option value="{{$fy->id}}"
+                                {{($fy->financial_year==$sales->financial_year_id)?'selected':''}}>
                                 {{$fy->financial_year}}</option>
                             @endforeach
                         </select>
@@ -130,63 +128,61 @@ $company=DB::table('company')
                                 <tbody name='abc' id='abc'>
                                     @foreach($target as $tg)
                                     <tr>
-                                        <td> <input type="hidden" value="" style="width:50px" 
-                                                {{($tg->sale_id==$sales->id)}}>{{$tg->division}}
+                                        <td><input type="hidden" name="id[]"
+                                                style="width:60px">{{$tg->division->division_name}}</td>
+
+                                        <td><input type="text" value="{{$tg->apr_target}}" style="width:60px" readonly>
                                         </td>
-                                        <td><input type="text" value="{{$tg->apr_target}}" style="width:60px" readonly
-                                                {{$tg->sale_id=$sales->id}}> </td>
-                                        <td><input type="text" value="{{$tg->apr_actual}}" style="width:60px" disabled
-                                                {{$tg->sale_id=$sales->id}}></td>
-                                        <td><input type="text" value="{{$tg->may_target}}" style="width:60px" readonly
-                                                {{$tg->sale_id=$sales->id}}></td>
-                                        <td><input type="text" value="{{$tg->may_actual}}" style="width:60px" disabled
-                                                {{$tg->sale_id=$sales->id}}></td>
-                                        <td><input type="text" value="{{$tg->june_target}}" style="width:60px" readonly
-                                                {{$tg->sale_id=$sales->id}}></td>
-                                        <td><input type="text" value="{{$tg->june_actual}}" style="width:60px" disabled
-                                                {{$tg->sale_id=$sales->id}}></td>
-                                        <td><input type="text" value="{{$tg->july_target}}" style="width:60px" readonly
-                                                {{$tg->sale_id=$sales->id}}></td>
-                                        <td><input type="text" value="{{$tg->july_actual}}" style="width:60px" disabled
-                                                {{$tg->sale_id=$sales->id}}></td>
+                                        <td><input type="text" value="{{$tg->apr_actual}}" style="width:60px" disabled>
                                         </td>
-                                        <td><input type="text" value="{{$tg->aug_target}}" style="width:60px" readonly
-                                                {{$tg->sale_id=$sales->id}}></td>
+                                        <td><input type="text" value="{{$tg->may_target}}" style="width:60px" readonly>
                                         </td>
-                                        <td><input type="text" value="{{$tg->aug_actual}}" style="width:60px" disabled
-                                                {{$tg->sale_id=$sales->id}}></td>
-                                        <td><input type="text" value="{{$tg->sept_target}}" style="width:60px" readonly
-                                                {{$tg->sale_id=$sales->id}}></td>
-                                        <td><input type="text" value="{{$tg->sept_actual}}" style="width:60px" disabled
-                                                {{$tg->sale_id=$sales->id}}></td>
-                                        <td><input type="text" value="{{$tg->oct_target}}" style="width:60px" readonly
-                                                {{$tg->sale_id=$sales->id}}></td>
-                                        <td><input type="text" value="{{$tg->oct_actual}}" style="width:60px" disabled
-                                                {{$tg->sale_id=$sales->id}}></td>
-                                        <td><input type="text" value="{{$tg->nov_target}}" style="width:60px" readonly
-                                                {{$tg->sale_id=$sales->id}}></td>
-                                        <td><input type="text" value="{{$tg->nov_actual}}" style="width:60px" disabled
-                                                {{$tg->sale_id=$sales->id}}></td>
-                                        <td><input type="text" value="{{$tg->dec_target}}" style="width:60px" readonly
-                                                {{$tg->sale_id=$sales->id}}></td>
-                                        <td><input type="text" value="{{$tg->dec_actual}}" style="width:60px" disabled
-                                                {{$tg->sale_id=$sales->id}}></td>
-                                        <td><input type="text" value="{{$tg->jan_target}}" style="width:60px" readonly
-                                                {{$tg->sale_id=$sales->id}}></td>
-                                        <td><input type="text" value="{{$tg->jan_actual}}" style="width:60px" disabled
-                                                {{$tg->sale_id=$sales->id}}></td>
-                                        <td><input type="text" value="{{$tg->feb_actual}}" style="width:60px" readonly
-                                                {{$tg->sale_id=$sales->id}}></td>
-                                        <td><input type="text" value="{{$tg->feb_target}}" style="width:60px" disabled
-                                                {{$tg->sale_id=$sales->id}}></td>
-                                        <td><input type="text" value="{{$tg->march_target}}" style="width:60px" readonly
-                                                {{$tg->sale_id=$sales->id}}></td>
-                                        <td><input type="text" value="{{$tg->march_actual}}" style="width:60px" disabled
-                                                {{$tg->sale_id=$sales->id}}></td>
-                                        <td><input type="text" value="{{$tg->divtarget_total}}" style="width:60px"
-                                                disabled {{$tg->sale_id=$sales->id}}></td>
-                                        <td><input type="text" value="{{$tg->divactual_total}}" style="width:60px"
-                                                disabled {{$tg->sale_id=$sales->id}}></td>
+                                        <td><input type="text" value="{{$tg->may_actual}}" style="width:60px" disabled>
+                                        </td>
+                                        <td><input type="text" value="{{$tg->jun_target}}" style="width:60px" readonly>
+                                        </td>
+                                        <td><input type="text" value="{{$tg->jun_actual}}" style="width:60px" disabled>
+                                        </td>
+                                        <td><input type="text" value="{{$tg->jul_target}}" style="width:60px" readonly>
+                                        </td>
+                                        <td><input type="text" value="{{$tg->jul_actual}}" style="width:60px" disabled>
+                                        </td>
+                                        </td>
+                                        <td><input type="text" value="{{$tg->aug_target}}" style="width:60px" readonly>
+                                        </td>
+                                        </td>
+                                        <td><input type="text" value="{{$tg->aug_actual}}" style="width:60px" disabled>
+                                        </td>
+                                        <td><input type="text" value="{{$tg->sep_target}}" style="width:60px" readonly>
+                                        </td>
+                                        <td><input type="text" value="{{$tg->sep_actual}}" style="width:60px" disabled>
+                                        </td>
+                                        <td><input type="text" value="{{$tg->oct_target}}" style="width:60px" readonly>
+                                        </td>
+                                        <td><input type="text" value="{{$tg->oct_actual}}" style="width:60px" disabled>
+                                        </td>
+                                        <td><input type="text" value="{{$tg->nov_target}}" style="width:60px" readonly>
+                                        </td>
+                                        <td><input type="text" value="{{$tg->nov_actual}}" style="width:60px" disabled>
+                                        </td>
+                                        <td><input type="text" value="{{$tg->dec_target}}" style="width:60px" readonly>
+                                        </td>
+                                        <td><input type="text" value="{{$tg->dec_actual}}" style="width:60px" disabled>
+                                        </td>
+                                        <td><input type="text" value="{{$tg->jan_target}}" style="width:60px" readonly>
+                                        </td>
+                                        <td><input type="text" value="{{$tg->jan_actual}}" style="width:60px" disabled>
+                                        </td>
+                                        <td><input type="text" value="{{$tg->feb_target}}" style="width:60px" readonly>
+                                        </td>
+                                        <td><input type="text" value="{{$tg->feb_actual}}" style="width:60px" disabled>
+                                        </td>
+                                        <td><input type="text" value="{{$tg->mar_target}}" style="width:60px" readonly>
+                                        </td>
+                                        <td><input type="text" value="{{$tg->mar_actual}}" style="width:60px" disabled>
+                                        </td>
+                                        <td><input type="text" value="{{$tg->target_total}}" style="width:60px" readonly></td>
+                                        <td><input type="text" value="{{$tg->actual_total}}" style="width:60px" disabled></td>
 
 
                                         @endforeach
@@ -201,13 +197,13 @@ $company=DB::table('company')
                                         </td>
                                         <td><input type="text" style="width:60px" value="{{$sales->mayactual_total}}">
                                         </td>
-                                        <td><input type="text" style="width:60px" value="{{$sales->junetarget_total}}">
+                                        <td><input type="text" style="width:60px" value="{{$sales->juntarget_total}}">
                                         </td>
-                                        <td><input type="text" style="width:60px" value="{{$sales->juneactual_total}}">
+                                        <td><input type="text" style="width:60px" value="{{$sales->junactual_total}}">
                                         </td>
-                                        <td><input type="text" style="width:60px" value="{{$sales->julytarget_total}}">
+                                        <td><input type="text" style="width:60px" value="{{$sales->jultarget_total}}">
                                         </td>
-                                        <td><input type="text" style="width:60px" value="{{$sales->julyactual_total}}">
+                                        <td><input type="text" style="width:60px" value="{{$sales->julactual_total}}">
                                         </td>
 
                                         <td><input type="text" style="width:60px" value="{{$sales->augtarget_total}}">
@@ -238,9 +234,9 @@ $company=DB::table('company')
                                         </td>
                                         <td><input type="text" style="width:60px" value="{{$sales->febactual_total}}">
                                         </td>
-                                        <td><input type="text" style="width:60px" value="{{$sales->marchtarget_total}}">
+                                        <td><input type="text" style="width:60px" value="{{$sales->martarget_total}}">
                                         </td>
-                                        <td><input type="text" style="width:60px" value="{{$sales->marchactual_total}}">
+                                        <td><input type="text" style="width:60px" value="{{$sales->maractual_total}}">
                                         </td>
                                         <td><input type="text" style="width:60px" value="{{$sales->divtarget_total}}">
                                         </td>
@@ -260,14 +256,14 @@ $company=DB::table('company')
                                 </div>
                                 <div class="col-sm-3">
                                     <input type="text" name="total_target" id="total_target"
-                                        value="{{$sales->total_target}}">
+                                        value="{{$sales->target_total}}">
                                 </div>
                                 <div class="col-sm-3">
                                     <label>Total Actual</label>
                                 </div>
                                 <div class="col-sm-3">
                                     <input type="text" name="total_actual" id="total_actual"
-                                        value="{{$sales->total_actual}}">
+                                        value="{{$sales->actual_total}}">
                                 </div>
 
                             </div>

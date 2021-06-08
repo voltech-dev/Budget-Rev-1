@@ -213,7 +213,7 @@ $('#add').click(function() {
             var i = 0;
             var k = 0;
             $.each(data, function(key, value) {
-                alert("key: "+key);
+                
                 i = i + 1;
                 $('tbody[name="sub_sales"]').append('<tr class="newrow">' +
                     '<td>' +
@@ -535,7 +535,7 @@ $(document).on('keyup','.target',function(){
         }
 
         if(!isNaN(sep_target_clmnval) && sep_target_clmnval != ''){
-            sep_target_clmnval  =   _clmnval;
+            sep_target_clmnval  =   sep_target_clmnval;
         }else{
             sep_target_clmnval  =   0;
         }
@@ -587,7 +587,8 @@ $(document).on('keyup','.target',function(){
         dec_target_clm  = (parseFloat(dec_target_clm) + parseFloat(dec_target_clmnval)).toFixed(2);
         jan_target_clm  = (parseFloat(jan_target_clm) + parseFloat(jan_target_clmnval)).toFixed(2);
         feb_target_clm  = (parseFloat(feb_target_clm) + parseFloat(feb_target_clmnval)).toFixed(2);
-        mar_target_clm  = (parseFloat(mar_target_clm) + parseFloat(mar_target_clmnval)).toFixed(2);        
+        mar_target_clm  = (parseFloat(mar_target_clm) + parseFloat(mar_target_clmnval)).toFixed(2);  
+        console.log(sep_target_clm);      
     }
 
     $("#aprtarget_total").val((parseFloat(apr_target_clm)).toFixed(2));
@@ -612,6 +613,7 @@ $(document).on('keyup','.target',function(){
 
 $('#unit').change(function() {
     $('#tab').hide();
+    $('#sub_sales tr').remove();
 });
 
 </script>

@@ -27,7 +27,7 @@
 </div>
 @endif
 <form action="{{url('/salesupdate/'.$sales->id)}}" method="POST">
-@csrf
+    @csrf
     <div class="row">
         <div class="col-md-12">
 
@@ -126,199 +126,301 @@
                                 </thead>
                                 <tbody name='abc' id='abc'>
                                     <?php $i=0;$k=0;?>
-                                    @foreach($target as $tg)
-                                    <?php $i=$i+1;$k=$k+1;?>
-                                    <input type="hidden" name="id[]" value="{{$tg->id}}">
-                                    <tr> 
-                                      
+                                    @foreach ($target as $tg)
+                                    <?php $i=$i+1;?>
+                                    <input type="hidden" value="{{$tg->sale_id}}" name="saleid[]">
+                                    <input type="hidden" value="{{$tg->id}}" name="id[]">
+
+                                    <tr>
                                         <td>{{$tg->division->division_name}}</td>
-
-                                        <td><input type="text" value="{{$tg->apr_target}}" style="width:60px" disabled>
+                                        <td><input type="text" style="width:60px;" value="{{$tg->apr_target}}" disabled>
                                         </td>
-                                        <td><input type="text" style="width:60px" name="apr_actual[]"
-                                                id="apr_actual_<?php echo $i;?>"
-                                                class="actual actual_<?php echo $i;?> apr_actual">
+                                        @if(empty($tg->apr_actual))
+                                        <td><input type="text" style="width: 60px;" id="apr_actual_<?php echo $i;?>"
+                                                class="actual actual_<?php echo $i;?> apr_actual" name="apr_actual[]">
                                         </td>
-                                        <td><input type="text" value="{{$tg->may_target}}" style="width:60px" disabled>
+                                        @else
+                                        <td><input type="text" style="width:60px;" value="{{$tg->apr_actual}}" disabled>
                                         </td>
-                                        <td><input type="text" style="width:60px" name="may_actual[]"
-                                                id="may_actual_<?php echo $i;?>"
-                                                class="actual actual_<?php echo $i;?> may_actual">
+                                        @endif
+                                        <td><input type="text" style="width:60px;" value="{{$tg->may_target}}" disabled>
                                         </td>
-                                        <td><input type="text" value="{{$tg->jun_target}}" style="width:60px" disabled>
+                                        @if(empty($tg->may_actual))
+                                        <td><input type="text" style="width: 60px;" id="may_actual_<?php echo $i;?>"
+                                                class="actual actual_<?php echo $i;?> may_actual" name="may_actual[]">
                                         </td>
-                                        <td><input type="text" style="width:60px" name="jun_actual[]"
-                                                id="jun_actual_<?php echo $i;?>"
-                                                class="actual actual_<?php echo $i;?> jun_actual">
+                                        @else
+                                        <td><input type="text" style="width:60px;" value="{{$tg->may_actual}}" disabled>
                                         </td>
-                                        <td><input type="text" value="{{$tg->jul_target}}" style="width:60px" disabled>
+                                        @endif
+                                        <td><input type="text" style="width:60px;" value="{{$tg->jun_target}}" disabled>
                                         </td>
-                                        <td><input type="text" style="width:60px" name="jul_actual[]"
-                                                id="jul_actual_<?php echo $i;?>"
-                                                class="actual actual_<?php echo $i;?> jul_actual">
+                                        @if(empty($tg->jun_actual))
+                                        <td><input type="text" style="width: 60px;" id="jun_actual_<?php echo $i;?>"
+                                                class="actual actual_<?php echo $i;?> jun_actual" name="jun_actual[]">
                                         </td>
+                                        @else
+                                        <td><input type="text" style="width:60px;" value="{{$tg->jun_actual}}" disabled>
                                         </td>
-                                        <td><input type="text" value="{{$tg->aug_target}}" style="width:60px" disabled>
+                                        @endif
+                                        <td><input type="text" style="width:60px;" value="{{$tg->jul_target}}" disabled>
                                         </td>
+                                        @if(empty($tg->jul_actual))
+                                        <td><input type="text" style="width: 60px;" id="jul_actual_<?php echo $i;?>"
+                                                class="actual actual_<?php echo $i;?> jul_actual" name="jul_actual[]">
                                         </td>
-                                        <td><input type="text" style="width:60px" name="aug_actual[]"
-                                                id="aug_actual_<?php echo $i;?>"
-                                                class="actual actual_<?php echo $i;?> aug_actual">
+                                        @else
+                                        <td><input type="text" style="width:60px;" value="{{$tg->jul_actual}}" disabled>
                                         </td>
-                                        <td><input type="text" value="{{$tg->sep_target}}" style="width:60px" disabled>
+                                        @endif
+                                        <td><input type="text" style="width:60px;" value="{{$tg->aug_target}}" disabled>
                                         </td>
-                                        <td><input type="text" style="width:60px" name="sep_actual[]"
-                                                id="sep_actual_<?php echo $i;?>"
-                                                class="actual actual_<?php echo $i;?> sep_actual">
+                                        @if(empty($tg->aug_actual))
+                                        <td><input type="text" style="width: 60px;" id="aug_actual_<?php echo $i;?>"
+                                                class="actual actual_<?php echo $i;?> aug_actual" name="aug_actual[]">
                                         </td>
-                                        <td><input type="text" value="{{$tg->oct_target}}" style="width:60px" disabled>
+                                        @else
+                                        <td><input type="text" style="width:60px;" value="{{$tg->aug_actual}}" disabled>
                                         </td>
-                                        <td><input type="text" style="width:60px" name="oct_actual[]"
-                                                id="oct_actual_<?php echo $i;?>"
-                                                class="actual actual_<?php echo $i;?> oct_actual">
+                                        @endif
+                                        <td><input type="text" style="width:60px;" value="{{$tg->sep_target}}" disabled>
                                         </td>
-                                        <td><input type="text" value="{{$tg->nov_target}}" style="width:60px" disabled>
+                                        @if(empty($tg->sep_actual))
+                                        <td><input type="text" style="width: 60px;" id="sep_actual_<?php echo $i;?>"
+                                                class="actual actual_<?php echo $i;?> sep_actual" name="sep_actual[]">
                                         </td>
-                                        <td><input type="text" style="width:60px" name="nov_actual[]"
-                                                id="nov_actual_<?php echo $i;?>"
-                                                class="actual actual_<?php echo $i;?> nov_actual">
+                                        @else
+                                        <td><input type="text" style="width:60px;" value="{{$tg->sep_actual}}" disabled>
                                         </td>
-                                        <td><input type="text" value="{{$tg->dec_target}}" style="width:60px" disabled>
+                                        @endif
+                                        <td><input type="text" style="width:60px;" value="{{$tg->oct_target}}" disabled>
                                         </td>
-                                        <td><input type="text" style="width:60px" name="dec_actual[]"
-                                                id="dec_actual_<?php echo $i;?>"
-                                                class="actual actual_<?php echo $i;?> dec_actual">
+                                        @if(empty($tg->oct_actual))
+                                        <td><input type="text" style="width: 60px;" id="oct_actual_<?php echo $i;?>"
+                                                class="actual actual_<?php echo $i;?> oct_actual" name="oct_actual[]">
                                         </td>
-                                        <td><input type="text" value="{{$tg->jan_target}}" style="width:60px" disabled>
+                                        @else
+                                        <td><input type="text" style="width:60px;" value="{{$tg->oct_actual}}" disabled>
                                         </td>
-                                        <td><input type="text" style="width:60px" name="jan_actual[]"
-                                                id="jan_actual_<?php echo $i;?>"
-                                                class="actual actual_<?php echo $i;?> jan_actual">
+                                        @endif
+                                        <td><input type="text" style="width:60px;" value="{{$tg->nov_target}}" disabled>
                                         </td>
-                                        <td><input type="text" value="{{$tg->feb_target}}" style="width:60px" disabled>
+                                        @if(empty($tg->nov_actual))
+                                        <td><input type="text" style="width: 60px;" id="nov_actual_<?php echo $i;?>"
+                                                class="actual actual_<?php echo $i;?> nov_actual" name="nov_actual[]">
                                         </td>
-                                        <td><input type="text" style="width:60px" name="feb_actual[]"
-                                                id="feb_actual_<?php echo $i;?>"
-                                                class="actual actual_<?php echo $i;?> feb_actual">
+                                        @else
+                                        <td><input type="text" style="width:60px;" value="{{$tg->nov_actual}}" disabled>
                                         </td>
-                                        <td><input type="text" value="{{$tg->mar_target}}" style="width:60px" disabled>
+                                        @endif
+                                        <td><input type="text" style="width:60px;" value="{{$tg->dec_target}}" disabled>
                                         </td>
-                                        <td><input type="text" style="width:60px" name="mar_actual[]"
-                                                id="mar_actual_<?php echo $i;?>"
-                                                class="actual actual_<?php echo $i;?> mar_actual">
+                                        @if(empty($tg->dec_actual))
+                                        <td><input type="text" style="width: 60px;" id="dec_actual_<?php echo $i;?>"
+                                                class="actual actual_<?php echo $i;?> dec_actual" name="dec_actual[]">
                                         </td>
-                                        <td><input type="text" value="{{$tg->target_total}}" style="width:60px"
+                                        @else
+                                        <td><input type="text" style="width:60px;" value="{{$tg->dec_actual}}" disabled>
+                                        </td>
+                                        @endif
+                                        <td><input type="text" style="width:60px;" value="{{$tg->jan_target}}" disabled>
+                                        </td>
+                                        @if(empty($tg->jan_actual))
+                                        <td><input type="text" style="width: 60px;" id="jan_actual_<?php echo $i;?>"
+                                                class="actual actual_<?php echo $i;?> jan_actual" name="jan_actual[]">
+                                        </td>
+                                        @else
+                                        <td><input type="text" style="width:60px;" value="{{$tg->jan_actual}}" disabled>
+                                        </td>
+                                        @endif
+                                        <td><input type="text" style="width:60px;" value="{{$tg->feb_target}}" disabled>
+                                        </td>
+                                        @if(empty($tg->feb_actual))
+                                        <td><input type="text" style="width: 60px;" id="feb_actual_<?php echo $i;?>"
+                                                class="actual actual_<?php echo $i;?> feb_actual" name="feb_actual[]">
+                                        </td>
+                                        @else
+                                        <td><input type="text" style="width:60px;" value="{{$tg->feb_actual}}" disabled>
+                                        </td>
+                                        @endif
+                                        <td><input type="text" style="width:60px;" value="{{$tg->mar_target}}" disabled>
+                                        </td>
+                                        @if(empty($tg->mar_actual))
+                                        <td><input type="text" style="width: 60px;" id="mar_actual_<?php echo $i;?>"
+                                                class="actual actual_<?php echo $i;?> mar_actual" name="mar_actual[]">
+                                        </td>
+                                        @else
+                                        <td><input type="text" style="width:60px;" value="{{$tg->mar_actual}}" disabled>
+                                        </td>
+                                        @endif
+                                        <td><input type="text" style="width:60px;" value="{{$tg->target_total}}"
                                                 disabled></td>
-                                        <td><input type="text" value="" style="width:60px" name="actual_total[]"
-                                                id="actual_total_<?php echo $i;?>"></td>
+                                        @if(empty($tg->actual_total))
+                                        <td><input type="text" style="width:60px;" id="actual_total_<?php echo $i;?>"
+                                                name="actual_total[]"></td>
+                                        @else
+                                        <td><input type="text" style="width:60px;" value="{{$tg->actual_total}}"
+                                                disabled></td>
+                                        @endif
 
-
-                                        @endforeach
                                     </tr>
+                                    <?php $k=$k+1;?>
+                                    @endforeach
+
                                     <?php $totalrow=$i;?>
+
                                     <tr>
                                         <td>Total</td>
                                         <td><input type="text" style="width:60px" value="{{$sales->aprtarget_total}}"
                                                 disabled>
                                         </td>
+                                        @if(empty($sales->apractual_total))
                                         <td><input type="text" style="width:60px" name="apractual_total"
                                                 id="apractual_total"><input type="hidden" style="width:60px"
                                                 name="totalrow" id="totalrow" value="<?php echo $i;?>">
 
                                         </td>
+                                        @else
+                                        <td><input type="text" style="width:60px;" value="{{$sales->apractual_total}}"
+                                                disabled></td>
+                                        @endif
 
                                         <td><input type="text" style="width:60px" value="{{$sales->maytarget_total}}"
                                                 disabled>
                                         </td>
+                                        @if(empty($sales->mayactual_total))
                                         <td><input type="text" style="width:60px" name="mayactual_total"
-                                                id="mayactual_total"><input type="hidden" style="width:60px"
-                                                name="totalrow" id="totalrow" value="<?php echo $i;?>">
+                                                id="mayactual_total">
 
                                         </td>
+                                        @else
+                                        <td><input type="text" style="width:60px;" value="{{$sales->mayactual_total}}"
+                                                disabled></td>
+                                        @endif
                                         <td><input type="text" style="width:60px" value="{{$sales->juntarget_total}}"
                                                 disabled>
                                         </td>
+                                        @if(empty($sales->junactual_total))
                                         <td><input type="text" style="width:60px" name="junactual_total"
-                                                id="junactual_total"><input type="hidden" style="width:60px"
-                                                name="totalrow" id="totalrow" value="<?php echo $i;?>">
+                                                id="junactual_total">
                                         </td>
+                                        @else
+                                        <td><input type="text" style="width:60px;" value="{{$sales->junactual_total}}"
+                                                disabled></td>
+                                        @endif
                                         <td><input type="text" style="width:60px" value="{{$sales->jultarget_total}}"
                                                 disabled>
                                         </td>
+                                        @if(empty($sales->julactual_total))
                                         <td><input type="text" style="width:60px" name="julactual_total"
-                                                id="julactual_total"><input type="hidden" style="width:60px"
-                                                name="totalrow" id="totalrow" value="<?php echo $i;?>">
+                                                id="julactual_total">
+                                            @else
+                                        <td><input type="text" style="width:60px;" value="{{$sales->julactual_total}}"
+                                                disabled></td>
+                                        @endif
 
                                         </td>
 
                                         <td><input type="text" style="width:60px" value="{{$sales->augtarget_total}}"
                                                 disabled>
                                         </td>
+                                        @if(empty($sales->augactual_total))
                                         <td><input type="text" style="width:60px" name="augactual_total"
-                                                id="augactual_total"><input type="hidden" style="width:60px"
-                                                name="totalrow" id="totalrow" value="<?php echo $i;?>">
-                                        </td>
+                                                id="augactual_total"> </td>
+                                        @else
+                                        <td><input type="text" style="width:60px;" value="{{$sales->augactual_total}}"
+                                                disabled></td>
+                                        @endif
                                         <td><input type="text" style="width:60px" value="{{$sales->septarget_total}}"
                                                 disabled>
                                         </td>
+                                        @if(empty($sales->sepactual_total))
                                         <td><input type="text" style="width:60px" name="sepactual_total"
-                                                id="sepactual_total"><input type="hidden" style="width:60px"
-                                                name="totalrow" id="totalrow" value="<?php echo $i;?>">
+                                                id="sepactual_total">
 
                                         </td>
+                                        @else
+                                        <td><input type="text" style="width:60px;" value="{{$sales->sepactual_total}}"
+                                                disabled></td>
+                                        @endif
                                         <td><input type="text" style="width:60px" value="{{$sales->octtarget_total}}"
                                                 disabled>
                                         </td>
+                                        @if(empty($sales->octactual_total))
                                         <td><input type="text" style="width:60px" name="octactual_total"
-                                                id="octactual_total"><input type="hidden" style="width:60px"
-                                                name="totalrow" id="totalrow" value="<?php echo $i;?>">
+                                                id="octactual_total">
 
                                         </td>
+                                        @else
+                                        <td><input type="text" style="width:60px;" value="{{$sales->octactual_total}}"
+                                                disabled></td>
+                                        @endif
                                         <td><input type="text" style="width:60px" value="{{$sales->novtarget_total}}"
                                                 disabled>
                                         </td>
+                                        @if(empty($sales->novactual_total))
                                         <td><input type="text" style="width:60px" name="novactual_total"
-                                                id="novactual_total"><input type="hidden" style="width:60px"
-                                                name="totalrow" id="totalrow" value="<?php echo $i;?>">
-
+                                                id="novactual_total">
                                         </td>
+                                        @else
+                                        <td><input type="text" style="width:60px;" value="{{$sales->novactual_total}}"
+                                                disabled></td>
+                                        @endif
                                         <td><input type="text" style="width:60px" value="{{$sales->dectarget_total}}"
                                                 disabled>
                                         </td>
+                                        @if(empty($sales->decactual_total))
                                         <td><input type="text" style="width:60px" name="decactual_total"
-                                                id="decactual_total"><input type="hidden" style="width:60px"
-                                                name="totalrow" id="totalrow" value="<?php echo $i;?>">
-
+                                                id="decactual_total">
                                         </td>
+                                        @else
+                                        <td><input type="text" style="width:60px;" value="{{$sales->decactual_total}}"
+                                                disabled></td>
+                                        @endif
                                         <td><input type="text" style="width:60px" value="{{$sales->jantarget_total}}"
                                                 disabled>
                                         </td>
+                                        @if(empty($sales->janactual_total))
                                         <td><input type="text" style="width:60px" name="janactual_total"
-                                                id="janactual_total"><input type="hidden" style="width:60px"
-                                                name="totalrow" id="totalrow" value="<?php echo $i;?>">
-
+                                                id="janactual_total">
                                         </td>
+                                        @else
+                                        <td><input type="text" style="width:60px;" value="{{$sales->janactual_total}}"
+                                                disabled></td>
+                                        @endif
                                         <td><input type="text" style="width:60px" value="{{$sales->febtarget_total}}"
                                                 disabled>
                                         </td>
+                                        @if(empty($sales->febactual_total))
                                         <td><input type="text" style="width:60px" name="febactual_total"
-                                                id="febactual_total"><input type="hidden" style="width:60px"
-                                                name="totalrow" id="totalrow" value="<?php echo $i;?>">
-
+                                                id="febactual_total">
                                         </td>
+                                        @else
+                                        <td><input type="text" style="width:60px;" value="{{$sales->febactual_total}}"
+                                                disabled></td>
+                                        @endif
                                         <td><input type="text" style="width:60px" value="{{$sales->martarget_total}}"
                                                 disabled>
                                         </td>
+                                        @if(empty($sales->maractual_total))
                                         <td><input type="text" style="width:60px" name="maractual_total"
-                                                id="maractual_total"><input type="hidden" style="width:60px"
-                                                name="totalrow" id="totalrow" value="<?php echo $i;?>">
-
+                                                id="maractual_total">
                                         </td>
-                                        <td><input type="text" style="width:60px" value="{{$sales->divtarget_total}}"
+                                        @else
+                                        <td><input type="text" style="width:60px;" value="{{$sales->maractual_total}}"
+                                                disabled></td>
+                                        @endif
+                                        <td><input type="text" style="width:60px" value="{{$sales->granttotal_target}}"
                                                 disabled>
                                         </td>
-                                        <td><input type="text" style="width:60px" id="total_actual">
+                                        @if(empty($sales->actual_total))
+                                        <td><input type="text" style="width:60px" id="total_actual" name="total_actual">
                                         </td>
+                                        @else
+                                        <td><input type="text" style="width:60px;" value="{{$sales->actual_total}}"
+                                                disabled></td>
+                                        @endif
+
 
                                     </tr>
                                 </tbody>
@@ -333,27 +435,31 @@
                                 </div>
                                 <div class="col-sm-3">
                                     <input type="text" name="total_target" id="total_target"
-                                        value="{{$sales->target_total}}" disabled>
+                                        value="{{$sales->granttotal_target}}" disabled>
                                 </div>
                                 <div class="col-sm-3">
                                     <label>Total Actual</label>
                                 </div>
                                 <div class="col-sm-3">
-                                    <input type="text" name="total_actual" id="finalactual"
-                                    >
+                                    @if(empty($sales->granttotal_actual))
+                                    <input type="text" name="granttotal_actual" id="finalactual">
+                                    @else
+                                    <td><input type="text" value="{{$sales->granttotal_actual}}" disabled></td>
+                                    @endif
                                 </div>
 
+
                             </div>
 
-<div class="form-group row">
+                            <div class="form-group row">
 
-                        <div class="col-sm-12">
-                            <div class="col-xs-12 col-sm-12 col-md-12 text-right">
-                                <button type="submit" class="btn btn-outline-success btn-sm"><i data-feather="check"
-                                        class="mr-2"></i>Save</button>
+                                <div class="col-sm-12">
+                                    <div class="col-xs-12 col-sm-12 col-md-12 text-right">
+                                        <button type="submit" class="btn btn-outline-success btn-sm"><i
+                                                data-feather="check" class="mr-2"></i>Save</button>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                    </div>
 
                         </div>
                     </div>
@@ -581,7 +687,7 @@ $(document).on('keyup', '.actual', function() {
         feb_actual_clm = (parseFloat(feb_actual_clm) + parseFloat(feb_actual_clmnval)).toFixed(2);
         mar_actual_clm = (parseFloat(mar_actual_clm) + parseFloat(mar_actual_clmnval)).toFixed(2);
     }
-    
+
 
     $("#apractual_total").val((parseFloat(apr_actual_clm)).toFixed(2));
     $("#mayactual_total").val((parseFloat(may_actual_clm)).toFixed(2));
@@ -595,7 +701,7 @@ $(document).on('keyup', '.actual', function() {
     $("#janactual_total").val((parseFloat(jan_actual_clm)).toFixed(2));
     $("#febactual_total").val((parseFloat(feb_actual_clm)).toFixed(2));
     $("#maractual_total").val((parseFloat(mar_actual_clm)).toFixed(2));
-    
+
 
     var finalactual = (parseFloat(apr_actual_clm) + parseFloat(may_actual_clm) + parseFloat(jun_actual_clm) +
         parseFloat(jul_actual_clm) + parseFloat(aug_actual_clm) +

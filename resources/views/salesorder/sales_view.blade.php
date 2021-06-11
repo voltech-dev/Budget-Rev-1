@@ -26,7 +26,8 @@
     </ul>
 </div>
 @endif
-<form action="{{url('/salesorder')}}" method="POST">
+<form action="{{url('/salesupdate/'.$sales->id)}}" method="POST">
+    @csrf
     <div class="row">
         <div class="col-md-12">
 
@@ -37,7 +38,8 @@
                         <select name="company_name" class="form-control form-control-sm" id="company_name" disabled>
                             <option selected>--Select Company--</option>
                             @foreach($company as $comp)
-                            <option value="{{ $comp->id }}" {{ ( $comp->id == $sales->company_id) ? 'selected' : '' }}>
+                            <option value="{{ $comp->id }}"
+                                {{ ( $comp->id == $sales->company_id) ? 'selected' : '' }}>
                                 {{ $comp->company_name }}
                             </option>
                             @endforeach
@@ -63,8 +65,7 @@
                         <select name="financial_year" class="form-control form-control-sm" id="financial_year" disabled>
                             <option selected>--Select--</option>
                             @foreach($financialyear as $fy)
-                            <option value="{{$fy->id}}"
-                                {{($fy->financial_year==$sales->financial_year_id)?'selected':''}}>
+                            <option value="{{$fy->id}}" {{($fy->id==$sales->financial_year_id)?'selected':''}}>
                                 {{$fy->financial_year}}</option>
                             @endforeach
                         </select>
@@ -124,125 +125,166 @@
                                         <td>Total Actual</td>
                                     </tr>
                                 </thead>
-
-                                <tbody name='abc' id='abc'>
-                                    @foreach($target as $tg)
+                                <tbody>
+                                    @foreach ($target as $tg)
+                                    <input type="hidden" value="{{$tg->sale_id}}" name="saleid[]">
+                                    <input type="hidden" value="{{$tg->id}}" name="id[]">
                                     <tr>
-                                        <td><input type="hidden" name="id[]"
-                                                style="width:60px">{{$tg->division->division_name}}</td>
 
-                                        <td><input type="text" value="{{$tg->apr_target}}" style="width:60px" readonly>
+                                        <td>{{$tg->division->division_name}}</td>
+                                        <td><input type="text" style="width:60px;" value="{{$tg->apr_target}}" disabled>
                                         </td>
-                                        <td><input type="text" value="{{$tg->apr_actual}}" style="width:60px" disabled>
+                                        <td><input type="text" style="width: 60px;" value="{{$tg->apr_actual}}"
+                                                disabled>
                                         </td>
-                                        <td><input type="text" value="{{$tg->may_target}}" style="width:60px" readonly>
+                                        <td><input type="text" style="width:60px;" value="{{$tg->may_target}}" disabled>
                                         </td>
-                                        <td><input type="text" value="{{$tg->may_actual}}" style="width:60px" disabled>
+                                        <td><input type="text" style="width: 60px;" value="{{$tg->may_actual}}"
+                                                disabled>
                                         </td>
-                                        <td><input type="text" value="{{$tg->jun_target}}" style="width:60px" readonly>
+                                        <td><input type="text" style="width:60px;" value="{{$tg->jun_target}}" disabled>
                                         </td>
-                                        <td><input type="text" value="{{$tg->jun_actual}}" style="width:60px" disabled>
+                                        <td><input type="text" style="width: 60px;" value="{{$tg->jun_actual}}"
+                                                disabled>
                                         </td>
-                                        <td><input type="text" value="{{$tg->jul_target}}" style="width:60px" readonly>
+                                        <td><input type="text" style="width:60px;" value="{{$tg->jul_target}}" disabled>
                                         </td>
-                                        <td><input type="text" value="{{$tg->jul_actual}}" style="width:60px" disabled>
+                                        <td><input type="text" style="width: 60px;" value="{{$tg->jul_actual}}"
+                                                disabled>
                                         </td>
+                                        <td><input type="text" style="width:60px;" value="{{$tg->aug_target}}" disabled>
                                         </td>
-                                        <td><input type="text" value="{{$tg->aug_target}}" style="width:60px" readonly>
+                                        <td><input type="text" style="width: 60px;" value="{{$tg->aug_actual}}"
+                                                disabled>
                                         </td>
+                                        <td><input type="text" style="width:60px;" value="{{$tg->sep_target}}" disabled>
                                         </td>
-                                        <td><input type="text" value="{{$tg->aug_actual}}" style="width:60px" disabled>
+                                        <td><input type="text" style="width:60px;" value="{{$tg->sep_actual}}" disabled>
                                         </td>
-                                        <td><input type="text" value="{{$tg->sep_target}}" style="width:60px" readonly>
+                                        <td><input type="text" style="width:60px;" value="{{$tg->oct_target}}" disabled>
                                         </td>
-                                        <td><input type="text" value="{{$tg->sep_actual}}" style="width:60px" disabled>
+                                        <td><input type="text" style="width:60px;" value="{{$tg->oct_actual}}" disabled>
                                         </td>
-                                        <td><input type="text" value="{{$tg->oct_target}}" style="width:60px" readonly>
+                                        <td><input type="text" style="width:60px;" value="{{$tg->nov_target}}" disabled>
                                         </td>
-                                        <td><input type="text" value="{{$tg->oct_actual}}" style="width:60px" disabled>
+                                        <td><input type="text" style="width:60px;" value="{{$tg->nov_actual}}" disabled>
                                         </td>
-                                        <td><input type="text" value="{{$tg->nov_target}}" style="width:60px" readonly>
+                                        <td><input type="text" style="width:60px;" value="{{$tg->dec_target}}" disabled>
                                         </td>
-                                        <td><input type="text" value="{{$tg->nov_actual}}" style="width:60px" disabled>
+                                        <td><input type="text" style="width:60px;" value="{{$tg->dec_actual}}" disabled>
                                         </td>
-                                        <td><input type="text" value="{{$tg->dec_target}}" style="width:60px" readonly>
+                                        <td><input type="text" style="width:60px;" value="{{$tg->jan_target}}" disabled>
                                         </td>
-                                        <td><input type="text" value="{{$tg->dec_actual}}" style="width:60px" disabled>
+                                        <td><input type="text" style="width:60px;" value="{{$tg->jan_actual}}" disabled>
                                         </td>
-                                        <td><input type="text" value="{{$tg->jan_target}}" style="width:60px" readonly>
+                                        <td><input type="text" style="width:60px;" value="{{$tg->feb_target}}" disabled>
                                         </td>
-                                        <td><input type="text" value="{{$tg->jan_actual}}" style="width:60px" disabled>
+                                        <td><input type="text" style="width:60px;" value="{{$tg->feb_actual}}" disabled>
                                         </td>
-                                        <td><input type="text" value="{{$tg->feb_target}}" style="width:60px" readonly>
+                                        <td><input type="text" style="width:60px;" value="{{$tg->mar_target}}" disabled>
                                         </td>
-                                        <td><input type="text" value="{{$tg->feb_actual}}" style="width:60px" disabled>
+                                        <td><input type="text" style="width:60px;" value="{{$tg->mar_actual}}" disabled>
                                         </td>
-                                        <td><input type="text" value="{{$tg->mar_target}}" style="width:60px" readonly>
+                                        <td><input type="text" style="width:60px;" value="{{$tg->target_total}}"
+                                                disabled>
                                         </td>
-                                        <td><input type="text" value="{{$tg->mar_actual}}" style="width:60px" disabled>
+                                        <td><input type="text" style="width:60px;" value="{{$tg->actual_total}}"
+                                                disabled>
                                         </td>
-                                        <td><input type="text" value="{{$tg->target_total}}" style="width:60px" readonly></td>
-                                        <td><input type="text" value="{{$tg->actual_total}}" style="width:60px" disabled></td>
 
-
-                                        @endforeach
                                     </tr>
+                                    @endforeach
+
+
                                     <tr>
                                         <td>Total</td>
-                                        <td><input type="text" style="width:60px" value="{{$sales->aprtarget_total}}">
+                                        <td><input type="text" style="width:60px" value="{{$sales->aprtarget_total}}"
+                                                disabled>
                                         </td>
-                                        <td><input type="text" style="width:60px" value="{{$sales->apractual_total}}">
+                                        <td><input type="text" style="width:60px"
+                                                value="{{$sales->apractual_total}}"disabled>
                                         </td>
-                                        <td><input type="text" style="width:60px" value="{{$sales->maytarget_total}}">
+                                        <td><input type="text" style="width:60px" value="{{$sales->maytarget_total}}"
+                                                disabled>
                                         </td>
-                                        <td><input type="text" style="width:60px" value="{{$sales->mayactual_total}}">
-                                        </td>
-                                        <td><input type="text" style="width:60px" value="{{$sales->juntarget_total}}">
-                                        </td>
-                                        <td><input type="text" style="width:60px" value="{{$sales->junactual_total}}">
-                                        </td>
-                                        <td><input type="text" style="width:60px" value="{{$sales->jultarget_total}}">
-                                        </td>
-                                        <td><input type="text" style="width:60px" value="{{$sales->julactual_total}}">
-                                        </td>
+                                        <td><input type="text" style="width:60px"
+                                                value="{{$sales->mayactual_total}}"disabled>
 
-                                        <td><input type="text" style="width:60px" value="{{$sales->augtarget_total}}">
                                         </td>
-                                        <td><input type="text" style="width:60px" value="{{$sales->augactual_total}}">
+                                        <td><input type="text" style="width:60px" value="{{$sales->juntarget_total}}"
+                                                disabled>
                                         </td>
-                                        <td><input type="text" style="width:60px" value="{{$sales->septarget_total}}">
-                                        </td>
-                                        <td><input type="text" style="width:60px" value="{{$sales->sepactual_total}}">
-                                        </td>
-                                        <td><input type="text" style="width:60px" value="{{$sales->octtarget_total}}">
-                                        </td>
-                                        <td><input type="text" style="width:60px" value="{{$sales->octactual_total}}">
-                                        </td>
-                                        <td><input type="text" style="width:60px" value="{{$sales->novtarget_total}}">
-                                        </td>
-                                        <td><input type="text" style="width:60px" value="{{$sales->novactual_total}}">
-                                        </td>
-                                        <td><input type="text" style="width:60px" value="{{$sales->dectarget_total}}">
-                                        </td>
-                                        <td><input type="text" style="width:60px" value="{{$sales->decactual_total}}">
-                                        </td>
-                                        <td><input type="text" style="width:60px" value="{{$sales->jantarget_total}}">
-                                        </td>
-                                        <td><input type="text" style="width:60px" value="{{$sales->janactual_total}}">
-                                        </td>
-                                        <td><input type="text" style="width:60px" value="{{$sales->febtarget_total}}">
-                                        </td>
-                                        <td><input type="text" style="width:60px" value="{{$sales->febactual_total}}">
-                                        </td>
-                                        <td><input type="text" style="width:60px" value="{{$sales->martarget_total}}">
-                                        </td>
-                                        <td><input type="text" style="width:60px" value="{{$sales->maractual_total}}">
-                                        </td>
-                                        <td><input type="text" style="width:60px" value="{{$sales->divtarget_total}}">
-                                        </td>
-                                        <td><input type="text" style="width:60px" value="{{$sales->divactual_total}}">
-                                        </td>
+                                        <td><input type="text" style="width:60px"
+                                                value="{{$sales->junactual_total}}"disabled>
 
+                                        </td>
+                                        <td><input type="text" style="width:60px" value="{{$sales->jultarget_total}}"
+                                                disabled>
+                                        </td>
+                                        <td><input type="text" style="width:60px"
+                                                value="{{$sales->julactual_total}}"disabled>
+
+                                        </td>
+                                        <td><input type="text" style="width:60px" value="{{$sales->augtarget_total}}"
+                                                disabled>
+                                        </td>
+                                        <td><input type="text" style="width:60px"
+                                                value="{{$sales->augactual_total}}"disabled>
+
+                                        </td>
+                                        <td><input type="text" style="width:60px" value="{{$sales->septarget_total}}"
+                                                disabled>
+                                        </td>
+                                        <td><input type="text" style="width:60px"
+                                                value="{{$sales->sepactual_total}}"disabled>
+
+                                        </td>
+                                        <td><input type="text" style="width:60px" value="{{$sales->octtarget_total}}"
+                                                disabled>
+                                        </td>
+                                        <td><input type="text" style="width:60px"
+                                                value="{{$sales->octactual_total}}"disabled>
+
+                                        </td>
+                                        <td><input type="text" style="width:60px" value="{{$sales->novtarget_total}}"
+                                                disabled>
+                                        </td>
+                                        <td><input type="text" style="width:60px"
+                                                value="{{$sales->novactual_total}}"disabled>
+
+                                        </td>
+                                        <td><input type="text" style="width:60px" value="{{$sales->dectarget_total}}"
+                                                disabled>
+                                        </td>
+                                        <td><input type="text" style="width:60px"
+                                                value="{{$sales->decactual_total}}"disabled>
+
+                                        </td>
+                                        <td><input type="text" style="width:60px" value="{{$sales->jantarget_total}}"
+                                                disabled>
+                                        </td>
+                                        <td><input type="text" style="width:60px"
+                                                value="{{$sales->janactual_total}}"disabled>
+
+                                        </td>
+                                        <td><input type="text" style="width:60px" value="{{$sales->febtarget_total}}"
+                                                disabled>
+                                        </td>
+                                        <td><input type="text" style="width:60px" value="{{$sales->febactual_total}}"
+                                                disabled>
+
+                                        </td>
+                                        <td><input type="text" style="width:60px" value="{{$sales->martarget_total}}"
+                                                disabled>
+                                        </td>
+                                        <td><input type="text" style="width:60px" value="{{$sales->maractual_total}}"
+                                                disabled>
+
+                                        </td>
+                                        <td><input type="text" style="width:60px" value="{{$sales->target_total}}"
+                                                disabled>
+                                        <td><input type="text" style="width:60px" value="{{$sales->actual_total}}"
+                                                disabled>
                                     </tr>
                                 </tbody>
 
@@ -256,19 +298,26 @@
                                 </div>
                                 <div class="col-sm-3">
                                     <input type="text" name="total_target" id="total_target"
-                                        value="{{$sales->target_total}}">
+                                        value="{{$sales->granttotal_target}}" disabled>
                                 </div>
                                 <div class="col-sm-3">
                                     <label>Total Actual</label>
                                 </div>
                                 <div class="col-sm-3">
-                                    <input type="text" name="total_actual" id="total_actual"
-                                        value="{{$sales->actual_total}}">
+                                    <input type="text" value="{{$sales->granttotal_actual}}" disabled>
                                 </div>
 
                             </div>
 
+                            <div class="form-group row">
 
+                                <div class="col-sm-12">
+                                    <div class="col-xs-12 col-sm-12 col-md-12 text-right">
+                                        <button type="submit" class="btn btn-outline-success btn-sm"><i
+                                                data-feather="check" class="mr-2"></i>Save</button>
+                                    </div>
+                                </div>
+                            </div>
 
                         </div>
                     </div>
@@ -279,8 +328,6 @@
 @endsection
 @push('scripts')
 <script>
-$(document).ready(function() {
 
-});
 </script>
 @endpush

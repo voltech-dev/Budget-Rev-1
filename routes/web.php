@@ -1,5 +1,7 @@
 <?php
 use App\Http\Controllers\SalesorderController;
+use App\Http\Controllers\TurnoverController;
+use App\Http\Controllers\CollectionController;
 use App\Http\Controllers\SetupController;
 
 use Illuminate\Support\Facades\Route;
@@ -22,19 +24,22 @@ Route::get('/sales_edit/{id}/{unit}',[SalesorderController::class, 'sales_edit']
 Route::post('/salesupdate/{id}',[SalesorderController::class, 'salesupdate']);
 Route::get('/sales_view/{id}/{unit}',[SalesorderController::class, 'sales_view']);
 
-Route::get('/turnoverlist', [SalesorderController::class, 'turnoverlist']);
-Route::get('/turnover/', [SalesorderController::class, 'turnover'])->name('/turnover');
-Route::post('/turnover', [SalesorderController::class, 'turnover_store']);
-Route::get('/turn_edit/{id}',[SalesorderController::class, 'turn_edit']);
-Route::post('/turnupdate/{id}',[App\Http\Controllers\SalesorderController::class, 'turnupdate']);
-Route::get('/turn_view/{p}',[App\Http\Controllers\SalesorderController::class, 'turn_view']);
+############################## Turnover #####################################
+Route::get('/turnover_entry', [TurnoverController::class, 'turnover_entry'])->name('/turnover_entry');
+Route::get('/turnoverlist', [TurnoverController::class, 'turnoverlist']);
+Route::post('/turnoverstore', [TurnoverController::class, 'turnoverstore']);
+Route::get('/turnover_view/{id}/{unit}',[TurnoverController::class, 'turnover_view']);
+Route::get('/turnover_edit/{id}/{unit}',[TurnoverController::class, 'turnover_edit']);
+Route::post('/turnoverupdate/{id}',[TurnoverController::class, 'turnoverupdate']);
+################################# Collection ##########################################
 
-Route::get('/collectionlist', [SalesorderController::class, 'collectionlist']);
-Route::get('/collection_edit/{id}',[App\Http\Controllers\SalesorderController::class, 'collection_edit']);
-Route::get('/collection', [SalesorderController::class, 'collection'])->name('/collection');
-Route::post('/collectionupdate/{id}',[App\Http\Controllers\SalesorderController::class, 'collectionupdate']);
-Route::get('/collection_view/{p}',[App\Http\Controllers\SalesorderController::class, 'collection_view']);
-Route::post('/collection', [SalesorderController::class, 'collection_store']);
+Route::get('/collectionlist', [CollectionController::class, 'collectionlist']);
+Route::get('/collection_entry', [CollectionController::class, 'collection_entry'])->name('/collection_entry');
+Route::post('/collectionstore', [CollectionController::class, 'collectionstore']);
+Route::get('/collection_view/{id}/{unit}',[CollectionController::class, 'collection_view']);
+Route::get('/collection_edit/{id}/{unit}',[CollectionController::class, 'collection_edit']);
+Route::post('/collectionupdate/{id}',[CollectionController::class, 'collectionupdate']);
+
 
 Route::get('/companylist', [SetupController::class, 'companylist']);
 Route::get('/companycreate', [SetupController::class, 'companycreate'])->name('/companycreate');

@@ -1,29 +1,20 @@
 @extends('layouts.main')
 @section('header')
+
+
 <!-- begin::page-header -->
-<div class="row">
-    <div class="col-md-6">
-        <h3>Turnover List</h3>
-    </div>
-    <div class="col-md-6" style=text-right>
-        <form action="{{url('/searchturnover')}}" method="POST" role="search">
-            @csrf
+<div class="card-header">
+    <h3>Turnover List</h3>
+</div>
+<div class="page-header">
+    <div class="container-fluid d-sm-flex justify-content-between">
 
-            <div class="input-group">
-                <input type="text" class="form-control" name="turn" placeholder="Search">
-                <span class="input-group-btn">
-                    <button type="submit" class="btn btn-default" style="border: 1px solid #dee2e6">
-                        <i class="fas fa-search"></i>
-                    </button>
-                </span>
+        <nav aria-label="breadcrumb">
 
-            </div>
-        </form>
+        </nav>
     </div>
 </div>
-
-
-
+<!-- end::page-header -->
 @endsection
 @section('content')
 @if ($errors->any())
@@ -46,31 +37,29 @@
                         <thead class="thead-light">
                             <tr>
                                 <th>SI</th>
-                                <th>FY</th>
+                                <th>Company</th>
                                 <th>Unit</th>
-                                <th>Division</th>
-                                <th>Region</th>
-                                <th>Month</th>
+                                <th>Financial Year</th>
                                 <th>Target</th>
+                                <th>Actual</th>
                                 <th>Actions</th>
-
                             </tr>
                         </thead>
                         <tbody><?php $i=0; $i++; ?>
-                            @foreach($users as $turn)
+                            @foreach($turnover as $turn)
                             <tr>
                                 <td>{{$i++}}</td>
-                                <td><a href="{{url('/turn_view/'.$turn->id)}}">{{$turn->financial_year}}</td>
-                                <td>{{$turn->unit}}</td>
-                                <td>{{$turn->division}}</td>
-                                <td>{{$turn->region}}</td>
-                                <td>{{$turn->month}}</td>
-                                <td>{{$turn->amount}}</td>
-                                <td> <a href="{{ url('/turn_edit/'.$turn->id) }}"
+                                <td><a href="{{url('/turnover_view/'.$turn->id.'/'.$turn->unit_id)}}">{{$turn->company->company_name}}
+                                </td>
+                                <td>{{$turn->unit->unit}}</td>
+                                <td>{{$turn->year->financial_year}}</td>
+                                <td>{{$turn->granttotal_target}}</td>
+                                <td>{{$turn->granttotal_actual}}</td>
+                                <td class="text-center">
+                                <a href="{{ url('/turnover_edit/'.$turn->id.'/'.$turn->unit_id) }}"
                                         class="btn btn-sm btn-white text-success mr-2"><i
-                                            class="far fa-edit mr-1"></i></a></td>
-                                <td> </td>
-
+                                            class="far fa-edit mr-1"></i></a>
+                                </td>
                             </tr>
                             @endforeach
 
@@ -82,7 +71,7 @@
     </div>
 </div><br>
 <div class="text-center">
-    <button onclick="location.href='{{ url('/turnover/') }}'" style="text-center">
+    <button onclick="location.href='{{ url('/turnover_entry/') }}'" style="text-center">
         Add Budget</button>
 </div>
 

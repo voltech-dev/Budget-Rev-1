@@ -31,7 +31,7 @@ $fin_year=DB::table('financial_year')
         <div class="col-md-12">-->
     <div class="row">
         <div class="col-md-12">
-            <form action="{{url('/salesorder')}}" method="POST">
+            <form action="{{url('/collectionstore')}}" method="POST">
                 @csrf
                 <div data-label="Enquiry Details" class="demo-code-preview col-xs-12 col-sm-12 col-md-12">
                     <div class="form-group row">

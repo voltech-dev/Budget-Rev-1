@@ -54,8 +54,8 @@
                                 </td>
                                 <td>{{$sale->unit->unit}}</td>
                                 <td>{{$sale->year->financial_year}}</td>
-                                <td>{{$sale->target_total}}</td>
-                                <td></td>
+                                <td>{{$sale->granttotal_target}}</td>
+                                <td>{{$sale->granttotal_actual}}</td>
                                 <td class="text-center">
                                     <a href="{{ url('/sales_edit/'.$sale->id.'/'.$sale->unit_id) }}"
                                         class="btn btn-sm btn-white text-success mr-2"><i

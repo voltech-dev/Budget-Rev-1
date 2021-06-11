@@ -1,29 +1,20 @@
 @extends('layouts.main')
 @section('header')
+
+
 <!-- begin::page-header -->
-<div class="row">
-    <div class="col-md-6">
-        <h3>Collection List</h3>
-    </div>
-    <div class="col-md-6" style=text-right>
-        <form action="{{url('/searchcollection')}}" method="POST" role="search">
-            @csrf
+<div class="card-header">
+    <h3>Collection List</h3>
+</div>
+<div class="page-header">
+    <div class="container-fluid d-sm-flex justify-content-between">
 
-            <div class="input-group">
-                <input type="text" class="form-control" name="collection" placeholder="Search">
-                <span class="input-group-btn">
-                    <button type="submit" class="btn btn-default" style="border: 1px solid #dee2e6">
-                        <i class="fas fa-search"></i>
-                    </button>
-                </span>
+        <nav aria-label="breadcrumb">
 
-            </div>
-        </form>
+        </nav>
     </div>
 </div>
-
-
-
+<!-- end::page-header -->
 @endsection
 @section('content')
 @if ($errors->any())
@@ -46,31 +37,29 @@
                         <thead class="thead-light">
                             <tr>
                                 <th>SI</th>
-                                <th>FY</th>
+                                <th>Company</th>
                                 <th>Unit</th>
-                                <th>Division</th>
-                                <th>Region</th>
-                                <th>Month</th>
+                                <th>Financial Year</th>
                                 <th>Target</th>
+                                <th>Actual</th>
                                 <th>Actions</th>
-
                             </tr>
                         </thead>
-                        <tbody>
-                            @foreach($users as $collection)
+                        <tbody><?php $i=0; $i++; ?>
+                            @foreach($collection as $collection)
                             <tr>
-                                <td>{{$collection->id}}</td>
-                                <td><a href="{{url('/collection_view/'.$collection->id)}}">{{$collection->financial_year}}</td>
-                                <td>{{$collection->unit}}</td>
-                                <td>{{$collection->division}}</td>
-                                <td>{{$collection->region}}</td>
-                                <td>{{$collection->month}}</td>
-                                <td>{{$collection->amount}}</td>
-                                <td> <a href="{{ url('/collection_edit/'.$collection->id) }}"
+                                <td>{{$i++}}</td>
+                                <td><a href="{{url('/collection_view/'.$collection->id.'/'.$collection->unit_id) }}">{{$collection->company->company_name}}
+                                </td>
+                                <td>{{$collection->unit->unit}}</td>
+                                <td>{{$collection->year->financial_year}}</td>
+                                <td>{{$collection->granttotal_target}}</td>
+                                <td>{{$collection->granttotal_actual}}</td>
+                                <td class="text-center"><a href="{{ url('/collection_edit/'.$collection->id.'/'.$collection->unit_id) }}"
                                         class="btn btn-sm btn-white text-success mr-2"><i
-                                            class="far fa-edit mr-1"></i></a></td>
-                                <td> </td>
-
+                                            class="far fa-edit mr-1"></i></a>
+                                
+                                </td>
                             </tr>
                             @endforeach
 
@@ -82,7 +71,7 @@
     </div>
 </div><br>
 <div class="text-center">
-    <button onclick="location.href='{{ url('/collection/') }}'" style="text-center">
+    <button onclick="location.href='{{ url('/collection_entry/') }}'" style="text-center">
         Add Budget</button>
 </div>
 

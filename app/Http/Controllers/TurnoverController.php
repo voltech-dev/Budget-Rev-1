@@ -133,6 +133,7 @@ public function turnover_edit($id,$unit)
         $turnover->save();
         return redirect('/turnoverlist');
    
+        
 }
 public function checkfinancial_year(Request $request){
     $post = $request->all();

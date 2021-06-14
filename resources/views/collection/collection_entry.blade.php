@@ -241,6 +241,8 @@ function add_division(){
             var k = 0;
             $.each(data, function(key, value) {
 
+
+                
                 i = i + 1;
                 $('tbody[name="sub_sales"]').append('<tr class="newrow">' +
                     '<td>' +

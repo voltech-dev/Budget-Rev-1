@@ -327,6 +327,7 @@ public function division_view($id,$division)
         
         echo json_encode($json);
         exit();
+        
     }
     public function checkfinancial_year(Request $request){
         $post = $request->all();

@@ -245,6 +245,7 @@ function add_division() {
                     i + '" value="' +
                     key +
                     '">' + value + '</td>' +
+                    
 
                     '<td class="apt">' +
                     '<input type="text" style="width:60px" name="apr_target[]" id="apr_target_' +

@@ -132,6 +132,15 @@ public function collectionupdate(Request $request,$id)
         return redirect('/collectionlist');
    
 }
+public function checkfinancial_year(Request $request){
+    $post = $request->all();
+  
+    $collection = Collection::where(['unit_id' => $post['unit_id'],'financial_year_id'=>$post['fin_year']])->exists();
+if($collection){
+    return 'yes';
+}
+   
+}
 
  
 }

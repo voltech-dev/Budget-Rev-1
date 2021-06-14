@@ -176,26 +176,8 @@ $(document).ready(function() {
     $('#tab').hide();
     $('#finaltotal').hide();
     $('#get_total').hide();
-    $('#financial_year').change(function() {
-        var financial_year = $(this).val();
-        var unit = $('#unit').val();
-        $.ajax({
-            type: "GET",
-            url: "{{url('/financial_year')}}",
-            data: {
-                fin_year: financial_year,
-                unit_id: unit
-            },
-            dataType: 'json',
-            success: function(data) {
-                $.each(data,function(key,value){
-                    console.log(data);
-                
-                })
-            }
-        })
-    });
-})
+    
+});
 $('#company_name').change(function(event) {
     var company_name = $('#company_name').val();
     $.ajax({
@@ -216,9 +198,37 @@ $('#company_name').change(function(event) {
     });
 
 });
+
+
 $('#add').click(function() {
-    $('#tab').show();
     var unit = $('#unit').val();
+    var financialyear = $('#financial_year').val();
+    var yearflag =0;
+    $.ajax({
+            type: "GET",
+            url: "{{url('/financial_year')}}",
+            data: {
+                fin_year: financialyear,
+                unit_id: unit
+            },
+          
+            success: function(data) {
+              
+                if(data == 'yes') {
+                    alert('Financial Year already entered for this unit');
+                } else {
+                    add_division();
+                }
+            }
+        });
+
+        
+
+});
+function add_division(){
+    $('#tab').show();    
+    var unit = $('#unit').val();
+    var financialyear = $('#financial_year').val();
     $.ajax({
         type: "GET",
         url: "{{url('/divisionid')}}",
@@ -227,8 +237,6 @@ $('#add').click(function() {
         },
         dataType: 'json',
         success: function(data) {
-
-
             var i = 0;
             var k = 0;
             $.each(data, function(key, value) {
@@ -401,14 +409,17 @@ $('#add').click(function() {
             );
         },
     });
+   
+};
+
+/*
+$('#add').click(function() {
     $('#finaltotal').show();
     $('#get_total').show();
     $('#sub_sales').each(function() {})
-});
+}); 
 var sum = 0;
-$('#financial_year').change(function() {
-
-});
+*/
 
 $(document).on('keyup', '.target', function() {
     var totalrow = $("#totalrow").val();

@@ -328,7 +328,16 @@ public function division_view($id,$division)
         echo json_encode($json);
         exit();
     }
-    // public function saleslist(){
+    public function checkfinancial_year(Request $request){
+        $post = $request->all();
+      
+        $collection = Sale::where(['unit_id' => $post['unit_id'],'financial_year_id'=>$post['fin_year']])->exists();
+    if($collection){
+        return 'yes';
+    }
+       
+    }
+      // public function saleslist(){
 
     //    return view('salesorder.salesorderlist');
     // }

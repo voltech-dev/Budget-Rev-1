@@ -39,7 +39,7 @@ Route::post('/collectionstore', [CollectionController::class, 'collectionstore']
 Route::get('/collection_view/{id}/{unit}',[CollectionController::class, 'collection_view']);
 Route::get('/collection_edit/{id}/{unit}',[CollectionController::class, 'collection_edit']);
 Route::post('/collectionupdate/{id}',[CollectionController::class, 'collectionupdate']);
-
+Route::get('/financial_year',[CollectionController::class, 'checkfinancial_year']);
 
 Route::get('/companylist', [SetupController::class, 'companylist']);
 Route::get('/companycreate', [SetupController::class, 'companycreate'])->name('/companycreate');

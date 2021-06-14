@@ -198,8 +198,34 @@ $('#company_name').change(function(event) {
 
 });
 $('#add').click(function() {
+    var unit = $('#unit').val();
+    var financialyear = $('#financial_year').val();
+    var yearflag = 0;
+    $.ajax({
+        type: "GET",
+        url: "{{url('/financial_year')}}",
+        data: {
+            fin_year: financialyear,
+            unit_id: unit
+        },
+
+        success: function(data) {
+
+            if (data == 'yes') {
+                alert('Financial Year already entered for this unit');
+            } else {
+                add_division();
+            }
+        }
+    });
+
+
+
+});
+function add_division() {
     $('#tab').show();
     var unit = $('#unit').val();
+    var financialyear = $('#financial_year').val();
     $.ajax({
         type: "GET",
         url: "{{url('/divisionid')}}",
@@ -208,111 +234,124 @@ $('#add').click(function() {
         },
         dataType: 'json',
         success: function(data) {
-            
-            
             var i = 0;
             var k = 0;
             $.each(data, function(key, value) {
-                
+
                 i = i + 1;
                 $('tbody[name="sub_sales"]').append('<tr class="newrow">' +
                     '<td>' +
-                    '<input type="hidden"  style="width:60px" name="div[]" id="div_' + i + '" value="' +
+                    '<input type="hidden"  style="width:60px" name="div[]" id="div_' +
+                    i + '" value="' +
                     key +
-                    '">' + value + '</td>' + 
+                    '">' + value + '</td>' +
 
                     '<td class="apt">' +
-                    '<input type="text" style="width:60px" name="apr_target[]" id="apr_target_' + i + '" class="target target_' + i + ' apr_target" value="">' +
-                    '</td>' + 
+                    '<input type="text" style="width:60px" name="apr_target[]" id="apr_target_' +
+                    i + '" class="target target_' + i + ' apr_target" value="">' +
+                    '</td>' +
                     '<td>' +
                     '<input type="text" style="width:60px" name="apr_actual[]" id="apractual" class="apr_actual" disabled>' +
-                    '</td>' + 
-                    
+                    '</td>' +
+
                     '<td class="may">' +
-                    '<input type="text" style="width:60px" name="may_target[]" id="may_target_' + i + '" class="target target_' + i + '" value="" >' +
+                    '<input type="text" style="width:60px" name="may_target[]" id="may_target_' +
+                    i + '" class="target target_' + i + '" value="" >' +
                     '</td>' +
                     '<td>' +
                     '<input type="text" style="width:60px" name="may_actual[]" id="may_actual" class="may_actual" disabled>' +
-                    '</td>' + 
-                    
+                    '</td>' +
+
                     '<td class="june">' +
-                    '<input type="text" style="width:60px" name="jun_target[]" id="jun_target_' + i + '" class="target target_' + i + '" value="">' +
-                    '</td>' + 
+                    '<input type="text" style="width:60px" name="jun_target[]" id="jun_target_' +
+                    i + '" class="target target_' + i + '" value="">' +
+                    '</td>' +
                     '<td>' +
                     '<input type="text" style="width:60px" name="jun_actual[]" id="jun_actual" class="june_actual" disabled>' +
-                    '</td>' + 
-                    
+                    '</td>' +
+
                     '<td class="july">' +
-                    '<input type="text" style="width:60px" name="jul_target[]" id="jul_target_' + i + '" class="target july_target_' + i + '" value="">' +
-                    '</td>' + 
+                    '<input type="text" style="width:60px" name="jul_target[]" id="jul_target_' +
+                    i + '" class="target july_target_' + i + '" value="">' +
+                    '</td>' +
                     '<td>' +
                     '<input type="text" style="width:60px" name="jul_actual[]" id="jul_actual" class="july_actual" disabled>' +
-                    '</td>' + 
-                    
+                    '</td>' +
+
                     '<td class="aug">' +
-                    '<input type="text" style="width:60px" name="aug_target[]" id="aug_target_' + i + '" class="target target_' + i + '" value="">' +
+                    '<input type="text" style="width:60px" name="aug_target[]" id="aug_target_' +
+                    i + '" class="target target_' + i + '" value="">' +
                     '</td>' + '<td>' +
                     '<input type="text" style="width:60px" name="aug_actual[]" id="aug_actual" class="aug_actual" disabled>' +
-                    '</td>' + 
-                    
+                    '</td>' +
+
                     '<td class="sept">' +
-                    '<input type="text" style="width:60px" name="sep_target[]" id="sep_target_' + i + '" class="target target_' + i + '" value="">' +
+                    '<input type="text" style="width:60px" name="sep_target[]" id="sep_target_' +
+                    i + '" class="target target_' + i + '" value="">' +
                     '</td>' + '<td>' +
                     '<input type="text" style="width:60px" name="sep_actual[]" id="sep_actual" class="sept_actual" disabled>' +
-                    '</td>' + 
-                    
+                    '</td>' +
+
                     '<td class="oct">' +
-                    '<input type="text" style="width:60px" name="oct_target[]" id="oct_target_' + i + '" class="target target_' + i + '" value="">' +
+                    '<input type="text" style="width:60px" name="oct_target[]" id="oct_target_' +
+                    i + '" class="target target_' + i + '" value="">' +
                     '</td>' + '<td>' +
                     '<input type="text" style="width:60px" name="oct_actual[]" id="oct_actual" class="oct_actual" disabled>' +
-                    '</td>' + 
-                    
+                    '</td>' +
+
                     '<td class="nov">' +
-                    '<input type="text" style="width:60px" name="nov_target[]" id="nov_target_' + i + '" class="target target_' + i + '" value="">' +
+                    '<input type="text" style="width:60px" name="nov_target[]" id="nov_target_' +
+                    i + '" class="target target_' + i + '" value="">' +
                     '</td>' + '<td>' +
                     '<input type="text" style="width:60px" name="nov_actual[]" id="nov_actual" class="nov_actual" disabled>' +
-                    '</td>' + 
-                    
+                    '</td>' +
+
                     '<td class="dec">' +
-                    '<input type="text" style="width:60px" name="dec_target[]" id="dec_target_' + i + '" class="target target_' + i + '" value="">' +
+                    '<input type="text" style="width:60px" name="dec_target[]" id="dec_target_' +
+                    i + '" class="target target_' + i + '" value="">' +
                     '</td>' + '<td>' +
                     '<input type="text" style="width:60px" name="dec_actual[]" id="dec_actual" class="dec_actual" disabled>' +
-                    '</td>' + 
-                    
+                    '</td>' +
+
                     '<td class="jan">' +
-                    '<input type="text" style="width:60px" name="jan_target[]" id="jan_target_' + i + '" class="target target_' + i + '" value="">' +
+                    '<input type="text" style="width:60px" name="jan_target[]" id="jan_target_' +
+                    i + '" class="target target_' + i + '" value="">' +
                     '</td>' + '<td>' +
                     '<input type="text" style="width:60px" name="jan_actual[]" id="jan_actual" class="jan_actual" disabled>' +
-                    '</td>' + 
-                    
+                    '</td>' +
+
                     '<td class="feb">' +
-                    '<input type="text" style="width:60px" name="feb_target[]" id="feb_target_' + i + '" class="target target_' + i + '" value="">' +
+                    '<input type="text" style="width:60px" name="feb_target[]" id="feb_target_' +
+                    i + '" class="target target_' + i + '" value="">' +
                     '</td>' + '<td>' +
                     '<input type="text" style="width:60px" name="feb_actual[]" id="feb_actual" class="feb_actual" disabled>' +
-                    '</td>' + 
-                    
+                    '</td>' +
+
                     '<td class="march">' +
-                    '<input type="text" style="width:60px" name="mar_target[]" id="mar_target_' + i + '" class="target target_' + i + '" value="">' +
+                    '<input type="text" style="width:60px" name="mar_target[]" id="mar_target_' +
+                    i + '" class="target target_' + i + '" value="">' +
                     '</td>' + '<td>' +
                     '<input type="text" style="width:60px" name="mar_actual[]" id="mar_actual" class="march_actual" disabled>' +
-                    '</td>' + 
-                    
+                    '</td>' +
+
                     '<td>' +
-                    '<input type="text" name="divtarget_total[]" id="divtarget_total_'+ i + '"style="width:60px">' +
+                    '<input type="text" name="divtarget_total[]" id="divtarget_total_' +
+                    i + '"style="width:60px">' +
                     '</td>' + '<td>' +
                     '<input type="text" name="divactual_total[]" style="width:60px">' +
                     '</td>' +
                     '</tr>');
 
-                    k = k + 1;
+                k = k + 1;
 
             });
             var totalrow = i;
-            
+
             $('tbody[name="sub_sales"]').append(
                 '<tr>' + '<td>' + 'Total' + '</td>' + '<td>' +
-                
-                '<input type="text" style="width:60px" name="aprtarget_total" id="aprtarget_total" ><input type="hidden" style="width:60px" name="totalrow" id="totalrow" value="' + totalrow +'">' +
+
+                '<input type="text" style="width:60px" name="aprtarget_total" id="aprtarget_total" ><input type="hidden" style="width:60px" name="totalrow" id="totalrow" value="' +
+                totalrow + '">' +
                 '</td>' + '<td>' +
                 '<input type="text" style="width:60px" name="apractual_total" id="apractual_total" disabled>' +
                 '<td>' +
@@ -367,14 +406,21 @@ $('#add').click(function() {
             );
         },
     });
-    $('#finaltotal').show();
-    $('#get_total').show();
-    $('#sub_sales').each(function() {})
-});
+
+};
+
+
 var sum = 0;
 
+$(document).ready(function() {
+    $('#tab').hide();
+    $('#finaltotal').hide();
+    $('#get_total').hide();
+   
+})
 
 $(document).on('keyup','.target',function(){
+
     var totalrow = $("#totalrow").val();
     //##################### Division Row ########################
     var target_id = $(this).attr('id');

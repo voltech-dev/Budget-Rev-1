@@ -134,6 +134,14 @@ public function turnover_edit($id,$unit)
         return redirect('/turnoverlist');
    
 }
-
+public function checkfinancial_year(Request $request){
+    $post = $request->all();
+  
+    $turnover = Turnover::where(['unit_id' => $post['unit_id'],'financial_year_id'=>$post['fin_year']])->exists();
+if($turnover){
+    return 'yes';
+}
+   
+}
     
 }

@@ -248,7 +248,7 @@ function add_division() {
 
                     '<td class="apt">' +
                     '<input type="text" style="width:60px" name="apr_target[]" id="apr_target_' +
-                    i + '" class="target target_' + i + ' apr_target" value="">' +
+                    i + '" class="target target_' + i + ' apr_target" value="" autocomplete="off">' +
                     '</td>' +
                     '<td>' +
                     '<input type="text" style="width:60px" name="apr_actual[]" id="apractual" class="apr_actual" disabled>' +

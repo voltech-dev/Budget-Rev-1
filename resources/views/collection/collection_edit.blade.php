@@ -293,8 +293,7 @@
                                                 id="apractual_total"><input type="hidden" style="width:60px"
                                                 name="totalrow" id="totalrow" value="<?php echo $i;?>">
 
-
-                                        </td>
+                                     </td>
                                         @else
                                         <td><input type="text" style="width:60px;"
                                                 value="{{$collection->apractual_total}}" disabled></td>

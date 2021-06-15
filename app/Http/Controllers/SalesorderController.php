@@ -110,6 +110,7 @@ public function sales_edit($id,$unit)
             $target->actual_total=$request->actual_total[$tg];
             }
             $target->save();
+            
              }  
         $sales=Sale::where(['id'=>$request->saleid])->first();   
         $sales->apractual_total=$request->apractual_total;

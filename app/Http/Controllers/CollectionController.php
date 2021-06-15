@@ -147,11 +147,10 @@ public function collectionupdate(Request $request,$id)
             $target->mar_actual=$request->mar_actual[$tg];
             }
             if(isset($request->actual_total[$tg])){
-
             $target->actual_total=$request->actual_total[$tg];
             }
             $target->save();
-            
+
                    }  
         $collection=Collection::where(['id'=>$request->collectionid])->first();   
         $collection->apractual_total=$request->apractual_total;

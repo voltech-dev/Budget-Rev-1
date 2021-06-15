@@ -261,7 +261,7 @@ function add_division(){
 
                     '<td class="may">' +
                     '<input type="text" style="width:60px" name="may_target[]" id="may_target_' +
-                    i + '" class="target target_' + i + '" value="" >' +
+                    i + '" class="target target_' + i + '" value="" autocomplete="off">' +
                     '</td>' +
                     '<td>' +
                     '<input type="text" style="width:60px" name="may_actual[]" id="may_actual" class="may_actual" disabled>' +
@@ -269,7 +269,7 @@ function add_division(){
 
                     '<td class="june">' +
                     '<input type="text" style="width:60px" name="jun_target[]" id="jun_target_' +
-                    i + '" class="target target_' + i + '" value="">' +
+                    i + '" class="target target_' + i + '" value="" autocomplete="off">' +
                     '</td>' +
                     '<td>' +
                     '<input type="text" style="width:60px" name="jun_actual[]" id="jun_actual" class="june_actual" disabled>' +
@@ -277,7 +277,7 @@ function add_division(){
 
                     '<td class="july">' +
                     '<input type="text" style="width:60px" name="jul_target[]" id="jul_target_' +
-                    i + '" class="target july_target_' + i + '" value="">' +
+                    i + '" class="target july_target_' + i + '" value="" autocomplete="off">' +
                     '</td>' +
                     '<td>' +
                     '<input type="text" style="width:60px" name="jul_actual[]" id="jul_actual" class="july_actual" disabled>' +
@@ -285,56 +285,56 @@ function add_division(){
 
                     '<td class="aug">' +
                     '<input type="text" style="width:60px" name="aug_target[]" id="aug_target_' +
-                    i + '" class="target target_' + i + '" value="">' +
+                    i + '" class="target target_' + i + '" value="" autocomplete="off">' +
                     '</td>' + '<td>' +
                     '<input type="text" style="width:60px" name="aug_actual[]" id="aug_actual" class="aug_actual" disabled>' +
                     '</td>' +
 
                     '<td class="sept">' +
                     '<input type="text" style="width:60px" name="sep_target[]" id="sep_target_' +
-                    i + '" class="target target_' + i + '" value="">' +
+                    i + '" class="target target_' + i + '" value="" autocomplete="off">' +
                     '</td>' + '<td>' +
                     '<input type="text" style="width:60px" name="sep_actual[]" id="sep_actual" class="sept_actual" disabled>' +
                     '</td>' +
 
                     '<td class="oct">' +
                     '<input type="text" style="width:60px" name="oct_target[]" id="oct_target_' +
-                    i + '" class="target target_' + i + '" value="">' +
+                    i + '" class="target target_' + i + '" value="" autocomplete="off">' +
                     '</td>' + '<td>' +
                     '<input type="text" style="width:60px" name="oct_actual[]" id="oct_actual" class="oct_actual" disabled>' +
                     '</td>' +
 
                     '<td class="nov">' +
                     '<input type="text" style="width:60px" name="nov_target[]" id="nov_target_' +
-                    i + '" class="target target_' + i + '" value="">' +
+                    i + '" class="target target_' + i + '" value="" autocomplete="off">' +
                     '</td>' + '<td>' +
                     '<input type="text" style="width:60px" name="nov_actual[]" id="nov_actual" class="nov_actual" disabled>' +
                     '</td>' +
 
                     '<td class="dec">' +
                     '<input type="text" style="width:60px" name="dec_target[]" id="dec_target_' +
-                    i + '" class="target target_' + i + '" value="">' +
+                    i + '" class="target target_' + i + '" value="" autocomplete="off">' +
                     '</td>' + '<td>' +
                     '<input type="text" style="width:60px" name="dec_actual[]" id="dec_actual" class="dec_actual" disabled>' +
                     '</td>' +
 
                     '<td class="jan">' +
                     '<input type="text" style="width:60px" name="jan_target[]" id="jan_target_' +
-                    i + '" class="target target_' + i + '" value="">' +
+                    i + '" class="target target_' + i + '" value="" autocomplete="off">' +
                     '</td>' + '<td>' +
                     '<input type="text" style="width:60px" name="jan_actual[]" id="jan_actual" class="jan_actual" disabled>' +
                     '</td>' +
 
                     '<td class="feb">' +
                     '<input type="text" style="width:60px" name="feb_target[]" id="feb_target_' +
-                    i + '" class="target target_' + i + '" value="">' +
+                    i + '" class="target target_' + i + '" value="" autocomplete="off">' +
                     '</td>' + '<td>' +
                     '<input type="text" style="width:60px" name="feb_actual[]" id="feb_actual" class="feb_actual" disabled>' +
                     '</td>' +
 
                     '<td class="march">' +
                     '<input type="text" style="width:60px" name="mar_target[]" id="mar_target_' +
-                    i + '" class="target target_' + i + '" value="">' +
+                    i + '" class="target target_' + i + '" value="" autocomplete="off">' +
                     '</td>' + '<td>' +
                     '<input type="text" style="width:60px" name="mar_actual[]" id="mar_actual" class="march_actual" disabled>' +
                     '</td>' +

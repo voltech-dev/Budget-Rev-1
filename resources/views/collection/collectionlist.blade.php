@@ -1,20 +1,6 @@
 @extends('layouts.main')
 @section('header')
-
-
-<!-- begin::page-header -->
-<div class="card-header">
     <h3>Collection List</h3>
-</div>
-<div class="page-header">
-    <div class="container-fluid d-sm-flex justify-content-between">
-
-        <nav aria-label="breadcrumb">
-
-        </nav>
-    </div>
-</div>
-<!-- end::page-header -->
 @endsection
 @section('content')
 @if ($errors->any())
@@ -30,8 +16,7 @@
 <div class="row">
     <div class="col-sm-12">
 
-        <div class="card card-table">
-            <div class="card-body">
+      
                 <div class="table-responsive">
                     <table class="table table-center table-hover datatable">
                         <thead class="thead-light">
@@ -67,8 +52,7 @@
                     </table>
                 </div>
             </div>
-        </div>
-    </div>
+        
 </div><br>
 <div class="text-center">
     <button onclick="location.href='{{ url('/collection_entry/') }}'" style="text-center">

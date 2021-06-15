@@ -98,19 +98,58 @@ public function collectionupdate(Request $request,$id)
         
         foreach($request->id as $tg=>$val){
             $target=collection_sub::where(['id'=>$val])->first();
+            if(isset($request->apr_actual[$tg])){
+
             $target->apr_actual= $request->apr_actual[$tg];
+            }
+            if(isset($request->may_actual[$tg])){
+
             $target->may_actual=$request->may_actual[$tg];
+            }
+            if(isset($request->jun_actual[$tg])){
+
             $target->jun_actual=$request->jun_actual[$tg];
+            }
+            if(isset($request->jul_actual[$tg])){
+
             $target->jul_actual=$request->jul_actual[$tg];
+            }
+            if(isset($request->aug_actual[$tg])){
+
             $target->aug_actual=$request->aug_actual[$tg];
+            }
+            if(isset($request->sep_actual[$tg])){
+
             $target->sep_actual=$request->sep_actual[$tg];
+            }
+            if(isset($request->oct_actual[$tg])){
+
             $target->oct_actual=$request->oct_actual[$tg];
+            }
+            if(isset($request->nov_actual[$tg])){
+
             $target->nov_actual=$request->nov_actual[$tg];
+            }
+            if(isset($request->dec_actual[$tg])){
+
             $target->dec_actual=$request->dec_actual[$tg];
+            }
+            if(isset($request->jan_actual[$tg])){
+
             $target->jan_actual=$request->jan_actual[$tg];
+            }
+            if(isset($request->feb_actual[$tg])){
+
             $target->feb_actual=$request->feb_actual[$tg];
+            }
+            if(isset($request->mar_actual[$tg])){
+
             $target->mar_actual=$request->mar_actual[$tg];
+            }
+            if(isset($request->actual_total[$tg])){
+
             $target->actual_total=$request->actual_total[$tg];
+            }
             $target->save();
                    }  
         $collection=Collection::where(['id'=>$request->collectionid])->first();   

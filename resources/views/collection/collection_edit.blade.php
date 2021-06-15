@@ -136,9 +136,10 @@
                                         <td>{{$tg->division->division_name}}</td>
                                         <td><input type="text" style="width:60px;" value="{{$tg->apr_target}}" disabled>
                                         </td>
-                                        @if(empty($tg->apr_actual))
+                                        @if(empty($tg->apr_actual) && !empty($tg->apr_target))
                                         <td><input type="text" style="width: 60px;" id="apr_actual_<?php echo $i;?>"
-                                                class="actual actual_<?php echo $i;?> apr_actual" name="apr_actual[]">
+                                                class="actual actual_<?php echo $i;?> apr_actual" name="apr_actual[]"
+                                                autocomplete="off">
                                         </td>
                                         @else
                                         <td><input type="text" style="width:60px;" value="{{$tg->apr_actual}}" disabled>
@@ -146,9 +147,10 @@
                                         @endif
                                         <td><input type="text" style="width:60px;" value="{{$tg->may_target}}" disabled>
                                         </td>
-                                        @if(empty($tg->may_actual))
+                                        @if(empty($tg->may_actual) && !empty($tg->may_target))
                                         <td><input type="text" style="width: 60px;" id="may_actual_<?php echo $i;?>"
-                                                class="actual actual_<?php echo $i;?> may_actual" name="may_actual[]">
+                                                class="actual actual_<?php echo $i;?> may_actual" name="may_actual[]"
+                                                autocomplete="off">
                                         </td>
                                         @else
                                         <td><input type="text" style="width:60px;" value="{{$tg->may_actual}}" disabled>
@@ -156,9 +158,10 @@
                                         @endif
                                         <td><input type="text" style="width:60px;" value="{{$tg->jun_target}}" disabled>
                                         </td>
-                                        @if(empty($tg->jun_actual))
+                                        @if(empty($tg->jun_actual) && !empty($tg->jun_target))
                                         <td><input type="text" style="width: 60px;" id="jun_actual_<?php echo $i;?>"
-                                                class="actual actual_<?php echo $i;?> jun_actual" name="jun_actual[]">
+                                                class="actual actual_<?php echo $i;?> jun_actual" name="jun_actual[]"
+                                                autocomplete="off">
                                         </td>
                                         @else
                                         <td><input type="text" style="width:60px;" value="{{$tg->jun_actual}}" disabled>
@@ -166,9 +169,10 @@
                                         @endif
                                         <td><input type="text" style="width:60px;" value="{{$tg->jul_target}}" disabled>
                                         </td>
-                                        @if(empty($tg->jul_actual))
+                                        @if(empty($tg->jul_actual) && !empty($tg->jul_target))
                                         <td><input type="text" style="width: 60px;" id="jul_actual_<?php echo $i;?>"
-                                                class="actual actual_<?php echo $i;?> jul_actual" name="jul_actual[]">
+                                                class="actual actual_<?php echo $i;?> jul_actual" name="jul_actual[]"
+                                                autocomplete="off">
                                         </td>
                                         @else
                                         <td><input type="text" style="width:60px;" value="{{$tg->jul_actual}}" disabled>
@@ -176,9 +180,10 @@
                                         @endif
                                         <td><input type="text" style="width:60px;" value="{{$tg->aug_target}}" disabled>
                                         </td>
-                                        @if(empty($tg->aug_actual))
+                                        @if(empty($tg->aug_actual) && !empty($tg->aug_target))
                                         <td><input type="text" style="width: 60px;" id="aug_actual_<?php echo $i;?>"
-                                                class="actual actual_<?php echo $i;?> aug_actual" name="aug_actual[]">
+                                                class="actual actual_<?php echo $i;?> aug_actual" name="aug_actual[]"
+                                                autocomplete="off">
                                         </td>
                                         @else
                                         <td><input type="text" style="width:60px;" value="{{$tg->aug_actual}}" disabled>
@@ -186,9 +191,10 @@
                                         @endif
                                         <td><input type="text" style="width:60px;" value="{{$tg->sep_target}}" disabled>
                                         </td>
-                                        @if(empty($tg->sep_actual))
+                                        @if(empty($tg->sep_actual) && !empty($tg->sep_target))
                                         <td><input type="text" style="width: 60px;" id="sep_actual_<?php echo $i;?>"
-                                                class="actual actual_<?php echo $i;?> sep_actual" name="sep_actual[]">
+                                                class="actual actual_<?php echo $i;?> sep_actual" name="sep_actual[]"
+                                                autocomplete="off">
                                         </td>
                                         @else
                                         <td><input type="text" style="width:60px;" value="{{$tg->sep_actual}}" disabled>
@@ -196,9 +202,10 @@
                                         @endif
                                         <td><input type="text" style="width:60px;" value="{{$tg->oct_target}}" disabled>
                                         </td>
-                                        @if(empty($tg->oct_actual))
+                                        @if(empty($tg->oct_actual) && !empty($tg->oct_target))
                                         <td><input type="text" style="width: 60px;" id="oct_actual_<?php echo $i;?>"
-                                                class="actual actual_<?php echo $i;?> oct_actual" name="oct_actual[]">
+                                                class="actual actual_<?php echo $i;?> oct_actual" name="oct_actual[]"
+                                                autocomplete="off">
                                         </td>
                                         @else
                                         <td><input type="text" style="width:60px;" value="{{$tg->oct_actual}}" disabled>
@@ -206,9 +213,10 @@
                                         @endif
                                         <td><input type="text" style="width:60px;" value="{{$tg->nov_target}}" disabled>
                                         </td>
-                                        @if(empty($tg->nov_actual))
+                                        @if(empty($tg->nov_actual) && !empty($tg->nov_target))
                                         <td><input type="text" style="width: 60px;" id="nov_actual_<?php echo $i;?>"
-                                                class="actual actual_<?php echo $i;?> nov_actual" name="nov_actual[]">
+                                                class="actual actual_<?php echo $i;?> nov_actual" name="nov_actual[]"
+                                                autocomplete="off">
                                         </td>
                                         @else
                                         <td><input type="text" style="width:60px;" value="{{$tg->nov_actual}}" disabled>
@@ -216,9 +224,10 @@
                                         @endif
                                         <td><input type="text" style="width:60px;" value="{{$tg->dec_target}}" disabled>
                                         </td>
-                                        @if(empty($tg->dec_actual))
+                                        @if(empty($tg->dec_actual) && !empty($tg->dec_target))
                                         <td><input type="text" style="width: 60px;" id="dec_actual_<?php echo $i;?>"
-                                                class="actual actual_<?php echo $i;?> dec_actual" name="dec_actual[]">
+                                                class="actual actual_<?php echo $i;?> dec_actual" name="dec_actual[]"
+                                                autocomplete="off">
                                         </td>
                                         @else
                                         <td><input type="text" style="width:60px;" value="{{$tg->dec_actual}}" disabled>
@@ -226,9 +235,10 @@
                                         @endif
                                         <td><input type="text" style="width:60px;" value="{{$tg->jan_target}}" disabled>
                                         </td>
-                                        @if(empty($tg->jan_actual))
+                                        @if(empty($tg->jan_actual) && !empty($tg->jan_target))
                                         <td><input type="text" style="width: 60px;" id="jan_actual_<?php echo $i;?>"
-                                                class="actual actual_<?php echo $i;?> jan_actual" name="jan_actual[]">
+                                                class="actual actual_<?php echo $i;?> jan_actual" name="jan_actual[]"
+                                                autocomplete="off">
                                         </td>
                                         @else
                                         <td><input type="text" style="width:60px;" value="{{$tg->jan_actual}}" disabled>
@@ -236,9 +246,10 @@
                                         @endif
                                         <td><input type="text" style="width:60px;" value="{{$tg->feb_target}}" disabled>
                                         </td>
-                                        @if(empty($tg->feb_actual))
+                                        @if(empty($tg->feb_actual) && !empty($tg->feb_target))
                                         <td><input type="text" style="width: 60px;" id="feb_actual_<?php echo $i;?>"
-                                                class="actual actual_<?php echo $i;?> feb_actual" name="feb_actual[]">
+                                                class="actual actual_<?php echo $i;?> feb_actual" name="feb_actual[]"
+                                                autocomplete="off">
                                         </td>
                                         @else
                                         <td><input type="text" style="width:60px;" value="{{$tg->feb_actual}}" disabled>
@@ -246,9 +257,10 @@
                                         @endif
                                         <td><input type="text" style="width:60px;" value="{{$tg->mar_target}}" disabled>
                                         </td>
-                                        @if(empty($tg->mar_actual))
+                                        @if(empty($tg->mar_actual) && !empty($tg->mar_target))
                                         <td><input type="text" style="width: 60px;" id="mar_actual_<?php echo $i;?>"
-                                                class="actual actual_<?php echo $i;?> mar_actual" name="mar_actual[]">
+                                                class="actual actual_<?php echo $i;?> mar_actual" name="mar_actual[]"
+                                                autocomplete="off">
                                         </td>
                                         @else
                                         <td><input type="text" style="width:60px;" value="{{$tg->mar_actual}}" disabled>
@@ -256,14 +268,14 @@
                                         @endif
                                         <td><input type="text" style="width:60px;" value="{{$tg->target_total}}"
                                                 disabled></td>
-                                        @if(empty($tg->actual_total))
+                                        @if(empty($tg->actual_total) && !empty($tg->actual_total))
                                         <td><input type="text" style="width:60px;" id="actual_total_<?php echo $i;?>"
-                                                name="actual_total[]"></td>
+                                                name="actual_total[]" autocomplete="off"></td>
                                         @else
                                         <td><input type="text" style="width:60px;" value="{{$tg->actual_total}}"
                                                 disabled></td>
                                         @endif
-                                    
+
 
                                     </tr>
                                     <?php $k=$k+1;?>
@@ -276,7 +288,7 @@
                                         <td><input type="text" style="width:60px"
                                                 value="{{$collection->aprtarget_total}}" disabled>
                                         </td>
-                                        @if(empty($collection->apractual_total))
+                                        @if(empty($collection->apractual_total) && !empty($collection->aprtarget_total))
                                         <td><input type="text" style="width:60px" name="apractual_total"
                                                 id="apractual_total"><input type="hidden" style="width:60px"
                                                 name="totalrow" id="totalrow" value="<?php echo $i;?>">
@@ -290,7 +302,7 @@
                                         <td><input type="text" style="width:60px"
                                                 value="{{$collection->maytarget_total}}" disabled>
                                         </td>
-                                        @if(empty($collection->mayactual_total))
+                                        @if(empty($collection->mayactual_total) && !empty($collection->maytarget_total))
                                         <td><input type="text" style="width:60px" name="mayactual_total"
                                                 id="mayactual_total">
 
@@ -302,7 +314,7 @@
                                         <td><input type="text" style="width:60px"
                                                 value="{{$collection->juntarget_total}}" disabled>
                                         </td>
-                                        @if(empty($collection->junactual_total))
+                                        @if(empty($collection->junactual_total) && !empty($collection->juntarget_total))
                                         <td><input type="text" style="width:60px" name="junactual_total"
                                                 id="junactual_total">
                                         </td>
@@ -313,7 +325,7 @@
                                         <td><input type="text" style="width:60px"
                                                 value="{{$collection->jultarget_total}}" disabled>
                                         </td>
-                                        @if(empty($collection->julactual_total))
+                                        @if(empty($collection->julactual_total) && !empty($collection->jultarget_total))
                                         <td><input type="text" style="width:60px" name="julactual_total"
                                                 id="julactual_total">
 
@@ -326,7 +338,7 @@
                                         <td><input type="text" style="width:60px"
                                                 value="{{$collection->augtarget_total}}" disabled>
                                         </td>
-                                        @if(empty($collection->augactual_total))
+                                        @if(empty($collection->augactual_total) && !empty($collection->augtarget_total))
                                         <td><input type="text" style="width:60px" name="augactual_total"
                                                 id="augactual_total"> </td>
                                         @else
@@ -336,7 +348,7 @@
                                         <td><input type="text" style="width:60px"
                                                 value="{{$collection->septarget_total}}" disabled>
                                         </td>
-                                        @if(empty($collection->sepactual_total))
+                                        @if(empty($collection->sepactual_total) && !empty($collection->septarget_total))
                                         <td><input type="text" style="width:60px" name="sepactual_total"
                                                 id="sepactual_total">
                                         </td>
@@ -347,7 +359,7 @@
                                         <td><input type="text" style="width:60px"
                                                 value="{{$collection->octtarget_total}}" disabled>
                                         </td>
-                                        @if(empty($collection->octactual_total))
+                                        @if(empty($collection->octactual_total) && !empty($collection->octtarget_total))
                                         <td><input type="text" style="width:60px" name="octactual_total"
                                                 id="octactual_total">
 
@@ -360,7 +372,7 @@
                                         <td><input type="text" style="width:60px"
                                                 value="{{$collection->novtarget_total}}" disabled>
                                         </td>
-                                        @if(empty($collection->novactual_total))
+                                        @if(empty($collection->novactual_total)&& !empty($collection->novtarget_total))
                                         <td><input type="text" style="width:60px" name="novactual_total"
                                                 id="novactual_total">
                                         </td>
@@ -372,50 +384,50 @@
                                         <td><input type="text" style="width:60px"
                                                 value="{{$collection->dectarget_total}}" disabled>
                                         </td>
-                                        @if(empty($collection->decactual_total))
+                                        @if(empty($collection->decactual_total) && !empty($collection->dectarget_total))
                                         <td><input type="text" style="width:60px" name="decactual_total"
                                                 id="decactual_total">
                                         </td>
                                         @else
                                         <td><input type="text" style="width:60px"
                                                 value="{{$collection->decactual_total}}" disabled>
-                                        @endif
+                                            @endif
                                         </td>
                                         <td><input type="text" style="width:60px" name="jantarget_total"
                                                 value="{{$collection->jantarget_total}}" disabled>
                                         </td>
-                                        @if(empty($collection->janactual_total))
+                                        @if(empty($collection->janactual_total) && !empty($collection->jantarget_total))
                                         <td><input type="text" style="width:60px" name="janactual_total"
                                                 id="janactual_total">
                                         </td>
                                         @else
                                         <td><input type="text" style="width:60px"
                                                 value="{{$collection->janactual_total}}" disabled>
-                                        @endif
+                                            @endif
 
                                         <td><input type="text" style="width:60px"
                                                 value="{{$collection->febtarget_total}}" disabled>
                                         </td>
-                                        @if(empty($collection->febactual_total))
+                                        @if(empty($collection->febactual_total)&& !empty($collection->febtarget_total))
                                         <td><input type="text" style="width:60px" name="febactual_total"
                                                 id="febactual_total">
                                         </td>
                                         @else
                                         <td><input type="text" style="width:60px"
                                                 value="{{$collection->febactual_total}}" disabled>
-                                        @endif
-                                        
+                                            @endif
+
                                         <td><input type="text" style="width:60px"
                                                 value="{{$collection->martarget_total}}" disabled>
                                         </td>
-                                        @if(empty($collection->maractual_total))
+                                        @if(empty($collection->maractual_total)&& !empty($collection->martarget_total))
                                         <td><input type="text" style="width:60px" name="maractual_total"
                                                 id="maractual_total">
                                         </td>
                                         @else
                                         <td><input type="text" style="width:60px"
                                                 value="{{$collection->maractual_total}}" disabled>
-                                        @endif
+                                            @endif
                                         <td><input type="text" style="width:60px"
                                                 value="{{$collection->granttotal_target}}" disabled>
                                         </td>
@@ -426,7 +438,7 @@
                                         <td><input type="text" style="width:60px;" value="{{$collection->actual_total}}"
                                                 disabled></td>
                                         @endif
-                                        
+
 
                                     </tr>
                                 </tbody>
@@ -447,13 +459,13 @@
                                     <label>Total Actual</label>
                                 </div>
                                 <div class="col-sm-3">
-                                @if(empty($collection->granttotal_actual))
+                                    @if(empty($collection->granttotal_actual))
                                     <input type="text" name="granttotal_actual" id="finalactual">
-                                @else
-                                <td><input type="text" style="width:60px;" value="{{$collection->granttotal_actual}}"
-                                                disabled></td>
-                                @endif
-                                
+                                    @else
+                                    <td><input type="text" style="width:60px;"
+                                            value="{{$collection->granttotal_actual}}" disabled></td>
+                                    @endif
+
                                 </div>
 
                             </div>

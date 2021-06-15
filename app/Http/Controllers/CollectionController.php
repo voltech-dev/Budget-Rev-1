@@ -151,6 +151,7 @@ public function collectionupdate(Request $request,$id)
             $target->actual_total=$request->actual_total[$tg];
             }
             $target->save();
+            
                    }  
         $collection=Collection::where(['id'=>$request->collectionid])->first();   
         $collection->apractual_total=$request->apractual_total;

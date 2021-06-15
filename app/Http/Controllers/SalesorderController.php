@@ -112,7 +112,6 @@ public function sales_edit($id,$unit)
             $target->save();
              }  
         $sales=Sale::where(['id'=>$request->saleid])->first();   
-        
         $sales->apractual_total=$request->apractual_total;
         $sales->mayactual_total=$request->mayactual_total;
         $sales->junactual_total=$request->junactual_total;

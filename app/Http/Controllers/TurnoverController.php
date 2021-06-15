@@ -152,7 +152,6 @@ public function turnover_edit($id,$unit)
             $target->save();
                    }  
         $turnover=Turnover::where(['id'=>$request->turnid])->first();
-
         $turnover->apractual_total=$request->apractual_total;
         $turnover->mayactual_total=$request->mayactual_total;
         $turnover->junactual_total=$request->junactual_total;

@@ -282,7 +282,6 @@
                                     @endforeach
 
                                     <?php $totalrow=$i;?>
-
                                     <tr>
                                         <td>Total</td>
                                         <td><input type="text" style="width:60px"

@@ -123,7 +123,7 @@
                                         <td>Total Target</td>
 
                                         <td>Total Actual</td>
-                                        
+
                                     </tr>
                                 </thead>
                                 <tbody name='abc' id='abc'>

@@ -143,7 +143,6 @@ public function collectionupdate(Request $request,$id)
             $target->feb_actual=$request->feb_actual[$tg];
             }
             if(isset($request->mar_actual[$tg])){
-
             $target->mar_actual=$request->mar_actual[$tg];
             }
             if(isset($request->actual_total[$tg])){

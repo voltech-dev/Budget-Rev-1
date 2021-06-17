@@ -23,7 +23,7 @@ Route::post('/salesorder', [SalesorderController::class, 'store']);
 Route::get('/sales_edit/{id}/{unit}',[SalesorderController::class, 'sales_edit']);
 Route::post('/salesupdate/{id}',[SalesorderController::class, 'salesupdate']);
 Route::get('/sales_view/{id}/{unit}',[SalesorderController::class, 'sales_view']);
-
+Route::get('/salesfinancial_year',[SalesorderController::class, 'checkfinancial_year']);
 ############################## Turnover #####################################
 Route::get('/turnover_entry', [TurnoverController::class, 'turnover_entry'])->name('/turnover_entry');
 Route::get('/turnoverlist', [TurnoverController::class, 'turnoverlist']);
@@ -31,6 +31,7 @@ Route::post('/turnoverstore', [TurnoverController::class, 'turnoverstore']);
 Route::get('/turnover_view/{id}/{unit}',[TurnoverController::class, 'turnover_view']);
 Route::get('/turnover_edit/{id}/{unit}',[TurnoverController::class, 'turnover_edit']);
 Route::post('/turnoverupdate/{id}',[TurnoverController::class, 'turnoverupdate']);
+Route::get('/financial_year',[TurnoverController::class, 'checkfinancial_year']);
 ################################# Collection ##########################################
 
 Route::get('/collectionlist', [CollectionController::class, 'collectionlist']);

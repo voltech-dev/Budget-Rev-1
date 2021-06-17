@@ -173,12 +173,12 @@ public function turnover_edit($id,$unit)
 }
 public function checkfinancial_year(Request $request){
     $post = $request->all();
-  
-    $turnover = Turnover::where(['unit_id' => $post['unit_id'],'financial_year_id'=>$post['fin_year']])->exists();
-if($turnover){
-    return 'yes';
+    $collection = Turnover::where(['unit_id' => $post['unit_id'],'financial_year_id'=>$post['fin_year']])->first();
+ if($collection){
+     return 'found';
+ }
+ else{
+     return 'not found';
+ }
 }
-   
-}
-    
 }

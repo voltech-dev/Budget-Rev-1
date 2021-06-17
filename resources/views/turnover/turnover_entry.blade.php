@@ -31,7 +31,7 @@ $fin_year=DB::table('financial_year')
         <div class="col-md-12">-->
     <div class="row">
         <div class="col-md-12">
-            <form action="{{url('/turnoverstore')}}" method="POST">
+            <form action="{{url('/collectionstore')}}" method="POST">
                 @csrf
                 <div data-label="Enquiry Details" class="demo-code-preview col-xs-12 col-sm-12 col-md-12">
                     <div class="form-group row">
@@ -69,6 +69,8 @@ $fin_year=DB::table('financial_year')
                     </div>
                     <div class="row">
                         <div class="col-sm-12">
+
+
                             <div class="table table-responsive" id="tab">
                                 <table class="table table-bordered">
                                     <thead class="thead-light">
@@ -174,7 +176,8 @@ $(document).ready(function() {
     $('#tab').hide();
     $('#finaltotal').hide();
     $('#get_total').hide();
-})
+    
+});
 $('#company_name').change(function(event) {
     var company_name = $('#company_name').val();
     $.ajax({
@@ -196,34 +199,32 @@ $('#company_name').change(function(event) {
 
 });
 
+
 $('#add').click(function() {
     var unit = $('#unit').val();
     var financialyear = $('#financial_year').val();
-    var yearflag = 0;
     $.ajax({
-        type: "GET",
-        url: "{{url('/financial_year')}}",
-        data: {
-            fin_year: financialyear,
-            unit_id: unit
-        },
-
-        success: function(data) {
-
-            if (data == 'yes') {
-                alert('Financial Year already entered for this unit');
-            } else {
-                add_division();
+            type: "GET",
+            url: "{{url('/financial_year')}}",
+            data: {
+                unit_id: unit,
+                fin_year:financialyear
+            },
+            success: function(data) {
+                if(data == 'found') {
+                    alert('Financial Year already entered for this unit');
+                } 
+                else {
+                    add_division();
+                }
             }
-        }
-    });
+        });
 
-
+        
 
 });
-
-function add_division() {
-    $('#tab').show();
+function add_division(){
+    $('#tab').show();    
     var unit = $('#unit').val();
     var financialyear = $('#financial_year').val();
     $.ajax({
@@ -238,6 +239,8 @@ function add_division() {
             var k = 0;
             $.each(data, function(key, value) {
 
+
+                
                 i = i + 1;
                 $('tbody[name="sub_sales"]').append('<tr class="newrow">' +
                     '<td>' +
@@ -256,7 +259,7 @@ function add_division() {
 
                     '<td class="may">' +
                     '<input type="text" style="width:60px" name="may_target[]" id="may_target_' +
-                    i + '" clas git remote add origins="target target_' + i + '" value="" autocomplete="off" >' +
+                    i + '" class="target target_' + i + '" value="" autocomplete="off">' +
                     '</td>' +
                     '<td>' +
                     '<input type="text" style="width:60px" name="may_actual[]" id="may_actual" class="may_actual" disabled>' +
@@ -406,11 +409,17 @@ function add_division() {
             );
         },
     });
-
+   
 };
 
+/*
+$('#add').click(function() {
+    $('#finaltotal').show();
+    $('#get_total').show();
+    $('#sub_sales').each(function() {})
+}); 
 var sum = 0;
-
+*/
 
 $(document).on('keyup', '.target', function() {
     var totalrow = $("#totalrow").val();

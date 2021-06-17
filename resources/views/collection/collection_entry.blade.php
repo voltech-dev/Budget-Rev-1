@@ -203,20 +203,18 @@ $('#company_name').change(function(event) {
 $('#add').click(function() {
     var unit = $('#unit').val();
     var financialyear = $('#financial_year').val();
-    var yearflag =0;
     $.ajax({
             type: "GET",
             url: "{{url('/financial_year')}}",
             data: {
-                fin_year: financialyear,
-                unit_id: unit
+                unit_id: unit,
+                fin_year:financialyear
             },
-          
             success: function(data) {
-              
-                if(data == 'yes') {
+                if(data == 'found') {
                     alert('Financial Year already entered for this unit');
-                } else {
+                } 
+                else {
                     add_division();
                 }
             }

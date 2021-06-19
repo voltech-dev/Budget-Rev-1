@@ -3,17 +3,7 @@
 
 
 <!-- begin::page-header -->
-<div class="card-header">
     <h3>Salesorder List</h3>
-</div>
-<div class="page-header">
-    <div class="container-fluid d-sm-flex justify-content-between">
-
-        <nav aria-label="breadcrumb">
-
-        </nav>
-    </div>
-</div>
 <!-- end::page-header -->
 @endsection
 @section('content')
@@ -47,7 +37,6 @@
                         </thead>
                         <tbody><?php $i=0; $i++; ?>
                             @foreach($sales as $sale)
-
                             <tr>
                                 <td>{{$i++}}</td>
                                 <td><a href="{{url('/sales_view/'.$sale->id.'/'.$sale->unit_id) }}">{{$sale->company->company_name}}
@@ -75,5 +64,10 @@
     <button onclick="location.href='{{ url('/salesorder/') }}'" style="text-center">
         Add Budget</button>
 </div>
-
+<style>
+.w-5{
+    display:none
+}
+</style>
+{{$sales->links()}}
 @endsection

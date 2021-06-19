@@ -38,10 +38,9 @@
                         </thead>
                         <tbody><?php $i=0; $i++; ?>
                             @foreach($unit as $units)
-                           
                             <tr>
                                 <td>{{$i++}}</td>
-                                <td>{{ $units->company_name }}</td>
+                                <td>{{$units->company->company_name}}</td>
                                 <td><a href="{{ url('/unitview/'.$units->id.'/'.$units->unit) }}">{{$units->unit}}</td>
                                 <td> <a href="{{ url('/unitedit/'.$units->id.'/'.$units->unit) }}"
                                         class="btn btn-sm btn-white text-success mr-2"><i

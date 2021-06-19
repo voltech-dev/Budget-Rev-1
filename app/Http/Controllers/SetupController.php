@@ -94,9 +94,9 @@ class SetupController extends Controller
         $division = new division();
         $division->division_name = $request->division;
         $division->company_id = $request->input('company_name');
-        #$division->unit_id=$request->unit;
+        $division->unit_id=$request->unit;
         $division->save();
-        return redirect('/division');
+        return redirect('/divisionlist');
     }
     public function viewdivision()
     {
@@ -108,7 +108,7 @@ class SetupController extends Controller
                     ->join('division', 'company.id', '=', 'division.company_id')
                     ->select('company.*', 'division.*')
                     ->get();
-                   
+        
                 return view('division.divisionlist',['division'=>$division]);
     }
 
@@ -139,13 +139,8 @@ class SetupController extends Controller
        $unit->save();
        return redirect('/unitlist');
     }
-
     public function unitlist(){
-        $unit = DB::table('company')
-                    ->join('unit', 'company.id', '=', 'unit.company_id')
-                    ->select('company.*', 'unit.*')
-                    ->get();
-                   
+        $unit = unit::all();   
                 return view('unit.unitlist',['unit'=>$unit]);
     }
     
@@ -157,8 +152,7 @@ class SetupController extends Controller
         $unit->company_id = $request->company_name;
         $unit->unit = $request->unit;
         $unit->save();
-        return view('unit.unitlist',['unit'=>$unit]);
-      
+        return redirect('/unitlist');      
     }
     //Userlist
     public function userlist(){

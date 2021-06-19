@@ -3,17 +3,7 @@
 
 
 <!-- begin::page-header -->
-<div class="card-header">
     <h3>Turnover List</h3>
-</div>
-<div class="page-header">
-    <div class="container-fluid d-sm-flex justify-content-between">
-
-        <nav aria-label="breadcrumb">
-
-        </nav>
-    </div>
-</div>
 <!-- end::page-header -->
 @endsection
 @section('content')

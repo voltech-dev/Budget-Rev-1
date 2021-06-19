@@ -11,7 +11,6 @@ class unit extends Model
     protected $table='unit';
 
     public function company(){
-        #return $this->hasOne(company::class);
-        return $this->hasOne('App/Company');
+        return $this->hasOne(company::class,'id','company_id');
     }
 }

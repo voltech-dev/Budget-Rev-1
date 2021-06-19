@@ -33,7 +33,7 @@ class SalesorderController extends Controller
                     ->select('company.*', 'unit.*','sales.*','financial_year.*')
                     ->get();*/
                 
-                    $sales=Sale::all();  
+                    $sales=Sale::paginate(2);  
                 return view('salesorder.salesorderlist',['sales'=>$sales]);
             }
     public function sales_view($id,$unit)

@@ -23,17 +23,11 @@ class SalesorderController extends Controller
     }
     public function salesorder()
     {
-        return view('salesorder.create');
+        return view('salesorder.sales_entry');
     }
     public function salesorderlist(){
-       /* $sales = DB::table('sales')
-                    ->join('company','sales.company_id', '=', 'company.id')
-                    ->join('unit','sales.unit_id','=','unit.id')
-                    ->join('financial_year','sales.financial_year_id','=','financial_year.id')
-                    ->select('company.*', 'unit.*','sales.*','financial_year.*')
-                    ->get();*/
-                
-                    $sales=Sale::paginate(2);  
+       
+                    $sales=Sale::all();  
                 return view('salesorder.salesorderlist',['sales'=>$sales]);
             }
     public function sales_view($id,$unit)
@@ -137,20 +131,19 @@ public function store(Request $request)
     $sale->unit_id = $request->unit;
     $sale->financial_year_id = $request->financial_year;
     #$sale->target_total=$request->total_target;
-    $sale->aprtarget_total=$request->aprtarget_total;
-    $sale->maytarget_total=$request->maytarget_total;
-    $sale->juntarget_total=$request->juntarget_total;
-    $sale->jultarget_total=$request->jultarget_total;
-    $sale->augtarget_total=$request->augtarget_total; 
-    $sale->septarget_total=$request->septarget_total;
-    $sale->octtarget_total=$request->octtarget_total;
-    $sale->novtarget_total=$request->novtarget_total;
-    $sale->dectarget_total=$request->dectarget_total;
-    $sale->jantarget_total=$request->jantarget_total;
-    $sale->febtarget_total=$request->febtarget_total;
-    $sale->martarget_total=$request->martarget_total;
-    $sale->target_total=$request->finaltarget;
-    $sale->actual_total=$request->finalactual;
+    $sale->aprtarget_total=$request->aprtargetrow_total;
+    $sale->maytarget_total=$request->maytargetrow_total;
+    $sale->juntarget_total=$request->juntargetrow_total;
+    $sale->jultarget_total=$request->jultargetrow_total;
+    $sale->augtarget_total=$request->augtargetrow_total; 
+    $sale->septarget_total=$request->septargetrow_total;
+    $sale->octtarget_total=$request->octtargetrow_total;
+    $sale->novtarget_total=$request->novtargetrow_total;
+    $sale->dectarget_total=$request->dectargetrow_total;
+    $sale->jantarget_total=$request->jantargetrow_total;
+    $sale->febtarget_total=$request->febtargetrow_total;
+    $sale->martarget_total=$request->martargetrow_total;
+    $sale->target_total=$request->target_total;
     $sale->granttotal_target=$request->granttotal_target;
     $totalrow   =   $request->totalrow;
     #echo $totalrow;
@@ -174,7 +167,7 @@ public function store(Request $request)
                 $sales_sub->jan_target = $request->jan_target[$i];
                 $sales_sub->feb_target = $request->feb_target[$i];
                 $sales_sub->mar_target = $request->mar_target[$i];
-                $sales_sub->target_total = $request->divtarget_total[$i];
+                $sales_sub->target_total = $request->targetcol_total[$i];
      
                 $sales_sub->save();
             }

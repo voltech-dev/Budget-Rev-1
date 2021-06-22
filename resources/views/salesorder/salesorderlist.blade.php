@@ -64,10 +64,5 @@
     <button onclick="location.href='{{ url('/salesorder/') }}'" style="text-center">
         Add Budget</button>
 </div>
-<style>
-.w-5{
-    display:none
-}
-</style>
-{{$sales->links()}}
+
 @endsection

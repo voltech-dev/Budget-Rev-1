@@ -195,6 +195,7 @@ class SetupController extends Controller
     }
     public function fetchdivision(Request $request)
     {
+        
         $post = $request->all();
         $json = array();
         $div = division::where(['unit_id' => $post['unit']])->get();

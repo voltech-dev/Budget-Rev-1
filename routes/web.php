@@ -25,7 +25,7 @@ Route::post('/salesupdate/{id}',[SalesorderController::class, 'salesupdate']);
 Route::get('/sales_view/{id}/{unit}',[SalesorderController::class, 'sales_view']);
 Route::get('/salesfinancial_year',[SalesorderController::class, 'checkfinancial_year']);
 ############################## Turnover #####################################
-Route::get('/turnover_entry', [TurnoverController::class, 'turnover_entry'])->name('/turnover_entry');
+Route::get('/turnover_entry', [TurnoverController::class, 'turnover_entry']);
 Route::get('/turnoverlist', [TurnoverController::class, 'turnoverlist']);
 Route::post('/turnoverstore', [TurnoverController::class, 'turnoverstore']);
 Route::get('/turnover_view/{id}/{unit}',[TurnoverController::class, 'turnover_view']);
@@ -64,7 +64,7 @@ Route::get('/unitedit/{companyname}/{unit}', [SetupController::class, 'unit_edit
 Route::get('/unitview/{id}/{unit}', [SetupController::class, 'unit_view']);
 Route::post('/unitupdate/{id}',[SetupController::class, 'unitupdate']);
 Route::get('/companyid', [SetupController::class, 'divisiondetails']);
-Route::get('/divisionid', [SetupController::class, 'fetchdivision']);
+Route::get('/fetchdivision', [SetupController::class, 'fetchdivision']);
 Route::post('/unitstore', [SetupController::class, 'unitstore']);
 
 Route::get('/divisionedit/{id}/{division}', [SetupController::class, 'division_edit']);

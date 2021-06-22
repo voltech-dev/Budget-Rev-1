@@ -229,7 +229,7 @@ function add_division(){
     var financialyear = $('#financial_year').val();
     $.ajax({
         type: "GET",
-        url: "{{url('/divisionid')}}",
+        url: "{{url('/fetchdivision')}}",
         data: {
             unit: unit
         },

@@ -35,91 +35,97 @@ class SalesorderController extends Controller
     $company=company::all();
     $unit=unit::all();
     $sales=Sale::findorfail($id);     
-    $target=sales_sub::where(['sale_id'=>$sales->id])->get();
+    $sales_sub=sales_sub::where(['sale_id'=>$sales->id])->get();
     $financialyear=financial_year::all();
-    return view('salesorder.sales_view',['unit'=>$unit,'company'=>$company,'sales'=>$sales,'financialyear'=>$financialyear,'target'=>$target]);       
+    return view('salesorder.sales_view',['unit'=>$unit,'company'=>$company,'sales'=>$sales,'financialyear'=>$financialyear,'sales_sub'=>$sales_sub]);       
 }  
 public function sales_edit($id,$unit)
     {  
     $company=company::all();
     $unit=unit::all();
     $sales=Sale::findorfail($id);     
-    $target=sales_sub::where(['sale_id'=>$sales->id])->get();
+
+
+    $sales_sub=sales_sub::where(['sale_id'=>$sales->id])->get();
     $financialyear=financial_year::all();
-    return view('salesorder.sales_edit',['unit'=>$unit,'company'=>$company,'sales'=>$sales,'financialyear'=>$financialyear,'target'=>$target]);      
+    return view('salesorder.sales_edit',['unit'=>$unit,'company'=>$company,'sales'=>$sales,'financialyear'=>$financialyear,'sales_sub'=>$sales_sub]);      
     }
     public function salesupdate(Request $request,$id)
     {  
 
         
         
-        foreach($request->id as $tg=>$val){
+        foreach($request->id as $sub=>$val){
+            
+            
             $target=sales_sub::where(['id'=>$val])->first();
-            if(isset($request->apr_actual[$tg])){
-                $target->apr_actual= $request->apr_actual[$tg];
+            if(isset($request->apr_actual[$sub])){
+                $target->apr_actual= $request->apr_actual[$sub];
             }
 
-            if(isset($request->may_actual[$tg])){
-                $target->may_actual=$request->may_actual[$tg];
+            if(isset($request->may_actual[$sub])){
+                $target->may_actual=$request->may_actual[$sub];
             }
            
 
-            if(isset($request->jun_actual[$tg])){
-                $target->jun_actual=$request->jun_actual[$tg];
+            if(isset($request->jun_actual[$sub])){
+                $target->jun_actual=$request->jun_actual[$sub];
             }
             
 
-            if(isset($request->jul_actual[$tg])){
-                $target->jul_actual=$request->jul_actual[$tg];
+            if(isset($request->jul_actual[$sub])){
+                $target->jul_actual=$request->jul_actual[$sub];
             }
             
 
-            if(isset($request->aug_actual[$tg])){
-                $target->aug_actual=$request->aug_actual[$tg];
+            if(isset($request->aug_actual[$sub])){
+                $target->aug_actual=$request->aug_actual[$sub];
             }
             
 
-            if(isset($request->sep_actual[$tg])){
-                $target->sep_actual=$request->sep_actual[$tg];
+            if(isset($request->sep_actual[$sub])){
+                $target->sep_actual=$request->sep_actual[$sub];
             }
-            if(isset($request->oct_actual[$tg])){
-            $target->oct_actual=$request->oct_actual[$tg];
+            if(isset($request->oct_actual[$sub])){
+            $target->oct_actual=$request->oct_actual[$sub];
             }
-            if(isset($request->nov_actual[$tg])){
-            $target->nov_actual=$request->nov_actual[$tg];
+            if(isset($request->nov_actual[$sub])){
+            $target->nov_actual=$request->nov_actual[$sub];
             }
-            if(isset($request->dec_actual[$tg])){
-            $target->dec_actual=$request->dec_actual[$tg];
+            if(isset($request->dec_actual[$sub])){
+            $target->dec_actual=$request->dec_actual[$sub];
             }
-            if(isset($request->jan_actual[$tg])){
-            $target->jan_actual=$request->jan_actual[$tg];
+            if(isset($request->jan_actual[$sub])){
+            $target->jan_actual=$request->jan_actual[$sub];
             }
-            if(isset($request->feb_actual[$tg])){
-            $target->feb_actual=$request->feb_actual[$tg];
+            if(isset($request->feb_actual[$sub])){
+            $target->feb_actual=$request->feb_actual[$sub];
             }
-            if(isset($request->mar_actual[$tg])){
-            $target->mar_actual=$request->mar_actual[$tg];
+            if(isset($request->mar_actual[$sub])){
+            $target->mar_actual=$request->mar_actual[$sub];
             }
-            if(isset($request->actual_total[$tg])){
-            $target->actual_total=$request->actual_total[$tg];
+            if(isset($request->actualcol_total[$sub])){
+            $target->actual_total=$request->actualcol_total[$sub];
             }
+            // exit();
             $target->save();
         
              }  
         $sales=Sale::where(['id'=>$request->saleid])->first();   
-        $sales->apractual_total=$request->apractual_total;
-        $sales->mayactual_total=$request->mayactual_total;
-        $sales->junactual_total=$request->junactual_total;
-        $sales->julactual_total=$request->julactual_total;
-        $sales->augactual_total=$request->augactual_total;
-        $sales->sepactual_total=$request->sepactual_total;
-        $sales->octactual_total=$request->octactual_total;
-        $sales->novactual_total=$request->novactual_total;
-        $sales->decactual_total=$request->decactual_total;
-        $sales->janactual_total=$request->janactual_total;
-        $sales->febactual_total=$request->febactual_total;
-        $sales->maractual_total=$request->maractual_total;
-        $sales->actual_total=$request->total_actual;
+        echo $sales;
+        $sales->apractual_total=$request->apractualrow_total;
+        $sales->mayactual_total=$request->mayactualrow_total;
+        $sales->junactual_total=$request->junactualrow_total;
+        $sales->julactual_total=$request->julactualrow_total;
+        $sales->augactual_total=$request->augactualrow_total;
+        $sales->sepactual_total=$request->sepactualrow_total;
+        $sales->octactual_total=$request->octactualrow_total;
+        $sales->novactual_total=$request->novactualrow_total;
+        $sales->decactual_total=$request->decactualrow_total;
+        $sales->janactual_total=$request->janactualrow_total;
+        $sales->febactual_total=$request->febactualrow_total;
+        $sales->maractual_total=$request->maractualrow_total;
+        $sales->actual_total=$request->finalactual;
         $sales->granttotal_actual=$request->granttotal_actual;
         $sales->save();
         return redirect('/salesorderlist');  
@@ -236,7 +242,6 @@ public function divisionupdate(Request $request,$id){
    $division->save();
    return redirect('/divisionlist');
 }
-
 public function division_view($id,$division)
 {
                 $company=company::all();

@@ -54,10 +54,11 @@ $fin_year=DB::table('financial_year')
                     <div class="form-group row">
                         <label class="col-sm-3 col-form-label col-form-label-sm">Financial Year</label>
                         <div class="col-md-3">
-                            <select name="financial_year" class="form-control form-control-sm" id="financial_year">
+                            <select name="financial_year" class="form-control form-control-sm" class="financial_year"
+                                id="financial_year">
                                 <option selected disabled>--Select--</option>
                                 @foreach($fin_year as $fy)
-                                <option value="{{$fy->id}}">{{$fy->financial_year}}</option>
+                                <option value="{{$fy->financial_year}}-{{$fy->id}}">{{$fy->financial_year}}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -72,7 +73,8 @@ $fin_year=DB::table('financial_year')
 
                             <div class="table table-responsive" id="tab">
                                 <table class="table table-bordered">
-                                    <thead class="thead-light" name="division" id="division" style="text-align:center">
+                                    <thead class="thead-light col-auto" name="division" id="division"
+                                        style="text-align:center">
 
                                     </thead>
                                     <tbody name='sub_sales' id='sub_sales'>
@@ -98,7 +100,7 @@ $fin_year=DB::table('financial_year')
                         </div>
 
                     </div>
-                    
+
                     <div class="form-group row">
 
                         <div class="col-sm-12">
@@ -148,14 +150,18 @@ $('#company_name').change(function(event) {
 
 $('#add').click(function() {
     $('#finaltotal').show();
+
     var unit = $('#unit').val();
     var financialyear = $('#financial_year').val();
+    var mystr = financialyear.split('-');
+    var op = mystr[2];
+
     var yearflag = 0;
     $.ajax({
         type: "GET",
         url: "{{url('/salesfinancial_year')}}",
         data: {
-            fin_year: financialyear,
+            fin_year: op,
             unit_id: unit
         },
 
@@ -176,6 +182,11 @@ function add_division() {
     $('#tab').show();
     var unit = $('#unit').val();
     var financialyear = $('#financial_year').val();
+    var mystr = financialyear.split('-');
+    var op = mystr[0];
+    // var op1=mystr[1];
+    var year1 = op.slice(-2);
+    // var year2=op1.slice(-2);
 
     $.ajax({
         type: "GET",
@@ -190,20 +201,32 @@ function add_division() {
             console.log(data);
             // $('thead[name="division"]').append('<tr>' + '<th>' + 'Month' + '</th>' + '<th>'++'</th>' +
             //     '</tr>')
-            $('thead[name="division"]').append('<th>' + 'MONTH' + '</th>');
+            $('thead[name="division"]').append('<th colspan=1>' + 'MONTH' + '</th>');
             $('tbody[name="sub_sales"]').append('<tr id="target">' + '<td>' + '</td>' + '</tr>');
-            $('tbody[name="sub_sales"]').append('<tr id="apr">' + '<th>' + 'Apr' + '</th>' + '</tr>');
-            $('tbody[name="sub_sales"]').append('<tr id="may">' + '<th>' + 'May' + '</th>' + '</tr>');
-            $('tbody[name="sub_sales"]').append('<tr id="jun">' + '<th>' + 'Jun' + '</th>' + '</tr>');
-            $('tbody[name="sub_sales"]').append('<tr id="jul">' + '<th>' + 'Jul' + '</th>' + '</tr>');
-            $('tbody[name="sub_sales"]').append('<tr id="aug">' + '<th>' + 'Aug' + '</th>' + '</tr>');
-            $('tbody[name="sub_sales"]').append('<tr id="sep">' + '<th>' + 'Sep' + '</th>' + '</tr>');
-            $('tbody[name="sub_sales"]').append('<tr id="oct">' + '<th>' + 'Oct' + '</th>' + '</tr>');
-            $('tbody[name="sub_sales"]').append('<tr id="nov">' + '<th>' + 'Nov' + '</th>' + '</tr>');
-            $('tbody[name="sub_sales"]').append('<tr id="dec">' + '<th>' + 'Dec' + '</th>' + '</tr>');
-            $('tbody[name="sub_sales"]').append('<tr id="jan">' + '<th>' + 'Jan' + '</th>' + '</tr>');
-            $('tbody[name="sub_sales"]').append('<tr id="feb">' + '<th>' + 'Feb' + '</th>' + '</tr>');
-            $('tbody[name="sub_sales"]').append('<tr id="mar">' + '<th>' + 'Mar' + '</th>' + '</tr>');
+            $('tbody[name="sub_sales"]').append('<tr id="apr">' + '<th>' + 'Apr' + ' ' + op + '</th>' +
+                '</tr>');
+            $('tbody[name="sub_sales"]').append('<tr id="may">' + '<th>' + 'May' + ' ' + op + '</th>' +
+                '</tr>');
+            $('tbody[name="sub_sales"]').append('<tr id="jun">' + '<th>' + 'Jun' + ' ' + op + '</th>' +
+                '</tr>');
+            $('tbody[name="sub_sales"]').append('<tr id="jul">' + '<th>' + 'Jul' + ' ' + op + '</th>' +
+                '</tr>');
+            $('tbody[name="sub_sales"]').append('<tr id="aug">' + '<th>' + 'Aug' + ' ' + op + '</th>' +
+                '</tr>');
+            $('tbody[name="sub_sales"]').append('<tr id="sep">' + '<th>' + 'Sep' + ' ' + op + '</th>' +
+                '</tr>');
+            $('tbody[name="sub_sales"]').append('<tr id="oct">' + '<th>' + 'Oct' + ' ' + op + '</th>' +
+                '</tr>');
+            $('tbody[name="sub_sales"]').append('<tr id="nov">' + '<th>' + 'Nov' + ' ' + op + '</th>' +
+                '</tr>');
+            $('tbody[name="sub_sales"]').append('<tr id="dec">' + '<th>' + 'Dec' + ' ' + op + '</th>' +
+                '</tr>');
+            $('tbody[name="sub_sales"]').append('<tr id="jan">' + '<th>' + 'Jan' + ' ' + op + '</th>' +
+                '</tr>');
+            $('tbody[name="sub_sales"]').append('<tr id="feb">' + '<th>' + 'Feb' + ' ' + op + '</th>' +
+                '</tr>');
+            $('tbody[name="sub_sales"]').append('<tr id="mar">' + '<th>' + 'Mar' + ' ' + op + '</th>' +
+                '</tr>');
             $('tbody[name="sub_sales"]').append('<tr id="total">' + '<th>' + 'Total' + '</th>' + '</tr>');
             var i = 0;
             var k = 0;
@@ -212,25 +235,25 @@ function add_division() {
 
                 $('thead[name="division"]').append('<th colspan="2" style=text-align:center>' +
                     value + '</th>' +
-                    '<input type="hidden"  style="width:60px" name="div[]" id="div_' +
+                    '<input type="hidden" name="div[]" id="div_' +
                     i + '" value="' +
                     key +
                     '">' + value);
                 $('#target').append('<th colspan=1 style="text-align:center">' + 'Target' +
                     '</th>' + '<th colspan=1>' + 'Actual' + '</th>');
 
-                $('#apr').append('<td>' +
+                $('#apr').append('<td colspan=1>' +
                     '<input type="text" style="width:100px" name="apr_target[]" id="apr_target_' +
                     i + '" class="target target_' + i +
                     ' apr_target"  autocomplete="off">' +
-                    '</td>' + '<td>' +
+                    '</td>' + '<td colspan=1>' +
                     '<input type="text" style="width:100px" name="apr_actual" disabled id="apr_actual">' +
                     '</td>');
-                $('#may').append('<td>' +
+                $('#may').append('<td colspan=1>' +
                     '<input type="text" style="width:100px" name="may_target[]" id="may_target_' +
                     i + '" class="target target_' + i +
                     ' may_target"  autocomplete="off">' +
-                    '</td>' + '<td>' +
+                    '</td>' + '<td colspan=1>' +
                     '<input type="text" style="width:100px" name="may_actual" id="may_actual" disabled >' +
                     '</td>');
                 $('#jun').append('<td>' +
@@ -622,7 +645,7 @@ $(document).on('keyup', '.target', function() {
             mar_target_row)).toFixed(2);
     $("#target_total").val(finaltarget);
     $('#granttotal_target').val(finaltarget);
-   
+
 
 });
 $('#unit').change(function() {

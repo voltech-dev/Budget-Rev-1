@@ -21,6 +21,8 @@
     <link href="{{ asset('plugins/p-scrollbar/p-scrollbar.css') }}" rel="stylesheet" /> -->
     <!---Icons css-->
     <link href="{{ asset('css/icons.css') }}" rel="stylesheet" />
+    <link href="{{ asset('css/all.min.css') }}" rel="stylesheet" />
+    <link href="{{ asset('css/fontawesome.min.css') }}" rel="stylesheet" />
     <!-- Simplebar css 
     <link rel="stylesheet" href="{{ asset('plugins/simplebar/css/simplebar.css') }}"> -->
     <!-- Color Skin css -->

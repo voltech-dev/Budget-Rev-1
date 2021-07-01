@@ -19006,6 +19006,7 @@ Dimmer
     border: 0;
 }
 
+
 .table-dark.table-striped tbody tr:nth-of-type(odd) {
     background-color: rgba(255, 255, 255, 0.05);
 }
@@ -19120,7 +19121,7 @@ Dimmer
 
 .table-responsive {
     display: block;
-    width: 100%;
+    width:100%;
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
     -ms-overflow-style: -ms-autohiding-scrollbar;
@@ -19144,7 +19145,7 @@ Dimmer
 
 .table-md th,
 .table-md td {
-    padding: .5rem;
+    /* padding: .5rem; */
 }
 
 .table-vcenter td,

@@ -53,8 +53,6 @@ public function sales_edit($id,$unit)
     public function salesupdate(Request $request,$id)
     {  
 
-        
-        
         foreach($request->id as $sub=>$val){
             
             
@@ -135,8 +133,10 @@ public function store(Request $request)
     $sale = new Sale();
     $sale->company_id = $request->company_name;
     $sale->unit_id = $request->unit;
-    $sale->financial_year_id = $request->financial_year;
-    #$sale->target_total=$request->total_target;
+    $str=$request->financial_year;
+    $array=explode('-',$str,3);
+    $test = $array[2];
+    $sale->financial_year_id = $test;
     $sale->aprtarget_total=$request->aprtargetrow_total;
     $sale->maytarget_total=$request->maytargetrow_total;
     $sale->juntarget_total=$request->juntargetrow_total;

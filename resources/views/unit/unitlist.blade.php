@@ -44,7 +44,10 @@
                                 <td><a href="{{ url('/unitview/'.$units->id.'/'.$units->unit) }}">{{$units->unit}}</td>
                                 <td> <a href="{{ url('/unitedit/'.$units->id.'/'.$units->unit) }}"
                                         class="btn btn-sm btn-white text-success mr-2"><i
-                                            class="far fa-edit mr-1"></i></a></td>
+                                            class="far fa-edit mr-1"></i></a><a
+                                        href="{{ url('/unit_destroy/'.$units->id) }}"
+                                        class="btn btn-sm btn-white text-success mr-2"><i
+                                            class="far fa-trash-alt"></i></a></td>
 
                             </tr>
                             @endforeach

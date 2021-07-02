@@ -36,7 +36,7 @@ class SalesorderController extends Controller
     $unit=unit::all();
     $sales=Sale::findorfail($id);     
     $sales_sub=sales_sub::where(['sale_id'=>$sales->id])->get();
-    $financialyear=financial_year::all();
+    $financialyear=financial_year::where(['id'=>$sales->financial_year_id])->first();
     return view('salesorder.sales_view',['unit'=>$unit,'company'=>$company,'sales'=>$sales,'financialyear'=>$financialyear,'sales_sub'=>$sales_sub]);       
 }  
 public function sales_edit($id,$unit)
@@ -47,7 +47,7 @@ public function sales_edit($id,$unit)
 
 
     $sales_sub=sales_sub::where(['sale_id'=>$sales->id])->get();
-    $financialyear=financial_year::all();
+    $financialyear=financial_year::where(['id'=>$sales->financial_year_id])->first();
     return view('salesorder.sales_edit',['unit'=>$unit,'company'=>$company,'sales'=>$sales,'financialyear'=>$financialyear,'sales_sub'=>$sales_sub]);      
     }
     public function salesupdate(Request $request,$id)

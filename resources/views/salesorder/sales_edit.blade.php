@@ -62,11 +62,7 @@
                     <label class="col-sm-3 col-form-label col-form-label-sm">Financial Year</label>
                     <div class="col-md-3">
                         <select name="financial_year" class="form-control form-control-sm" id="financial_year" disabled>
-                            <option selected>--Select--</option>
-                            @foreach($financialyear as $fy)
-                            <option value="{{$fy->id}}" {{($fy->id==$sales->financial_year_id)?'selected':''}}>
-                                {{$fy->financial_year}}</option>
-                            @endforeach
+                            <option value="{{$financialyear->id}}">{{$financialyear->financial_year}}</option>
                         </select>
                     </div>
                 </div>
@@ -99,11 +95,15 @@
                                         <th>Total Actual</th>
                                     </tr>
                                     <tr>
-                                        <th>Apr</th>
+                                        <?php
+                                        $str = $financialyear->financial_year;
+                                        $year= explode('-',$str,2);
+                                        ?>
+                                        <th>Apr <?php echo $year[0];?></th>
                                         <?php $i=0;?>
                                         @foreach($sales_sub as $sub)
                                         <input type="hidden" value="{{$sub->sale_id}}" name="saleid[]">
-                                    <input type="hidden" value="{{$sub->id}}" name="id[]">
+                                        <input type="hidden" value="{{$sub->id}}" name="id[]">
                                         <?php $i=$i+1;?>
                                         <td><input type="text" style="width:80px" value="{{$sub->apr_target}}" disabled>
                                         </td>
@@ -140,11 +140,15 @@
 
                                     </tr>
                                     <tr>
-                                        <th>May</th>
+                                        <?php
+                                        $str = $financialyear->financial_year;
+                                        $year= explode('-',$str,2);
+                                        ?>
+                                        <th>May <?php echo $year[0];?></th>
                                         <?php $i=0;?>
                                         @foreach($sales_sub as $sub)
                                         <input type="hidden" value="{{$sub->sale_id}}" name="saleid[]">
-                                    <input type="hidden" value="{{$sub->id}}" name="id[]">
+                                        <input type="hidden" value="{{$sub->id}}" name="id[]">
                                         <?php $i=$i+1;?>
                                         <td><input type="text" style="width:80px" value="{{$sub->may_target}}" disabled>
                                         </td>
@@ -178,11 +182,15 @@
 
                                     </tr>
                                     <tr>
-                                        <th>Jun</th>
+                                        <?php
+                                        $str = $financialyear->financial_year;
+                                        $year= explode('-',$str,2);
+                                        ?>
+                                        <th>Jun <?php echo $year[0];?></th>
                                         <?php $i=0;?>
                                         @foreach($sales_sub as $sub)
                                         <input type="hidden" value="{{$sub->sale_id}}" name="saleid[]">
-                                    <input type="hidden" value="{{$sub->id}}" name="id[]">
+                                        <input type="hidden" value="{{$sub->id}}" name="id[]">
                                         <?php $i=$i+1;?>
                                         <td><input type="text" style="width:80px" value="{{$sub->jun_target}}" disabled>
                                         </td>
@@ -192,7 +200,7 @@
                                                 autocomplete="off">
                                         </td>
                                         @else
-                                        <td><input type="text" style="width:80px;" name="jun_actual[]"
+                                        <td><input type="text" style="width:80px;" name="jun_actual[]" disabled
                                                 value="{{$sub->jun_actual}}">
                                         </td>
                                         @endif
@@ -214,11 +222,15 @@
 
                                     </tr>
                                     <tr>
-                                        <th>Jul</th>
+                                        <?php
+                                        $str = $financialyear->financial_year;
+                                        $year= explode('-',$str,2);
+                                        ?>
+                                        <th>Jul <?php echo $year[0];?></th>
                                         <?php $i=0;?>
                                         @foreach($sales_sub as $sub)
                                         <input type="hidden" value="{{$sub->sale_id}}" name="saleid[]">
-                                    <input type="hidden" value="{{$sub->id}}" name="id[]">
+                                        <input type="hidden" value="{{$sub->id}}" name="id[]">
                                         <?php $i=$i+1;?>
                                         <td><input type="text" style="width:80px" value="{{$sub->jul_target}}" disabled>
                                         </td>
@@ -249,11 +261,15 @@
 
                                     </tr>
                                     <tr>
-                                        <th>Aug</th>
+                                        <?php
+                                        $str = $financialyear->financial_year;
+                                        $year= explode('-',$str,2);
+                                        ?>
+                                        <th>Aug <?php echo $year[0];?></th>
                                         <?php $i=0;?>
                                         @foreach($sales_sub as $sub)
                                         <input type="hidden" value="{{$sub->sale_id}}" name="saleid[]">
-                                    <input type="hidden" value="{{$sub->id}}" name="id[]">
+                                        <input type="hidden" value="{{$sub->id}}" name="id[]">
                                         <?php $i=$i+1;?>
                                         <td><input type="text" style="width:80px" value="{{$sub->aug_target}}" disabled>
                                         </td>
@@ -285,11 +301,15 @@
 
                                     </tr>
                                     <tr>
-                                        <th>Sep</th>
+                                        <?php
+                                        $str = $financialyear->financial_year;
+                                        $year= explode('-',$str,2);
+                                        ?>
+                                        <th>Sep <?php echo $year[0];?></th>
                                         <?php $i=0;?>
                                         @foreach($sales_sub as $sub)
                                         <input type="hidden" value="{{$sub->sale_id}}" name="saleid[]">
-                                    <input type="hidden" value="{{$sub->id}}" name="id[]">
+                                        <input type="hidden" value="{{$sub->id}}" name="id[]">
                                         <?php $i=$i+1;?>
                                         <td><input type="text" style="width:80px" value="{{$sub->sep_target}}" disabled>
                                         </td>
@@ -323,11 +343,15 @@
 
                                     </tr>
                                     <tr>
-                                        <th>Oct</th>
+                                        <?php
+                                        $str = $financialyear->financial_year;
+                                        $year= explode('-',$str,2);
+                                        ?>
+                                        <th>Oct <?php echo $year[0];?></th>
                                         <?php $i=0;?>
                                         @foreach($sales_sub as $sub)
                                         <input type="hidden" value="{{$sub->sale_id}}" name="saleid[]">
-                                    <input type="hidden" value="{{$sub->id}}" name="id[]">
+                                        <input type="hidden" value="{{$sub->id}}" name="id[]">
                                         <?php $i=$i+1;?>
                                         <td><input type="text" style="width:80px" value="{{$sub->oct_target}}" disabled>
                                         </td>
@@ -361,11 +385,15 @@
 
                                     </tr>
                                     <tr>
-                                        <th>Nov</th>
+                                        <?php
+                                        $str = $financialyear->financial_year;
+                                        $year= explode('-',$str,2);
+                                        ?>
+                                        <th>Nov <?php echo $year[0];?></th>
                                         <?php $i=0;?>
                                         @foreach($sales_sub as $sub)
                                         <input type="hidden" value="{{$sub->sale_id}}" name="saleid[]">
-                                    <input type="hidden" value="{{$sub->id}}" name="id[]">
+                                        <input type="hidden" value="{{$sub->id}}" name="id[]">
                                         <?php $i=$i+1;?>
                                         <td><input type="text" style="width:80px" value="{{$sub->nov_target}}" disabled>
                                         </td>
@@ -396,14 +424,18 @@
                                         </td>
                                         @endif
 
-                                        >
+
                                     </tr>
                                     <tr>
-                                        <th>Dec</th>
+                                        <?php
+                                        $str = $financialyear->financial_year;
+                                        $year= explode('-',$str,2);
+                                        ?>
+                                        <th>Dec <?php echo $year[0];?></th>
                                         <?php $i=0;?>
                                         @foreach($sales_sub as $sub)
                                         <input type="hidden" value="{{$sub->sale_id}}" name="saleid[]">
-                                    <input type="hidden" value="{{$sub->id}}" name="id[]">
+                                        <input type="hidden" value="{{$sub->id}}" name="id[]">
                                         <?php $i=$i+1;?>
                                         <td><input type="text" style="width:80px" value="{{$sub->dec_target}}" disabled>
                                         </td>
@@ -437,11 +469,15 @@
 
                                     </tr>
                                     <tr>
-                                        <th>Jan</th>
+                                        <?php
+                                        $str = $financialyear->financial_year;
+                                        $year= explode('-',$str,2);
+                                        ?>
+                                        <th>Jan <?php echo $year[0];?></th>
                                         <?php $i=0;?>
                                         @foreach($sales_sub as $sub)
                                         <input type="hidden" value="{{$sub->sale_id}}" name="saleid[]">
-                                    <input type="hidden" value="{{$sub->id}}" name="id[]">
+                                        <input type="hidden" value="{{$sub->id}}" name="id[]">
                                         <?php $i=$i+1;?>
                                         <td><input type="text" style="width:80px" value="{{$sub->jan_target}}" disabled>
                                         </td>
@@ -475,11 +511,15 @@
 
                                     </tr>
                                     <tr>
-                                        <th>Feb</th>
+                                        <?php
+                                        $str = $financialyear->financial_year;
+                                        $year= explode('-',$str,2);
+                                        ?>
+                                        <th>Feb <?php echo $year[0];?></th>
                                         <?php $i=0;?>
                                         @foreach($sales_sub as $sub)
                                         <input type="hidden" value="{{$sub->sale_id}}" name="saleid[]">
-                                    <input type="hidden" value="{{$sub->id}}" name="id[]">
+                                        <input type="hidden" value="{{$sub->id}}" name="id[]">
                                         <?php $i=$i+1;?>
                                         <td><input type="text" style="width:80px" value="{{$sub->feb_target}}" disabled>
                                         </td>
@@ -513,11 +553,15 @@
 
                                     </tr>
                                     <tr>
-                                        <th>Mar</th>
+                                        <?php
+                                        $str = $financialyear->financial_year;
+                                        $year= explode('-',$str,2);
+                                        ?>
+                                        <th>Mar <?php echo $year[0];?></th>
                                         <?php $i=0;?>
                                         @foreach($sales_sub as $sub)
                                         <input type="hidden" value="{{$sub->sale_id}}" name="saleid[]">
-                                    <input type="hidden" value="{{$sub->id}}" name="id[]">
+                                        <input type="hidden" value="{{$sub->id}}" name="id[]">
                                         <?php $i=$i+1;?>
                                         <td><input type="text" style="width:80px" value="{{$sub->mar_target}}" disabled>
                                         </td>
@@ -560,7 +604,8 @@
                                                 disabled></td>
                                         @if(empty($sub->actual_total) && !empty($sub->target_total))
                                         <td><input type="text" style="width:80px" name="actualcol_total[]"
-                                                id="actualcol_total<?php echo $i;?>" class="actual actual_<?php echo $i;?>actualcol_total"></td>
+                                                id="actualcol_total<?php echo $i;?>"
+                                                class="actual actual_<?php echo $i;?>actualcol_total"></td>
                                         @else
                                         <td><input type="text" style="width:80px" value="{{$sub->actual_total}}"
                                                 disabled></td>
@@ -591,17 +636,22 @@
                                     <label>Total Target</label>
                                 </div>
                                 <div class="col-sm-3">
+                                    @if(empty($sales->granttotal_target) && !empty($sales->granttotal_target))
                                     <input type="text" name="total_target" id="total_target"
-                                        value="{{$sales->granttotal_target}}" disabled>
+                                        value="{{$sales->granttotal_target}}">
+                                    @else
+                                    <input type="text" value="{{$sales->granttotal_target}}" disabled>
+                                    @endif
                                 </div>
                                 <div class="col-sm-3">
                                     <label>Total Actual</label>
                                 </div>
                                 <div class="col-sm-3">
                                     @if(empty($sales->granttotal_actual) && !empty($sales->granttotal_target))
-                                    <input type="text" name="granttotal_actual" id="granttotal_actual">
+                                    <input type="text" name="granttotal_actual" id="granttotal_actual"
+                                        value="{{$sales->granttotal_target}}" disabled>
                                     @else
-                                    <input type="text" value="{{$sales->granttotal_actual}}">
+                                    <input type="text" value="{{$sales->granttotal_actual}}" disabled>
                                     @endif
                                 </div>
 

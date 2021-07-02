@@ -47,10 +47,13 @@ td {
                                 </td>
                                 <td><a href="{{ url('/divisionedit/'.$div->id.'/'.$div->division_name) }}"
                                         class="btn btn-sm btn-white text-success mr-2"><i
-                                            class="far fa-edit mr-1"></i></a></td>
+                                            class="far fa-edit mr-1"></i></a><a
+                                        href="{{ url('/division_destroy/'.$div->id) }}"
+                                        class="btn btn-sm btn-white text-success mr-2"><i
+                                            class="far fa-trash-alt"></i></a></td>
                             </tr>
                             @endforeach
-                            
+
                         </tbody>
                     </table>
                 </div>

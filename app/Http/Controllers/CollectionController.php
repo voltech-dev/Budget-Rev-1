@@ -33,26 +33,31 @@ class CollectionController extends Controller
     $collection = new Collection();
     $collection->company_id = $request->company_name;
     $collection->unit_id = $request->unit;
-    $collection->financial_year_id = $request->financial_year;
-    $collection->aprtarget_total=$request->aprtarget_total;
-    $collection->maytarget_total=$request->maytarget_total;
-    $collection->juntarget_total=$request->juntarget_total;
-    $collection->jultarget_total=$request->jultarget_total;
-    $collection->augtarget_total=$request->augtarget_total; 
-    $collection->septarget_total=$request->septarget_total;
-    $collection->octtarget_total=$request->octtarget_total;
-    $collection->novtarget_total=$request->novtarget_total;
-    $collection->dectarget_total=$request->dectarget_total;
-    $collection->jantarget_total=$request->jantarget_total;
-    $collection->febtarget_total=$request->febtarget_total;
-    $collection->martarget_total=$request->martarget_total;
-    $collection->target_total=$request->finaltarget;
-    $collection->actual_total=$request->finalactual;
+    $str=$request->financial_year;
+    $array=explode('-',$str,3);
+    $test = $array[2];
+    $collection->financial_year_id = $test;
+    $collection->aprtarget_total=$request->aprtargetrow_total;
+    $collection->maytarget_total=$request->maytargetrow_total;
+    $collection->juntarget_total=$request->juntargetrow_total;
+    $collection->jultarget_total=$request->jultargetrow_total;
+    $collection->augtarget_total=$request->augtargetrow_total; 
+    $collection->septarget_total=$request->septargetrow_total;
+    $collection->octtarget_total=$request->octtargetrow_total;
+    $collection->novtarget_total=$request->novtargetrow_total;
+    $collection->dectarget_total=$request->dectargetrow_total;
+    $collection->jantarget_total=$request->jantargetrow_total;
+    $collection->febtarget_total=$request->febtargetrow_total;
+    $collection->martarget_total=$request->martargetrow_total;
+    $collection->target_total=$request->target_total;
     $collection->granttotal_target=$request->granttotal_target;
-    $totalrow   =   $request->totalrow; 
+    $totalrow   =   $request->totalrow;
+    #echo $totalrow;
+    #exit; 
     if($collection->save()){  
             
         for($i=0;$i<$totalrow;$i++){
+               
                 $collection_sub = new collection_sub();
                 $collection_sub->collection_id = $collection->id;
                 $collection_sub->division_id=$request->div[$i];                   
@@ -68,12 +73,12 @@ class CollectionController extends Controller
                 $collection_sub->jan_target = $request->jan_target[$i];
                 $collection_sub->feb_target = $request->feb_target[$i];
                 $collection_sub->mar_target = $request->mar_target[$i];
-                $collection_sub->target_total = $request->divtarget_total[$i];
+                $collection_sub->target_total = $request->targetcol_total[$i];
+     
                 $collection_sub->save();
             }
             return redirect('/collectionlist');
-
-    }     
+    } 
 }
 public function collection_view($id,$unit)
 {
@@ -89,85 +94,88 @@ public function collection_edit($id,$unit)
     $company=company::all();
     $unit=unit::all();
     $collection=Collection::findorfail($id);     
-    $target=collection_sub::where(['collection_id'=>$collection->id])->get();
-    $financialyear=financial_year::all();
-    return view('collection.collection_edit',['unit'=>$unit,'company'=>$company,'collection'=>$collection,'financialyear'=>$financialyear,'target'=>$target]);       
+    $collection_sub=collection_sub::where(['collection_id'=>$collection->id])->get();
+    $financialyear=financial_year::where(['id'=>$collection->financial_year_id])->first();
+    return view('collection.collection_edit',['unit'=>$unit,'company'=>$company,'collection'=>$collection,'financialyear'=>$financialyear,'collection_sub'=>$collection_sub]);       
 } 
 public function collectionupdate(Request $request,$id)
     {  
         
-        foreach($request->id as $tg=>$val){
+        foreach($request->id as $sub=>$val){
+            
+            
             $target=collection_sub::where(['id'=>$val])->first();
-            if(isset($request->apr_actual[$tg])){
+            if(isset($request->apr_actual[$sub])){
+                $target->apr_actual= $request->apr_actual[$sub];
+            }
 
-            $target->apr_actual= $request->apr_actual[$tg];
+            if(isset($request->may_actual[$sub])){
+                $target->may_actual=$request->may_actual[$sub];
             }
-            if(isset($request->may_actual[$tg])){
+           
 
-            $target->may_actual=$request->may_actual[$tg];
+            if(isset($request->jun_actual[$sub])){
+                $target->jun_actual=$request->jun_actual[$sub];
             }
-            if(isset($request->jun_actual[$tg])){
+            
 
-            $target->jun_actual=$request->jun_actual[$tg];
+            if(isset($request->jul_actual[$sub])){
+                $target->jul_actual=$request->jul_actual[$sub];
             }
-            if(isset($request->jul_actual[$tg])){
+            
 
-            $target->jul_actual=$request->jul_actual[$tg];
+            if(isset($request->aug_actual[$sub])){
+                $target->aug_actual=$request->aug_actual[$sub];
             }
-            if(isset($request->aug_actual[$tg])){
+            
 
-            $target->aug_actual=$request->aug_actual[$tg];
+            if(isset($request->sep_actual[$sub])){
+                $target->sep_actual=$request->sep_actual[$sub];
             }
-            if(isset($request->sep_actual[$tg])){
-
-            $target->sep_actual=$request->sep_actual[$tg];
+            if(isset($request->oct_actual[$sub])){
+            $target->oct_actual=$request->oct_actual[$sub];
             }
-            if(isset($request->oct_actual[$tg])){
-
-            $target->oct_actual=$request->oct_actual[$tg];
+            if(isset($request->nov_actual[$sub])){
+            $target->nov_actual=$request->nov_actual[$sub];
             }
-            if(isset($request->nov_actual[$tg])){
-
-            $target->nov_actual=$request->nov_actual[$tg];
+            if(isset($request->dec_actual[$sub])){
+            $target->dec_actual=$request->dec_actual[$sub];
             }
-            if(isset($request->dec_actual[$tg])){
-
-            $target->dec_actual=$request->dec_actual[$tg];
+            if(isset($request->jan_actual[$sub])){
+            $target->jan_actual=$request->jan_actual[$sub];
             }
-            if(isset($request->jan_actual[$tg])){
-
-            $target->jan_actual=$request->jan_actual[$tg];
+            if(isset($request->feb_actual[$sub])){
+            $target->feb_actual=$request->feb_actual[$sub];
             }
-            if(isset($request->feb_actual[$tg])){
-
-            $target->feb_actual=$request->feb_actual[$tg];
+            if(isset($request->mar_actual[$sub])){
+            $target->mar_actual=$request->mar_actual[$sub];
             }
-            if(isset($request->mar_actual[$tg])){
-            $target->mar_actual=$request->mar_actual[$tg];
+            if(isset($request->actualcol_total[$sub])){
+            $target->actual_total=$request->actualcol_total[$sub];
             }
-            if(isset($request->actual_total[$tg])){
-            $target->actual_total=$request->actual_total[$tg];
-            }
+            // exit();
             $target->save();
-
-                   }  
+        
+             }  
         $collection=Collection::where(['id'=>$request->collectionid])->first();   
-        $collection->apractual_total=$request->apractual_total;
-        $collection->mayactual_total=$request->mayactual_total;
-        $collection->junactual_total=$request->junactual_total;
-        $collection->julactual_total=$request->julactual_total;
-        $collection->augactual_total=$request->augactual_total;
-        $collection->sepactual_total=$request->sepactual_total;
-        $collection->octactual_total=$request->octactual_total;
-        $collection->novactual_total=$request->novactual_total;
-        $collection->decactual_total=$request->decactual_total;
-        $collection->janactual_total=$request->janactual_total;
-        $collection->febactual_total=$request->febactual_total;
-        $collection->maractual_total=$request->maractual_total;
-        $collection->actual_total=$request->total_actual;
+        
+        $collection->apractual_total=$request->apractualrow_total;
+        $collection->mayactual_total=$request->mayactualrow_total;
+        $collection->junactual_total=$request->junactualrow_total;
+        $collection->julactual_total=$request->julactualrow_total;
+        $collection->augactual_total=$request->augactualrow_total;
+        $collection->sepactual_total=$request->sepactualrow_total;
+        $collection->octactual_total=$request->octactualrow_total;
+        $collection->novactual_total=$request->novactualrow_total;
+        $collection->decactual_total=$request->decactualrow_total;
+        $collection->janactual_total=$request->janactualrow_total;
+        $collection->febactual_total=$request->febactualrow_total;
+        $collection->maractual_total=$request->maractualrow_total;
+        $collection->actual_total=$request->finalactual;
         $collection->granttotal_actual=$request->granttotal_actual;
         $collection->save();
-        return redirect('/collectionlist');
+        return redirect('/collectionlist');  
+        
    
 }
 public function checkfinancial_year(Request $request){

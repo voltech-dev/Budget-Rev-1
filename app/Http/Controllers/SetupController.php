@@ -50,9 +50,12 @@ class SetupController extends Controller
         $company->save();
         return redirect('/companylist');
     }
+    public function company_destroy($id) {
+        DB::delete('delete from company where id = ?',[$id]);
+        return redirect('/companylist');
+     }
     public function company_view($p)
     {
-
         return view('company.companyview', [
             'comp' => company::where(['company_name' => $p])->first(),
         ]);
@@ -76,6 +79,10 @@ class SetupController extends Controller
     $division->save();
     return redirect('/divisionlist');
     }
+    public function division_destroy($id) {
+        DB::delete('delete from division where id = ?',[$id]);
+        return redirect('/divisionlist');
+     }
 
     public function division_view($id,$division)
     {
@@ -125,6 +132,10 @@ class SetupController extends Controller
             $unit=unit::findorfail($id);
             return view('unit.unitedit',['unit'=>$unit,'company'=>$company]);
     }  
+    public function unit_destroy($id) {
+        DB::delete('delete from unit where id = ?',[$id]);
+        return redirect('/unitlist');
+     }
     public function unit_view($id,$unit)
     {
             $company=company::all();
@@ -141,13 +152,10 @@ class SetupController extends Controller
     }
     public function unitlist(){
         $unit = unit::all();   
-                return view('unit.unitlist',['unit'=>$unit]);
+        return view('unit.unitlist',['unit'=>$unit]);
     }
-    
- 
     public function unitstore(Request $request)
     {
-        
         $unit = new unit();
         $unit->company_id = $request->company_name;
         $unit->unit = $request->unit;
@@ -173,6 +181,23 @@ class SetupController extends Controller
     }
     public function fycreate(){
         return view('financial_year.fycreate');
+    }
+    public function finyear_destroy($id) {
+        DB::delete('delete from financial_year where id = ?',[$id]);
+        return redirect('/fylist');
+     }
+     public function finyear_edit($id)
+     {
+         return view('financial_year.fyedit',[
+             'finyear' => financial_year::find($id),
+         ]);
+     }
+     public function finyear_update(Request $request, $id)
+    {
+        $finyear = financial_year::findorfail($id);
+        $finyear->financial_year = $request->financial_year;
+        $finyear->save();
+        return redirect('/fylist');
     }
     public function fystore(Request $request){
         $financialyear=new financial_year();

@@ -31,7 +31,7 @@ Route::post('/turnoverstore', [TurnoverController::class, 'turnoverstore']);
 Route::get('/turnover_view/{id}/{unit}',[TurnoverController::class, 'turnover_view']);
 Route::get('/turnover_edit/{id}/{unit}',[TurnoverController::class, 'turnover_edit']);
 Route::post('/turnoverupdate/{id}',[TurnoverController::class, 'turnoverupdate']);
-Route::get('/financial_year',[TurnoverController::class, 'checkfinancial_year']);
+Route::get('/turnover_financial_year',[TurnoverController::class, 'checkfinancial_year']);
 ################################# Collection ##########################################
 
 Route::get('/collectionlist', [CollectionController::class, 'collectionlist']);
@@ -40,9 +40,10 @@ Route::post('/collectionstore', [CollectionController::class, 'collectionstore']
 Route::get('/collection_view/{id}/{unit}',[CollectionController::class, 'collection_view']);
 Route::get('/collection_edit/{id}/{unit}',[CollectionController::class, 'collection_edit']);
 Route::post('/collectionupdate/{id}',[CollectionController::class, 'collectionupdate']);
-Route::get('/financial_year',[CollectionController::class, 'checkfinancial_year']);
+Route::get('/collection_financial_year',[CollectionController::class, 'checkfinancial_year']);
 
 Route::get('/companylist', [SetupController::class, 'companylist']);
+Route::get('/company_destroy/{id}', [SetupController::class, 'company_destroy']);
 Route::get('/companycreate', [SetupController::class, 'companycreate'])->name('/companycreate');
 
 Route::get('/division', [SetupController::class, 'division']);
@@ -52,8 +53,9 @@ Route::post('/company', [SetupController::class, 'company']);
 Route::get('/company_edit/{id}', [SetupController::class, 'company_edit']);
 Route::post('/companyupdate/{id}',[App\Http\Controllers\SetupController::class, 'companyupdate']);
 Route::get('/companyview/{p}',[App\Http\Controllers\SetupController::class, 'company_view']);
-
+Route::get('/unit_destroy/{id}', [SetupController::class, 'unit_destroy']);
 Route::get('/division', [SetupController::class, 'division']);
+Route::get('/division_destroy/{id}', [SetupController::class, 'division_destroy']);
 Route::get('/viewdivision', [SetupController::class, 'viewdivision']);
 Route::get('/divisionlist', [SetupController::class, 'divisionlist']);
 Route::post('/divisionstore', [SetupController::class, 'division_store']);
@@ -61,6 +63,7 @@ Route::post('/divisionstore', [SetupController::class, 'division_store']);
 Route::get('/unit', [SetupController::class, 'unit']);
 Route::get('/unitlist', [SetupController::class, 'unitlist']);
 Route::get('/unitedit/{companyname}/{unit}', [SetupController::class, 'unit_edit']);
+
 Route::get('/unitview/{id}/{unit}', [SetupController::class, 'unit_view']);
 Route::post('/unitupdate/{id}',[SetupController::class, 'unitupdate']);
 Route::get('/companyid', [SetupController::class, 'divisiondetails']);
@@ -79,7 +82,9 @@ Route::post('/searchcollection', [SalesorderController::class, 'searchcollection
 Route::get('/userlist', [SalesorderController::class, 'userlist']);
 Route::get('/usercreate', [SalesorderController::class, 'usercreate']);
 
-
 Route::get('/fylist', [SetupController::class, 'fylist']);
 Route::get('/fycreate', [SetupController::class, 'fycreate']);
 Route::post('/fystore', [SetupController::class, 'fystore']);
+Route::get('/fy_edit/{id}', [SetupController::class, 'finyear_edit']);
+Route::post('/fyupdate/{id}', [SetupController::class, 'finyear_update']);
+Route::get('/finyear_destroy/{id}', [SetupController::class, 'finyear_destroy']);

@@ -33,28 +33,33 @@ class TurnoverController extends Controller
     $turnover = new Turnover();
     $turnover->company_id = $request->company_name;
     $turnover->unit_id = $request->unit;
-    $turnover->financial_year_id = $request->financial_year;
-    $turnover->aprtarget_total=$request->aprtarget_total;
-    $turnover->maytarget_total=$request->maytarget_total;
-    $turnover->juntarget_total=$request->juntarget_total;
-    $turnover->jultarget_total=$request->jultarget_total;
-    $turnover->augtarget_total=$request->augtarget_total; 
-    $turnover->septarget_total=$request->septarget_total;
-    $turnover->octtarget_total=$request->octtarget_total;
-    $turnover->novtarget_total=$request->novtarget_total;
-    $turnover->dectarget_total=$request->dectarget_total;
-    $turnover->jantarget_total=$request->jantarget_total;
-    $turnover->febtarget_total=$request->febtarget_total;
-    $turnover->martarget_total=$request->martarget_total;
-    $turnover->target_total=$request->finaltarget;
-    $turnover->actual_total=$request->finalactual;
+    $str=$request->financial_year;
+    $array=explode('-',$str,3);
+    $test = $array[2];
+    $turnover->financial_year_id = $test;
+    $turnover->aprtarget_total=$request->aprtargetrow_total;
+    $turnover->maytarget_total=$request->maytargetrow_total;
+    $turnover->juntarget_total=$request->juntargetrow_total;
+    $turnover->jultarget_total=$request->jultargetrow_total;
+    $turnover->augtarget_total=$request->augtargetrow_total; 
+    $turnover->septarget_total=$request->septargetrow_total;
+    $turnover->octtarget_total=$request->octtargetrow_total;
+    $turnover->novtarget_total=$request->novtargetrow_total;
+    $turnover->dectarget_total=$request->dectargetrow_total;
+    $turnover->jantarget_total=$request->jantargetrow_total;
+    $turnover->febtarget_total=$request->febtargetrow_total;
+    $turnover->martarget_total=$request->martargetrow_total;
+    $turnover->target_total=$request->target_total;
     $turnover->granttotal_target=$request->granttotal_target;
-    $totalrow   =   $request->totalrow; 
+    $totalrow   =   $request->totalrow;
+    #echo $totalrow;
+    #exit; 
     if($turnover->save()){  
             
         for($i=0;$i<$totalrow;$i++){
+               
                 $turnover_sub = new turnover_sub();
-                $turnover_sub->turnover_id = $turnover->id;
+                $turnover_sub->turn_id = $turnover->id;
                 $turnover_sub->division_id=$request->div[$i];                   
                 $turnover_sub->apr_target = $request->apr_target[$i];
                 $turnover_sub->may_target = $request->may_target[$i];
@@ -68,11 +73,11 @@ class TurnoverController extends Controller
                 $turnover_sub->jan_target = $request->jan_target[$i];
                 $turnover_sub->feb_target = $request->feb_target[$i];
                 $turnover_sub->mar_target = $request->mar_target[$i];
-                $turnover_sub->target_total = $request->divtarget_total[$i];
+                $turnover_sub->target_total = $request->targetcol_total[$i];
+     
                 $turnover_sub->save();
             }
             return redirect('/turnoverlist');
-
     } 
     
 }
@@ -82,7 +87,7 @@ public function turnover_view($id,$unit)
     $company=company::all();
     $unit=unit::all();
     $turnover=Turnover::findorfail($id);     
-    $target=turnover_sub::where(['turnover_id'=>$turnover->id])->get();
+    $target=turnover_sub::where(['turn_id'=>$turnover->id])->get();
     $financialyear=financial_year::all();
     return view('turnover.turnover_view',['unit'=>$unit,'company'=>$company,'turnover'=>$turnover,'financialyear'=>$financialyear,'target'=>$target]);       
 }  
@@ -91,84 +96,87 @@ public function turnover_edit($id,$unit)
         $company=company::all();
         $unit=unit::all();
         $turnover=Turnover::findorfail($id);     
-        $target=turnover_sub::where(['turnover_id'=>$turnover->id])->get();
-        $financialyear=financial_year::all();
-        return view('turnover.turnover_edit',['unit'=>$unit,'company'=>$company,'turnover'=>$turnover,'financialyear'=>$financialyear,'target'=>$target]);       
+        $turnover_sub=turnover_sub::where(['turn_id'=>$turnover->id])->get();
+        $financialyear=financial_year::where(['id'=>$turnover->financial_year_id])->first();
+        return view('turnover.turnover_edit',['unit'=>$unit,'company'=>$company,'turnover'=>$turnover,'financialyear'=>$financialyear,'turnover_sub'=>$turnover_sub]);       
     }
     public function turnoverupdate(Request $request,$id)
     {  
         
-        foreach($request->id as $tg=>$val){
+        foreach($request->id as $sub=>$val){
+            
+            
             $target=turnover_sub::where(['id'=>$val])->first();
-            if(isset($request->apr_actual[$tg])){
-                $target->apr_actual= $request->apr_actual[$tg];
+            if(isset($request->apr_actual[$sub])){
+                $target->apr_actual= $request->apr_actual[$sub];
             }
 
-            if(isset($request->may_actual[$tg])){
-                $target->may_actual=$request->may_actual[$tg];
+            if(isset($request->may_actual[$sub])){
+                $target->may_actual=$request->may_actual[$sub];
             }
            
 
-            if(isset($request->jun_actual[$tg])){
-                $target->jun_actual=$request->jun_actual[$tg];
+            if(isset($request->jun_actual[$sub])){
+                $target->jun_actual=$request->jun_actual[$sub];
             }
             
 
-            if(isset($request->jul_actual[$tg])){
-                $target->jul_actual=$request->jul_actual[$tg];
+            if(isset($request->jul_actual[$sub])){
+                $target->jul_actual=$request->jul_actual[$sub];
             }
             
 
-            if(isset($request->aug_actual[$tg])){
-                $target->aug_actual=$request->aug_actual[$tg];
+            if(isset($request->aug_actual[$sub])){
+                $target->aug_actual=$request->aug_actual[$sub];
             }
             
 
-            if(isset($request->sep_actual[$tg])){
-                $target->sep_actual=$request->sep_actual[$tg];
+            if(isset($request->sep_actual[$sub])){
+                $target->sep_actual=$request->sep_actual[$sub];
             }
-            if(isset($request->oct_actual[$tg])){
-            $target->oct_actual=$request->oct_actual[$tg];
+            if(isset($request->oct_actual[$sub])){
+            $target->oct_actual=$request->oct_actual[$sub];
             }
-            if(isset($request->nov_actual[$tg])){
-            $target->nov_actual=$request->nov_actual[$tg];
+            if(isset($request->nov_actual[$sub])){
+            $target->nov_actual=$request->nov_actual[$sub];
             }
-            if(isset($request->dec_actual[$tg])){
-            $target->dec_actual=$request->dec_actual[$tg];
+            if(isset($request->dec_actual[$sub])){
+            $target->dec_actual=$request->dec_actual[$sub];
             }
-            if(isset($request->jan_actual[$tg])){
-            $target->jan_actual=$request->jan_actual[$tg];
+            if(isset($request->jan_actual[$sub])){
+            $target->jan_actual=$request->jan_actual[$sub];
             }
-            if(isset($request->feb_actual[$tg])){
-            $target->feb_actual=$request->feb_actual[$tg];
+            if(isset($request->feb_actual[$sub])){
+            $target->feb_actual=$request->feb_actual[$sub];
             }
-            if(isset($request->mar_actual[$tg])){
-            $target->mar_actual=$request->mar_actual[$tg];
+            if(isset($request->mar_actual[$sub])){
+            $target->mar_actual=$request->mar_actual[$sub];
             }
-            if(isset($request->actual_total[$tg])){
-            $target->actual_total=$request->actual_total[$tg];
+            if(isset($request->actualcol_total[$sub])){
+            $target->actual_total=$request->actualcol_total[$sub];
             }
-
+            // exit();
             $target->save();
-                   }  
-        $turnover=Turnover::where(['id'=>$request->turnid])->first();
-        $turnover->apractual_total=$request->apractual_total;
-        $turnover->mayactual_total=$request->mayactual_total;
-        $turnover->junactual_total=$request->junactual_total;
-        $turnover->julactual_total=$request->julactual_total;
-        $turnover->augactual_total=$request->augactual_total;
-        $turnover->sepactual_total=$request->sepactual_total;
-        $turnover->octactual_total=$request->octactual_total;
-        $turnover->novactual_total=$request->novactual_total;
-        $turnover->decactual_total=$request->decactual_total;
-        $turnover->janactual_total=$request->janactual_total;
-        $turnover->febactual_total=$request->febactual_total;
-        $turnover->maractual_total=$request->maractual_total;
-        $turnover->actual_total=$request->total_actual;
+        
+             }  
+        $turnover=Turnover::where(['id'=>$request->turnid])->first();   
+        
+        $turnover->apractual_total=$request->apractualrow_total;
+        $turnover->mayactual_total=$request->mayactualrow_total;
+        $turnover->junactual_total=$request->junactualrow_total;
+        $turnover->julactual_total=$request->julactualrow_total;
+        $turnover->augactual_total=$request->augactualrow_total;
+        $turnover->sepactual_total=$request->sepactualrow_total;
+        $turnover->octactual_total=$request->octactualrow_total;
+        $turnover->novactual_total=$request->novactualrow_total;
+        $turnover->decactual_total=$request->decactualrow_total;
+        $turnover->janactual_total=$request->janactualrow_total;
+        $turnover->febactual_total=$request->febactualrow_total;
+        $turnover->maractual_total=$request->maractualrow_total;
+        $turnover->actual_total=$request->finalactual;
         $turnover->granttotal_actual=$request->granttotal_actual;
         $turnover->save();
-        return redirect('/turnoverlist');
-   
+        return redirect('/turnoverlist');  
         
 }
 public function checkfinancial_year(Request $request){

@@ -12,4 +12,7 @@ class division extends Model
     public function unit(){
         return $this->hasOne(unit::class);
     }
+    public function company(){
+        return $this->hasOne(company::class);
+    }
 }

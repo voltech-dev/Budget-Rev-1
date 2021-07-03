@@ -1,5 +1,7 @@
 @extends('layouts.main')
-
+@section('header')
+<h3>Company List
+@endsection
 @section('content')
 
 <?php

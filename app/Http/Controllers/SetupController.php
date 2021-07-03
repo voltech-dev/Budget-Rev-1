@@ -8,6 +8,7 @@ use App\Models\unit;
 use App\Models\target;
 use App\Models\financial_year;
 use DB;
+use Illuminate\Pagination\Paginator;
 use Illuminate\Http\Request;
 
 class SetupController extends Controller
@@ -23,10 +24,14 @@ class SetupController extends Controller
     }
     public function companycreate()
     {
+       
         return view('company.companycreate');
     }
     public function company(Request $request)
     {
+        $request->validate([
+            'company_name' => "required|unique:company,company_name"
+        ]);
         $company = new company();
         $company->company_name = $request->company_name;
        
@@ -41,12 +46,13 @@ class SetupController extends Controller
     }
     public function companyupdate(Request $request, $id)
     {
+        
+        $request->validate([
+            'company_name' => "required|unique:company,company_name,$id"
+        ]);
+       
         $company = company::findorfail($id);
-        $company->company_code = $request->code;
         $company->company_name = $request->company_name;
-        $company->contact = $request->contact;
-        $company->company_status = $request->status;
-        $company->address = $request->address;
         $company->save();
         return redirect('/companylist');
     }
@@ -71,8 +77,10 @@ class SetupController extends Controller
                     return view('division.divisionedit',['unit'=>$unit,'company'=>$company,'division'=>$division]);
     }  
     public function divisionupdate(Request $request,$id){
-        
-        $division = division::where('id','=',$id)->first(); //   where(['id'=>$id]) this is best 
+        $request->validate([
+            'division' => "required|unique:division,division_name,$id"
+        ]);
+    $division = division::findorfail($id); //   where(['id'=>$id]) this is best 
     $division->company_id =  $request->company_name;
     $division->unit_id = $request->unit;
     $division->division_name=$request->division;
@@ -98,6 +106,9 @@ class SetupController extends Controller
    
     public function division_store(Request $request)
     {
+        $request->validate([
+            'division' => "required|unique:division,division_name"
+        ]);
         $division = new division();
         $division->division_name = $request->division;
         $division->company_id = $request->input('company_name');
@@ -115,7 +126,7 @@ class SetupController extends Controller
                     ->join('division', 'company.id', '=', 'division.company_id')
                     ->select('company.*', 'division.*')
                     ->get();
-        
+                  
                 return view('division.divisionlist',['division'=>$division]);
     }
 
@@ -124,6 +135,7 @@ class SetupController extends Controller
     ######### Unit #####################
     public function unit()
     {
+        
         return view('unit.unit');
     }
     public function unit_edit($id,$unit)
@@ -143,7 +155,9 @@ class SetupController extends Controller
             return view('unit.unitview',['unit'=>$unit,'company'=>$company]);
     }  
     public function unitupdate(Request $request,$id){
-      
+        $request->validate([
+            'unit' => "required|unique:unit,unit,$id"
+        ]);
         $unit = unit::where('id','=',$id)->first(); //   where(['id'=>$id]) this is best 
        $unit->company_id =  $request->company_name;
        $unit->unit = $request->unit;
@@ -156,6 +170,9 @@ class SetupController extends Controller
     }
     public function unitstore(Request $request)
     {
+        $request->validate([
+            'unit' => "required|unique:unit,unit"
+        ]);
         $unit = new unit();
         $unit->company_id = $request->company_name;
         $unit->unit = $request->unit;
@@ -194,12 +211,18 @@ class SetupController extends Controller
      }
      public function finyear_update(Request $request, $id)
     {
+        $request->validate([
+            'fy' => "required|unique:financial_year,financial_year,$id"
+        ]);
         $finyear = financial_year::findorfail($id);
         $finyear->financial_year = $request->financial_year;
         $finyear->save();
         return redirect('/fylist');
     }
     public function fystore(Request $request){
+        $request->validate([
+            'fy' => "required|unique:financial_year,financial_year"
+        ]);
         $financialyear=new financial_year();
         $financialyear->financial_year=$request->fy;
         $financialyear->save();

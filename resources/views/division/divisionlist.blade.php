@@ -1,26 +1,8 @@
 @extends('layouts.main')
-
+@section('header')
+<h3>Division List
+@endsection
 @section('content')
-
-<style>
-td {
-    align: center;
-    font-size: 14px;
-}
-
-.text-center {
-    text-align: center;
-}
-</style>
-
-<!-- Page Header -->
-
-<!-- /Page Header -->
-
-<!-- Search Filter -->
-
-<!-- /Search Filter -->
-
 <div class="row">
     <div class="col-sm-12">
 
@@ -34,7 +16,6 @@ td {
                                 <th>Company</th>
                                 <th>Division</th>
                                 <th>Actions</th>
-
                             </tr>
                         </thead>
                         <tbody>
@@ -61,8 +42,12 @@ td {
         </div>
     </div>
 </div><br>
+
 <div class="text-center">
     <button onclick="location.href='{{ url('/division/') }}'" style="text-center">
         Add Division</button>
 </div><br>
+<div class="d-flex justify-content-center">
+</div>
+
 @endsection

@@ -1,5 +1,7 @@
 @extends('layouts.main')
-
+@section('header')
+<h3>Financial Year List
+@endsection
 @section('content')
 <?php
 $fy =App\Models\financial_year::get();

@@ -368,6 +368,8 @@ public function division_view($id,$division)
     public function checkfinancial_year(Request $request){
         $post = $request->all();
         $sale = Sale::where(['unit_id' => $post['unit_id'],'financial_year_id'=>$post['fin_year']])->first();
+        
+		
      if($sale){
          return 'found';
      }

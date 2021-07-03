@@ -155,7 +155,6 @@ $('#add').click(function() {
     var financialyear = $('#financial_year').val();
     var mystr = financialyear.split('-');
     var op = mystr[2];
-
     var yearflag = 0;
     $.ajax({
         type: "GET",

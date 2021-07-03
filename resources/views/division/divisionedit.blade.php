@@ -67,7 +67,7 @@
                         <div class="form-group row">
                             <div class="col-sm-6">
                                 <div class="col-xs-12 col-sm-12 col-md-12 text-left">
-                                    <a class="btn btn-outline-light btn-sm" href="">
+                                    <a href="{{url('/divisionlist')}}" class="btn btn-outline-light btn-sm">
                                         <i data-feather="chevrons-left" class="mr-2"></i>Cancel</a>
                                 </div>
                             </div>

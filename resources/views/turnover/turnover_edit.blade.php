@@ -72,8 +72,8 @@
                     <div class="col-sm-12">
 
 
-                        <div class="table table-responsive" id="tab">
-                            <table class="table table-bordered">
+                    <div class="table table-bordered" id="tab" style="height:400px;overflow-x:auto;">
+                                <table class="table table-bordered">
                                 <thead class="thead-light">
                                     <tr>
                                     <tr>
@@ -466,7 +466,7 @@
                                         $str = $financialyear->financial_year;
                                         $year= explode('-',$str,2);
                                         ?>
-                                        <th>Jan <?php echo $year[0];?></th>
+                                        <th>Jan <?php echo $year[1];?></th>
                                         <?php $i=0;?>
                                         @foreach($turnover_sub as $sub)
                                         <input type="hidden" value="{{$sub->turnover_id}}" name="turnoverid[]">
@@ -507,7 +507,7 @@
                                         $str = $financialyear->financial_year;
                                         $year= explode('-',$str,2);
                                         ?>
-                                        <th>Feb <?php echo $year[0];?></th>
+                                        <th>Feb <?php echo $year[1];?></th>
                                         <?php $i=0;?>
                                         @foreach($turnover_sub as $sub)
                                         <input type="hidden" value="{{$sub->turnover_id}}" name="turnoverid[]">
@@ -546,7 +546,7 @@
                                         $str = $financialyear->financial_year;
                                         $year= explode('-',$str,2);
                                         ?>
-                                        <th>Mar <?php echo $year[0];?></th>
+                                        <th>Mar <?php echo $year[1];?></th>
                                         <?php $i=0;?>
                                         @foreach($turnover_sub as $sub)
                                         <input type="hidden" value="{{$sub->turnover_id}}" name="turnoverid[]">

@@ -53,8 +53,8 @@ $company=DB::table('company')
                             <div class="form-group row">
                                 <div class="col-sm-6">
                                     <div class="col-xs-12 col-sm-12 col-md-12 text-left">
-                                        <a class="btn btn-outline-light btn-sm" href="">
-                                            <i data-feather="chevrons-left" class="mr-2"></i>Cancel</a>
+                                    <a href="{{url('/unitlist')}}" class="btn btn-outline-light btn-sm">
+                                        Cancel</a>
                                     </div>
                                 </div>
                                 <div class="col-sm-6">

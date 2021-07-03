@@ -70,8 +70,7 @@ $fin_year=DB::table('financial_year')
                     </div>
                     <div class="row">
                         <div class="col-sm-12">
-
-                            <div class="table table-responsive" id="tab">
+                        <div class="table table-bordered" id="tab" style="height:400px;overflow-x:auto;">
                                 <table class="table table-bordered">
                                     <thead class="thead-light col-auto" name="division" id="division"
                                         style="text-align:center">
@@ -184,7 +183,7 @@ function add_division() {
     var financialyear = $('#financial_year').val();
     var mystr = financialyear.split('-');
     var op = mystr[0];
-    // var op1=mystr[1];
+    var op1=mystr[1];
     var year1 = op.slice(-2);
     // var year2=op1.slice(-2);
 
@@ -221,11 +220,11 @@ function add_division() {
                 '</tr>');
             $('tbody[name="sub_sales"]').append('<tr id="dec">' + '<th>' + 'Dec' + ' ' + op + '</th>' +
                 '</tr>');
-            $('tbody[name="sub_sales"]').append('<tr id="jan">' + '<th>' + 'Jan' + ' ' + op + '</th>' +
+            $('tbody[name="sub_sales"]').append('<tr id="jan">' + '<th>' + 'Jan' + ' ' + op1 + '</th>' +
                 '</tr>');
-            $('tbody[name="sub_sales"]').append('<tr id="feb">' + '<th>' + 'Feb' + ' ' + op + '</th>' +
+            $('tbody[name="sub_sales"]').append('<tr id="feb">' + '<th>' + 'Feb' + ' ' + op1 + '</th>' +
                 '</tr>');
-            $('tbody[name="sub_sales"]').append('<tr id="mar">' + '<th>' + 'Mar' + ' ' + op + '</th>' +
+            $('tbody[name="sub_sales"]').append('<tr id="mar">' + '<th>' + 'Mar' + ' ' + op1 + '</th>' +
                 '</tr>');
             $('tbody[name="sub_sales"]').append('<tr id="total">' + '<th>' + 'Total' + '</th>' + '</tr>');
             var i = 0;
@@ -653,5 +652,10 @@ $('#unit').change(function() {
     $('#division th').remove();
     $('#sub_sales tr').remove();
 });
+$('#financial_year').change(function(){
+    $('#tab').hide();
+    $('#division th').remove();
+    $('#sub_sales tr').remove();
+})
 </script>
 @endpush

@@ -9,11 +9,12 @@
         <div class="card card-table">
             <div class="card-body">
                 <div class="table-responsive">
-                    <table class="table table-center table-hover datatable">
+                    <table class="table table-bordered datatable">
                         <thead class="thead-light">
                             <tr>
                                 <th>SI</th>
                                 <th>Company</th>
+                                <th>Unit</th>
                                 <th>Division</th>
                                 <th>Actions</th>
                             </tr>
@@ -23,7 +24,8 @@
                             @foreach($division as $div)
                             <tr>
                                 <td>{{$i++}}</td>
-                                <td>{{$div->company_name}}</td>
+                                <td>{{$div->company->company_name}}</td>
+                                <td>{{$div->unit->unit}}</td>
                                 <td><a href="{{url('/divisionview/'.$div->id.'/'.$div->division_name)}}">{{$div->division_name}}
                                 </td>
                                 <td><a href="{{ url('/divisionedit/'.$div->id.'/'.$div->division_name) }}"

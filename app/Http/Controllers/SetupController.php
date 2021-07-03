@@ -122,12 +122,11 @@ class SetupController extends Controller
     }
     public function divisionlist()
     {
-        $division = DB::table('company')
-                    ->join('division', 'company.id', '=', 'division.company_id')
-                    ->select('company.*', 'division.*')
-                    ->get();
-                  
-                return view('division.divisionlist',['division'=>$division]);
+
+        $division = division::all();   
+        return view('division.divisionlist',['division'=>$division]);
+    
+       
     }
 
     ######### Division #####################

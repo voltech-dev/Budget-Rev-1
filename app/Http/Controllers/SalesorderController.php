@@ -31,15 +31,16 @@ class SalesorderController extends Controller
                 return view('salesorder.salesorderlist',['sales'=>$sales]);
             }
     public function sales_view($id,$unit)
-{
-    $company=company::all();
-    $unit=unit::all();
-    $sales=Sale::findorfail($id);     
-    $sales_sub=sales_sub::where(['sale_id'=>$sales->id])->get();
-    $financialyear=financial_year::where(['id'=>$sales->financial_year_id])->first();
-    return view('salesorder.sales_view',['unit'=>$unit,'company'=>$company,'sales'=>$sales,'financialyear'=>$financialyear,'sales_sub'=>$sales_sub]);       
-}  
-public function sales_edit($id,$unit)
+    {
+        $company=company::all();
+        $unit=unit::all();
+        $sales=Sale::findorfail($id);     
+        $sales_sub=sales_sub::where(['sale_id'=>$sales->id])->get();
+        $financialyear=financial_year::where(['id'=>$sales->financial_year_id])->first();
+        return view('salesorder.sales_view',['unit'=>$unit,'company'=>$company,'sales'=>$sales,'financialyear'=>$financialyear,'sales_sub'=>$sales_sub]);       
+    }  
+
+    public function sales_edit($id,$unit)
     {  
     $company=company::all();
     $unit=unit::all();
@@ -50,6 +51,8 @@ public function sales_edit($id,$unit)
     $financialyear=financial_year::where(['id'=>$sales->financial_year_id])->first();
     return view('salesorder.sales_edit',['unit'=>$unit,'company'=>$company,'sales'=>$sales,'financialyear'=>$financialyear,'sales_sub'=>$sales_sub]);      
     }
+
+
     public function salesupdate(Request $request,$id)
     {  
 
@@ -110,7 +113,7 @@ public function sales_edit($id,$unit)
         
              }  
         $sales=Sale::where(['id'=>$request->saleid])->first();   
-        echo $sales;
+        // echo $sales;
         $sales->apractual_total=$request->apractualrow_total;
         $sales->mayactual_total=$request->mayactualrow_total;
         $sales->junactual_total=$request->junactualrow_total;
@@ -130,56 +133,58 @@ public function sales_edit($id,$unit)
 }
 public function store(Request $request)
 {   
-    $sale = new Sale();
-    $sale->company_id = $request->company_name;
-    $sale->unit_id = $request->unit;
-    $str=$request->financial_year;
-    $array=explode('-',$str,3);
-    $test = $array[2];
-    $sale->financial_year_id = $test;
-    $sale->aprtarget_total=$request->aprtargetrow_total;
-    $sale->maytarget_total=$request->maytargetrow_total;
-    $sale->juntarget_total=$request->juntargetrow_total;
-    $sale->jultarget_total=$request->jultargetrow_total;
-    $sale->augtarget_total=$request->augtargetrow_total; 
-    $sale->septarget_total=$request->septargetrow_total;
-    $sale->octtarget_total=$request->octtargetrow_total;
-    $sale->novtarget_total=$request->novtargetrow_total;
-    $sale->dectarget_total=$request->dectargetrow_total;
-    $sale->jantarget_total=$request->jantargetrow_total;
-    $sale->febtarget_total=$request->febtargetrow_total;
-    $sale->martarget_total=$request->martargetrow_total;
-    $sale->target_total=$request->target_total;
-    $sale->granttotal_target=$request->granttotal_target;
-    $totalrow   =   $request->totalrow;
-    #echo $totalrow;
-    #exit; 
-    if($sale->save()){  
-            
-        for($i=0;$i<$totalrow;$i++){
-               
-                $sales_sub = new sales_sub();
-                $sales_sub->sale_id = $sale->id;
-                $sales_sub->division_id=$request->div[$i];                   
-                $sales_sub->apr_target = $request->apr_target[$i];
-                $sales_sub->may_target = $request->may_target[$i];
-                $sales_sub->jun_target = $request->jun_target[$i];
-                $sales_sub->jul_target = $request->jul_target[$i];
-                $sales_sub->aug_target = $request->aug_target[$i];
-                $sales_sub->sep_target = $request->sep_target[$i];
-                $sales_sub->oct_target = $request->oct_target[$i];
-                $sales_sub->nov_target = $request->nov_target[$i];
-                $sales_sub->dec_target = $request->dec_target[$i];
-                $sales_sub->jan_target = $request->jan_target[$i];
-                $sales_sub->feb_target = $request->feb_target[$i];
-                $sales_sub->mar_target = $request->mar_target[$i];
-                $sales_sub->target_total = $request->targetcol_total[$i];
-     
-                $sales_sub->save();
-            }
-            return redirect('/salesorderlist');
-    } 
-}
+        $sale = new Sale();
+        $sale->company_id = $request->company_name;
+        $sale->unit_id = $request->unit;
+        $str=$request->financial_year;
+        $array=explode('-',$str,3);
+        $test = $array[2];
+        $sale->financial_year_id = $test;
+        $sale->aprtarget_total=$request->aprtargetrow_total;
+        $sale->maytarget_total=$request->maytargetrow_total;
+        $sale->juntarget_total=$request->juntargetrow_total;
+        $sale->jultarget_total=$request->jultargetrow_total;
+        $sale->augtarget_total=$request->augtargetrow_total; 
+        $sale->septarget_total=$request->septargetrow_total;
+        $sale->octtarget_total=$request->octtargetrow_total;
+        $sale->novtarget_total=$request->novtargetrow_total;
+        $sale->dectarget_total=$request->dectargetrow_total;
+        $sale->jantarget_total=$request->jantargetrow_total;
+        $sale->febtarget_total=$request->febtargetrow_total;
+        $sale->martarget_total=$request->martargetrow_total;
+        $sale->target_total=$request->target_total;
+        $sale->granttotal_target=$request->granttotal_target;
+        $totalrow   =   $request->totalrow;
+        #echo $totalrow;
+        #exit; 
+        if($sale->save()){  
+                
+            for($i=0;$i<$totalrow;$i++){
+                
+                    $sales_sub = new sales_sub();
+                    $sales_sub->sale_id = $sale->id;
+                    $sales_sub->division_id=$request->div[$i];                   
+                    $sales_sub->apr_target = $request->apr_target[$i];
+                    $sales_sub->may_target = $request->may_target[$i];
+                    $sales_sub->jun_target = $request->jun_target[$i];
+                    $sales_sub->jul_target = $request->jul_target[$i];
+                    $sales_sub->aug_target = $request->aug_target[$i];
+                    $sales_sub->sep_target = $request->sep_target[$i];
+                    $sales_sub->oct_target = $request->oct_target[$i];
+                    $sales_sub->nov_target = $request->nov_target[$i];
+                    $sales_sub->dec_target = $request->dec_target[$i];
+                    $sales_sub->jan_target = $request->jan_target[$i];
+                    $sales_sub->feb_target = $request->feb_target[$i];
+                    $sales_sub->mar_target = $request->mar_target[$i];
+                    $sales_sub->target_total = $request->targetcol_total[$i];
+        
+                    $sales_sub->save();
+                }
+                return redirect('/salesorderlist');
+        } 
+    }
+
+
     public function saleslist(){
         return view('salesorder.salesorderlist');
     }
@@ -189,10 +194,12 @@ public function store(Request $request)
     {
         return view('company.companylist');
     }
+
     public function companycreate()
     {
         return view('company.companycreate');
     }
+
     public function company(Request $request)
     {
         $company = new company();
@@ -201,12 +208,14 @@ public function store(Request $request)
         $company->save();
         return redirect('/companylist');
     }
+
     public function company_edit($id)
     {
         return view('company.company_edit',[
             'comp' => company::find($id),
         ]);
     }
+
     public function companyupdate(Request $request, $id)
     {
         $company = company::findorfail($id);
@@ -218,6 +227,7 @@ public function store(Request $request)
         $company->save();
         return redirect('/companylist');
     }
+
     public function company_view($p)
     {
 
@@ -228,27 +238,28 @@ public function store(Request $request)
    
     public function division_edit($id,$division)
     {
+        $company=company::all();
+        $unit=unit::all();
+        $division=division::findorfail($id);                
+        return view('division.divisionedit',['unit'=>$unit,'company'=>$company,'division'=>$division]);
+    }  
+
+    public function divisionupdate(Request $request,$id){
+        
+        $division = division::where('id','=',$id)->first(); //   where(['id'=>$id]) this is best 
+    $division->company_id =  $request->company_name;
+    $division->unit_id = $request->unit;
+    $division->division_name=$request->division;
+    $division->save();
+    return redirect('/divisionlist');
+    }
+    public function division_view($id,$division)
+    {
                     $company=company::all();
                     $unit=unit::all();
                     $division=division::findorfail($id);                
-                    return view('division.divisionedit',['unit'=>$unit,'company'=>$company,'division'=>$division]);
-}  
-public function divisionupdate(Request $request,$id){
-      
-    $division = division::where('id','=',$id)->first(); //   where(['id'=>$id]) this is best 
-   $division->company_id =  $request->company_name;
-   $division->unit_id = $request->unit;
-   $division->division_name=$request->division;
-   $division->save();
-   return redirect('/divisionlist');
-}
-public function division_view($id,$division)
-{
-                $company=company::all();
-                $unit=unit::all();
-                $division=division::findorfail($id);                
-                return view('division.divisionview',['unit'=>$unit,'company'=>$company,'division'=>$division]);
-}  
+                    return view('division.divisionview',['unit'=>$unit,'company'=>$company,'division'=>$division]);
+    }  
     public function division()
     {
         return view('division.division');
@@ -263,10 +274,12 @@ public function division_view($id,$division)
         $division->save();
         return redirect('/divisionlist');
     }
+
     public function viewdivision()
     {
         return view('company.viewdivision');
     }
+
     public function divisionlist()
     {
         $division = DB::table('company')
@@ -277,22 +290,26 @@ public function division_view($id,$division)
                 return view('division.divisionlist',['division'=>$division]);
             
     }
+
     public function unit()
     {
         return view('unit.unit');
     }
+
     public function unit_edit($id,$unit)
     {
             $company=company::all();
             $unit=unit::findorfail($id);
             return view('unit.unitedit',['unit'=>$unit,'company'=>$company]);
     }  
+
     public function unit_view($id,$unit)
     {
             $company=company::all();
             $unit=unit::findorfail($id);
             return view('unit.unitview',['unit'=>$unit,'company'=>$company]);
     }  
+
     public function unitupdate(Request $request,$id){
       
         $unit = unit::where('id','=',$id)->first(); //   where(['id'=>$id]) this is best 
@@ -304,12 +321,12 @@ public function division_view($id,$division)
 
     public function unitlist(){
         $unit = DB::table('company')
-                    ->join('unit', 'company.id', '=', 'unit.company_id')
-                    ->select('company.*', 'unit.*')
-                    ->get();
-                   
-                return view('unit.unitlist',['unit'=>$unit]);
-            }
+        ->join('unit', 'company.id', '=', 'unit.company_id')
+        ->select('company.*', 'unit.*')
+        ->get();
+        
+        return view('unit.unitlist',['unit'=>$unit]);
+    }
     
  
     public function unitstore(Request $request)
@@ -318,23 +335,26 @@ public function division_view($id,$division)
         $unit->company_id = $request->company_name;
         $unit->unit = $request->unit;
         $unit->save();
-        
     }
 
     //Userlist
     public function userlist(){
         return view('user.userlist');
     }
+
     public function usercreate(){
         return view('user.usercreate');
     }
+
     //Fylist
     public function fylist(){
         return view('financial_year.fylist');
     }
+
     public function fycreate(){
         return view('financial_year.fycreate');
     }
+
     public function fystore(Request $request){
         $financialyear=new financial_year;
         $financialyear->financial_year=$request->fy;
@@ -351,6 +371,7 @@ public function division_view($id,$division)
         }
         echo json_encode($json);
     }
+
     public function fetchdivision(Request $request)
     {
         $post = $request->all();
@@ -365,6 +386,7 @@ public function division_view($id,$division)
         exit();
         
     }
+
     public function checkfinancial_year(Request $request){
         $post = $request->all();
         $sale = Sale::where(['unit_id' => $post['unit_id'],'financial_year_id'=>$post['fin_year']])->first();
@@ -389,6 +411,7 @@ public function division_view($id,$division)
             
         }
     }
+
     public function searchturnover(Request $request){
         if($request->turn !=''){
             $users = DB::table('turnover')
@@ -400,13 +423,14 @@ public function division_view($id,$division)
             
         }
     }
+
     public function searchcollection(Request $request){
         $users = DB::table('collection')
         ->join('collection_target', 'collection.id', '=', 'collection_target.collection_id')
         ->select('collection.*', 'collection_target.*')
         ->where('collection.division', $request->collection)
         ->get();
-    return view('collection.collectionlist',['users'=>$users]);
+        return view('collection.collectionlist',['users'=>$users]);
             
-        }
     }
+}

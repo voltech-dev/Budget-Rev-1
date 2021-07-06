@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class unit extends Model
 {
     use HasFactory;
-    protected $table='unit';
+    protected $table='br_unit';
 
     public function company(){
         return $this->hasOne(company::class,'id','company_id');

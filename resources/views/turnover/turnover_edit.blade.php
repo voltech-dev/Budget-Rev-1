@@ -37,12 +37,14 @@
                     <div class="col-sm-3">
                         <select name="company_name" class="form-control form-control-sm" id="company_name" disabled>
                             <option selected>--Select Company--</option>
+                            <!-- Fetch company name from turnover table -->
                             @foreach($company as $comp)
                             <option value="{{ $comp->id }}"
                                 {{ ( $comp->id == $turnover->company_id) ? 'selected' : '' }}>
                                 {{ $comp->company_name }}
                             </option>
                             @endforeach
+                            <!-- End of fetch company from turnover table -->
                         </select>
                     </div>
 
@@ -50,11 +52,13 @@
                     <div class="col-sm-3">
                         <select name="unit" class="form-control form-control-sm" id="unit" disabled>
                             <option selected>--Select Unit--</option>
+                            <!-- Fetch unit from turnover table -->
                             @foreach($unit as $un)
                             <option value="{{ $un->id }}" {{ ( $un->id == $turnover->unit_id) ? 'selected' : '' }}>
                                 {{ $un->unit }}
                             </option>
                             @endforeach
+                            <!-- End of fetch unit from turnover table -->
                         </select>
                     </div>
 
@@ -63,17 +67,18 @@
                 <div class="form-group row">
                     <label class="col-sm-3 col-form-label col-form-label-sm">Financial Year</label>
                     <div class="col-md-3">
+                        <!-- Fetch financialyear from turnover table -->
                         <select name="financial_year" class="form-control form-control-sm" id="financial_year" disabled>
                             <option value="{{$financialyear->id}}">{{$financialyear->financial_year}}</option>
                         </select>
+                        <!-- End of fetch financialyear from turnover table -->
                     </div>
                 </div>
+                <!-- Fetch table content from turnover_sub table -->
                 <div class="row">
                     <div class="col-sm-12">
-
-
-                    <div class="table table-bordered" id="tab" style="height:400px;overflow-x:auto;">
-                                <table class="table table-bordered">
+                        <div class="table table-bordered" id="tab" style="height:400px;overflow-x:auto;">
+                            <table class="table table-bordered">
                                 <thead class="thead-light">
                                     <tr>
                                     <tr>
@@ -613,6 +618,7 @@
                                 </tbody>
 
                             </table>
+                            <!-- End of fetch table from turnover_sub -->
                             <hr>
 
                             <div class="form-group row" id="finaltotal">
@@ -660,6 +666,7 @@
 $(document).on('keyup', '.actual', function() {
     var totaldiv = $("#totalrow").val();
     // console.log($(this).val());
+    //column wise actual total begins
     var actual_id = $(this).attr('id');
     var actualid_arr = actual_id.split('_');
     var cnt = actualid_arr[2];
@@ -753,8 +760,8 @@ $(document).on('keyup', '.actual', function() {
         parseFloat(mar_actual)).toFixed(2);
     console.log(totalrow_actual);
     $("#actualcol_total" + cnt).val(parseFloat(totalrow_actual).toFixed(2));
-
-
+    //column wise actual total ends here
+    //row wise actual total begins
     var apr_actual_row = 0;
     var may_actual_row = 0;
     var jun_actual_row = 0;
@@ -888,6 +895,7 @@ $(document).on('keyup', '.actual', function() {
             dec_actual_row) + parseFloat(jan_actual_row) + parseFloat(feb_actual_row) + parseFloat(
             mar_actual_row)).toFixed(2);
     $("#finalactual").val(finalactual);
+    //row wise actual total ends 
     $('#granttotal_actual').val(finalactual);
 
 

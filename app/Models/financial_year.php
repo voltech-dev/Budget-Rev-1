@@ -8,5 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class financial_year extends Model
 {
     use HasFactory;
-    protected $table='financial_year';
+    protected $table='br_financial_year';
 }

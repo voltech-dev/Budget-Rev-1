@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class division extends Model
 {
     use HasFactory;
-    protected $table='division';
+    protected $table='br_division';
     public function unit(){
         return $this->hasOne(unit::class,'id','unit_id');
     }

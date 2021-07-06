@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class sales_sub extends Model
 {
     use HasFactory;
-    protected $table='sales_sub';
+    protected $table='br_sales_sub';
     
     public function sales(){
         return $this->hasOne(Sale::class);

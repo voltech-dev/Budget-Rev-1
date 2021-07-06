@@ -33,6 +33,7 @@ $fin_year=DB::table('financial_year')
         <div class="col-md-12">
             <form action="{{url('/collectionstore')}}" method="POST">
                 @csrf
+                <!-- Form entry begins here -->
                 <div data-label="Enquiry Details" class="demo-code-preview col-xs-12 col-sm-12 col-md-12">
                     <div class="form-group row">
                         <label class="col-sm-3 col-form-label col-form-label-sm">Company Name</label>
@@ -71,12 +72,13 @@ $fin_year=DB::table('financial_year')
                     <div class="row">
                         <div class="col-sm-12">
 
-                        <div class="table table-bordered" id="tab" style="height:400px;overflow-x:auto;">
+                            <div class="table table-bordered" id="tab" style="height:400px;overflow-x:auto;">
                                 <table class="table table-bordered">
                                     <thead class="thead-light col-auto" name="division" id="division"
                                         style="text-align:center">
 
                                     </thead>
+                                    <!-- Table content is from function add division-->
                                     <tbody name='sub_sales' id='sub_sales'>
 
                                     </tbody>
@@ -100,7 +102,7 @@ $fin_year=DB::table('financial_year')
                         </div>
 
                     </div>
-
+                    <!-- Form entry ends here -->
                     <div class="form-group row">
 
                         <div class="col-sm-12">
@@ -126,6 +128,7 @@ $(document).ready(function() {
     $('#get_total').hide();
 
 });
+//Fetch unit name of company on selection of company name
 $('#company_name').change(function(event) {
     var company_name = $('#company_name').val();
     $.ajax({
@@ -147,7 +150,7 @@ $('#company_name').change(function(event) {
 
 });
 
-
+//alert user if same financialyear is already entered for the unit
 $('#add').click(function() {
     $('#finaltotal').show();
 
@@ -177,14 +180,14 @@ $('#add').click(function() {
 
 
 });
-
+//Dynamically append table
 function add_division() {
     $('#tab').show();
     var unit = $('#unit').val();
     var financialyear = $('#financial_year').val();
     var mystr = financialyear.split('-');
     var op = mystr[0];
-    var op1=mystr[1];
+    var op1 = mystr[1];
     var year1 = op.slice(-2);
     // var year2=op1.slice(-2);
 
@@ -416,6 +419,7 @@ function add_division() {
 $(document).on('keyup', '.target', function() {
     var totaldiv = $("#totalrow").val();
     // console.log($(this).val());
+    //column wise target total calculation begins here
     var target_id = $(this).attr('id');
     var targetid_arr = target_id.split('_');
     var cnt = targetid_arr[2];
@@ -509,8 +513,8 @@ $(document).on('keyup', '.target', function() {
         parseFloat(mar_target)).toFixed(2);
     console.log(totalrow_target);
     $("#targetcol_total" + cnt).val(parseFloat(totalrow_target).toFixed(2));
-
-
+    //column wise target total calculation ends here
+    //row wise actual total begins here
     var apr_target_row = 0;
     var may_target_row = 0;
     var jun_target_row = 0;
@@ -643,17 +647,20 @@ $(document).on('keyup', '.target', function() {
         parseFloat(sep_target_row) + parseFloat(oct_target_row) + parseFloat(nov_target_row) + parseFloat(
             dec_target_row) + parseFloat(jan_target_row) + parseFloat(feb_target_row) + parseFloat(
             mar_target_row)).toFixed(2);
+    //row wise actual total ends here
     $("#target_total").val(finaltarget);
     $('#granttotal_target').val(finaltarget);
 
 
 });
+//remove table content on change of unit
 $('#unit').change(function() {
     $('#tab').hide();
     $('#division th').remove();
     $('#sub_sales tr').remove();
 });
-$('#financial_year').change(function(){
+//remove table content on change of financial year
+$('#financial_year').change(function() {
     $('#tab').hide();
     $('#division th').remove();
     $('#sub_sales tr').remove();

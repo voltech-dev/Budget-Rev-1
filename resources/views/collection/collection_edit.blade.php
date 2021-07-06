@@ -37,6 +37,7 @@
                     <div class="col-sm-3">
                         <select name="company_name" class="form-control form-control-sm" id="company_name" disabled>
                             <option selected>--Select Company--</option>
+                      
                             @foreach($company as $comp)
                             <option value="{{ $comp->id }}"
                                 {{ ( $comp->id == $collection->company_id) ? 'selected' : '' }}>

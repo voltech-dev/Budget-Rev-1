@@ -14,19 +14,20 @@ use Illuminate\Http\Request;
 class TurnoverController extends Controller
 {
     public function __construct()
-    {
+{
         $this->middleware('auth');
-    }
+}
     ###########Entry Page########
     public function turnover_entry()
-    {
+{
         return view('turnover.turnover_entry');
-    }
+}
     #######Listview#########
-    public function turnoverlist(){
+    public function turnoverlist()
+{
         $turnover=Turnover::all();
         return view('turnover.turnoverlist',['turnover'=>$turnover]);
-    }
+}
     ##########Store###########
     public function turnoverstore(Request $request)
 {   
@@ -92,16 +93,16 @@ public function turnover_view($id,$unit)
     return view('turnover.turnover_view',['unit'=>$unit,'company'=>$company,'turnover'=>$turnover,'financialyear'=>$financialyear,'target'=>$target]);       
 }  
 public function turnover_edit($id,$unit)
-    {  
+{  
         $company=company::all();
         $unit=unit::all();
         $turnover=Turnover::findorfail($id);     
         $turnover_sub=turnover_sub::where(['turn_id'=>$turnover->id])->get();
         $financialyear=financial_year::where(['id'=>$turnover->financial_year_id])->first();
         return view('turnover.turnover_edit',['unit'=>$unit,'company'=>$company,'turnover'=>$turnover,'financialyear'=>$financialyear,'turnover_sub'=>$turnover_sub]);       
-    }
+}
     public function turnoverupdate(Request $request,$id)
-    {  
+{  
         
         foreach($request->id as $sub=>$val){
             
@@ -179,7 +180,8 @@ public function turnover_edit($id,$unit)
         return redirect('/turnoverlist');  
         
 }
-public function checkfinancial_year(Request $request){
+public function checkfinancial_year(Request $request)
+{
     $post = $request->all();
     $collection = Turnover::where(['unit_id' => $post['unit_id'],'financial_year_id'=>$post['fin_year']])->first();
  if($collection){

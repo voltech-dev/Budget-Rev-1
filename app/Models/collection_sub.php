@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class collection_sub extends Model
 {
     use HasFactory;
-    protected $table='collection_sub';
+    protected $table='br_collection_sub';
     
     public function collection(){
         return $this->hasOne(collection::class,'id','collection_id');

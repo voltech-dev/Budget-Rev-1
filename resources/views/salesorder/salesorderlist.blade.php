@@ -3,7 +3,7 @@
 
 
 <!-- begin::page-header -->
-    <h3>Salesorder List</h3>
+<h3>Salesorder List</h3>
 <!-- end::page-header -->
 @endsection
 @section('content')
@@ -24,7 +24,7 @@
         <div class="card card-table">
             <div class="card-body">
                 <div class="table-responsive">
-                <table class="table table-bordered text-nowrap" id="example2">
+                    <table class="table table-bordered text-nowrap" id="example2">
                         <thead class="thead-light">
                             <tr>
                                 <th>SI</th>
@@ -37,6 +37,7 @@
                             </tr>
                         </thead>
                         <tbody><?php $i=0; $i++; ?>
+                            <!-- Fetch values from sales table in db -->
                             @foreach($sales as $sale)
                             <tr>
                                 <td>{{$i++}}</td>
@@ -53,7 +54,7 @@
                                 </td>
                             </tr>
                             @endforeach
-
+                            <!-- End of fetch values from sales table -->
                         </tbody>
                     </table>
                 </div>

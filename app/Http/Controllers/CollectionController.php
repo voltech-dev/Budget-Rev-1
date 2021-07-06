@@ -174,20 +174,19 @@ public function collectionupdate(Request $request,$id)
         $collection->actual_total=$request->finalactual;
         $collection->granttotal_actual=$request->granttotal_actual;
         $collection->save();
-        return redirect('/collectionlist');  
-        
-   
+        return redirect('/collectionlist');     
 }
+
+
 public function checkfinancial_year(Request $request){
     $post = $request->all();
     $collection = Collection::where(['unit_id' => $post['unit_id'],'financial_year_id'=>$post['fin_year']])->exists();
- if($collection){
-     return 'found';
- }
- else{
-     return 'not found';
- }
-   
+    if($collection){
+        return 'found';
+    }
+    else{
+        return 'not found';
+    }   
 }
 
 

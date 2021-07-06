@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class turnover_sub extends Model
 {
     use HasFactory;
-    protected $table='turnover_sub';
+    protected $table='br_turnover_sub';
     
     public function turnover(){
         return $this->hasOne(Turnover::class,'id','turnover_id');

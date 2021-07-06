@@ -29,6 +29,7 @@
                     </tr>
                 </thead>
                 <tbody><?php $i=0; $i++; ?>
+                    <!-- Fetch values from collection table -->
                     @foreach($collection as $collection)
                     <tr>
                         <td>{{$i++}}</td>
@@ -45,6 +46,7 @@
                         </td>
                     </tr>
                     @endforeach
+                    <!-- End of fetch values from collection -->
 
                 </tbody>
             </table>

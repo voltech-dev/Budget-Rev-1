@@ -1,7 +1,7 @@
 @extends('layouts.main')
 @section('header')
 <?php
-$company=DB::table('company')
+$company=DB::table('br_company')
 ->get();
 ?>
 <!-- begin::page-header -->

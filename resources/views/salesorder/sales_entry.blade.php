@@ -1,9 +1,9 @@
 @extends('layouts.main')
 @section('header')
 <?php
-$company=DB::table('company')
+$company=DB::table('br_company')
 ->get();
-$fin_year=DB::table('financial_year')
+$fin_year=DB::table('br_financial_year')
 ->get();
 
 ?>

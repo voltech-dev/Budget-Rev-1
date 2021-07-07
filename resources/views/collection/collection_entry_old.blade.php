@@ -137,7 +137,7 @@ $fin_year=DB::table('financial_year')
                             <label>Total Target</label>
                         </div>
                         <div class="col-sm-3">
-                            <input type="text" name="granttotal_target" id="granttotal_target">
+                            <input type="text" name="granttotal_target" id="granttotal_target" required>
                         </div>
                         <div class="col-sm-3">
                             <label>Total Actual</label>
@@ -176,7 +176,7 @@ $(document).ready(function() {
     $('#tab').hide();
     $('#finaltotal').hide();
     $('#get_total').hide();
-    
+
 });
 $('#company_name').change(function(event) {
     var company_name = $('#company_name').val();
@@ -204,27 +204,27 @@ $('#add').click(function() {
     var unit = $('#unit').val();
     var financialyear = $('#financial_year').val();
     $.ajax({
-            type: "GET",
-            url: "{{url('/financial_year')}}",
-            data: {
-                unit_id: unit,
-                fin_year:financialyear
-            },
-            success: function(data) {
-                if(data == 'found') {
-                    alert('Financial Year already entered for this unit');
-                } 
-                else {
-                    add_division();
-                }
+        type: "GET",
+        url: "{{url('/financial_year')}}",
+        data: {
+            unit_id: unit,
+            fin_year: financialyear
+        },
+        success: function(data) {
+            if (data == 'found') {
+                alert('Financial Year already entered for this unit');
+            } else {
+                add_division();
             }
-        });
+        }
+    });
 
-        
+
 
 });
-function add_division(){
-    $('#tab').show();    
+
+function add_division() {
+    $('#tab').show();
     var unit = $('#unit').val();
     var financialyear = $('#financial_year').val();
     $.ajax({
@@ -240,7 +240,7 @@ function add_division(){
             $.each(data, function(key, value) {
 
 
-                
+
                 i = i + 1;
                 $('tbody[name="sub_sales"]').append('<tr class="newrow">' +
                     '<td>' +
@@ -251,7 +251,8 @@ function add_division(){
 
                     '<td class="apt">' +
                     '<input type="text" style="width:60px" name="apr_target[]" id="apr_target_' +
-                    i + '" class="target target_' + i + ' apr_target" value="" autocomplete="off">' +
+                    i + '" class="target target_' + i +
+                    ' apr_target" value="" autocomplete="off">' +
                     '</td>' +
                     '<td>' +
                     '<input type="text" style="width:60px" name="apr_actual[]" id="apractual" class="apr_actual" disabled>' +
@@ -409,7 +410,7 @@ function add_division(){
             );
         },
     });
-   
+
 };
 
 /*

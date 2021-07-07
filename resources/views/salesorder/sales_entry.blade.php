@@ -94,7 +94,7 @@ $fin_year=DB::table('br_financial_year')
                             <label>Total Target</label>
                         </div>
                         <div class="col-sm-3">
-                            <input type="text" name="granttotal_target" id="granttotal_target">
+                            <input type="text" name="granttotal_target" id="granttotal_target" required>
                         </div>
                         <div class="col-sm-3">
                             <label>Total Actual</label>

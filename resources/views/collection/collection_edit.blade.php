@@ -37,7 +37,7 @@
                     <div class="col-sm-3">
                         <select name="company_name" class="form-control form-control-sm" id="company_name" disabled>
                             <option selected>--Select Company--</option>
-                      
+
                             @foreach($company as $comp)
                             <option value="{{ $comp->id }}"
                                 {{ ( $comp->id == $collection->company_id) ? 'selected' : '' }}>
@@ -73,8 +73,8 @@
                     <div class="col-sm-12">
 
 
-                    <div class="table table-bordered" id="tab" style="height:400px;overflow-x:auto;">
-                                <table class="table table-bordered">
+                        <div class="table table-bordered" id="tab" style="height:400px;overflow-x:auto;">
+                            <table class="table table-bordered">
                                 <thead class="thead-light">
                                     <tr>
                                     <tr>
@@ -629,7 +629,7 @@
                                 </div>
                                 <div class="col-sm-3">
                                     @if(empty($collection->granttotal_actual) && !empty($collection->granttotal_target))
-                                    <input type="text" name="granttotal_actual" id="granttotal_actual">
+                                    <input type="text" name="granttotal_actual" id="granttotal_actual" required>
                                     @else
                                     <input type="text" value="{{$collection->granttotal_actual}}" disabled>
                                     @endif

@@ -634,7 +634,7 @@
                                 </div>
                                 <div class="col-sm-3">
                                     @if(empty($turnover->granttotal_actual) && !empty($turnover->granttotal_target))
-                                    <input type="text" name="granttotal_actual" id="granttotal_actual">
+                                    <input type="text" name="granttotal_actual" id="granttotal_actual" required>
                                     @else
                                     <input type="text" value="{{$turnover->granttotal_actual}}" disabled>
                                     @endif

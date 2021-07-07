@@ -155,6 +155,7 @@ public function store(Request $request)
         $sale->target_total=$request->target_total;
         $sale->granttotal_target=$request->granttotal_target;
         $totalrow   =   $request->totalrow;
+     
         #echo $totalrow;
         #exit; 
         if($sale->save()){  
@@ -180,6 +181,7 @@ public function store(Request $request)
         
                     $sales_sub->save();
                 }
+
                 return redirect('/salesorderlist');
         } 
     }

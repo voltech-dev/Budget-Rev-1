@@ -652,9 +652,9 @@
                                 <div class="col-sm-3">
                                     @if(empty($sales->granttotal_actual) && !empty($sales->granttotal_target))
                                     <input type="text" name="granttotal_actual" id="granttotal_actual"
-                                        value="{{$sales->granttotal_target}}" disabled>
+                                        value="{{$sales->granttotal_target}}" required>>
                                     @else
-                                    <input type="text" value="{{$sales->granttotal_actual}}" disabled>
+                                    <input type="text" value="{{$sales->granttotal_actual}}" required>
                                     @endif
                                 </div>
 

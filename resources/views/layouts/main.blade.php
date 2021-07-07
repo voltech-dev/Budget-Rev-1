@@ -237,7 +237,7 @@
                                         </li>
                                         <li aria-haspopup="true"><a href="{{url('/unitlist')}}">Unit</a>
                                         <li aria-haspopup="true"><a href="{{url('/divisionlist')}}">Division</a></li>
-                                        <li aria-haspopup="true"><a href="{{url('/userlist')}}">User</a>
+                                       
                                         <li aria-haspopup="true"><a href="{{url('/fylist')}}">Financial Year</a>
                                         </li>
                                     </ul>

@@ -7,6 +7,7 @@ $fin_year=DB::table('br_financial_year')
 ->get();
 
 ?>
+<h3>Salesorder</h3>
 <!-- begin::page-header -->
 <div class="page-header">
     <div class="container-fluid d-sm-flex justify-content-between">

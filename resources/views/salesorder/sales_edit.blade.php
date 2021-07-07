@@ -2,9 +2,7 @@
 @section('header')
 
 <!-- begin::page-header -->
-<div class="card-header">
     <h3>Salesorder</h3>
-</div>
 <div class="page-header">
     <div class="container-fluid d-sm-flex justify-content-between">
 

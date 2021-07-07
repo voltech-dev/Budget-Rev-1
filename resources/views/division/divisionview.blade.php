@@ -52,7 +52,7 @@
                                         {{ $units->unit }}
                                     </option>
                                     @endforeach
-                                </select>
+                                </select>           
 
                             </div>
                         </div>

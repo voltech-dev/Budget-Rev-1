@@ -1,18 +1,74 @@
 @extends('layouts.main')
 
 @section('header')
-<div class="page-leftheader">
-    <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="#"><i class="fe fe-layers mr-2 fs-14"></i>Dash Board</a></li>
+<?php
+$financialyear=DB::table('br_financial_year')
+->get();
 
-    </ol>
-</div>
+?>
 @endsection
 
 @section('content')
-<div class="bg-white dark:bg-gray-800 overflow-hidden sm:rounded-lg">
+<div style="float:right">
+    <form>
+        @csrf
+        <select name="fy" id="fy">
+            <option selected>--Select FY--</option>
+            @foreach($financialyear as $fy)
+            <option value="{{$fy->id}}">{{$fy->financial_year}}</option>
+            @endforeach
+        </select>
+    </form>
+</div>
+<div class="container">
+    <!-- <div class="col-md-4"> -->
+    <div class="table-responsive">
+        <table class="table card-table ">
+            <thead>
+                <th>Unit</th>
+                <th>FY</th>
+                <th>Target</th>
+                <th>Actual</th>
+            </thead>
 
-   
+            <?php
+            $year = date('Y');
+            ?>
+            @foreach($sales as $sale)
+
+            <tr>
+                <td>{{$sale->unit->unit}}</td>
+                <td> <?php echo $year."-".($year+1);?></td>
+                <td>{{$sale->granttotal_target}}</td>
+                <td>{{$sale->granttotal_actual}}</td>
+            </tr>
+            @endforeach
+
+        </table>
+    </div>
+    <!-- </div> -->
 </div>
 
 @endsection
+@push('scripts')
+<script>
+$('#fy').change(function() {
+    var financial_year = $('#fy').val();
+    $.ajax({
+        type: "GET",
+        url: "{{url('/finyear')}}",
+        data: {
+            fin_year: financial_year
+        },
+        datatype:'json',
+        success: function(data) {
+            $.each(data, function(key, value) {
+              
+            });
+
+        }
+    });
+
+});
+</script>
+@endpush

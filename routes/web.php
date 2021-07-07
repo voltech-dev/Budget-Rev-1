@@ -88,3 +88,6 @@ Route::post('/fystore', [SetupController::class, 'fystore']);
 Route::get('/fy_edit/{id}', [SetupController::class, 'finyear_edit']);
 Route::post('/fyupdate/{id}', [SetupController::class, 'finyear_update']);
 Route::get('/finyear_destroy/{id}', [SetupController::class, 'finyear_destroy']);
+Route::get('/',[SalesorderController::class, 'dashboard_sales']);
+
+Route::get('/finyear',[SalesorderController::class, 'sales_finyear']);

@@ -402,38 +402,24 @@ public function store(Request $request)
      }
        
     }
-
-    public function searchsales(Request $request){
-        if($request->sales !=''){
-            $users = DB::table('sales')
-            ->join('target', 'sales.id', '=', 'target.sale_id')
-            ->select('sales.*', 'target.*')
-            ->where('sales.division', $request->sales)
-            ->get();
-            return view('salesturnover',['users'=>$users]);
-            
+    public function dashboard_sales(){
+    $sales=Sale::all();  
+    return view('dashboard',['sales'=>$sales]);
+    }
+    public function sales_finyear(Request $request){
+        $post = $request->all();
+        $sale = Sale::where(['financial_year_id'=>$post['fin_year']])->get();
+        $json = array();
+        // dd($sale);
+        foreach($sale as $sales){
+           echo $sales->year->financial_year."<br>";
         }
+     
+        
+    
+       
     }
+ 
+   
 
-    public function searchturnover(Request $request){
-        if($request->turn !=''){
-            $users = DB::table('turnover')
-        ->join('turnover_target', 'turnover.id', '=', 'turnover_target.turn_id')
-        ->select('turnover.*', 'turnover_target.*')
-        ->where('turnover.division', $request->turn)
-        ->get();
-    return view('turnover.turnoverlist',['users'=>$users]);
-            
-        }
-    }
-
-    public function searchcollection(Request $request){
-        $users = DB::table('collection')
-        ->join('collection_target', 'collection.id', '=', 'collection_target.collection_id')
-        ->select('collection.*', 'collection_target.*')
-        ->where('collection.division', $request->collection)
-        ->get();
-        return view('collection.collectionlist',['users'=>$users]);
-            
-    }
 }

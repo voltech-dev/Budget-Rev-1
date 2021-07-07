@@ -117,7 +117,7 @@
                                         @if(empty($sub->apr_actual) && !empty($sub->apr_target))
                                         <td><input type="text" style="width:80px;" id="apr_actual_<?php echo $i;?>"
                                                 class="actual actual_<?php echo $i;?> apr_actual" name="apr_actual[]"
-                                                autocomplete="off">
+                                                autocomplete="off" required>
                                         </td>
                                         @else
                                         <td><input type="text" style="width:80px;" name="apr_actual[]"
@@ -132,7 +132,7 @@
                                         @if(empty($turnover->apractual_total) && !empty($turnover->aprtarget_total))
 
                                         <td><input type="text" style="width:80px" name="apractualrow_total"
-                                                id="apractualrow_total"><input type="hidden" style="width:80px"
+                                                id="apractualrow_total" readonly><input type="hidden" style="width:80px"
                                                 name="totalrow" id="totalrow" value=<?php echo $totalrow;?>
                                                 autocomplete="off"></td>
 
@@ -162,7 +162,7 @@
                                         @if(empty($sub->may_actual) && !empty($sub->may_target))
                                         <td><input type="text" style="width:80px;" id="may_actual_<?php echo $i;?>"
                                                 class="actual actual_<?php echo $i;?> may_actual" name="may_actual[]"
-                                                autocomplete="off">
+                                                autocomplete="off" required>
                                         </td>
                                         @else
                                         <td><input type="text" style="width:80px;" name="may_actual[]"
@@ -176,7 +176,7 @@
                                         @if(empty($turnover->mayactual_total) && !empty($turnover->maytarget_total))
 
                                         <td><input type="text" style="width:80px" name="mayactualrow_total"
-                                                id="mayactualrow_total"></td>
+                                                id="mayactualrow_total"  readonly></td>
 
 
 
@@ -204,7 +204,7 @@
                                         @if(empty($sub->jun_actual) && !empty($sub->jun_target))
                                         <td><input type="text" style="width:80px;" id="jun_actual_<?php echo $i;?>"
                                                 class="actual actual_<?php echo $i;?> jun_actual" name="jun_actual[]"
-                                                autocomplete="off">
+                                                autocomplete="off" required>
                                         </td>
                                         @else
                                         <td><input type="text" style="width:80px;" name="jun_actual[]" disabled
@@ -218,7 +218,7 @@
                                         @if(empty($turnover->junactual_total) && !empty($turnover->juntarget_total))
 
                                         <td><input type="text" style="width:80px" name="junactualrow_total"
-                                                id="junactualrow_total"></td>
+                                                id="junactualrow_total"  readonly></td>
 
                                         @else
                                         <td><input type="text" style="width:80px;"
@@ -244,7 +244,7 @@
                                         @if(empty($sub->jul_actual) && !empty($sub->jul_target))
                                         <td><input type="text" style="width:80px;" id="jul_actual_<?php echo $i;?>"
                                                 class="actual actual_<?php echo $i;?> jul_actual" name="jul_actual[]"
-                                                autocomplete="off">
+                                                autocomplete="off" required>
                                         </td>
                                         @else
                                         <td><input type="text" style="width:80px;" name="jul_actual[]"
@@ -258,7 +258,7 @@
                                         @if(empty($turnover->julactual_total) && !empty($turnover->jultarget_total))
 
                                         <td><input type="text" style="width:80px" name="julactualrow_total"
-                                                id="julactualrow_total"></td>
+                                                id="julactualrow_total"  readonly></td>
                                         @else
                                         <td><input type="text" style="width:80px;"
                                                 value="{{$turnover->julactual_total}}" disabled>
@@ -283,7 +283,7 @@
                                         @if(empty($sub->aug_actual) && !empty($sub->aug_target))
                                         <td><input type="text" style="width:80px;" id="aug_actual_<?php echo $i;?>"
                                                 class="actual actual_<?php echo $i;?> aug_actual" name="aug_actual[]"
-                                                autocomplete="off">
+                                                autocomplete="off" required>
                                         </td>
                                         @else
                                         <td><input type="text" style="width:80px;" name="aug_actual[]"
@@ -298,7 +298,7 @@
                                         @if(empty($turnover->augactual_total) && !empty($turnover->augtarget_total))
 
                                         <td><input type="text" style="width:80px" name="augactualrow_total"
-                                                id="augactualrow_total"></td>
+                                                id="augactualrow_total"  readonly></td>
                                         @else
                                         <td><input type="text" style="width:80px;"
                                                 value="{{$turnover->augactual_total}}" disabled>
@@ -323,7 +323,7 @@
                                         @if(empty($sub->sep_actual) && !empty($sub->sep_target))
                                         <td><input type="text" style="width:80px;" id="sep_actual_<?php echo $i;?>"
                                                 class="actual actual_<?php echo $i;?> sep_actual" name="sep_actual[]"
-                                                autocomplete="off">
+                                                autocomplete="off" required>
                                         </td>
                                         @else
                                         <td><input type="text" style="width:80px;" name="sep_actual[]"
@@ -337,7 +337,7 @@
                                         @if(empty($turnover->sepactual_total) && !empty($turnover->septarget_total))
 
                                         <td><input type="text" style="width:80px" name="sepactualrow_total"
-                                                id="sepactualrow_total"></td>
+                                                id="sepactualrow_total"  readonly></td>
                                         @else
                                         <td><input type="text" style="width:80px;"
                                                 value="{{$turnover->sepactual_total}}" disabled>
@@ -362,7 +362,7 @@
                                         @if(empty($sub->oct_actual) && !empty($sub->oct_target))
                                         <td><input type="text" style="width:80px;" id="oct_actual_<?php echo $i;?>"
                                                 class="actual actual_<?php echo $i;?> oct_actual" name="oct_actual[]"
-                                                autocomplete="off">
+                                                autocomplete="off" required>
                                         </td>
                                         @else
                                         <td><input type="text" style="width:80px;" name="oct_actual[]"
@@ -376,7 +376,7 @@
                                         @if(empty($turnover->octactual_total) && !empty($turnover->octtarget_total))
 
                                         <td><input type="text" style="width:80px" name="octactualrow_total"
-                                                id="octactualrow_total"></td>
+                                                id="octactualrow_total"  readonly></td>
                                         @else
                                         <td><input type="text" style="width:80px;"
                                                 value="{{$turnover->octactual_total}}" disabled>
@@ -401,7 +401,7 @@
                                         @if(empty($sub->nov_actual) && !empty($sub->nov_target))
                                         <td><input type="text" style="width:80px;" id="nov_actual_<?php echo $i;?>"
                                                 class="actual actual_<?php echo $i;?> nov_actual" name="nov_actual[]"
-                                                autocomplete="off">
+                                                autocomplete="off" required>
                                         </td>
                                         @else
                                         <td><input type="text" style="width:80px;" name="nov_actual[]"
@@ -415,7 +415,7 @@
                                         @if(empty($turnover->novactual_total) && !empty($turnover->novtarget_total))
 
                                         <td><input type="text" style="width:80px" name="novactualrow_total"
-                                                id="novactualrow_total"></td>
+                                                id="novactualrow_total"  readonly></td>
                                         @else
                                         <td><input type="text" style="width:80px;"
                                                 value="{{$turnover->novactual_total}}" disabled>
@@ -440,7 +440,7 @@
                                         @if(empty($sub->dec_actual) && !empty($sub->dec_target))
                                         <td><input type="text" style="width:80px;" id="dec_actual_<?php echo $i;?>"
                                                 class="actual actual_<?php echo $i;?> dec_actual" name="dec_actual[]"
-                                                autocomplete="off">
+                                                autocomplete="off" required>
                                         </td>
                                         @else
                                         <td><input type="text" style="width:80px;" name="dec_actual[]"
@@ -454,7 +454,7 @@
                                         @if(empty($turnover->decactual_total) && !empty($turnover->dectarget_total))
 
                                         <td><input type="text" style="width:80px" name="decactualrow_total"
-                                                id="decactualrow_total"></td>
+                                                id="decactualrow_total"  readonly></td>
 
 
 
@@ -482,7 +482,7 @@
                                         @if(empty($sub->jan_actual) && !empty($sub->jan_target))
                                         <td><input type="text" style="width:80px;" id="jan_actual_<?php echo $i;?>"
                                                 class="actual actual_<?php echo $i;?> jan_actual" name="jan_actual[]"
-                                                autocomplete="off">
+                                                autocomplete="off" required>
                                         </td>
                                         @else
                                         <td><input type="text" style="width:80px;" name="jan_actual[]"
@@ -496,7 +496,7 @@
                                         @if(empty($turnover->janactual_total) && !empty($turnover->jantarget_total))
 
                                         <td><input type="text" style="width:80px" name="janactualrow_total"
-                                                id="janactualrow_total"></td>
+                                                id="janactualrow_total"  readonly></td>
 
 
 
@@ -523,7 +523,7 @@
                                         @if(empty($sub->feb_actual) && !empty($sub->feb_target))
                                         <td><input type="text" style="width:80px;" id="feb_actual_<?php echo $i;?>"
                                                 class="actual actual_<?php echo $i;?> feb_actual" name="feb_actual[]"
-                                                autocomplete="off">
+                                                autocomplete="off" required>
                                         </td>
                                         @else
                                         <td><input type="text" style="width:80px;" name="feb_actual[]"
@@ -537,7 +537,7 @@
                                         @if(empty($turnover->febactual_total) && !empty($turnover->febtarget_total))
 
                                         <td><input type="text" style="width:80px" name="febactualrow_total"
-                                                id="febactualrow_total"></td>
+                                                id="febactualrow_total"  readonly></td>
                                         @else
                                         <td><input type="text" style="width:80px;"
                                                 value="{{$turnover->febactual_total}}" disabled>
@@ -562,7 +562,7 @@
                                         @if(empty($sub->mar_actual) && !empty($sub->mar_target))
                                         <td><input type="text" style="width:80px;" id="mar_actual_<?php echo $i;?>"
                                                 class="actual actual_<?php echo $i;?> mar_actual" name="mar_actual[]"
-                                                autocomplete="off">
+                                                autocomplete="off" required>
                                         </td>
                                         @else
                                         <td><input type="text" style="width:80px;" name="mar_actual[]"
@@ -576,7 +576,7 @@
                                         @if(empty($turnover->maractual_total) && !empty($turnover->martarget_total))
 
                                         <td><input type="text" style="width:80px" name="maractualrow_total"
-                                                id="maractualrow_total"></td>
+                                                id="maractualrow_total"  readonly></td>
 
 
 

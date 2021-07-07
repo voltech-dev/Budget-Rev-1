@@ -98,8 +98,8 @@ $('#company_name').change(function(event) {
         success: function(data) {
             console.log(data);
             $('select[name="unit"]').empty();
-            $.each(data, function(key, value) {        
-                $('select[name="unit"]').append('<option value="' +key + '">' + value +
+            $.each(data, function(key, value) {   
+                 $('select[name="unit"]').append('<option value="' +key + '">' + value +
                     '</option>');
             });
         },

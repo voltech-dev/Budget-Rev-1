@@ -50,20 +50,6 @@
 
                             </div>
 
-                            <div class="form-group row">
-                                <div class="col-sm-6">
-                                    <div class="col-xs-12 col-sm-12 col-md-12 text-left">
-                                        <a class="btn btn-outline-light btn-sm" href="">
-                                            <i data-feather="chevrons-left" class="mr-2"></i>Cancel</a>
-                                    </div>
-                                </div>
-                                <div class="col-sm-6">
-                                    <div class="col-xs-12 col-sm-12 col-md-12 text-right">
-                                        <button type="submit" class="btn btn-outline-success btn-sm"><i
-                                                data-feather="check" class="mr-2"></i>Save</button>
-                                    </div>
-                                </div>
-                            </div>
 
                     </form>
                 </div>

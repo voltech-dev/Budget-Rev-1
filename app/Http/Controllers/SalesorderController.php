@@ -155,9 +155,10 @@ public function store(Request $request)
         $sale->target_total=$request->target_total;
         $sale->granttotal_target=$request->granttotal_target;
         $totalrow   =   $request->totalrow;
-     
+   
         #echo $totalrow;
         #exit; 
+    
         if($sale->save()){  
                 
             for($i=0;$i<$totalrow;$i++){

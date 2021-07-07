@@ -89,7 +89,7 @@ $fin_year=DB::table('br_financial_year')
                             <label>Total Target</label>
                         </div>
                         <div class="col-sm-3">
-                            <input type="text" name="granttotal_target" id="granttotal_target" required>
+                            <input type="text" name="granttotal_target" id="granttotal_target" readonly>
                         </div>
                         <div class="col-sm-3">
                             <label>Total Actual</label>
@@ -245,91 +245,91 @@ function add_division() {
                 $('#apr').append('<td colspan=1>' +
                     '<input type="text" style="width:100px" name="apr_target[]" id="apr_target_' +
                     i + '" class="target target_' + i +
-                    ' apr_target"  autocomplete="off">' +
+                    ' apr_target"  autocomplete="off" required>' +
                     '</td>' + '<td colspan=1>' +
                     '<input type="text" style="width:100px" name="apr_actual" disabled id="apr_actual">' +
                     '</td>');
                 $('#may').append('<td colspan=1>' +
                     '<input type="text" style="width:100px" name="may_target[]" id="may_target_' +
                     i + '" class="target target_' + i +
-                    ' may_target"  autocomplete="off">' +
+                    ' may_target"  autocomplete="off" required>' +
                     '</td>' + '<td colspan=1>' +
                     '<input type="text" style="width:100px" name="may_actual" id="may_actual" disabled >' +
                     '</td>');
                 $('#jun').append('<td>' +
                     '<input type="text" style="width:100px" name="jun_target[]" id="jun_target_' +
                     i + '" class="target target_' + i +
-                    ' jun_target" autocomplete="off">' +
+                    ' jun_target" autocomplete="off" required>' +
                     '</td>' + '<td>' +
                     '<input type="text" style="width:100px" name="jun_actual" id="jun_actual" disabled >' +
                     '</td>');
                 $('#jul').append('<td>' +
                     '<input type="text" style="width:100px" name="jul_target[]" id="jul_target_' +
                     i + '" class="target target_' + i +
-                    ' jul_target"   autocomplete="off">' +
+                    ' jul_target"   autocomplete="off" required>' +
                     '</td>' + '<td>' +
                     '<input type="text" style="width:100px" name="jul_actual" id="jul_actual" disabled >' +
                     '</td>');
                 $('#aug').append('<td>' +
                     '<input type="text" style="width:100px" name="aug_target[]" id="aug_target_' +
                     i + '" class="target target_' + i +
-                    ' aug_target"  autocomplete="off">' +
+                    ' aug_target"  autocomplete="off" required>' +
                     '</td>' + '<td>' +
                     '<input type="text" style="width:100px" name="aug_actual" id="aug_actual" disabled >' +
                     '</td>');
                 $('#sep').append('<td>' +
                     '<input type="text" style="width:100px" name="sep_target[]" id="sep_target_' +
                     i + '" class="target target_' + i +
-                    ' sep_target"   autocomplete="off">' +
+                    ' sep_target"   autocomplete="off" required>' +
                     '</td>' + '<td>' +
                     '<input type="text" style="width:100px" name="sep_actual" id="sep_actual" disabled >' +
                     '</td>');
                 $('#oct').append('<td>' +
                     '<input type="text" style="width:100px" name="oct_target[]" id="oct_target_' +
                     i + '" class="target target_' + i +
-                    ' oct_target"  autocomplete="off">' +
+                    ' oct_target"  autocomplete="off" required>' +
                     '</td>' + '<td>' +
                     '<input type="text" style="width:100px" name="oct_actual" id="oct_actual" disabled >' +
                     '</td>');
                 $('#nov').append('<td>' +
                     '<input type="text" style="width:100px" name="nov_target[]" id="nov_target_' +
                     i + '" class="target target_' + i +
-                    ' nov_target"  autocomplete="off">' +
+                    ' nov_target"  autocomplete="off" required>' +
                     '</td>' + '<td>' +
                     '<input type="text" style="width:100px" name="nov_actual" id="nov_actual" disabled >' +
                     '</td>');
                 $('#dec').append('<td>' +
                     '<input type="text" style="width:100px" name="dec_target[]" id="dec_target_' +
                     i + '" class="target target_' + i +
-                    ' dec_target"  autocomplete="off">' +
+                    ' dec_target"  autocomplete="off" required>' +
                     '</td>' + '<td>' +
                     '<input type="text" style="width:100px" name="dec_actual" id="dec_actual" disabled >' +
                     '</td>');
                 $('#jan').append('<td>' +
                     '<input type="text" style="width:100px" name="jan_target[]" id="jan_target_' +
                     i + '" class="target target_' + i +
-                    ' jan_target"  autocomplete="off">' +
+                    ' jan_target"  autocomplete="off" required>' +
                     '</td>' + '<td>' +
                     '<input type="text" style="width:100px" name="jan_actual" id="jan_actual" disabled >' +
                     '</td>');
                 $('#feb').append('<td>' +
                     '<input type="text" style="width:100px" name="feb_target[]" id="feb_target_' +
                     i + '" class="target target_' + i +
-                    ' feb_target"  autocomplete="off">' +
+                    ' feb_target"  autocomplete="off" required>' +
                     '</td>' + '<td>' +
                     '<input type="text" style="width:100px" name="feb_actual" id="feb_actual" disabled >' +
                     '</td>');
                 $('#mar').append('<td>' +
                     '<input type="text" style="width:100px" name="mar_target[]" id="mar_target_' +
                     i + '" class="target target_' + i +
-                    ' mar_target"  autocomplete="off">' +
+                    ' mar_target"  autocomplete="off" required>' +
                     '</td>' + '<td>' +
                     '<input type="text" style="width:100px" name="mar_actual" id="mar_actual" disabled >' +
                     '</td>');
                 $('#total').append('<td>' +
                     '<input type="text" style="width:100px" name="targetcol_total[]" id="targetcol_total' +
                     i + '" class="target target_' + i +
-                    'targetcol_total" >' +
+                    'targetcol_total" readonly >' +
                     '</td>' + '<td>' +
                     '<input type="text" style="width:100px" name="actualcol_total" disabled >' +
                     '</td>');
@@ -342,63 +342,63 @@ function add_division() {
             $('thead[name="division"]').append('<th>' + 'Target' + '</th>' + '<th>' + 'Actual' + '</th>');
             $('#target').append('<th>' + 'Total Target' + '</th>' + '<th>' + 'Total Actual' + '</th>');
             $('#apr').append('<td>' +
-                '<input type="text" style="width:100px" name="aprtargetrow_total" id="aprtargetrow_total"><input type="hidden" style="width:60px" name="totalrow" id="totalrow" value="' +
+                '<input type="text" style="width:100px" name="aprtargetrow_total" id="aprtargetrow_total" readonly><input type="hidden" style="width:60px" name="totalrow" id="totalrow" value="' +
                 totalrow + '">' +
                 '</td>' + '<td>' +
                 '<input type="text" style="width:100px" name="apractualrow_total" id="apractualrow_total" disabled >' +
                 '</td>');
             $('#may').append('<td>' +
-                '<input type="text" style="width:100px" name="maytargetrow_total" id="maytargetrow_total">' +
+                '<input type="text" style="width:100px" name="maytargetrow_total" id="maytargetrow_total"  readonly>' +
                 '</td>' + '<td>' +
                 '<input type="text" style="width:100px" name="mayactualrow_total" id="mayactualrow_total" disabled >' +
                 '</td>');
             $('#jun').append('<td>' +
-                '<input type="text" style="width:100px" name="juntargetrow_total" id="juntargetrow_total">' +
+                '<input type="text" style="width:100px" name="juntargetrow_total" id="juntargetrow_total"  readonly>' +
                 '</td>' + '<td>' +
                 '<input type="text" style="width:100px" name="junactualrow_total" id="junactualrow_total" disabled >' +
                 '</td>');
             $('#jul').append('<td>' +
-                '<input type="text" style="width:100px" name="jultargetrow_total" id="jultargetrow_total">' +
+                '<input type="text" style="width:100px" name="jultargetrow_total" id="jultargetrow_total"  readonly>' +
                 '</td>' + '<td>' +
                 '<input type="text" style="width:100px" name="julactualrow_total" id="julactualrow_total" disabled >' +
                 '</td>');
             $('#aug').append('<td>' +
-                '<input type="text" style="width:100px" name="augtargetrow_total" id="augtargetrow_total">' +
+                '<input type="text" style="width:100px" name="augtargetrow_total" id="augtargetrow_total"  readonly>' +
                 '</td>' + '<td>' +
                 '<input type="text" style="width:100px" name="augactualrow_total" id="augactualrow_total" disabled >' +
                 '</td>');
             $('#sep').append('<td>' +
-                '<input type="text" style="width:100px" name="septargetrow_total" id="septargetrow_total">' +
+                '<input type="text" style="width:100px" name="septargetrow_total" id="septargetrow_total"  readonly>' +
                 '</td>' + '<td>' +
                 '<input type="text" style="width:100px" name="sepactualrow_total" id="sepactualrow_total" disabled >' +
                 '</td>');
             $('#oct').append('<td>' +
-                '<input type="text" style="width:100px" name="octtargetrow_total" id="octtargetrow_total">' +
+                '<input type="text" style="width:100px" name="octtargetrow_total" id="octtargetrow_total"  readonly>' +
                 '</td>' + '<td>' +
                 '<input type="text" style="width:100px" name="octactualrow_total" id="octactualrow_total" disabled >' +
                 '</td>');
             $('#nov').append('<td>' +
-                '<input type="text" style="width:100px" name="novtargetrow_total" id="novtargetrow_total">' +
+                '<input type="text" style="width:100px" name="novtargetrow_total" id="novtargetrow_total"  readonly>' +
                 '</td>' + '<td>' +
                 '<input type="text" style="width:100px" name="novactualrow_total" id="novactualrow_total" disabled >' +
                 '</td>');
             $('#dec').append('<td>' +
-                '<input type="text" style="width:100px" name="dectargetrow_total" id="dectargetrow_total">' +
+                '<input type="text" style="width:100px" name="dectargetrow_total" id="dectargetrow_total"  readonly>' +
                 '</td>' + '<td>' +
                 '<input type="text" style="width:100px" name="decactualrow_total" id="decactualrow_total" disabled >' +
                 '</td>');
             $('#jan').append('<td>' +
-                '<input type="text" style="width:100px" name="jantargetrow_total" id="jantargetrow_total">' +
+                '<input type="text" style="width:100px" name="jantargetrow_total" id="jantargetrow_total"  readonly>' +
                 '</td>' + '<td>' +
                 '<input type="text" style="width:100px" name="janactualrow_total" id="janactualrow_total" disabled >' +
                 '</td>');
             $('#feb').append('<td>' +
-                '<input type="text" style="width:100px" name="febtargetrow_total" id="febtargetrow_total">' +
+                '<input type="text" style="width:100px" name="febtargetrow_total" id="febtargetrow_total"  readonly>' +
                 '</td>' + '<td>' +
                 '<input type="text" style="width:100px" name="febactualrow_total" id="febactualrow_total" disabled >' +
                 '</td>');
             $('#mar').append('<td>' +
-                '<input type="text" style="width:100px" name="martargetrow_total" id="martargetrow_total">' +
+                '<input type="text" style="width:100px" name="martargetrow_total" id="martargetrow_total"  readonly>' +
                 '</td>' + '<td>' +
                 '<input type="text" style="width:100px" name="maractualrow_total" id="maractualrow_total" disabled >' +
                 '</td>');

@@ -3,6 +3,7 @@ use App\Http\Controllers\SalesorderController;
 use App\Http\Controllers\TurnoverController;
 use App\Http\Controllers\CollectionController;
 use App\Http\Controllers\SetupController;
+use App\Http\Controllers\DashboardController;
 
 use Illuminate\Support\Facades\Route;
  Route::get('/', function () {
@@ -90,4 +91,4 @@ Route::post('/fyupdate/{id}', [SetupController::class, 'finyear_update']);
 Route::get('/finyear_destroy/{id}', [SetupController::class, 'finyear_destroy']);
 Route::get('/',[SalesorderController::class, 'dashboard_sales']);
 
-Route::get('/finyear',[SalesorderController::class, 'sales_finyear']);
+Route::get('/fetchunit',[DashboardController::class, 'salesorder']);

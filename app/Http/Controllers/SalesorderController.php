@@ -403,22 +403,11 @@ public function store(Request $request)
        
     }
     public function dashboard_sales(){
-    $sales=Sale::all();  
-    return view('dashboard',['sales'=>$sales]);
-    }
-    public function sales_finyear(Request $request){
-        $post = $request->all();
-        $sale = Sale::where(['financial_year_id'=>$post['fin_year']])->get();
-        $json = array();
-        // dd($sale);
-        foreach($sale as $sales){
-           echo $sales->year->financial_year."<br>";
-        }
-     
         
-    
-       
+        
+    return view('dashboard');
     }
+    
  
    
 

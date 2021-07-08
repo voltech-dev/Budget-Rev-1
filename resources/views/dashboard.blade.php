@@ -2,73 +2,77 @@
 
 @section('header')
 <?php
-$financialyear=DB::table('br_financial_year')
+$company=DB::table('br_company')
 ->get();
+
 
 ?>
 @endsection
 
 @section('content')
-<div style="float:right">
-    <form>
-        @csrf
-        <select name="fy" id="fy">
-            <option selected>--Select FY--</option>
-            @foreach($financialyear as $fy)
-            <option value="{{$fy->id}}">{{$fy->financial_year}}</option>
-            @endforeach
-        </select>
-    </form>
-</div>
 <div class="container">
-    <!-- <div class="col-md-4"> -->
-    <div class="table-responsive">
-        <table class="table card-table ">
-            <thead>
-                <th>Unit</th>
-                <th>FY</th>
-                <th>Target</th>
-                <th>Actual</th>
-            </thead>
-
-            <?php
-            $year = date('Y');
-            ?>
-            @foreach($sales as $sale)
-
-            <tr>
-                <td>{{$sale->unit->unit}}</td>
-                <td> <?php echo $year."-".($year+1);?></td>
-                <td>{{$sale->granttotal_target}}</td>
-                <td>{{$sale->granttotal_actual}}</td>
-            </tr>
-            @endforeach
-
-        </table>
+    <div class="col-ms-12">
+        <div class="form-group-row">
+            <label class="col-sm-3 col-form-label col-form-label-sm">Company Name</label>
+            <select name="company" id="company">
+                <option selected>--Select Company--</option>
+                @foreach($company as $comp)
+                <option value="{{$comp->id}}">{{$comp->company_name}}</option>
+                @endforeach
+            </select>
+        </div>
     </div>
-    <!-- </div> -->
-</div>
+    <br>
+    <div class="row">
+        <div class="col-md-12 col-lg-12">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Salesorder</h3>
+                </div>
+                <div class="table-responsive">
+                    <table class="table card-table table-vcenter text-nowrap" id="tab">
+                        <thead>
+                            <tr>
+                                <th>Unit</th>
+                                <th>FY</th>
+                                <th>Target</th>
+                                <th>Actual</th>
+                            </tr>
+                        </thead>
+                        <tbody name="sales" id="sales">
 
-@endsection
-@push('scripts')
-<script>
-$('#fy').change(function() {
-    var financial_year = $('#fy').val();
-    $.ajax({
-        type: "GET",
-        url: "{{url('/finyear')}}",
-        data: {
-            fin_year: financial_year
-        },
-        datatype:'json',
-        success: function(data) {
-            $.each(data, function(key, value) {
-              
+                        </tbody>
+                    </table>
+                </div>
+                <!-- table-responsive -->
+            </div>
+        </div>
+        @endsection
+        @push('scripts')
+        <script>
+        $('#company').change(function() {
+            var currentYear = (new Date).getFullYear()
+            alert(currentYear+'-'+(currentYear+1));
+
+            var company = $('#company').val();
+            // alert(company);
+            $.ajax({
+                type: 'GET',
+                url: "{{url('/fetchunit')}}",
+                data: {
+                    company_name: company
+                },
+
+                success: function(data) {
+                    $('tbody[name="sales"]').append('<tr>'+'<td>'+ data + '</td>'+'<td>'+currentYear+'</td>'+'</tr>');
+
+
+                }
+
             });
 
-        }
-    });
 
-});
-</script>
-@endpush
+
+        });
+        </script>
+        @endpush

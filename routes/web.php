@@ -91,4 +91,5 @@ Route::post('/fyupdate/{id}', [SetupController::class, 'finyear_update']);
 Route::get('/finyear_destroy/{id}', [SetupController::class, 'finyear_destroy']);
 Route::get('/',[SalesorderController::class, 'dashboard_sales']);
 
-Route::get('/fetchunit',[DashboardController::class, 'salesorder']);
+Route::get('/dashboard_ajax',[DashboardController::class, 'dashboard_ajax']);
+Route::get('/getsalesorderdata',[DashboardController::class, 'getsalesorderdata']);

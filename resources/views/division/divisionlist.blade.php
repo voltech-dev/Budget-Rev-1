@@ -9,7 +9,7 @@
             <div class="card card-table">
                 <div class="card-body">
                     <div class="table-responsive">
-                        <table id="salesorder" class="table table-bordered datatable">
+                        <table id="division" class="table table-bordered datatable">
                             <thead class="thead-light">
                                 <tr>
                                     <th>SI</th>
@@ -20,7 +20,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php  $i=0; $i++; ?>
+                                <?php  $i=0; ?>
                                 @foreach($division as $div)
                                 <tr>
                                     <td>{{++$i}}</td>
@@ -57,7 +57,10 @@
     @push('scripts')
     <script>
     $(document).ready(function() {
-        $('#salesorder').dataTables();
-    })
+        $('#division').DataTable({
+            "scrolly":"400px",
+            "scrollCollapse":true
+        });
+    });
     </script>
     @endpush

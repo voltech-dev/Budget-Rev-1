@@ -25,6 +25,28 @@ class SalesorderController extends Controller
     {
         return view('salesorder.sales_entry');
     }
+
+    public function dashboard(Request $request)
+    {
+        if($request->financialyear){
+            $year = $request->financialyear;
+        } else {
+            $month=date('mm');
+            $currentYear=date('Y');
+    
+            if($month<4){
+                $year = ($currentYear-1).'-'.$currentYear;
+            } else {
+                $year = $currentYear.'-'.($currentYear+1);
+            }
+        }       
+        return view('salesorder.dashboard',[
+            'model'=>company::all(),
+            'SelectedYear'=>$year,
+            'financialYear'=>financial_year::all()
+        ]);
+    }
+
     public function salesorderlist(){
        
                     $sales=Sale::all();  

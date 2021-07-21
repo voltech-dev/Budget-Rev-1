@@ -16,7 +16,7 @@
 <div class="row">
     <div class="col-sm-12">
         <div class="table-responsive">
-            <table class="table table-bordered text-nowrap" id="example2">
+            <table class="table table-bordered text-nowrap" id="collection">
                 <thead class="thead-light">
                     <tr>
                         <th>SI</th>
@@ -60,3 +60,13 @@
 </div>
 
 @endsection
+@push('scripts')
+<script>
+$(document).ready(function() {
+    $('#collection').DataTable({
+        "scrolly": "400px",
+        "scrollCollapse": true
+    });
+});
+</script>
+@endpush

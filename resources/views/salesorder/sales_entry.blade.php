@@ -34,7 +34,7 @@ $fin_year=DB::table('br_financial_year')
         <div class="col-md-12">
             <!-- Form Entry begins -->
             <form action="{{url('/salesorder')}}" method="POST">
-                @csrf
+           @csrf
                 <div data-label="Enquiry Details" class="demo-code-preview col-xs-12 col-sm-12 col-md-12">
                     <div class="form-group row">
                         <label class="col-sm-3 col-form-label col-form-label-sm">Company Name</label>

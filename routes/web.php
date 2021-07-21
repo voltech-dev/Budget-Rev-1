@@ -4,18 +4,12 @@ use App\Http\Controllers\TurnoverController;
 use App\Http\Controllers\CollectionController;
 use App\Http\Controllers\SetupController;
 use App\Http\Controllers\DashboardController;
-
 use Illuminate\Support\Facades\Route;
- Route::get('/', function () {
-   return view('dashboard');
- });
- Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-     return view('dashboard');
- })->name('dashboard');
- Route::middleware(['auth:sanctum', 'verified'])->get('/', function () {
-     return view('dashboard');
- })->name('dashboard');
 
+
+Route::get('/', [SalesorderController::class, 'dashboard'])->name('dashboard');
+Route::post('/dashboard', [SalesorderController::class, 'dashboard'])->name('dashboard');
+Route::get('/dashboard', [SalesorderController::class, 'dashboard'])->name('dashboard');
 
 ############################## Salesorder ##############################
 Route::get('/salesorderlist', [SalesorderController::class, 'salesorderlist']);
@@ -89,7 +83,7 @@ Route::post('/fystore', [SetupController::class, 'fystore']);
 Route::get('/fy_edit/{id}', [SetupController::class, 'finyear_edit']);
 Route::post('/fyupdate/{id}', [SetupController::class, 'finyear_update']);
 Route::get('/finyear_destroy/{id}', [SetupController::class, 'finyear_destroy']);
-Route::get('/',[SalesorderController::class, 'dashboard_sales']);
+//Route::get('/',[SalesorderController::class, 'dashboard_sales']);
 
-Route::get('/dashboard_ajax',[DashboardController::class, 'dashboard_ajax']);
-Route::get('/getsalesorderdata',[DashboardController::class, 'getsalesorderdata']);
+Route::get('/financialyear',[DashboardController::class, 'sales_financialyear']);
+Route::post('/financialyear',[DashboardController::class, 'sales_financialyear']);

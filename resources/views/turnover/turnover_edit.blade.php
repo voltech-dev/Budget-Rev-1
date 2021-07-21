@@ -116,7 +116,7 @@
                                         @if(empty($sub->apr_actual) && !empty($sub->apr_target))
                                         <td><input type="text" style="width:80px;" id="apr_actual_<?php echo $i;?>"
                                                 class="actual actual_<?php echo $i;?> apr_actual" name="apr_actual[]"
-                                                autocomplete="off" required>
+                                                autocomplete="off">
                                         </td>
                                         @else
                                         <td><input type="text" style="width:80px;" name="apr_actual[]"
@@ -161,7 +161,7 @@
                                         @if(empty($sub->may_actual) && !empty($sub->may_target))
                                         <td><input type="text" style="width:80px;" id="may_actual_<?php echo $i;?>"
                                                 class="actual actual_<?php echo $i;?> may_actual" name="may_actual[]"
-                                                autocomplete="off" required>
+                                                autocomplete="off">
                                         </td>
                                         @else
                                         <td><input type="text" style="width:80px;" name="may_actual[]"
@@ -203,7 +203,7 @@
                                         @if(empty($sub->jun_actual) && !empty($sub->jun_target))
                                         <td><input type="text" style="width:80px;" id="jun_actual_<?php echo $i;?>"
                                                 class="actual actual_<?php echo $i;?> jun_actual" name="jun_actual[]"
-                                                autocomplete="off" required>
+                                                autocomplete="off">
                                         </td>
                                         @else
                                         <td><input type="text" style="width:80px;" name="jun_actual[]" disabled
@@ -243,7 +243,7 @@
                                         @if(empty($sub->jul_actual) && !empty($sub->jul_target))
                                         <td><input type="text" style="width:80px;" id="jul_actual_<?php echo $i;?>"
                                                 class="actual actual_<?php echo $i;?> jul_actual" name="jul_actual[]"
-                                                autocomplete="off" required>
+                                                autocomplete="off" >
                                         </td>
                                         @else
                                         <td><input type="text" style="width:80px;" name="jul_actual[]"
@@ -282,7 +282,7 @@
                                         @if(empty($sub->aug_actual) && !empty($sub->aug_target))
                                         <td><input type="text" style="width:80px;" id="aug_actual_<?php echo $i;?>"
                                                 class="actual actual_<?php echo $i;?> aug_actual" name="aug_actual[]"
-                                                autocomplete="off" required>
+                                                autocomplete="off">
                                         </td>
                                         @else
                                         <td><input type="text" style="width:80px;" name="aug_actual[]"
@@ -322,7 +322,7 @@
                                         @if(empty($sub->sep_actual) && !empty($sub->sep_target))
                                         <td><input type="text" style="width:80px;" id="sep_actual_<?php echo $i;?>"
                                                 class="actual actual_<?php echo $i;?> sep_actual" name="sep_actual[]"
-                                                autocomplete="off" required>
+                                                autocomplete="off">
                                         </td>
                                         @else
                                         <td><input type="text" style="width:80px;" name="sep_actual[]"
@@ -361,7 +361,7 @@
                                         @if(empty($sub->oct_actual) && !empty($sub->oct_target))
                                         <td><input type="text" style="width:80px;" id="oct_actual_<?php echo $i;?>"
                                                 class="actual actual_<?php echo $i;?> oct_actual" name="oct_actual[]"
-                                                autocomplete="off" required>
+                                                autocomplete="off">
                                         </td>
                                         @else
                                         <td><input type="text" style="width:80px;" name="oct_actual[]"
@@ -400,7 +400,7 @@
                                         @if(empty($sub->nov_actual) && !empty($sub->nov_target))
                                         <td><input type="text" style="width:80px;" id="nov_actual_<?php echo $i;?>"
                                                 class="actual actual_<?php echo $i;?> nov_actual" name="nov_actual[]"
-                                                autocomplete="off" required>
+                                                autocomplete="off">
                                         </td>
                                         @else
                                         <td><input type="text" style="width:80px;" name="nov_actual[]"
@@ -439,7 +439,7 @@
                                         @if(empty($sub->dec_actual) && !empty($sub->dec_target))
                                         <td><input type="text" style="width:80px;" id="dec_actual_<?php echo $i;?>"
                                                 class="actual actual_<?php echo $i;?> dec_actual" name="dec_actual[]"
-                                                autocomplete="off" required>
+                                                autocomplete="off">
                                         </td>
                                         @else
                                         <td><input type="text" style="width:80px;" name="dec_actual[]"
@@ -481,7 +481,7 @@
                                         @if(empty($sub->jan_actual) && !empty($sub->jan_target))
                                         <td><input type="text" style="width:80px;" id="jan_actual_<?php echo $i;?>"
                                                 class="actual actual_<?php echo $i;?> jan_actual" name="jan_actual[]"
-                                                autocomplete="off" required>
+                                                autocomplete="off" >
                                         </td>
                                         @else
                                         <td><input type="text" style="width:80px;" name="jan_actual[]"
@@ -522,7 +522,7 @@
                                         @if(empty($sub->feb_actual) && !empty($sub->feb_target))
                                         <td><input type="text" style="width:80px;" id="feb_actual_<?php echo $i;?>"
                                                 class="actual actual_<?php echo $i;?> feb_actual" name="feb_actual[]"
-                                                autocomplete="off" required>
+                                                autocomplete="off">
                                         </td>
                                         @else
                                         <td><input type="text" style="width:80px;" name="feb_actual[]"
@@ -561,7 +561,7 @@
                                         @if(empty($sub->mar_actual) && !empty($sub->mar_target))
                                         <td><input type="text" style="width:80px;" id="mar_actual_<?php echo $i;?>"
                                                 class="actual actual_<?php echo $i;?> mar_actual" name="mar_actual[]"
-                                                autocomplete="off" required>
+                                                autocomplete="off">
                                         </td>
                                         @else
                                         <td><input type="text" style="width:80px;" name="mar_actual[]"
@@ -633,7 +633,7 @@
                                 </div>
                                 <div class="col-sm-3">
                                     @if(empty($turnover->granttotal_actual) && !empty($turnover->granttotal_target))
-                                    <input type="text" name="granttotal_actual" id="granttotal_actual" required>
+                                    <input type="text" name="granttotal_actual" id="granttotal_actual">
                                     @else
                                     <input type="text" value="{{$turnover->granttotal_actual}}" disabled>
                                     @endif

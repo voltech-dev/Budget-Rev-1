@@ -23,7 +23,7 @@
         <div class="card card-table">
             <div class="card-body">
                 <div class="table-responsive">
-                    <table class="table table-bordered text-nowrap" id="example2">
+                    <table class="table table-bordered text-nowrap" id="turnover">
                         <thead class="thead-light">
                             <tr>
                                 <th>SI</th>
@@ -68,3 +68,13 @@
 </div>
 
 @endsection
+@push('scripts')
+<script>
+$(document).ready(function() {
+    $('#turnover').DataTable({
+        "scrolly": "400px",
+        "scrollCollapse": true
+    });
+});
+</script>
+@endpush

@@ -15,7 +15,7 @@ $company =App\Models\company::get();
             <div class="card card-table">
                 <div class="card-body">
                     <div class="table-responsive">
-                    <table class="table table-bordered text-nowrap" id="example2">
+                        <table class="table table-bordered text-nowrap" id="company">
                             <thead class="thead-light">
                                 <tr>
                                     <th>SI</th>
@@ -29,8 +29,7 @@ $company =App\Models\company::get();
                                 @foreach($company as $comp)
                                 <tr>
                                     <td>{{$i++}}</td>
-                                    <td ><a
-                                            href="{{url('/companyview/'.$comp->company_name)}}">{{$comp->company_name}}
+                                    <td><a href="{{url('/companyview/'.$comp->company_name)}}">{{$comp->company_name}}
                                     </td>
                                     <td> <a href="{{ url('/company_edit/'.$comp->id) }}"
                                             class="btn btn-sm btn-white text-success mr-2"><i
@@ -44,7 +43,7 @@ $company =App\Models\company::get();
 
                             </tbody>
                         </table>
-                       
+
                     </div>
                 </div>
             </div>
@@ -58,3 +57,13 @@ $company =App\Models\company::get();
     </div>
 
     @endsection
+    @push('scripts')
+    <script>
+    $(document).ready(function() {
+        $('#company').DataTable({
+            "scrolly": "400px",
+            "scrollCollapse": true
+        });
+    });
+    </script>
+    @endpush

@@ -78,7 +78,13 @@ class SetupController extends Controller
     }  
     public function divisionupdate(Request $request,$id){
         $request->validate([
+            'company_name' => 'required',
+            'unit'=> 'required',
             'division' => "required|unique:division,division_name,$id"
+        ],[
+            'company_name.required' => '* Company field cannot be empty.',
+            'unit.required' => '* Unit field cannot be empty.',
+            'division.required' => '* Division field cannot be empty.',
         ]);
     $division = division::findorfail($id); //   where(['id'=>$id]) this is best 
     $division->company_id =  $request->company_name;
@@ -107,7 +113,13 @@ class SetupController extends Controller
     public function division_store(Request $request)
     {
         $request->validate([
-            'division' => "required|unique:division,division_name"
+            'company_name' => 'required',
+            'unit'=> 'required',
+            'division' => "required|unique:br_division,division_name"
+        ],[
+            'company_name.required' => '* Company field cannot be empty.',
+            'unit.required' => '* Unit field cannot be empty.',
+            'division.required' => '* Division field cannot be empty.',
         ]);
         $division = new division();
         $division->division_name = $request->division;
@@ -155,7 +167,11 @@ class SetupController extends Controller
     }  
     public function unitupdate(Request $request,$id){
         $request->validate([
-            'unit' => "required|unique:unit,unit,$id"
+            'company_name' => 'required',
+            'unit' => "required|unique:br_unit,unit,$id"
+        ],[
+            'company_name.required' =>'* Company field cannot be empty.',
+            'unit.required' => '* Unit field cannot be empty',
         ]);
         $unit = unit::where('id','=',$id)->first(); //   where(['id'=>$id]) this is best 
        $unit->company_id =  $request->company_name;
@@ -170,7 +186,11 @@ class SetupController extends Controller
     public function unitstore(Request $request)
     {
         $request->validate([
-            'unit' => "required|unique:unit,unit"
+            'company_name' => 'required',
+            'unit' => "required|unique:br_unit,unit"
+        ],[
+            'company_name.required' =>'* Company field cannot be empty.',
+            'unit.required' => '* Unit field cannot be empty',
         ]);
         $unit = new unit();
         $unit->company_id = $request->company_name;
@@ -220,7 +240,7 @@ class SetupController extends Controller
     }
     public function fystore(Request $request){
         $request->validate([
-            'fy' => "required|unique:financial_year,financial_year"
+            'fy' => "required|unique:br_financial_year,financial_year"
         ]);
         $financialyear=new financial_year();
         $financialyear->financial_year=$request->fy;
@@ -235,6 +255,7 @@ class SetupController extends Controller
         $post = $request->all();
         $json = array();
         $division = unit::where(['company_id' => $post['company_name']])->get();
+    
         foreach ($division as $div) {
             $json[$div->id] = $div->unit;
         }

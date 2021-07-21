@@ -1,8 +1,8 @@
 @extends('layouts.main')
 @section('header')
 <?php
+error_reporting(0);
 use App\Models\unit;
-use App\Models\Sale;
 use App\Models\financial_year;
 $company=DB::table('br_company')
 ->get();
@@ -16,17 +16,43 @@ else{
     $prevyear = date('Y')-1;
     $currentfy = ($prevyear+1).'-'.$prevyear;
 }
-$financial_year= financial_year::where('id','=',$financial_year)->get();
-foreach($financial_year as $fin){
-   $fy= $fin->id;
-}
+$financial_year = financial_year::all();
+
+            $fin_year=financial_year::where('financial_year','=',$currentfy)->first();
+            $fy_id=$fin_year->id;
+           
+
             ?>
 
 @endsection
 
 @section('content')
 <div class="container">
+<form action="{{url('/financialyear')}}" method="POST">
+{{@csrf_field()}}
+    <div class="form-group-row">
+        <label class="col-sm-3 col-form-label col-form-label-sm">Financial Year</label>
+       <select name="fy" id="fy">
+            @foreach($financial_year as $fy)
+            @if($fy->financial_year == $currentfy)
+            <option selected disabled value="{{$fy->id}}">{{$currentfy}}</option>
+            @else
+            <option value="{{$fy->id}}">{{$fy->financial_year}}</option>
+            @endif
+            @endforeach
+        </select>
+        <!-- <select name="fy" id="fy">
+        @foreach($financial_year as $fy)
+                            <option value="{{ $fy->id }}" {{ $data['fy'] == $fy->id ? 'selected' : '' }}>
+                                {{ $fy->financial_year }}
+                            </option>
+                            @endforeach
+</select> -->
+        <input id="btnSubmit" type="submit" value="Go" />
+    </div>
+</form>
     <div class="row">
+
         <div class="col-md-6" id="salesorder">
             <div class="card">
                 <div class="card-header">
@@ -57,17 +83,16 @@ foreach($financial_year as $fin){
                                 <tr>
                                     <input type="hidden" value="{{$un->id}}" name="unit_id" id="unit_id">
                                     <td>{{$un->unit}}</td>
-                                    @if(App\Models\Sale::where(['unit_id'=>$un->id,'financial_year_id'=>$fy])->exists())
+                                    <td>{{$currentfy}}</td>
+                                    @if(App\Models\Sale::where(['unit_id'=>$un->id,'financial_year_id'=>$fy_id])->exists())
                                     <?php                                    
-                                    $sales =Sale::where(['unit_id'=>$un->id,'financial_year_id'=>$fy])->get(); 
+                                    $sales = App\Models\Sale::where(['unit_id'=>$un->id,'financial_year_id'=>$data['fy']])->get();                                      
                                     ?>
                                     @foreach($sales as $sale)
-                                    <td>{{$sale->year->financial_year}}</td>
                                     <td>{{$sale->granttotal_target }}</td>
                                     <td>{{$sale->granttotal_actual }}</td>
                                     @endforeach
                                     @else
-                                    <td>{{$fin->financial_year}}</td>
                                     <td>0</td>
                                     <td>0</td>
                                     @endif
@@ -107,3 +132,5 @@ foreach($financial_year as $fin){
         });
         </script>
         @endpush
+
+      

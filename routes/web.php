@@ -4,12 +4,19 @@ use App\Http\Controllers\TurnoverController;
 use App\Http\Controllers\CollectionController;
 use App\Http\Controllers\SetupController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\LoginController;
 use Illuminate\Support\Facades\Route;
 
+#######################AuthContoller###################################
+
+############################################################################
 
 Route::get('/', [SalesorderController::class, 'dashboard'])->name('dashboard');
 Route::post('/dashboard', [SalesorderController::class, 'dashboard'])->name('dashboard');
 Route::get('/dashboard', [SalesorderController::class, 'dashboard'])->name('dashboard');
+Route::get('/registration',[LoginController::class,'register']);
+Route::post('/registration_save',[LoginController::class,'register_save']);
+Route::get('/login_page',[LoginController::class,'login']);
 
 ############################## Salesorder ##############################
 Route::get('/salesorderlist', [SalesorderController::class, 'salesorderlist']);
@@ -58,6 +65,7 @@ Route::post('/divisionstore', [SetupController::class, 'division_store']);
 Route::get('/unit', [SetupController::class, 'unit']);
 Route::get('/unitlist', [SetupController::class, 'unitlist']);
 Route::get('/unitedit/{companyname}/{unit}', [SetupController::class, 'unit_edit']);
+Route::get('/userlist',[SetupController::class,'userlist']);
 
 Route::get('/unitview/{id}/{unit}', [SetupController::class, 'unit_view']);
 Route::post('/unitupdate/{id}',[SetupController::class, 'unitupdate']);
@@ -87,3 +95,9 @@ Route::get('/finyear_destroy/{id}', [SetupController::class, 'finyear_destroy'])
 
 Route::get('/financialyear',[DashboardController::class, 'sales_financialyear']);
 Route::post('/financialyear',[DashboardController::class, 'sales_financialyear']);
+Route::get('/user_division', [SetupController::class, 'user_division']);
+Route::post('/userstore', [SetupController::class, 'user_store']);
+Route::get('/user_rights', [SetupController::class, 'user_rights']);
+Route::get('/userecode', [SetupController::class, 'user_ecode']);
+Route::post('/userrights', [SetupController::class, 'user_rightssave']);
+//Route::get('/assignrigts', [SetupController::class, 'assign_rights']);

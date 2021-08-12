@@ -10,6 +10,7 @@ use App\Models\turnover_sub;
 use App\Models\financial_year;
 use DB;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class TurnoverController extends Controller
 {
@@ -20,6 +21,11 @@ class TurnoverController extends Controller
     ###########Entry Page########
     public function turnover_entry()
 {
+     if(Auth::user()->company_id==1){
+        $company = company::where('id','!=', 1)->get();
+    }else {
+        $company = company::where(['id'=>Auth::user()->company_id])->get();
+    }
         return view('turnover.turnover_entry');
 }
     #######Listview#########

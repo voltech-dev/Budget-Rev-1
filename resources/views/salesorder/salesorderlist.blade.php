@@ -1,7 +1,5 @@
 @extends('layouts.main')
 @section('header')
-
-
 <!-- begin::page-header -->
 <h3>Salesorder List</h3>
 <!-- end::page-header -->
@@ -39,6 +37,7 @@
                         <tbody><?php $i=0; $i++; ?>
                             <!-- Fetch values from sales table in db -->
                             @foreach($sales as $sale)
+                          
                             <tr>
                                 <td>{{$i++}}</td>
                                 <td><a href="{{url('/sales_view/'.$sale->id.'/'.$sale->unit_id) }}">{{$sale->company->company_name}}

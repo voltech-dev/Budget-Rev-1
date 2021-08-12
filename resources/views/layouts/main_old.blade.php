@@ -103,30 +103,69 @@
                                     </svg>
                                 </a>
                             </div>
-                            <!--<div class="dropdown header-notify">
-         <a class="nav-link icon" data-toggle="dropdown">
-          <svg xmlns="http://www.w3.org/2000/svg" class="header-icon" width="24" height="24" viewBox="0 0 24 24"><path d="M19 13.586V10c0-3.217-2.185-5.927-5.145-6.742C13.562 2.52 12.846 2 12 2s-1.562.52-1.855 1.258C7.185 4.074 5 6.783 5 10v3.586l-1.707 1.707C3.105 15.48 3 15.734 3 16v2c0 .553.447 1 1 1h16c.553 0 1-.447 1-1v-2c0-.266-.105-.52-.293-.707L19 13.586zM19 17H5v-.586l1.707-1.707C6.895 14.52 7 14.266 7 14v-4c0-2.757 2.243-5 5-5s5 2.243 5 5v4c0 .266.105.52.293.707L19 16.414V17zM12 22c1.311 0 2.407-.834 2.818-2H9.182C9.593 21.166 10.689 22 12 22z"/></svg>
-          <span class="pulse "></span>
-         </a>
-         <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow  animated">
-          <div class="dropdown-header">
-           <h6 class="mb-0">Notifications</h6>
-           <div>										
-          <div class=" text-center p-2 border-top">
-           <a href="#" class="">View All Notifications</a>
-          </div>
-         </div>
-        </div>-->
+                            <nav class="navbar navbar-expand-lg navbar-light navbar-laravel">
+
+                                <div class="container">
+
+                                    <a class="navbar-brand" href="#">Laravel</a>
+
+                                    <button class="navbar-toggler" type="button" data-toggle="collapse"
+                                        data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                                        aria-expanded="false" aria-label="Toggle navigation">
+
+                                        <span class="navbar-toggler-icon"></span>
+
+                                    </button>
+
+
+
+                                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+                                        <ul class="navbar-nav ml-auto">
+
+                                            @guest
+
+                                                <li class="nav-item">
+
+                                                    <a class="nav-link" href="{{ route('login') }}">Login</a>
+
+                                                </li>
+
+                                                <li class="nav-item">
+
+                                                    <a class="nav-link" href="{{ route('register') }}">Register</a>
+
+                                                </li>
+
+                                            @else
+
+                                                <li class="nav-item">
+
+                                                    <a class="nav-link" href="{{ route('logout') }}">Logout</a>
+
+                                                </li>
+
+                                            @endguest
+
+                                        </ul>
+
+
+
+                                    </div>
+
+                                </div>
+
+                            </nav>
+
                             <div class="dropdown profile-dropdown">
                                 <a href="#" class="nav-link pr-0 leading-none" data-toggle="dropdown">
-                                    <!-- <button class="border-transparent rounded-circle bg-white">
-                                        <img class="h-7 w-7 rounded-circle" src="" alt="" />
-                                    </button>-->
 
-                                    <button class="border-transparent rounded-circle bg-white">
-                                        <img class="h-7 w-7 rounded-circle "
-                                            src="{{ Auth::user()->profile_photo_url }}" src="" />
-                                    </button>
+                                    {{-- <button
+                                            class="border-transparent rounded-circle bg-white">
+                                            <img class="h-7 w-7 rounded-circle "
+                                                src="{{ Auth::user()->profile_photo_url }}"
+                                                src="" />
+                                        </button> --}}
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow animated">
                                     <div class="text-center">
@@ -139,9 +178,9 @@
 
 
 
-                                    <form method="POST" action="{{ route('logout') }}">
+                                    {{-- <form method="POST" action="{{route('logout')}}">
                                         @csrf
-
+                                       
                                         <a class="dropdown-item d-flex" href="" onclick="event.preventDefault();
                                                             this.closest('form').submit();">
                                             <svg class="header-icon mr-3" xmlns="http://www.w3.org/2000/svg"
@@ -157,7 +196,7 @@
                                             </svg>
                                             <div class="">Sign Out</div>
                                         </a>
-                                    </form>
+                                    </form> --}}
                                 </div>
                             </div>
                         </div>
@@ -170,10 +209,8 @@
                 <div class="horizontal-main hor-menu clearfix">
                     <div class="horizontal-mainwrapper container clearfix">
                         <!--Nav-->
-                        
                         <nav class="horizontalMenu clearfix">
                             <ul class="horizontalMenu-list">
-                            
                                 <li aria-haspopup="true">
                                     <a href="{{ url('/') }}" class="sub-icon active">
                                         <svg class="hor-icon" xmlns="http://www.w3.org/2000/svg" height="24"
@@ -185,7 +222,6 @@
                                         Dashboard
                                     </a>
                                 </li>
-                               
 
                                 <li aria-haspopup="true">
                                     <a href="{{ url('/salesorderlist') }}" class="sub-icon active">
@@ -224,11 +260,6 @@
                                         Collection
                                     </a>
                                 </li>
-                                <?php
-                                use Illuminate\Support\Facades\Auth;
-                                
-                                ?>
-                                @if(Auth::user()->role == "Admin")
                                 <li aria-haspopup="true">
                                     <a href="" class="">
                                         <svg class="hor-icon" xmlns="http://www.w3.org/2000/svg" height="24"
@@ -237,24 +268,18 @@
                                             <path
                                                 d="M16.66 4.52l2.83 2.83-2.83 2.83-2.83-2.83 2.83-2.83M9 5v4H5V5h4m10 10v4h-4v-4h4M9 15v4H5v-4h4m7.66-13.31L11 7.34 16.66 13l5.66-5.66-5.66-5.65zM11 3H3v8h8V3zm10 10h-8v8h8v-8zm-10 0H3v8h8v-8z" />
                                         </svg>
-
                                         Setup <i class="fa fa-angle-down horizontal-icon"></i>
                                     </a>
                                     <ul class="sub-menu">
                                         <li aria-haspopup="true"><a href="{{ url('/companylist') }}">Company</a>
                                         </li>
                                         <li aria-haspopup="true"><a href="{{ url('/unitlist') }}">Unit</a>
-                                        <li aria-haspopup="true"><a href="{{ url('/divisionlist') }}">Division</a>
-                                        </li>
-                                        <li aria-haspopup="true"><a href="{{ url('/userlist') }}">Users</a>
-                                        </li>
-                                        <li aria-haspopup="true"><a href="{{ url('/user_rights') }}">Assign Rights</a>
-                                        </li>
+                                        <li aria-haspopup="true"><a href="{{ url('/divisionlist') }}">Division</a></li>
+
                                         <li aria-haspopup="true"><a href="{{ url('/fylist') }}">Financial Year</a>
                                         </li>
                                     </ul>
                                 </li>
-                               @endif
 
 
 

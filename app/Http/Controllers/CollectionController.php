@@ -10,6 +10,7 @@ use App\Models\collection_sub;
 use App\Models\financial_year;
 use DB;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CollectionController extends Controller
 {
@@ -20,6 +21,11 @@ class CollectionController extends Controller
     ###########Entry Page########
     public function collection_entry()
     {
+        if(Auth::user()->company_id==1){
+            $company = company::where('id','!=', 1)->get();
+        }else {
+            $company = company::where(['id'=>Auth::user()->company_id])->get();
+        }
         return view('collection.collection_entry');
     }
     #######Listview#########

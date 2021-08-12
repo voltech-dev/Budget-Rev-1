@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\User;
 use App\Models\Sale;
 use App\Models\Turnover;
 use App\Models\Collection;
@@ -12,6 +12,7 @@ use App\Models\sales_sub;
 use App\Models\financial_year;
 use App\Models\turnover_target;
 use App\Models\collection_target;
+use Illuminate\Support\Facades\Auth;
 use DB;
 use Illuminate\Http\Request;
 
@@ -23,7 +24,12 @@ class SalesorderController extends Controller
     }
     public function salesorder()
     {
-        return view('salesorder.sales_entry');
+        if(Auth::user()->company_id==1){
+            $company = company::where('id','!=', 1)->get();
+        }else {
+            $company = company::where(['id'=>Auth::user()->company_id])->get();
+        }
+        return view('salesorder.sales_entry',['company'=>$company]);
     }
 
     public function dashboard(Request $request)
@@ -33,25 +39,39 @@ class SalesorderController extends Controller
         } else {
             $month=date('mm');
             $currentYear=date('Y');
-    
             if($month<4){
                 $year = ($currentYear-1).'-'.$currentYear;
             } else {
                 $year = $currentYear.'-'.($currentYear+1);
             }
-        }       
-        return view('salesorder.dashboard',[
-            'model'=>company::all(),
+        }
+        
+        if(Auth::user()->company_id==1){
+            $model = company::where('id','!=', 1)->get();
+        }else {
+            $model = company::where(['id'=>Auth::user()->company_id])->get();
+        }
+
+        return view('dashboard_view',[
+            'model'=>$model,
             'SelectedYear'=>$year,
-            'financialYear'=>financial_year::all()
+            'financialYear'=>financial_year::all(),
+            'sum'=>0,
+            
         ]);
     }
 
-    public function salesorderlist(){
-       
-                    $sales=Sale::all();  
+    public function salesorderlist()
+    {        
+                if(Auth::user()->company_id==1) {
+                    $sales = Sale::where('company_id','!=', 1)->get();
+                }
+                else{
+                    $sales = Sale::where(['company_id'=>Auth::user()->company_id])->get();
+                }
                 return view('salesorder.salesorderlist',['sales'=>$sales]);
-            }
+    }
+    
     public function sales_view($id,$unit)
     {
         $company=company::all();
@@ -67,8 +87,6 @@ class SalesorderController extends Controller
     $company=company::all();
     $unit=unit::all();
     $sales=Sale::findorfail($id);     
-
-
     $sales_sub=sales_sub::where(['sale_id'=>$sales->id])->get();
     $financialyear=financial_year::where(['id'=>$sales->financial_year_id])->first();
     return view('salesorder.sales_edit',['unit'=>$unit,'company'=>$company,'sales'=>$sales,'financialyear'=>$financialyear,'sales_sub'=>$sales_sub]);      
@@ -178,8 +196,6 @@ public function store(Request $request)
         $sale->granttotal_target=$request->granttotal_target;
         $totalrow   =   $request->totalrow;
    
-        #echo $totalrow;
-        #exit; 
     
         if($sale->save()){  
                 
@@ -364,7 +380,9 @@ public function store(Request $request)
 
     //Userlist
     public function userlist(){
-        return view('user.userlist');
+        $users = User::all();
+        return view('user.userlist',['users'=>$users]);
+
     }
 
     public function usercreate(){
@@ -429,7 +447,7 @@ public function store(Request $request)
         
     return view('dashboard');
     }
-    
+   
  
    
 

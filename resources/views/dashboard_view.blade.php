@@ -1,5 +1,5 @@
 @php
-use Illuminate\Support\Facades\Auth;
+
 @endphp
 @extends('layouts.main')
 @section('header')
@@ -28,59 +28,57 @@ use Illuminate\Support\Facades\Auth;
     <div class="row">
         <div class="col-4">
             <div class="card">
-                @foreach ($model as $company)
-                    @php
-                        $units = App\Models\unit::Where(['company_id' => $company->id])->get();
-                    @endphp
-                    <div class="card-header">
-                        <h3 class="card-title">Salesorder-{{ $company->company_name }}</h3>
-                    </div>
-                    <div class="card-body">
-                        <table class="table table-sm table-bordered">
-                            <tr>
-                                <th>Unit</th>
-                                <th>Target </th>
-                                <th>Actual</th>
-                            </tr>
-                            @php
-                                $total_target = 0;
-                                $total_actual = 0;
-                            @endphp
-                            @foreach ($units as $unit)
-                                @php
-                                    $sale = App\Models\Sale::where(['financial_year_id' => $dispalyYear->id, 'company_id' => $company->id, 'unit_id' => $unit->id])->first();
-                                    
-                                @endphp
+                @foreach ($model as $company)                   
+                        @php
+                            $units = App\Models\unit::Where(['company_id' => $company->id])->get();
+                        @endphp
+                        <div class="card-header">
+                            <h3 class="card-title">Salesorder-{{ $company->company_name }}</h3>
+                        </div>
+                        <div class="card-body">
+                            <table class="table table-sm table-bordered">
                                 <tr>
-                                    <td>{{ $unit->unit }}</td>
+                                    <th>Unit</th>
+                                    <th>Target </th>
+                                    <th>Actual</th>
+                                </tr>
+                                @php
+                                    $total_target = 0;
+                                    $total_actual = 0;
+                                @endphp
+                                @foreach ($units as $unit)
+                                    @php
+                                        $sale = App\Models\Sale::where(['financial_year_id' => $dispalyYear->id, 'company_id' => $company->id, 'unit_id' => $unit->id])->first();
+                                        
+                                    @endphp
+                                    <tr>
+                                        <td>{{ $unit->unit }}</td>
 
-                                    @if ($sale)
-                                        <td>{{ $sale->granttotal_target }}</td>
-                                        <td>{{ $sale->granttotal_actual }}</td>
+                                        @if ($sale)
+                                            <td>{{ $sale->granttotal_target }}</td>
+                                            <td>{{ $sale->granttotal_actual }}</td>
 
-                                        @php
-                                            
-                                            $sale = App\Models\Sale::where(['financial_year_id' => $dispalyYear->id, 'company_id' => $company->id, 'unit_id' => $unit->id])->first();
-                                            $total_target += $sale->granttotal_target;
-                                            $total_actual += $sale->granttotal_actual;
-                                            
-                                        @endphp
-                                    @else
-                                        <td>0</td>
-                                        <td>0</td>
-
-                                    @endif
-
-                            @endforeach
-                        </table>
-                        <h6 style="text-align:left;float:left;">Target Total:{{ $total_target }}</h5>
-                            <h6 style="text-align:right;float:right;">Actual Total:{{ $total_actual }}</h2>
-
-
-                    </div>
+                                            @php
+                                                
+                                                $sale = App\Models\Sale::where(['financial_year_id' => $dispalyYear->id, 'company_id' => $company->id, 'unit_id' => $unit->id])->first();
+                                                $total_target += $sale->granttotal_target;
+                                                $total_actual += $sale->granttotal_actual;
+                                                
+                                            @endphp
+                                        @else
+                                            <td>0</td>
+                                            <td>0</td>
+                                        @endif
+                                    </tr>
+                                @endforeach
+                            </table>
+                            <h6 style="text-align:left;float:left;">Target Total:{{ $total_target }}</h5>
+                                <h6 style="text-align:right;float:right;">Actual Total:{{ $total_actual }}</h2>
+                        </div>                   
                 @endforeach
             </div>
         </div>
+
         <div class="col-4">
             <div class="card">
                 @foreach ($model as $company)
